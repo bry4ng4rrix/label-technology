@@ -157,7 +157,7 @@ export default function ServicesGrid() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {SERVICES.map((s) => (
             <Link key={s.id} href={s.href} className="group">
-              <Card className="relative h-full flex flex-col border-0 rounded-lg transition-shadow hover:shadow-md bg-card">
+              <Card className="relative h-full  border-0 rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 ease-in-out">
                 <CardHeader className="pb-3">
                   {s.badge && (
                     <Badge
@@ -180,13 +180,19 @@ export default function ServicesGrid() {
                 </CardHeader>
 
                 <CardContent className="flex-1 pb-4">
-                  <p className="text-[15px] leading-relaxed mb-6 text-muted-foreground" style={{ lineHeight: 1.7 }}>
+                  <p
+                    className="text-[15px] leading-relaxed mb-6 text-muted-foreground"
+                    style={{ lineHeight: 1.7 }}
+                  >
                     {s.desc}
                   </p>
 
                   <ul className="space-y-1.5">
                     {s.items.map((item, i) => (
-                      <li key={i} className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <li
+                        key={i}
+                        className="flex items-center gap-2 text-sm text-muted-foreground"
+                      >
                         <span style={{ color: s.color }}>→</span>
                         {item}
                       </li>
