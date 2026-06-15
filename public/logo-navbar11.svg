@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230 44" width="230" height="44">
+  <!-- Badge bleu -->
+  <rect x="0" y="2" width="40" height="40" rx="2" fill="#1E3FAB"/>
+
+  <!-- L — barre verticale -->
+  <rect x="6.5" y="10" width="4.5" height="20" rx="0.5" fill="#FFFFFF"/>
+  <!-- L — barre horizontale basse -->
+  <rect x="6.5" y="25.5" width="11.5" height="4.5" rx="0.5" fill="#FFFFFF"/>
+
+  <!-- T — barre horizontale principale -->
+  <rect x="20.5" y="10" width="13" height="4.5" rx="0.5" fill="#FFFFFF"/>
+  <!-- T — pads circuit aux extrémités -->
+  <rect x="20.5" y="10" width="3.5" height="3.5" rx="0.3" fill="#7AAAFF"/>
+  <rect x="30" y="10" width="3.5" height="3.5" rx="0.3" fill="#7AAAFF"/>
+  <!-- T — tige verticale -->
+  <rect x="25.25" y="10" width="4.5" height="20" rx="0.5" fill="#FFFFFF"/>
+  <!-- T — pad circuit en bas de la tige -->
+  <rect x="25.25" y="25.5" width="4.5" height="4.5" rx="0.3" fill="#7AAAFF"/>
+
+  <!-- Séparateur -->
+  <line x1="51" y1="7" x2="51" y2="37" stroke="#1E3FAB" stroke-width="1" opacity="0.25"/>
+
+  <!-- LABEL -->
+  <text x="61" y="23" font-family="'Arial Black','Arial',sans-serif" font-weight="900" font-size="14.5" fill="#1E3FAB" letter-spacing="1.5">LABEL</text>
+  <!-- TECHNOLOGY -->
+  <text x="62" y="37" font-family="'Arial',sans-serif" font-weight="400" font-size="9" fill="#1E3FAB" letter-spacing="4" opacity="0.55">TECHNOLOGY</text>
+</svg>

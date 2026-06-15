@@ -1,0 +1,45 @@
+{
+  "nav": {
+    "services": "Services",
+    "dev": "Development",
+    "callcenter": "Call Center",
+    "marketing": "Digital Marketing",
+    "digital": "Digitalization",
+    "data": "Data Processing",
+    "materiel": "IT Equipment",
+    "about": "About",
+    "projects": "Projects",
+    "contact": "Contact",
+    "blog": "Blog",
+    "cta": "Start a project →"
+  },
+  "hero": {
+    "tag": "Antananarivo · Madagascar · International",
+    "headline": "Your premium technology partner",
+    "sub": "Development, 50-seat Call Center, Digital Marketing, Digitalization, Data and IT Equipment — one team, six expertises.",
+    "cta_primary": "Start a project",
+    "cta_secondary": "Discover our services",
+    "stat_seats": "50-seat Call Center",
+    "stat_poles": "6 areas of expertise",
+    "stat_lang": "Bilingual FR / EN",
+    "stat_delay": "Response within 24h"
+  },
+  "ticker": {
+    "items": [
+      "Web & Mobile Development",
+      "50-seat Call Center FR/EN",
+      "Digital Marketing & SEO",
+      "Digitalization & Software",
+      "Data Processing",
+      "IT Equipment Sales"
+    ]
+  },
+  "footer": {
+    "address": "Akany Riandrano, Manajak Ilafy, Antananarivo Avaradrano, Madagascar",
+    "phone": "+261 34 05 031 29",
+    "email": "contact@labeltechnology.mg",
+    "rights": "© 2026 Label Technology. All rights reserved.",
+    "mentions": "Legal Notice",
+    "tagline": "Consulting & Services"
+  }
+}
