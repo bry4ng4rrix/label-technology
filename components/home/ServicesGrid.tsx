@@ -9,7 +9,17 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import {
+  Code2,
+  Phone,
+  TrendingUp,
+  RefreshCw,
+  Database,
+  Server,
+  DollarSign,
+  ArrowRight,
+} from "lucide-react";
+
 const SERVICES = [
   {
     id: "dev",
@@ -25,7 +35,8 @@ const SERVICES = [
       "APIs & intégrations",
     ],
     featured: false,
-    color: "var(--brand)",
+    color: "#3B82F6",
+    icon: Code2,
   },
   {
     id: "callcenter",
@@ -42,7 +53,8 @@ const SERVICES = [
     ],
     featured: false,
     badge: "50 postes",
-    color: "var(--gold)",
+    color: "#F59E0B",
+    icon: Phone,
   },
   {
     id: "marketing",
@@ -58,7 +70,8 @@ const SERVICES = [
       "Analytics & reporting",
     ],
     featured: false,
-    color: "var(--coral)",
+    color: "#EC4899",
+    icon: TrendingUp,
   },
   {
     id: "digital",
@@ -74,7 +87,8 @@ const SERVICES = [
       "Formation & conduite",
     ],
     featured: false,
-    color: "var(--brand-lt)",
+    color: "#10B981",
+    icon: RefreshCw,
   },
   {
     id: "data",
@@ -90,7 +104,8 @@ const SERVICES = [
       "Visualisation & analyse",
     ],
     featured: false,
-    color: "var(--brand)",
+    color: "#8B5CF6",
+    icon: Database,
   },
   {
     id: "materiel",
@@ -106,7 +121,8 @@ const SERVICES = [
       "Installation & support",
     ],
     featured: false,
-    color: "var(--brand)",
+    color: "#06B6D4",
+    icon: Server,
   },
   {
     id: "comptabilite",
@@ -122,95 +138,199 @@ const SERVICES = [
       "Tableaux de bord dirigeants",
     ],
     featured: false,
-    color: "var(--brand-lt)",
+    color: "#EF4444",
+    icon: DollarSign,
   },
 ];
 
 export default function ServicesGrid() {
   return (
-    <section className="py-24 px-6" style={{ backgroundColor: "var(--paper)" }}>
+    <section className="py-24 px-6 bg-background">
+      <style>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes slideDown {
+          from {
+            opacity: 0;
+            transform: translateY(-20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes iconFloat {
+          0%, 100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-8px);
+          }
+        }
+
+        .animate-fade-in-up {
+          animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .animate-slide-down {
+          animation: slideDown 0.6s ease-out forwards;
+        }
+
+        .animate-icon-float {
+          animation: iconFloat 3s ease-in-out infinite;
+        }
+
+        .service-card {
+          opacity: 0;
+        }
+
+        .service-card:nth-child(1) { animation: fadeInUp 0.6s ease-out 0.1s forwards; }
+        .service-card:nth-child(2) { animation: fadeInUp 0.6s ease-out 0.2s forwards; }
+        .service-card:nth-child(3) { animation: fadeInUp 0.6s ease-out 0.3s forwards; }
+        .service-card:nth-child(4) { animation: fadeInUp 0.6s ease-out 0.4s forwards; }
+        .service-card:nth-child(5) { animation: fadeInUp 0.6s ease-out 0.5s forwards; }
+        .service-card:nth-child(6) { animation: fadeInUp 0.6s ease-out 0.6s forwards; }
+        .service-card:nth-child(7) { animation: fadeInUp 0.6s ease-out 0.7s forwards; }
+
+        @media (prefers-reduced-motion: reduce) {
+          .animate-fade-in-up,
+          .animate-slide-down,
+          .animate-icon-float,
+          .service-card {
+            animation: none !important;
+            opacity: 1 !important;
+            transform: none !important;
+          }
+        }
+      `}</style>
+
       <div className="max-w-7xl mx-auto">
         {/* Section header */}
-        <div className="flex items-end justify-between mb-14 flex-wrap gap-4">
+        <div className="flex items-end justify-between mb-14 flex-wrap gap-4 animate-slide-down">
           <div>
-            <p className="label-tag mb-3" style={{ color: "var(--brand)" }}>
+            <p className="text-xs font-semibold tracking-widest mb-3 text-primary/70 uppercase">
               NOS EXPERTISES
             </p>
-            <h2 className="font-display text-4xl md:text-5xl text-foreground">
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-tight">
               7 expertises.
               <br />
-              <span style={{ color: "var(--brand)" }}>1 équipe.</span>
+              <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
+                1 équipe.
+              </span>
             </h2>
           </div>
           <Button
-            className="text-xs px-5 py-2.5 border-2 rounded-sm transition-all duration-300 hover:scale-105 "
-            variant="outline"
+            className="text-xs px-6 py-3 bg-gray-100 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg font-semibold"
+            asChild
           >
             <Link href="/contact" className="flex items-center gap-2">
               DÉMARRER UN PROJET
-              <ArrowRight className="ml-2" size={16} />
+              <ArrowRight
+                size={16}
+                className="transition-transform group-hover:translate-x-1"
+              />
             </Link>
           </Button>
         </div>
 
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {SERVICES.map((s) => (
-            <Link key={s.id} href={s.href} className="group">
-              <Card className="relative h-full  border-0 rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 ease-in-out">
-                <CardHeader className="pb-3">
-                  {s.badge && (
-                    <Badge
-                      className="absolute top-6 right-6 label-tag text-[10px] px-2 py-1 rounded-sm border-0"
-                      style={{
-                        backgroundColor: "var(--gold)",
-                        color: "var(--ink)",
-                      }}
-                    >
-                      {s.badge}
-                    </Badge>
-                  )}
-                  <p className="label-tag text-[10px] mb-2 text-muted-foreground">
-                    {s.tag}
-                  </p>
-                  <h3 className="font-display text-2xl leading-tight text-foreground">
-                    {s.headline}{" "}
-                    <span style={{ color: s.color }}>{s.headlineAccent}</span>
-                  </h3>
-                </CardHeader>
+          {SERVICES.map((s) => {
+            const IconComponent = s.icon;
+            return (
+              <Link key={s.id} href={s.href} className="group service-card">
+                <Card className="relative h-full border border-border/40 rounded-xl shadow-md hover:scale-105 hover:shadow-xl hover:border-primary/30 transition-all duration-300 ease-out overflow-hidden">
+                  {/* Background gradient effect */}
+                  <div
+                    className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-300"
+                    style={{
+                      background: `radial-gradient(circle at top right, ${s.color}20 0%, transparent 70%)`,
+                    }}
+                  />
 
-                <CardContent className="flex-1 pb-4">
-                  <p
-                    className="text-[15px] leading-relaxed mb-6 text-muted-foreground"
-                    style={{ lineHeight: 1.7 }}
-                  >
-                    {s.desc}
-                  </p>
-
-                  <ul className="space-y-1.5">
-                    {s.items.map((item, i) => (
-                      <li
-                        key={i}
-                        className="flex items-center gap-2 text-sm text-muted-foreground"
+                  <CardHeader className="relative pb-4">
+                    {/* Icon section */}
+                    <div className="mb-4">
+                      <div
+                        className="inline-flex p-3 rounded-lg mb-4 animate-icon-float"
+                        style={{
+                          backgroundColor: `${s.color}15`,
+                          color: s.color,
+                        }}
                       >
-                        <span style={{ color: s.color }}>→</span>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
+                        <IconComponent size={24} strokeWidth={1.5} />
+                      </div>
+                    </div>
 
-                <CardFooter>
-                  <span
-                    className="text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity"
-                    style={{ color: s.color }}
-                  >
-                    En savoir plus →
-                  </span>
-                </CardFooter>
-              </Card>
-            </Link>
-          ))}
+                    {s.badge && (
+                      <Badge
+                        className="absolute top-6 right-6 text-[10px] px-2 py-1 rounded-full border-0 font-semibold"
+                        style={{
+                          backgroundColor: `${s.color}20`,
+                          color: s.color,
+                        }}
+                      >
+                        {s.badge}
+                      </Badge>
+                    )}
+
+                    <p className="text-[11px] font-semibold tracking-widest mb-3 text-muted-foreground uppercase">
+                      {s.tag}
+                    </p>
+
+                    <h3 className="text-xl md:text-2xl font-bold leading-tight text-foreground">
+                      {s.headline}{" "}
+                      <span style={{ color: s.color }}>{s.headlineAccent}</span>
+                    </h3>
+                  </CardHeader>
+
+                  <CardContent className="relative flex-1 pb-4">
+                    <p className="text-sm leading-relaxed mb-6 text-muted-foreground">
+                      {s.desc}
+                    </p>
+
+                    <ul className="space-y-2">
+                      {s.items.map((item, i) => (
+                        <li
+                          key={i}
+                          className="flex items-center gap-3 text-sm text-muted-foreground group/item"
+                        >
+                          <span
+                            className="inline-block w-1.5 h-1.5 rounded-full transition-all duration-300 group-hover/item:scale-125"
+                            style={{ backgroundColor: s.color }}
+                          />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+
+                  <CardFooter className="relative">
+                    <span
+                      className="text-xs font-semibold opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center gap-2"
+                      style={{ color: s.color }}
+                    >
+                      En savoir plus
+                      <ArrowRight
+                        size={14}
+                        className="transition-transform group-hover:translate-x-1"
+                      />
+                    </span>
+                  </CardFooter>
+                </Card>
+              </Link>
+            );
+          })}
         </div>
       </div>
     </section>
