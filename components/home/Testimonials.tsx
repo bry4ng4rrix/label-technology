@@ -119,7 +119,7 @@ export default function Testimonials() {
           {TESTIMONIALS.map((t, i) => (
             <div
               key={i}
-              className="testimonial-card bg-card rounded-lg border-l hover:border-stone-700 transletion-all duration-300  border-dashed  overflow-hidden"
+              className="testimonial-card bg-card rounded-lg border-l hover:border hover:border-stone-200  transition-all duration-300  border-dashed  overflow-hidden"
               style={{ borderLeftColor: t.color }}
             >
               <CardContent className="pt-8 pb-6 flex flex-col flex-1">
