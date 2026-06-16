@@ -148,7 +148,7 @@ export default function Process() {
           <h2 className="font-display text-4xl md:text-5xl text-foreground">
             Comment on
             <br />
-            <span className="bg-gradient-to-r from-blue-500 via-amber-400 to-emerald-500 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-blue-500 to-emerald-500 bg-clip-text text-transparent">
               travaille.
             </span>
           </h2>
@@ -158,11 +158,11 @@ export default function Process() {
           {STEPS.map((step, i) => (
             <div
               key={i}
-              className="process-step relative p-8 group bg-card hover:shadow-lg transition-all duration-300"
+              className="process-step relative p-8 group   hover:shadow-xl transition-all duration-300"
             >
               {/* Gradient background on hover */}
               <div
-                className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-br ${step.gradientColor}`}
+                className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity  duration-300 bg-gradient-to-br ${step.gradientColor}`}
               />
 
               <div className="step-content relative z-20">
@@ -171,7 +171,7 @@ export default function Process() {
                   className="step-number font-display text-6xl font-extrabold mb-6 transition-all duration-300"
                   style={{
                     color: step.color,
-                    opacity: 0.2,
+                    opacity: 30,
                     textShadow: `0 0 20px ${step.color}80`,
                   }}
                 >
