@@ -145,7 +145,7 @@ const SERVICES = [
 
 export default function ServicesGrid() {
   return (
-    <section className="py-24 px-6 bg-background">
+    <section className="relative py-24 px-6 bg-gray-100 overflow-hidden">
       <style>{`
         @keyframes fadeInUp {
           from {
@@ -178,6 +178,59 @@ export default function ServicesGrid() {
           }
         }
 
+        @keyframes blobDrift1 {
+          0%, 100% { transform: translate(0, 0) scale(1); }
+          33%       { transform: translate(-60px, 80px) scale(1.07); }
+          66%       { transform: translate(40px, -40px) scale(0.94); }
+        }
+
+        @keyframes blobDrift2 {
+          0%, 100% { transform: translate(0, 0) scale(1); }
+          40%       { transform: translate(70px, -60px) scale(1.06); }
+          80%       { transform: translate(-30px, 50px) scale(0.96); }
+        }
+
+        @keyframes blobDrift3 {
+          0%, 100% { transform: translate(0, 0) scale(1); }
+          50%       { transform: translate(-50px, -70px) scale(1.05); }
+        }
+
+        .sg-blob {
+          position: absolute;
+          border-radius: 50%;
+          filter: blur(90px);
+          pointer-events: none;
+        }
+
+        .sg-blob-1 {
+          width: 600px;
+          height: 600px;
+          background: radial-gradient(circle, rgba(59,130,246,0.22), rgba(139,92,246,0.10));
+          top: -180px;
+          right: -80px;
+          animation: blobDrift1 14s ease-in-out infinite;
+        }
+
+        .sg-blob-2 {
+          width: 480px;
+          height: 480px;
+          background: radial-gradient(circle, rgba(236,72,153,0.15), rgba(139,92,246,0.12));
+          bottom: -120px;
+          left: -60px;
+          animation: blobDrift2 18s ease-in-out infinite;
+          animation-delay: -5s;
+        }
+
+        .sg-blob-3 {
+          width: 320px;
+          height: 320px;
+          background: radial-gradient(circle, rgba(16,185,129,0.12), rgba(59,130,246,0.08));
+          top: 40%;
+          left: 35%;
+          animation: blobDrift3 22s ease-in-out infinite;
+          animation-delay: -10s;
+        }
+
         .animate-fade-in-up {
           animation: fadeInUp 0.6s ease-out forwards;
         }
@@ -206,6 +259,7 @@ export default function ServicesGrid() {
           .animate-fade-in-up,
           .animate-slide-down,
           .animate-icon-float,
+          .sg-blob,
           .service-card {
             animation: none !important;
             opacity: 1 !important;
@@ -214,7 +268,14 @@ export default function ServicesGrid() {
         }
       `}</style>
 
-      <div className="max-w-7xl mx-auto">
+      {/* Animated gradient orbs */}
+      <div aria-hidden="true">
+        <div className="sg-blob sg-blob-1" />
+        <div className="sg-blob sg-blob-2" />
+        <div className="sg-blob sg-blob-3" />
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto">
         {/* Section header */}
         <div className="flex items-end justify-between mb-14 flex-wrap gap-4 animate-slide-down">
           <div>
@@ -262,7 +323,7 @@ export default function ServicesGrid() {
                     {/* Icon section */}
                     <div className="mb-4">
                       <div
-                        className="inline-flex p-3 rounded-lg mb-4 animate-icon-float"
+                        className="inline-flex p-3 rounded-lg mb-4 animate-icon-float shadow-md transition-all duration-300 "
                         style={{
                           backgroundColor: `${s.color}15`,
                           color: s.color,
@@ -274,7 +335,7 @@ export default function ServicesGrid() {
 
                     {s.badge && (
                       <Badge
-                        className="absolute top-6 right-6 text-[10px] px-2 py-1 rounded-full border-0 font-semibold"
+                        className="absolute top-6 right-6 text-[10px] px-2 py-1 rounded-full border-0 font-semibold shadow-md transition-all duration-300"
                         style={{
                           backgroundColor: `${s.color}20`,
                           color: s.color,
