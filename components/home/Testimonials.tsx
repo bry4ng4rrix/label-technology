@@ -12,9 +12,8 @@ const TESTIMONIALS = [
     role: "Directeur Commercial",
     company: "PME industrielle, Lyon",
     tag: "Call Center",
-    color: "var(--gold)",
-    avatar:
-      "https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=80&h=80&fit=crop&q=80",
+    color: "#D4AF37",
+    gradientColor: "from-amber-500/20 to-yellow-600/10",
   },
   {
     quote:
@@ -23,9 +22,8 @@ const TESTIMONIALS = [
     role: "Directeur Général",
     company: "Groupe éducatif, Antananarivo",
     tag: "Développement Web",
-    color: "var(--brand)",
-    avatar:
-      "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=80&h=80&fit=crop&q=80",
+    color: "#3B82F6",
+    gradientColor: "from-blue-500/20 to-blue-600/10",
   },
   {
     quote:
@@ -34,77 +32,138 @@ const TESTIMONIALS = [
     role: "Directrice des Systèmes d'Information",
     company: "Institution publique, Madagascar",
     tag: "Traitement de données",
-    color: "var(--brand-lt)",
-    avatar:
-      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&h=80&fit=crop&q=80",
+    color: "#10B981",
+    gradientColor: "from-emerald-500/20 to-teal-600/10",
   },
 ];
 
 export default function Testimonials() {
   return (
-    <section className="py-24 px-6" style={{ backgroundColor: "var(--paper)" }}>
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-14">
-          <p className="label-tag mb-3" style={{ color: "var(--brand)" }}>
+    <section className="relative py-24 px-6 bg-background overflow-hidden">
+      <style>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .testimonial-card {
+          animation: fadeInUp 0.6s ease-out forwards;
+          opacity: 0;
+          position: relative;
+        }
+
+        .testimonial-card:nth-child(1) { animation: fadeInUp 0.6s ease-out 0.1s forwards; }
+        .testimonial-card:nth-child(2) { animation: fadeInUp 0.6s ease-out 0.2s forwards; }
+        .testimonial-card:nth-child(3) { animation: fadeInUp 0.6s ease-out 0.3s forwards; }
+
+        .testimonial-card {
+          border-l: 4px solid;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .testimonial-card:hover {
+          transform: translateY(-8px);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .testimonial-card::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.03) 50%, transparent 100%);
+          opacity: 0;
+          transition: opacity 0.3s ease;
+          pointer-events: none;
+        }
+
+        .testimonial-card:hover::before {
+          opacity: 1;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .testimonial-card {
+            animation: none !important;
+            opacity: 1 !important;
+          }
+
+          .testimonial-card:hover {
+            transform: none;
+          }
+        }
+      `}</style>
+
+      <div className="max-w-7xl mx-auto relative z-10">
+        <div className="mb-16">
+          <p className="label-tag mb-3" style={{ color: "#3B82F6" }}>
             TÉMOIGNAGES CLIENTS
           </p>
           <h2 className="font-display text-4xl md:text-5xl text-foreground">
             Des résultats,
             <br />
-            <span style={{ color: "var(--brand)" }}>pas des promesses.</span>
+            <span className="bg-gradient-to-r from-blue-500  to-emerald-500 bg-clip-text text-transparent">
+              pas des promesses.
+            </span>
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {TESTIMONIALS.map((t, i) => (
-            <Card
+            <div
               key={i}
-              className="flex flex-col shadow-lg hover:shadow-xl transition-all hover:scale-105"
+              className="testimonial-card bg-card rounded-lg border-l hover:border-stone-700 transletion-all duration-300  border-dashed  overflow-hidden"
+              style={{ borderLeftColor: t.color }}
             >
-              <CardContent className="pt-7 pb-4 flex flex-col flex-1">
+              <CardContent className="pt-8 pb-6 flex flex-col flex-1">
                 <Badge
                   variant="secondary"
-                  className="text-[10px]  rounded-full border-0"
+                  className="text-[10px] rounded-full border-0 w-fit mb-4 font-semibold"
                   style={{
-                    backgroundColor: `color-mix(in srgb, ${t.color} 15%, transparent)`,
+                    backgroundColor: `${t.color}20`,
                     color: t.color,
                   }}
                 >
                   {t.tag}
                 </Badge>
 
-                <div
-                  className="font-display text-5xl leading-none mb-4 opacity-20"
-                  style={{ color: t.color }}
-                >
-                  &ldquo;
-                </div>
-
-                <p className="text-base leading-relaxed font-light flex-1 text-foreground">
-                  {t.quote}
+                <p className="text-base leading-relaxed text-foreground flex-1 mb-6">
+                  &ldquo;{t.quote}&rdquo;
                 </p>
               </CardContent>
 
-              <CardFooter className="pt-5 border-t">
-                <div className="flex items-center gap-3">
-                  <Image
+              <CardFooter className="px-8 pb-8 border-t border-border/50 pt-6">
+                <div className="flex items-center gap-4 w-full">
+                  {/* <Image
                     src={t.avatar}
                     alt={t.author}
-                    width={40}
-                    height={40}
+                    width={44}
+                    height={44}
                     className="rounded-full object-cover shrink-0"
-                  />
-                  <div>
-                    <div className="font-medium text-sm mb-0.5 text-foreground">
+                  /> */}
+                  <div className="min-w-0 flex-1">
+                    <div
+                      className="font-semibold text-sm mb-1"
+                      style={{ color: t.color }}
+                    >
                       {t.author}
                     </div>
-                    <div className="text-xs text-muted-foreground">
-                      {t.role} · {t.company}
+                    <div className="text-xs text-muted-foreground leading-snug">
+                      {t.role}
+                      <br />
+                      {t.company}
                     </div>
                   </div>
                 </div>
               </CardFooter>
-            </Card>
+            </div>
           ))}
         </div>
       </div>
