@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import Hero              from "@/components/home/Hero";
-import Ticker            from "@/components/home/Ticker";
-import ServicesGrid      from "@/components/home/ServicesGrid";
+import Hero from "@/components/home/Hero";
+import Ticker from "@/components/home/Ticker";
+import ServicesGrid from "@/components/home/ServicesGrid";
 import CallCenterHighlight from "@/components/home/CallCenterHighlight";
-import Process           from "@/components/home/Process";
-import Testimonials      from "@/components/home/Testimonials";
-import CtaSection        from "@/components/home/CtaSection";
+import Process from "@/components/home/Process";
+import Testimonials from "@/components/home/Testimonials";
+import CtaSection from "@/components/home/CtaSection";
 
 export const metadata: Metadata = {
   title: "Label Technology — Votre Partenaire Technologique Premium",
@@ -19,7 +19,8 @@ const jsonLd = {
   name: "Label Technology",
   url: "https://labeltechnology.mg",
   logo: "https://labeltechnology.mg/logo-seal.svg",
-  description: "Partenaire technologique premium basé à Antananarivo, Madagascar.",
+  description:
+    "Partenaire technologique premium basé à Antananarivo, Madagascar.",
   address: {
     "@type": "PostalAddress",
     streetAddress: "Akany Riandrano, Manajak Ilafy",
@@ -47,8 +48,8 @@ export default function Home() {
       <Hero />
       <Ticker />
       <ServicesGrid />
-      <CallCenterHighlight />
       <Process />
+      <CallCenterHighlight />
       <Testimonials />
       <CtaSection />
     </div>
