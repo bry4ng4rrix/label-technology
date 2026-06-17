@@ -13,28 +13,31 @@ export default function ProjetsPage() {
     <main>
       {/* Hero */}
       <section
-        className="relative min-h-[50vh] flex flex-col justify-center grid-bg px-6 pt-24 pb-16"
-        style={{ backgroundColor: "var(--ink)" }}
+        className="relative overflow-hidden grid-bg px-6"
+        style={{ backgroundColor: "var(--ink)", minHeight: "52vh", display: "flex", alignItems: "center" }}
       >
+        {/* Halo bleu centré */}
         <div
-          className="absolute inset-0 opacity-10 pointer-events-none"
+          className="absolute top-[-60px] left-1/2 -translate-x-1/2 w-[600px] h-[400px] pointer-events-none"
           style={{
-            background:
-              "radial-gradient(ellipse at 50% 50%, var(--brand) 0%, transparent 70%)",
+            background: "radial-gradient(ellipse, rgba(46,85,212,0.18) 0%, transparent 70%)",
+            filter: "blur(40px)",
           }}
         />
-        <div className="relative max-w-7xl mx-auto w-full">
-          <p className="label-tag mb-5" style={{ color: "var(--brand-lt)" }}>
+
+        <div className="relative z-10 max-w-7xl mx-auto w-full py-28">
+          <p className="label-tag mb-5 animate-fadeup" style={{ color: "var(--brand-lt)" }}>
             RÉALISATIONS
           </p>
           <h1
-            className="font-display text-white mb-6 leading-tight"
+            className="font-display text-white mb-6 leading-tight animate-fadeup-d1"
             style={{ fontSize: "clamp(36px, 5vw, 64px)" }}
           >
-            Ce qu'on a<br />
+            Ce qu&apos;on a
+            <br />
             <span style={{ color: "var(--brand-lt)" }}>déjà construit.</span>
           </h1>
-          <p className="text-white/60 text-lg font-light max-w-xl">
+          <p className="text-white/55 text-lg font-light max-w-xl animate-fadeup-d2">
             13 projets sélectionnés. Filtrez par domaine. Chaque chiffre est
             mesuré, pas estimé.
           </p>
