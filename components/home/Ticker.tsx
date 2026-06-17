@@ -9,21 +9,24 @@ const ITEMS = [
   "Vente Matériel Informatique",
 ];
 
-export default function Ticker() {
-  const doubled = [...ITEMS, ...ITEMS];
+const doubled = [...ITEMS, ...ITEMS];
 
+export default function Ticker() {
   return (
     <div
-      className="overflow-hidden py-3 border-y border-white/10"
-      style={{ backgroundColor: "var(--brand)" }}
+      className="overflow-hidden py-4 border-y border-white/10"
+      style={{ backgroundColor: "var(--ink)" }}
     >
       <div className="flex animate-ticker whitespace-nowrap">
         {doubled.map((item, i) => (
-          <span key={i} className="flex items-center gap-6 px-6">
-            <span className="font-display text-white text-sm tracking-wide uppercase">
+          <span key={i} className="inline-flex items-center gap-4 px-5">
+            <span
+              className="text-sm font-medium tracking-wide px-4 py-1.5 rounded-full border border-white/12 text-white/70"
+              style={{ backgroundColor: "rgba(255,255,255,0.05)" }}
+            >
               {item}
             </span>
-            <span className="text-white/40 text-xs">◆</span>
+            <span className="text-white/20 text-xs">◆</span>
           </span>
         ))}
       </div>
