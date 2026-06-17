@@ -155,22 +155,159 @@ const FAQ = [
 export default function DevPage() {
   return (
     <div className="text-foreground min-h-screen">
+      <style>{`
+        /* ── Keyframes ── */
+        @keyframes devFadeInUp {
+          from { opacity: 0; transform: translateY(22px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes devSlideDown {
+          from { opacity: 0; transform: translateY(-16px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes devIconFloat {
+          0%, 100% { transform: translateY(0px); }
+          50%       { transform: translateY(-7px); }
+        }
+        @keyframes devPulseGlow {
+          0%, 100% { opacity: 0.3; }
+          50%       { opacity: 0.55; }
+        }
+        @keyframes devScaleInX {
+          from { transform: scaleX(0); }
+          to   { transform: scaleX(1); }
+        }
+        @keyframes devBlobDrift1 {
+          0%, 100% { transform: translate(0, 0) scale(1); }
+          33%       { transform: translate(-50px, 70px) scale(1.07); }
+          66%       { transform: translate(40px, -30px) scale(0.95); }
+        }
+        @keyframes devBlobDrift2 {
+          0%, 100% { transform: translate(0, 0) scale(1); }
+          40%       { transform: translate(60px, -50px) scale(1.05); }
+          80%       { transform: translate(-30px, 40px) scale(0.96); }
+        }
+        @keyframes devGradientShift {
+          0%   { background-position: 0% 50%; }
+          50%  { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+
+        /* ── Hero ── */
+        .dev-hero-label { animation: devSlideDown 0.6s ease-out both; }
+        .dev-hero-title { animation: devFadeInUp 0.7s 0.12s ease-out both; }
+        .dev-hero-desc  { animation: devFadeInUp 0.7s 0.26s ease-out both; }
+        .dev-hero-btns  { animation: devFadeInUp 0.7s 0.40s ease-out both; }
+
+        /* ── Blobs ── */
+        .dev-blob-1 { animation: devBlobDrift1 14s ease-in-out infinite; }
+        .dev-blob-2 { animation: devBlobDrift2 18s ease-in-out infinite; animation-delay: -7s; }
+
+        /* ── Metrics ── */
+        .dev-metric { opacity: 0; }
+        .dev-metric:nth-child(1) { animation: devFadeInUp 0.5s 0.15s ease-out forwards; }
+        .dev-metric:nth-child(2) { animation: devFadeInUp 0.5s 0.25s ease-out forwards; }
+        .dev-metric:nth-child(3) { animation: devFadeInUp 0.5s 0.35s ease-out forwards; }
+        .dev-metric:nth-child(4) { animation: devFadeInUp 0.5s 0.45s ease-out forwards; }
+
+        /* ── Service cards ── */
+        .dev-card { opacity: 0; }
+        .dev-card:nth-child(1) { animation: devFadeInUp 0.6s 0.10s ease-out forwards; }
+        .dev-card:nth-child(2) { animation: devFadeInUp 0.6s 0.19s ease-out forwards; }
+        .dev-card:nth-child(3) { animation: devFadeInUp 0.6s 0.28s ease-out forwards; }
+        .dev-card:nth-child(4) { animation: devFadeInUp 0.6s 0.37s ease-out forwards; }
+        .dev-card:nth-child(5) { animation: devFadeInUp 0.6s 0.46s ease-out forwards; }
+        .dev-card:nth-child(6) { animation: devFadeInUp 0.6s 0.55s ease-out forwards; }
+        .dev-card-icon { animation: devIconFloat 3s ease-in-out infinite; }
+
+        /* ── Tech stack badges ── */
+        .dev-badge { opacity: 0; }
+        .dev-badge:nth-child(1)  { animation: devFadeInUp 0.4s 0.05s ease-out forwards; }
+        .dev-badge:nth-child(2)  { animation: devFadeInUp 0.4s 0.10s ease-out forwards; }
+        .dev-badge:nth-child(3)  { animation: devFadeInUp 0.4s 0.15s ease-out forwards; }
+        .dev-badge:nth-child(4)  { animation: devFadeInUp 0.4s 0.20s ease-out forwards; }
+        .dev-badge:nth-child(5)  { animation: devFadeInUp 0.4s 0.25s ease-out forwards; }
+        .dev-badge:nth-child(6)  { animation: devFadeInUp 0.4s 0.30s ease-out forwards; }
+        .dev-badge:nth-child(7)  { animation: devFadeInUp 0.4s 0.35s ease-out forwards; }
+        .dev-badge:nth-child(8)  { animation: devFadeInUp 0.4s 0.40s ease-out forwards; }
+        .dev-badge:nth-child(9)  { animation: devFadeInUp 0.4s 0.45s ease-out forwards; }
+        .dev-badge:nth-child(10) { animation: devFadeInUp 0.4s 0.50s ease-out forwards; }
+        .dev-badge:nth-child(11) { animation: devFadeInUp 0.4s 0.55s ease-out forwards; }
+        .dev-badge:nth-child(12) { animation: devFadeInUp 0.4s 0.60s ease-out forwards; }
+
+        /* ── Process steps ── */
+        .dev-step { opacity: 0; }
+        .dev-step:nth-child(1) { animation: devFadeInUp 0.6s 0.10s ease-out forwards; }
+        .dev-step:nth-child(2) { animation: devFadeInUp 0.6s 0.22s ease-out forwards; }
+        .dev-step:nth-child(3) { animation: devFadeInUp 0.6s 0.34s ease-out forwards; }
+        .dev-step:nth-child(4) { animation: devFadeInUp 0.6s 0.46s ease-out forwards; }
+        .dev-step-num { animation: devPulseGlow 3s ease-in-out infinite; }
+        .dev-step-line { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .dev-step:hover .dev-step-line { transform: scaleX(1.5); }
+
+        /* ── Progress bars ── */
+        .dev-bar {
+          transform-origin: left;
+          animation: devScaleInX 1.2s cubic-bezier(0.4, 0, 0.2, 1) both;
+        }
+
+        /* ── Testimonials ── */
+        .dev-testimonial { opacity: 0; }
+        .dev-testimonial:nth-child(1) { animation: devFadeInUp 0.6s 0.10s ease-out forwards; }
+        .dev-testimonial:nth-child(2) { animation: devFadeInUp 0.6s 0.22s ease-out forwards; }
+        .dev-testimonial:nth-child(3) { animation: devFadeInUp 0.6s 0.34s ease-out forwards; }
+
+        /* ── FAQ ── */
+        .dev-faq { animation: devFadeInUp 0.7s 0.20s ease-out both; }
+
+        /* ── Section headers ── */
+        .dev-header { animation: devSlideDown 0.6s ease-out both; }
+
+        /* ── Gradient animated background ── */
+        .dev-gradient-bg {
+          background: linear-gradient(-45deg, #1E3FAB, #3B82F6, #8B5CF6, #1E3FAB);
+          background-size: 400% 400%;
+          animation: devGradientShift 12s ease infinite;
+        }
+
+        /* ── Reduced motion ── */
+        @media (prefers-reduced-motion: reduce) {
+          .dev-hero-label, .dev-hero-title, .dev-hero-desc, .dev-hero-btns,
+          .dev-metric, .dev-card, .dev-badge, .dev-step, .dev-testimonial,
+          .dev-card-icon, .dev-step-num, .dev-bar, .dev-blob-1, .dev-blob-2,
+          .dev-faq, .dev-header {
+            animation: none !important;
+            opacity: 1 !important;
+            transform: none !important;
+          }
+          .dev-bar { transform: scaleX(1) !important; }
+        }
+      `}</style>
 
       {/* ── Hero ── */}
       <section
         className="relative overflow-hidden grid-bg"
         style={{ backgroundColor: "var(--ink)" }}
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-transparent to-transparent pointer-events-none" />
-        <div className="absolute bottom-0 right-0 w-[500px] h-[400px] bg-blue-900/30 rounded-full blur-[120px] pointer-events-none" />
+        {/* Animated blobs */}
+        <div
+          aria-hidden="true"
+          className="dev-blob-1 absolute top-[-100px] right-[-60px] w-[500px] h-[500px] rounded-full pointer-events-none"
+          style={{ background: "radial-gradient(circle, rgba(59,130,246,0.20), rgba(139,92,246,0.08))", filter: "blur(100px)" }}
+        />
+        <div
+          aria-hidden="true"
+          className="dev-blob-2 absolute bottom-[-80px] left-[-40px] w-[360px] h-[360px] rounded-full pointer-events-none"
+          style={{ background: "radial-gradient(circle, rgba(46,85,212,0.18), transparent)", filter: "blur(90px)" }}
+        />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-36">
           <div className="max-w-3xl space-y-8">
-            <p className="label-tag" style={{ color: "var(--brand-lt)" }}>
+            <p className="dev-hero-label label-tag" style={{ color: "var(--brand-lt)" }}>
               DÉVELOPPEMENT WEB & MOBILE
             </p>
             <h1
-              className="font-rostex text-white"
+              className="dev-hero-title font-rostex text-white"
               style={{ fontSize: "clamp(40px, 6vw, 76px)", lineHeight: 1.05 }}
             >
               On ne livre pas du code.{" "}
@@ -178,16 +315,16 @@ export default function DevPage() {
                 On livre de la croissance.
               </span>
             </h1>
-            <p className="text-white/50 font-light text-lg leading-relaxed max-w-xl">
+            <p className="dev-hero-desc text-white/50 font-light text-lg leading-relaxed max-w-xl">
               Web, mobile, API, e-commerce. Depuis Antananarivo, avec les
               standards d&apos;une ESN européenne et les délais d&apos;une
               startup. Devis gratuit en 72h.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 pt-2">
+            <div className="dev-hero-btns flex flex-col sm:flex-row gap-4 pt-2">
               <Button
                 asChild
                 size="lg"
-                className="font-medium"
+                className="font-medium hover:scale-105 transition-transform"
                 style={{ backgroundColor: "var(--brand-lt)", color: "#fff" }}
               >
                 <Link href="/contact" className="flex items-center gap-2">
@@ -199,7 +336,7 @@ export default function DevPage() {
                 asChild
                 size="lg"
                 variant="outline"
-                className="border-white/15 text-white/80 bg-white/5 hover:bg-white/10 hover:text-white hover:border-white/25"
+                className="border-white/15 text-white/80 bg-white/5 hover:bg-white/10 hover:text-white hover:border-white/25 hover:scale-105 transition-all"
               >
                 <Link href="/projets">Voir nos réalisations</Link>
               </Button>
@@ -215,7 +352,7 @@ export default function DevPage() {
             {METRICS.map((m, i) => (
               <div
                 key={i}
-                className="py-8 px-6 text-center"
+                className="dev-metric py-8 px-6 text-center hover:bg-white/5 transition-colors"
                 style={{ backgroundColor: "rgba(255,255,255,0.03)" }}
               >
                 <div
@@ -239,7 +376,7 @@ export default function DevPage() {
         style={{ backgroundColor: "var(--paper)" }}
       >
         <div className="max-w-7xl mx-auto space-y-14">
-          <div>
+          <div className="dev-header">
             <p className="label-tag mb-3" style={{ color: "var(--brand)" }}>
               CE QU&apos;ON FAIT
             </p>
@@ -258,11 +395,11 @@ export default function DevPage() {
               return (
                 <Card
                   key={i}
-                  className="border border-border/50 hover:border-blue-400/40 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 bg-white"
+                  className="dev-card border border-border/50 hover:border-blue-400/40 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 bg-white group"
                 >
                   <CardHeader className="pb-3">
                     <div
-                      className="inline-flex p-3 rounded-lg mb-3 w-fit"
+                      className="dev-card-icon inline-flex p-3 rounded-lg mb-3 w-fit transition-colors duration-300 group-hover:scale-110"
                       style={{
                         backgroundColor: `${s.color}15`,
                         color: s.color,
@@ -292,7 +429,7 @@ export default function DevPage() {
         style={{ backgroundColor: "var(--ink)" }}
       >
         <div className="max-w-7xl mx-auto space-y-8 text-center">
-          <p className="label-tag" style={{ color: "var(--brand-lt)" }}>
+          <p className="dev-header label-tag" style={{ color: "var(--brand-lt)" }}>
             NOTRE STACK TECHNIQUE
           </p>
           <div className="flex flex-wrap gap-3 justify-center">
@@ -300,7 +437,7 @@ export default function DevPage() {
               <Badge
                 key={i}
                 variant="outline"
-                className="px-4 py-2 text-sm font-medium border-white/15 text-white/70 hover:border-blue-400/50 hover:text-white transition-colors"
+                className="dev-badge px-4 py-2 text-sm font-medium border-white/15 text-white/70 hover:border-blue-400/60 hover:text-white hover:bg-blue-500/10 transition-all duration-200 cursor-default"
                 style={{ backgroundColor: "rgba(255,255,255,0.04)" }}
               >
                 {tech}
@@ -313,7 +450,7 @@ export default function DevPage() {
       {/* ── Processus ── */}
       <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-background">
         <div className="max-w-7xl mx-auto space-y-14">
-          <div>
+          <div className="dev-header">
             <p className="label-tag mb-3" style={{ color: "#3B82F6" }}>
               NOTRE MÉTHODE
             </p>
@@ -329,7 +466,7 @@ export default function DevPage() {
             {PROCESS.map((p, i) => (
               <div
                 key={i}
-                className="relative p-8 group hover:shadow-xl transition-all duration-300"
+                className="dev-step relative p-8 group hover:shadow-xl transition-all duration-300"
               >
                 <div
                   className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
@@ -339,17 +476,17 @@ export default function DevPage() {
                 />
                 <div className="relative z-10">
                   <div
-                    className="font-display text-6xl font-extrabold mb-5 leading-none"
+                    className="dev-step-num font-display text-6xl font-extrabold mb-5 leading-none"
                     style={{ color: p.color, opacity: 0.3 }}
                   >
                     {p.step}
                   </div>
                   <div
-                    className="w-8 h-0.5 mb-5"
+                    className="dev-step-line w-8 h-0.5 mb-5"
                     style={{ backgroundColor: p.color }}
                   />
                   <h3
-                    className="font-display text-xl mb-3"
+                    className="font-display text-xl mb-3 transition-transform duration-300 group-hover:translate-x-1"
                     style={{ color: p.color }}
                   >
                     {p.title}
@@ -357,6 +494,14 @@ export default function DevPage() {
                   <p className="text-sm text-muted-foreground leading-relaxed">
                     {p.desc}
                   </p>
+                  {i < PROCESS.length - 1 && (
+                    <div
+                      className="hidden lg:block absolute top-1/2 -right-3 z-10 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 font-bold text-lg"
+                      style={{ color: p.color }}
+                    >
+                      →
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
@@ -372,7 +517,7 @@ export default function DevPage() {
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-8">
-              <div>
+              <div className="dev-header">
                 <p className="label-tag mb-3" style={{ color: "var(--brand)" }}>
                   NOTRE EXPERTISE
                 </p>
@@ -383,7 +528,7 @@ export default function DevPage() {
                   </span>
                 </h2>
               </div>
-              <p className="text-muted-foreground font-light leading-relaxed">
+              <p className="text-muted-foreground font-light leading-relaxed animate-fadeup-d1">
                 Pas de sous-traitance, pas de développeurs juniors sur vos
                 projets critiques. Notre équipe maîtrise chaque couche de la
                 stack — du design à l&apos;infrastructure.
@@ -391,13 +536,10 @@ export default function DevPage() {
 
               <div className="space-y-5">
                 {STATS.map((s, i) => (
-                  <div key={i} className="space-y-2">
+                  <div key={i} className="space-y-2" style={{ animationDelay: `${i * 0.15}s` }}>
                     <div className="flex justify-between text-sm">
                       <span className="text-muted-foreground">{s.label}</span>
-                      <span
-                        className="font-bold"
-                        style={{ color: "var(--brand-lt)" }}
-                      >
+                      <span className="font-bold" style={{ color: "var(--brand-lt)" }}>
                         {s.value}
                       </span>
                     </div>
@@ -406,8 +548,11 @@ export default function DevPage() {
                       style={{ backgroundColor: "rgba(0,0,0,0.08)" }}
                     >
                       <div
-                        className="h-full rounded-full bg-gradient-to-r from-blue-500 to-indigo-500"
-                        style={{ width: s.width }}
+                        className="dev-bar h-full rounded-full bg-gradient-to-r from-blue-500 to-indigo-500"
+                        style={{
+                          width: s.width,
+                          animationDelay: `${0.3 + i * 0.18}s`,
+                        }}
                       />
                     </div>
                   </div>
@@ -415,7 +560,7 @@ export default function DevPage() {
               </div>
 
               <div
-                className="p-5 rounded-lg border-l-2 font-light text-sm italic text-muted-foreground"
+                className="animate-fadeup-d3 p-5 rounded-lg border-l-2 font-light text-sm italic text-muted-foreground"
                 style={{
                   borderColor: "var(--brand-lt)",
                   backgroundColor: "rgba(46,85,212,0.05)",
@@ -426,17 +571,17 @@ export default function DevPage() {
               </div>
             </div>
 
-            <div
-              className="hidden lg:flex h-80 rounded-sm items-center justify-center border"
-              style={{
-                backgroundColor: "rgba(0,0,0,0.04)",
-                borderColor: "rgba(0,0,0,0.08)",
-              }}
-            >
+            {/* Animated gradient visual */}
+            <div className="hidden lg:flex h-80 rounded-sm items-center justify-center overflow-hidden relative">
+              <div
+                className="dev-gradient-bg absolute inset-0 opacity-10"
+                aria-hidden="true"
+              />
               <Code2
-                size={64}
-                strokeWidth={0.8}
-                style={{ color: "var(--brand-lt)", opacity: 0.25 }}
+                size={72}
+                strokeWidth={0.7}
+                className="relative z-10"
+                style={{ color: "var(--brand-lt)", opacity: 0.3 }}
               />
             </div>
           </div>
@@ -446,7 +591,7 @@ export default function DevPage() {
       {/* ── Témoignages ── */}
       <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-background">
         <div className="max-w-7xl mx-auto space-y-14">
-          <div>
+          <div className="dev-header">
             <p className="label-tag mb-3" style={{ color: "var(--brand)" }}>
               TÉMOIGNAGES
             </p>
@@ -463,7 +608,7 @@ export default function DevPage() {
             {TESTIMONIALS.map((t, i) => (
               <Card
                 key={i}
-                className="shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                className="dev-testimonial shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
               >
                 <CardContent className="pt-7 pb-6">
                   <div
@@ -497,7 +642,7 @@ export default function DevPage() {
         style={{ backgroundColor: "var(--ink)" }}
       >
         <div className="max-w-3xl mx-auto space-y-12">
-          <div>
+          <div className="dev-header">
             <p className="label-tag mb-3" style={{ color: "var(--brand-lt)" }}>
               FAQ
             </p>
@@ -506,12 +651,12 @@ export default function DevPage() {
             </h2>
           </div>
 
-          <Accordion type="single" collapsible className="space-y-3">
+          <Accordion type="single" collapsible className="dev-faq space-y-3">
             {FAQ.map((item, i) => (
               <AccordionItem
                 key={i}
                 value={`item-${i}`}
-                className="rounded-sm px-6 border"
+                className="rounded-sm px-6 border transition-colors duration-200 hover:border-white/15"
                 style={{
                   borderColor: "rgba(255,255,255,0.08)",
                   backgroundColor: "rgba(255,255,255,0.03)",
@@ -534,18 +679,27 @@ export default function DevPage() {
       {/* ── CTA Final ── */}
       <section className="relative py-28 px-4 sm:px-6 overflow-hidden bg-[#080D1A]">
         <div className="absolute inset-0 bg-gradient-to-br from-[#080D1A] via-[#0f1f5c] to-[#080D1A]" />
-        <div className="absolute top-[-60px] left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-blue-600/20 rounded-full blur-[120px] pointer-events-none" />
+        <div
+          aria-hidden="true"
+          className="dev-blob-1 absolute top-[-80px] left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full pointer-events-none"
+          style={{ background: "rgba(59,130,246,0.18)", filter: "blur(120px)" }}
+        />
+        <div
+          aria-hidden="true"
+          className="dev-blob-2 absolute bottom-[-60px] right-[-40px] w-[350px] h-[300px] rounded-full pointer-events-none"
+          style={{ background: "rgba(139,92,246,0.12)", filter: "blur(90px)" }}
+        />
 
         <div className="relative z-10 max-w-3xl mx-auto text-center space-y-8">
           <Badge
             variant="secondary"
-            className="bg-white/8 text-white/60 border border-white/15 text-[10px] tracking-widest px-4 py-1.5 rounded-full"
+            className="animate-fadeup bg-white/8 text-white/60 border border-white/15 text-[10px] tracking-widest px-4 py-1.5 rounded-full"
           >
             PRÊT À DÉMARRER ?
           </Badge>
 
           <h2
-            className="font-rostex text-white"
+            className="animate-fadeup-d1 font-rostex text-white"
             style={{ fontSize: "clamp(36px, 5vw, 64px)", lineHeight: 1.05 }}
           >
             Prêt à transformer
@@ -555,16 +709,16 @@ export default function DevPage() {
             </span>
           </h2>
 
-          <p className="text-white/40 font-light text-base max-w-md mx-auto leading-relaxed">
+          <p className="animate-fadeup-d2 text-white/40 font-light text-base max-w-md mx-auto leading-relaxed">
             Discutons de votre projet. Premier devis gratuit en 72h — sans
             engagement.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
+          <div className="animate-fadeup-d3 flex flex-col sm:flex-row gap-4 justify-center pt-2">
             <Button
               asChild
               size="lg"
-              className="bg-white text-slate-900 hover:bg-white/90 px-8 h-12 font-medium shadow-lg shadow-white/10 hover:scale-105 transition-all"
+              className="bg-white text-slate-900 hover:bg-white/90 px-8 h-12 font-medium shadow-lg shadow-white/10 hover:scale-105 active:scale-95 transition-all"
             >
               <Link href="/contact" className="flex items-center gap-2">
                 Demander un devis
@@ -575,7 +729,7 @@ export default function DevPage() {
               asChild
               size="lg"
               variant="outline"
-              className="border-white/15 text-white/80 bg-white/5 hover:bg-white/10 hover:text-white px-8 h-12 hover:scale-105 transition-all"
+              className="border-white/15 text-white/80 bg-white/5 hover:bg-white/10 hover:text-white px-8 h-12 hover:scale-105 active:scale-95 transition-all"
             >
               <Link href="tel:+261">Appeler maintenant</Link>
             </Button>
@@ -583,7 +737,7 @@ export default function DevPage() {
 
           <Separator className="bg-white/8 max-w-xs mx-auto mt-10" />
 
-          <div className="flex flex-wrap justify-center gap-x-8 gap-y-3 pt-2">
+          <div className="animate-fadeup-d5 flex flex-wrap justify-center gap-x-8 gap-y-3 pt-2">
             {["Pas d'engagement", "Devis gratuit", "Réponse sous 72h"].map(
               (item, i) => (
                 <div
