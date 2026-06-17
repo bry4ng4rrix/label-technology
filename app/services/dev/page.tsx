@@ -291,40 +291,23 @@ export default function DevPage() {
       `}</style>
 
       {/* ── Hero ── */}
-      <section
-        className="relative overflow-hidden grid-bg"
-        style={{ backgroundColor: "var(--ink)" }}
-      >
-        {/* Blob gauche */}
-        <div
-          aria-hidden="true"
-          className="dev-blob-2 absolute bottom-[-80px] left-[-40px] w-[360px] h-[360px] rounded-full pointer-events-none"
-          style={{
-            background: "radial-gradient(circle, rgba(46,85,212,0.18), transparent)",
-            filter: "blur(90px)",
-          }}
-        />
+      <section className="relative overflow-hidden grid-bg" style={{ backgroundColor: "var(--ink)", minHeight: "70vh" }}>
+        <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 items-center" style={{ minHeight: "70vh" }}>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 grid lg:grid-cols-2 items-center" style={{ minHeight: "70vh" }}>
           {/* Texte */}
-          <div className="py-28 lg:pr-12 space-y-8">
-            <p
-              className="dev-hero-label label-tag"
-              style={{ color: "var(--brand-lt)" }}
-            >
+          <div className="py-28 lg:pr-12">
+            <p className="dev-hero-label label-tag mb-5" style={{ color: "var(--brand-lt)" }}>
               DÉVELOPPEMENT WEB & MOBILE
             </p>
             <h1
-              className="dev-hero-title font-rostex text-white leading-tight"
+              className="dev-hero-title font-display text-white mb-6 leading-tight"
               style={{ fontSize: "clamp(36px, 5vw, 72px)" }}
             >
               On ne livre pas du code.
               <br />
-              <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
-                On livre de la croissance.
-              </span>
+              <span style={{ color: "var(--brand-lt)" }}>On livre de la croissance.</span>
             </h1>
-            <p className="dev-hero-desc text-white/50 font-light text-lg leading-relaxed max-w-xl" style={{ lineHeight: 1.8 }}>
+            <p className="dev-hero-desc text-white/70 text-lg leading-relaxed mb-10 max-w-xl" style={{ lineHeight: 1.8 }}>
               Web, mobile, API, e-commerce. Depuis Antananarivo, avec les
               standards d&apos;une ESN européenne et les délais d&apos;une
               startup. Devis gratuit en 72h.
@@ -349,7 +332,7 @@ export default function DevPage() {
           {/* Image */}
           <div className="hidden lg:block relative" style={{ minHeight: "70vh" }}>
             <Image
-              src="/images/digitalisation.png"
+              src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=900&h=700&fit=crop&q=80"
               alt="Développement web & mobile — Label Technology"
               fill
               className="object-cover"
