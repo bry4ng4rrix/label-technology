@@ -10,6 +10,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Separator } from "@/components/ui/separator";
+import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -294,28 +295,19 @@ export default function DevPage() {
         className="relative overflow-hidden grid-bg"
         style={{ backgroundColor: "var(--ink)" }}
       >
-        {/* Animated blobs */}
-        <div
-          aria-hidden="true"
-          className="dev-blob-1 absolute top-[-100px] right-[-60px] w-[500px] h-[500px] rounded-full pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(59,130,246,0.20), rgba(139,92,246,0.08))",
-            filter: "blur(100px)",
-          }}
-        />
+        {/* Blob gauche */}
         <div
           aria-hidden="true"
           className="dev-blob-2 absolute bottom-[-80px] left-[-40px] w-[360px] h-[360px] rounded-full pointer-events-none"
           style={{
-            background:
-              "radial-gradient(circle, rgba(46,85,212,0.18), transparent)",
+            background: "radial-gradient(circle, rgba(46,85,212,0.18), transparent)",
             filter: "blur(90px)",
           }}
         />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-36">
-          <div className="max-w-3xl space-y-8">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 grid lg:grid-cols-2 items-center" style={{ minHeight: "70vh" }}>
+          {/* Texte */}
+          <div className="py-28 lg:pr-12 space-y-8">
             <p
               className="dev-hero-label label-tag"
               style={{ color: "var(--brand-lt)" }}
@@ -323,40 +315,50 @@ export default function DevPage() {
               DÉVELOPPEMENT WEB & MOBILE
             </p>
             <h1
-              className="dev-hero-title font-rostex text-white"
-              style={{ fontSize: "clamp(40px, 6vw, 76px)", lineHeight: 1.05 }}
+              className="dev-hero-title font-rostex text-white leading-tight"
+              style={{ fontSize: "clamp(36px, 5vw, 72px)" }}
             >
-              On ne livre pas du code.{" "}
+              On ne livre pas du code.
+              <br />
               <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
                 On livre de la croissance.
               </span>
             </h1>
-            <p className="dev-hero-desc text-white/50 font-light text-lg leading-relaxed max-w-xl">
+            <p className="dev-hero-desc text-white/50 font-light text-lg leading-relaxed max-w-xl" style={{ lineHeight: 1.8 }}>
               Web, mobile, API, e-commerce. Depuis Antananarivo, avec les
               standards d&apos;une ESN européenne et les délais d&apos;une
               startup. Devis gratuit en 72h.
             </p>
-            <div className="dev-hero-btns flex flex-col sm:flex-row gap-4 pt-2">
-              <Button
-                asChild
-                size="lg"
-                className="font-medium hover:scale-105 transition-transform"
+            <div className="dev-hero-btns flex flex-wrap gap-4">
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 px-6 py-3 font-semibold text-sm rounded-sm transition-all hover:opacity-90"
                 style={{ backgroundColor: "var(--brand-lt)", color: "#fff" }}
               >
-                <Link href="/contact" className="flex items-center gap-2">
-                  Démarrer un projet
-                  <ArrowRight className="size-4" />
-                </Link>
-              </Button>
-              <Button
-                asChild
-                size="lg"
-                variant="outline"
-                className="border-white/15 text-white/80 bg-white/5 hover:bg-white/10 hover:text-white hover:border-white/25 hover:scale-105 transition-all"
+                Démarrer un projet →
+              </Link>
+              <Link
+                href="/projets"
+                className="inline-flex items-center gap-2 px-6 py-3 text-sm border border-white/25 text-white rounded-sm hover:border-white/60 transition-colors"
               >
-                <Link href="/projets">Voir nos réalisations</Link>
-              </Button>
+                Voir nos réalisations
+              </Link>
             </div>
+          </div>
+
+          {/* Image */}
+          <div className="hidden lg:block relative" style={{ minHeight: "70vh" }}>
+            <Image
+              src="/images/digitalisation.png"
+              alt="Développement web & mobile — Label Technology"
+              fill
+              className="object-cover"
+              style={{ opacity: 0.45 }}
+            />
+            <div
+              className="absolute inset-0"
+              style={{ background: "linear-gradient(90deg, var(--ink) 0%, transparent 55%)" }}
+            />
           </div>
         </div>
       </section>
