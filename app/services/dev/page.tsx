@@ -69,8 +69,22 @@ const SERVICES = [
 ];
 
 const TECH_STACK = [
-  "Next.js", "React", "TypeScript", "Node.js", "PostgreSQL",
-  "MongoDB", "React Native", "Tailwind CSS", "Docker", "AWS", "Vercel", "Figma",
+  "Next.js",
+  "React",
+  "TypeScript",
+  "Python",
+  "Fastapi",
+  "Django",
+  "Rest Framework",
+  "Supabase",
+  "PostgreSQL",
+  "MongoDB",
+  "React Native",
+  "Tailwind CSS",
+  "Docker",
+  "AWS",
+  "Vercel",
+  "Figma",
 ];
 
 const PROCESS = [
@@ -220,20 +234,11 @@ export default function DevPage() {
         .dev-card:nth-child(6) { animation: devFadeInUp 0.6s 0.55s ease-out forwards; }
         .dev-card-icon { animation: devIconFloat 3s ease-in-out infinite; }
 
-        /* ── Tech stack badges ── */
-        .dev-badge { opacity: 0; }
-        .dev-badge:nth-child(1)  { animation: devFadeInUp 0.4s 0.05s ease-out forwards; }
-        .dev-badge:nth-child(2)  { animation: devFadeInUp 0.4s 0.10s ease-out forwards; }
-        .dev-badge:nth-child(3)  { animation: devFadeInUp 0.4s 0.15s ease-out forwards; }
-        .dev-badge:nth-child(4)  { animation: devFadeInUp 0.4s 0.20s ease-out forwards; }
-        .dev-badge:nth-child(5)  { animation: devFadeInUp 0.4s 0.25s ease-out forwards; }
-        .dev-badge:nth-child(6)  { animation: devFadeInUp 0.4s 0.30s ease-out forwards; }
-        .dev-badge:nth-child(7)  { animation: devFadeInUp 0.4s 0.35s ease-out forwards; }
-        .dev-badge:nth-child(8)  { animation: devFadeInUp 0.4s 0.40s ease-out forwards; }
-        .dev-badge:nth-child(9)  { animation: devFadeInUp 0.4s 0.45s ease-out forwards; }
-        .dev-badge:nth-child(10) { animation: devFadeInUp 0.4s 0.50s ease-out forwards; }
-        .dev-badge:nth-child(11) { animation: devFadeInUp 0.4s 0.55s ease-out forwards; }
-        .dev-badge:nth-child(12) { animation: devFadeInUp 0.4s 0.60s ease-out forwards; }
+        /* ── Tech stack ticker ── */
+        @keyframes devTicker    { from { transform: translateX(0); }    to { transform: translateX(-50%); } }
+        @keyframes devTickerRev { from { transform: translateX(-50%); } to { transform: translateX(0); }    }
+        .dev-ticker     { animation: devTicker    22s linear infinite; }
+        .dev-ticker-rev { animation: devTickerRev 18s linear infinite; }
 
         /* ── Process steps ── */
         .dev-step { opacity: 0; }
@@ -273,7 +278,7 @@ export default function DevPage() {
         /* ── Reduced motion ── */
         @media (prefers-reduced-motion: reduce) {
           .dev-hero-label, .dev-hero-title, .dev-hero-desc, .dev-hero-btns,
-          .dev-metric, .dev-card, .dev-badge, .dev-step, .dev-testimonial,
+          .dev-metric, .dev-card, .dev-step, .dev-testimonial,
           .dev-card-icon, .dev-step-num, .dev-bar, .dev-blob-1, .dev-blob-2,
           .dev-faq, .dev-header {
             animation: none !important;
@@ -293,17 +298,28 @@ export default function DevPage() {
         <div
           aria-hidden="true"
           className="dev-blob-1 absolute top-[-100px] right-[-60px] w-[500px] h-[500px] rounded-full pointer-events-none"
-          style={{ background: "radial-gradient(circle, rgba(59,130,246,0.20), rgba(139,92,246,0.08))", filter: "blur(100px)" }}
+          style={{
+            background:
+              "radial-gradient(circle, rgba(59,130,246,0.20), rgba(139,92,246,0.08))",
+            filter: "blur(100px)",
+          }}
         />
         <div
           aria-hidden="true"
           className="dev-blob-2 absolute bottom-[-80px] left-[-40px] w-[360px] h-[360px] rounded-full pointer-events-none"
-          style={{ background: "radial-gradient(circle, rgba(46,85,212,0.18), transparent)", filter: "blur(90px)" }}
+          style={{
+            background:
+              "radial-gradient(circle, rgba(46,85,212,0.18), transparent)",
+            filter: "blur(90px)",
+          }}
         />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-36">
           <div className="max-w-3xl space-y-8">
-            <p className="dev-hero-label label-tag" style={{ color: "var(--brand-lt)" }}>
+            <p
+              className="dev-hero-label label-tag"
+              style={{ color: "var(--brand-lt)" }}
+            >
               DÉVELOPPEMENT WEB & MOBILE
             </p>
             <h1
@@ -347,7 +363,7 @@ export default function DevPage() {
 
       {/* ── Métriques ── */}
       <section style={{ backgroundColor: "var(--ink)" }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8  bg-transparent overflow-hidden">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-white/10">
             {METRICS.map((m, i) => (
               <div
@@ -425,25 +441,46 @@ export default function DevPage() {
 
       {/* ── Tech Stack ── */}
       <section
-        className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 grid-bg"
+        className="py-16 sm:py-20 grid-bg overflow-hidden"
         style={{ backgroundColor: "var(--ink)" }}
       >
-        <div className="max-w-7xl mx-auto space-y-8 text-center">
-          <p className="dev-header label-tag" style={{ color: "var(--brand-lt)" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 text-center">
+          <p
+            className="dev-header label-tag"
+            style={{ color: "var(--brand-lt)" }}
+          >
             NOTRE STACK TECHNIQUE
           </p>
-          <div className="flex flex-wrap gap-3 justify-center">
-            {TECH_STACK.map((tech, i) => (
-              <Badge
-                key={i}
-                variant="outline"
-                className="dev-badge px-4 py-2 text-sm font-medium border-white/15 text-white/70 hover:border-blue-400/60 hover:text-white hover:bg-blue-500/10 transition-all duration-200 cursor-default"
-                style={{ backgroundColor: "rgba(255,255,255,0.04)" }}
+        </div>
+
+        {/* Row 1 — scrolls left */}
+        <div className="flex whitespace-nowrap dev-ticker mb-3">
+          {[...TECH_STACK, ...TECH_STACK].map((tech, i) => (
+            <span key={i} className="inline-flex items-center gap-4 px-5">
+              <span
+                className="text-sm font-medium tracking-wide px-4 py-1.5 rounded-full border border-white/12 text-white/70"
+                style={{ backgroundColor: "rgba(255,255,255,0.05)" }}
               >
                 {tech}
-              </Badge>
-            ))}
-          </div>
+              </span>
+              <span className="text-white/20 text-xs">◆</span>
+            </span>
+          ))}
+        </div>
+
+        {/* Row 2 — scrolls right */}
+        <div className="flex whitespace-nowrap dev-ticker-rev">
+          {[...TECH_STACK, ...TECH_STACK].map((tech, i) => (
+            <span key={i} className="inline-flex items-center gap-4 px-5">
+              <span
+                className="text-sm font-medium tracking-wide px-4 py-1.5 rounded-full border border-blue-400/20 text-blue-300/60"
+                style={{ backgroundColor: "rgba(59,130,246,0.06)" }}
+              >
+                {tech}
+              </span>
+              <span className="text-blue-400/20 text-xs">◆</span>
+            </span>
+          ))}
         </div>
       </section>
 
@@ -536,10 +573,17 @@ export default function DevPage() {
 
               <div className="space-y-5">
                 {STATS.map((s, i) => (
-                  <div key={i} className="space-y-2" style={{ animationDelay: `${i * 0.15}s` }}>
+                  <div
+                    key={i}
+                    className="space-y-2"
+                    style={{ animationDelay: `${i * 0.15}s` }}
+                  >
                     <div className="flex justify-between text-sm">
                       <span className="text-muted-foreground">{s.label}</span>
-                      <span className="font-bold" style={{ color: "var(--brand-lt)" }}>
+                      <span
+                        className="font-bold"
+                        style={{ color: "var(--brand-lt)" }}
+                      >
                         {s.value}
                       </span>
                     </div>
@@ -747,7 +791,7 @@ export default function DevPage() {
                   <CheckCircle2 className="w-3.5 h-3.5 text-blue-400/50 shrink-0" />
                   {item}
                 </div>
-              )
+              ),
             )}
           </div>
         </div>
