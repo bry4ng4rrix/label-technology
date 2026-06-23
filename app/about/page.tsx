@@ -28,7 +28,7 @@ const EQUIPE = [
   },
   {
     photo: "/images/team/dina.png",
-    nom: "Dina R.",
+    nom: "Dina A.",
     role: "Responsable Opérations",
     desc: "Supervision des 50 agents. Standards qualité, formation continue, SLA clients. Ancienne consultante CCaaS Paris.",
   },
