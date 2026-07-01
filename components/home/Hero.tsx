@@ -16,7 +16,7 @@ const Hero = () => {
       <div className="absolute inset-0">
         <Aurora />
       </div>
-      <div className="relative mt-20 sm:mt-10 z-10 flex flex-col items-center justify-center h-full text-center px-4 ">
+      <div className="relative my-20 sm:mt-10 z-10 flex flex-col items-center justify-center h-full text-center px-4 ">
         <div className="max-w-[1600px] px-10  space-y-2">
           <p className="font-semibold text-white/70">
             Antananarivo · Madagascar · International
@@ -54,7 +54,7 @@ const Hero = () => {
             </Button>
           </div>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-px rounded-sm overflow-hidden animate-fadeup-d5 mt-10 ">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-px rounded-sm overflow-hidden animate-fadeup-d5 my-10 ">
           {STATS.map((stat, i) => (
             <div
               key={i}
