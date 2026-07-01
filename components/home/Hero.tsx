@@ -12,7 +12,7 @@ const Hero = () => {
   ];
 
   return (
-    <div className="relative w-full h-[calc(100vh-64px)] overflow-hidden bg-slate-950 dark:bg-slate-800">
+    <div className="relative w-full h-[calc(110vh-64px)] overflow-hidden bg-slate-950 dark:bg-slate-800">
       <div className="absolute inset-0">
         <Aurora />
       </div>
