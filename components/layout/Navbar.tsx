@@ -92,7 +92,7 @@ const Navbar = () => {
           <Link href="/" className="flex items-center shrink-0">
             <Image
               src={
-                activeTheme === "dark"
+                activeTheme === "light"
                   ? "/images/logo_dark.png"
                   : "/images/logo_light.png"
               }
@@ -153,7 +153,7 @@ const Navbar = () => {
           </div>
 
           {/* Mobile — Sheet */}
-          <div className="md:hidden flex items-center gap-2">
+          <div className="md:hidden flex items-center gap-2 ">
             <Sheet>
               <SheetTrigger asChild>
                 <Button
