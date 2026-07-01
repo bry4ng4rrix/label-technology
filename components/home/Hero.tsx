@@ -16,12 +16,12 @@ const Hero = () => {
       <div className="absolute inset-0">
         <Aurora />
       </div>
-      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 ">
+      <div className="relative mt-20 sm:mt-10 z-10 flex flex-col items-center justify-center h-full text-center px-4 ">
         <div className="max-w-[1600px] px-10  space-y-2">
           <p className="font-semibold text-white/70">
             Antananarivo · Madagascar · International
           </p>
-          <p className="text-sm md:text-md text-white/70 ">
+          <p className="text-sm  md:text-md text-white/70 ">
             "Votre vision, notre expertise : l'alliance qui transforme le
             potentiel en performance."
           </p>
