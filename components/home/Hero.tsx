@@ -25,7 +25,7 @@ const Hero = () => {
             "Votre vision, notre expertise : l'alliance qui transforme le
             potentiel en performance."
           </p>
-          <h1 className="text-6xl md:text-8xl font-bold mb-4  text-white">
+          <h1 className="text-5xl sm:text-6xl md:text-8xl font-bold mb-4  text-white">
             La technologie au services{" "}
             <span className="bg-gradient-to-r from-blue-500  to-emerald-500 bg-clip-text text-transparent">
               {" "}
