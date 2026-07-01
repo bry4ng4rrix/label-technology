@@ -16,28 +16,29 @@ const Hero = () => {
       <div className="absolute inset-0">
         <Aurora />
       </div>
-      <div className="relative z-10 flex flex-col items-center justify-center h-full text-start px-4">
-        <div className="max-w-4xl  space-y-6">
+      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 ">
+        <div className="max-w-[1600px] px-10  space-y-2">
           <p className="font-semibold text-white/70">
             Antananarivo · Madagascar · International
           </p>
-          <h1 className="text-4xl md:text-6xl font-bold mb-4 font-rostex text-white">
+          <p className="text-sm md:text-md text-white/70 ">
+            "Votre vision, notre expertise : l'alliance qui transforme le
+            potentiel en performance."
+          </p>
+          <h1 className="text-6xl md:text-8xl font-bold mb-4  text-white">
             La technologie au services{" "}
             <span className="bg-gradient-to-r from-blue-500  to-emerald-500 bg-clip-text text-transparent">
               {" "}
               de votre croissance.
             </span>
           </h1>
-          <p className="text-lg md:text-xl text-gray-200 mb-8 ">
+          <p className="text-sm md:text-md text-gray-200 mb-8 max-w-3xl mx-auto">
             Développement web, Call Center 50 postes FR/EN, Marketing digital,
             Digitalisation, Traitement de données, Matériel IT & Comptabilité —
             une seule équipe, sept expertises, des résultats mesurables.
           </p>
-          <p className="text-lg md:text-xl text-white/70 ">
-            "Votre vision, notre expertise : l'alliance qui transforme le
-            potentiel en performance."
-          </p>
-          <div className="flex space-x-4">
+
+          <div className="flex space-x-4 justify-center items-center mt-8">
             <Button
               className="h-14 text-medium bg-blue-500 text-white hover:scale-105 transition-all duration-300"
               size="lg"
@@ -53,12 +54,11 @@ const Hero = () => {
             </Button>
           </div>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-px rounded-sm overflow-hidden animate-fadeup-d5 mt-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-px rounded-sm overflow-hidden animate-fadeup-d5 mt-10 ">
           {STATS.map((stat, i) => (
             <div
               key={i}
               className="px-6 py-5 text-center hover:bg-white/5 transition-colors"
-              style={{ backgroundColor: "var(--ink)" }}
             >
               <div
                 className=" text-3xl mb-1"
