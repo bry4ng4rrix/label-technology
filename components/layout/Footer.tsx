@@ -4,17 +4,17 @@ import Link from "next/link";
 const LINKS = {
   Services: [
     { label: "Développement Web & Mobile", href: "/services/dev" },
-    { label: "Call Center 50 postes",       href: "/services/callcenter" },
-    { label: "Marketing Digital",           href: "/services/marketing" },
-    { label: "Digitalisation",             href: "/services/digital" },
-    { label: "Traitement de données",       href: "/services/data" },
-    { label: "Matériel informatique",       href: "/services/materiel" },
+    { label: "Call Center 50 postes", href: "/services/callcenter" },
+    { label: "Marketing Digital", href: "/services/marketing" },
+    { label: "Digitalisation", href: "/services/digital" },
+    { label: "Traitement de données", href: "/services/data" },
+    { label: "Matériel informatique", href: "/services/materiel" },
   ],
   Entreprise: [
-    { label: "À propos",     href: "/a-propos" },
-    { label: "Nos projets",  href: "/projets" },
-    { label: "Blog",         href: "/blog" },
-    { label: "Contact",      href: "/contact" },
+    { label: "À propos", href: "/a-propos" },
+    { label: "Nos projets", href: "/projets" },
+    { label: "Blog", href: "/blog" },
+    { label: "Contact", href: "/contact" },
     { label: "Mentions légales", href: "/mentions-legales" },
   ],
 };
@@ -27,15 +27,16 @@ export default function Footer() {
           {/* Brand */}
           <div className="md:col-span-2">
             <Image
-              src="/logo-navbar-white.svg"
+              src="/logo.png"
               alt="Label Technology"
               width={180}
               height={34}
               className="mb-6"
             />
             <p className="text-white/40 text-sm font-light leading-relaxed max-w-xs mb-6">
-              Votre partenaire technologique premium depuis Antananarivo, Madagascar.
-              Développement, Call Center, Marketing, Data et Matériel IT.
+              Votre partenaire technologique premium depuis Antananarivo,
+              Madagascar. Développement, Call Center, Marketing, Data et
+              Matériel IT.
             </p>
             <div className="space-y-2 text-sm text-white/30">
               <p>Akany Riandrano, Manjaka Ilafy</p>
@@ -58,9 +59,11 @@ export default function Footer() {
           {/* Links */}
           {Object.entries(LINKS).map(([section, items]) => (
             <div key={section}>
-              <p className="label-tag text-white/30 text-[10px] mb-5">{section.toUpperCase()}</p>
+              <p className="label-tag text-white/30 text-[10px] mb-5">
+                {section.toUpperCase()}
+              </p>
               <ul className="space-y-2.5">
-                {items.map(item => (
+                {items.map((item) => (
                   <li key={item.href}>
                     <Link
                       href={item.href}
@@ -81,11 +84,14 @@ export default function Footer() {
           style={{ borderColor: "rgba(255,255,255,0.06)" }}
         >
           <p className="text-white/20 text-xs">
-            © 2026 Label Technology · Consulting & Services · Antananarivo, Madagascar
+            © 2026 Label Technology · Consulting & Services · Antananarivo,
+            Madagascar
           </p>
           <div className="flex items-center gap-1">
             <span className="w-1.5 h-1.5 rounded-full bg-green-400 pulse-dot inline-block" />
-            <span className="text-white/20 text-xs ml-1">labeltechnology.mg</span>
+            <span className="text-white/20 text-xs ml-1">
+              labeltechnology.mg
+            </span>
           </div>
         </div>
       </div>
