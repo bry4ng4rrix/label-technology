@@ -11,6 +11,48 @@ import MarketingChart from "@/components/services/MarketingChartWrapper";
 export const metadata: Metadata = {
   title: "Marketing Digital — SEO, Google Ads, Social Media | Label Technology",
   description: "Stratégie digitale, SEO, publicité payante, social media, email marketing. Résultats mesurables depuis Antananarivo. Audit gratuit en 72h.",
+  keywords: [
+    "marketing digital Madagascar",
+    "agence SEO Madagascar",
+    "SEO Antananarivo",
+    "référencement naturel Madagascar",
+    "Google Ads Madagascar",
+    "Meta Ads Madagascar",
+    "publicité digitale Madagascar",
+    "social media Madagascar",
+    "community management Madagascar",
+    "email marketing Madagascar",
+    "agence digitale Madagascar",
+    "stratégie digitale Madagascar",
+    "marketing digital France Madagascar",
+    "audit SEO gratuit Madagascar",
+    "ROI publicité digitale",
+    "LinkedIn Ads Madagascar",
+    "référencement Google Madagascar",
+    "analytics Madagascar",
+    "inbound marketing Madagascar",
+    "marketing digital Afrique",
+  ],
+  alternates: {
+    canonical: "https://labeltechnology.mg/services/marketing",
+  },
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    url: "https://labeltechnology.mg/services/marketing",
+    siteName: "Label Technology",
+    title: "Marketing Digital — SEO, Google Ads, Social Media | Label Technology",
+    description:
+      "Stratégie digitale, SEO, publicité payante, social media, email marketing. Résultats mesurables depuis Antananarivo.",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Marketing Digital — Label Technology" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Marketing Digital — SEO, Google Ads | Label Technology",
+    description:
+      "SEO, Google Ads, Meta Ads, social media, email marketing. Audit gratuit en 72h depuis Antananarivo.",
+    images: ["/og-image.png"],
+  },
 };
 
 const METRICS = [
@@ -49,9 +91,46 @@ const FAQ = [
   { q: "Proposez-vous des contrats sans engagement ?", a: "Oui. Des missions ponctuelles (audit, stratégie) et des retainers mensuels avec préavis de 30 jours. Notre rétention vient de nos résultats, pas de clauses contractuelles." },
 ];
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Marketing Digital",
+  url: "https://labeltechnology.mg/services/marketing",
+  description:
+    "Service de marketing digital complet : SEO, Google Ads, Meta Ads, social media, email marketing. Stratégies mesurables orientées ROI depuis Antananarivo.",
+  provider: {
+    "@type": "Organization",
+    name: "Label Technology",
+    url: "https://labeltechnology.mg",
+  },
+  areaServed: [
+    { "@type": "Country", name: "France" },
+    { "@type": "Country", name: "Belgique" },
+    { "@type": "Country", name: "Suisse" },
+    { "@type": "Country", name: "Madagascar" },
+    { "@type": "Continent", name: "Afrique" },
+  ],
+  serviceType: "Marketing digital",
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Services Marketing Digital",
+    itemListElement: [
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "SEO & Référencement naturel" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Google Ads & Meta Ads" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Social Media Management" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Email Marketing & Automation" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Analytics & Reporting" } },
+    ],
+  },
+};
+
 export default function MarketingPage() {
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
 
       {/* Hero split */}
       <section className="relative overflow-hidden grid-bg" style={{ backgroundColor: "var(--ink)", minHeight: "70vh" }}>

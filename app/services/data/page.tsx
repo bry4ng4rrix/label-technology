@@ -11,6 +11,48 @@ import DataChart from "@/components/services/DataChartWrapper";
 export const metadata: Metadata = {
   title: "Traitement de Données — Saisie, Nettoyage, Analyse | Label Technology",
   description: "Saisie de données, nettoyage, normalisation, analyse et datavisualisation. Précision garantie à 99,5%. Depuis Antananarivo, pour clients MG/AF/EU.",
+  keywords: [
+    "traitement données Madagascar",
+    "saisie données Antananarivo",
+    "data entry Madagascar",
+    "nettoyage données Madagascar",
+    "data cleansing Madagascar",
+    "analyse données Madagascar",
+    "data processing Madagascar",
+    "BPO données Madagascar",
+    "numérisation documents Madagascar",
+    "automatisation données Madagascar",
+    "ETL Madagascar",
+    "datavisualisation Madagascar",
+    "enrichissement données Madagascar",
+    "conformité RGPD Madagascar",
+    "traitement données offshore",
+    "veille concurrentielle Madagascar",
+    "archivage données Madagascar",
+    "big data Madagascar",
+    "Python data Madagascar",
+    "saisie données France Madagascar",
+  ],
+  alternates: {
+    canonical: "https://labeltechnology.mg/services/data",
+  },
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    url: "https://labeltechnology.mg/services/data",
+    siteName: "Label Technology",
+    title: "Traitement de Données — Saisie, Nettoyage, Analyse | Label Technology",
+    description:
+      "Saisie de données, nettoyage, normalisation, analyse. Précision garantie à 99,5%. Depuis Antananarivo.",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Traitement de Données — Label Technology" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Traitement de Données | Label Technology",
+    description:
+      "Saisie, nettoyage, normalisation, analyse. Précision 99,5% garantie. Depuis Antananarivo.",
+    images: ["/og-image.png"],
+  },
 };
 
 const METRICS = [
@@ -49,9 +91,33 @@ const FAQ = [
   { q: "Dans quels formats livrez-vous les données ?", a: "Excel, CSV, JSON, SQL, Google Sheets, ou directement dans votre CRM/base de données via API. On s'adapte à vos outils existants, pas l'inverse." },
 ];
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Traitement de Données",
+  url: "https://labeltechnology.mg/services/data",
+  description:
+    "Service de traitement de données : saisie, nettoyage, normalisation, analyse et datavisualisation. Précision garantie à 99,5%. Conforme RGPD.",
+  provider: {
+    "@type": "Organization",
+    name: "Label Technology",
+    url: "https://labeltechnology.mg",
+  },
+  areaServed: [
+    { "@type": "Country", name: "France" },
+    { "@type": "Country", name: "Belgique" },
+    { "@type": "Country", name: "Madagascar" },
+  ],
+  serviceType: "Traitement de données / BPO",
+};
+
 export default function DataPage() {
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
 
       {/* Hero split */}
       <section className="relative overflow-hidden grid-bg" style={{ backgroundColor: "var(--ink)", minHeight: "70vh" }}>

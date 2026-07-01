@@ -10,6 +10,47 @@ export const metadata: Metadata = {
   title: "À Propos — Label Technology, fondée en 2022 à Antananarivo",
   description:
     "4 ans d'expérience, 60+ collaborateurs, 6 pôles de services. Label Technology : la tech malgache au niveau européen. Notre histoire, nos valeurs, notre équipe.",
+  keywords: [
+    "Label Technology histoire",
+    "entreprise technologique Madagascar",
+    "agence informatique Antananarivo",
+    "société tech Madagascar 2022",
+    "équipe Label Technology",
+    "60 collaborateurs Madagascar",
+    "partenaire externalisation Madagascar",
+    "standards européens Madagascar",
+    "valeurs Label Technology",
+    "bilingue FR EN Madagascar",
+    "externalisation qualité Madagascar",
+    "tech malgache",
+    "startup Madagascar",
+    "Label Technology Antananarivo",
+    "externalisation fiable Madagascar",
+    "Milson fanoela Bryan",
+    "Bryan garrix",
+    "fanoela Bryan",
+    "garrix tech",
+  ],
+  alternates: {
+    canonical: "https://labeltechnology.mg/about",
+  },
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    url: "https://labeltechnology.mg/about",
+    siteName: "Label Technology",
+    title: "À Propos — Label Technology, fondée en 2022 à Antananarivo",
+    description:
+      "4 ans d'expérience, 60+ collaborateurs, 7 pôles de services. Label Technology : la tech malgache au niveau européen.",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Label Technology — À Propos" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "À Propos — Label Technology",
+    description:
+      "4 ans d'expérience, 60+ collaborateurs, 7 pôles de services. Label Technology depuis Antananarivo.",
+    images: ["/og-image.png"],
+  },
 };
 
 const EQUIPE = [
@@ -102,9 +143,30 @@ const CHIFFRES = [
   { value: "24h/24", label: "Disponibilité" },
 ];
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  name: "À Propos — Label Technology",
+  url: "https://labeltechnology.mg/about",
+  description:
+    "Label Technology, fondée en 2022 à Antananarivo. 60+ collaborateurs, 7 pôles de services, standards européens.",
+  mainEntity: {
+    "@type": "Organization",
+    name: "Label Technology",
+    foundingDate: "2022",
+    foundingLocation: "Antananarivo, Madagascar",
+    numberOfEmployees: { "@type": "QuantitativeValue", value: 60 },
+    url: "https://labeltechnology.mg",
+  },
+};
+
 export default function AProposPage() {
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Hero */}
       <section
         className="relative min-h-[60vh] flex flex-col justify-center grid-bg px-6 pt-24 pb-16"

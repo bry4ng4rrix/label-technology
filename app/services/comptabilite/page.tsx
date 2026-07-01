@@ -8,6 +8,48 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Comptabilité & Reporting — Saisie, Clôture, Tableaux de bord | Label Technology",
   description: "Saisie comptable, rapprochements bancaires, reporting financier mensuel, tableaux de bord dirigeants. Expertise comptable externalisée depuis Antananarivo.",
+  keywords: [
+    "comptabilité externalisée Madagascar",
+    "saisie comptable Madagascar",
+    "reporting financier Madagascar",
+    "externalisation comptabilité France Madagascar",
+    "SYSCOHADA Madagascar",
+    "comptable externalisé Antananarivo",
+    "rapprochement bancaire Madagascar",
+    "tableaux de bord dirigeants Madagascar",
+    "clôture comptable Madagascar",
+    "déclarations fiscales Madagascar",
+    "BPO comptabilité Madagascar",
+    "comptabilité PME Madagascar",
+    "outsourcing comptabilité Madagascar",
+    "Plan Comptable Général Madagascar",
+    "TVA Madagascar",
+    "reporting mensuel Madagascar",
+    "externalisation finance Madagascar",
+    "comptabilité offshore",
+    "expert comptable Madagascar",
+    "Sage comptabilité Madagascar",
+  ],
+  alternates: {
+    canonical: "https://labeltechnology.mg/services/comptabilite",
+  },
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    url: "https://labeltechnology.mg/services/comptabilite",
+    siteName: "Label Technology",
+    title: "Comptabilité & Reporting — Saisie, Clôture, Tableaux de bord | Label Technology",
+    description:
+      "Saisie comptable, rapprochements bancaires, reporting mensuel, tableaux de bord. Expertise comptable externalisée depuis Antananarivo.",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Comptabilité & Reporting — Label Technology" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Comptabilité & Reporting | Label Technology",
+    description:
+      "Saisie comptable, rapprochements bancaires, reporting mensuel. Externalisé depuis Antananarivo.",
+    images: ["/og-image.png"],
+  },
 };
 
 const METRICS = [
@@ -46,9 +88,33 @@ const FAQ = [
   { q: "La comptabilité externalisée remplace-t-elle un expert-comptable ?", a: "Non — on est complémentaires. On prend en charge la saisie quotidienne et le reporting de gestion, ce qui allège considérablement le travail de votre expert-comptable et réduit vos honoraires annuels." },
 ];
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Comptabilité & Reporting",
+  url: "https://labeltechnology.mg/services/comptabilite",
+  description:
+    "Saisie comptable, rapprochements bancaires, reporting financier mensuel et tableaux de bord dirigeants. Conformes SYSCOHADA et PCG français. Reporting disponible avant J+5.",
+  provider: {
+    "@type": "Organization",
+    name: "Label Technology",
+    url: "https://labeltechnology.mg",
+  },
+  areaServed: [
+    { "@type": "Country", name: "Madagascar" },
+    { "@type": "Country", name: "France" },
+    { "@type": "Country", name: "Belgique" },
+  ],
+  serviceType: "Comptabilité externalisée / BPO finance",
+};
+
 export default function ComptabilitePage() {
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
 
       {/* Hero split */}
       <section className="relative overflow-hidden grid-bg" style={{ backgroundColor: "var(--ink)", minHeight: "70vh" }}>

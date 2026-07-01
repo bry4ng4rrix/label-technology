@@ -11,6 +11,48 @@ import DigitalChart from "@/components/services/DigitalChartWrapper";
 export const metadata: Metadata = {
   title: "Digitalisation & ERP — Odoo, SIRH, Logiciels métier | Label Technology",
   description: "ERP, SIRH, GED, logiciels métier sur mesure. Déploiement Odoo, automatisation des processus, intégration de systèmes. Depuis Antananarivo.",
+  keywords: [
+    "ERP Madagascar",
+    "Odoo Madagascar",
+    "SIRH Madagascar",
+    "digitalisation PME Madagascar",
+    "logiciel gestion Madagascar",
+    "déploiement ERP Antananarivo",
+    "logiciel métier sur mesure Madagascar",
+    "GED Madagascar",
+    "gestion documentaire Madagascar",
+    "automatisation processus Madagascar",
+    "intégration CRM ERP Madagascar",
+    "transformation digitale Madagascar",
+    "logiciel RH Madagascar",
+    "Odoo intégrateur Madagascar",
+    "digitalisation entreprise Antananarivo",
+    "SAP Madagascar",
+    "conduite du changement Madagascar",
+    "PME digitalisation Madagascar",
+    "gestion entreprise logiciel Madagascar",
+    "externalisation IT Madagascar",
+  ],
+  alternates: {
+    canonical: "https://labeltechnology.mg/services/digital",
+  },
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    url: "https://labeltechnology.mg/services/digital",
+    siteName: "Label Technology",
+    title: "Digitalisation & ERP — Odoo, SIRH, Logiciels métier | Label Technology",
+    description:
+      "ERP, SIRH, GED, logiciels métier sur mesure. Déploiement Odoo, automatisation des processus. Depuis Antananarivo.",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Digitalisation & ERP — Label Technology" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Digitalisation & ERP — Odoo, SIRH | Label Technology",
+    description:
+      "ERP, SIRH, GED, logiciels métier sur mesure. Déploiement Odoo, automatisation. Depuis Antananarivo.",
+    images: ["/og-image.png"],
+  },
 };
 
 const METRICS = [
@@ -49,9 +91,32 @@ const FAQ = [
   { q: "Intervenez-vous en France pour des déploiements sur site ?", a: "La grande majorité de nos déploiements France se font à distance avec d'excellents résultats. Pour des formations sur site ou des projets complexes, une intervention physique est possible — à discuter lors du cadrage." },
 ];
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Digitalisation & ERP",
+  url: "https://labeltechnology.mg/services/digital",
+  description:
+    "Déploiement ERP (Odoo, SAP), SIRH, GED et logiciels métier sur mesure. Automatisation des processus, intégration de systèmes, formation et accompagnement.",
+  provider: {
+    "@type": "Organization",
+    name: "Label Technology",
+    url: "https://labeltechnology.mg",
+  },
+  areaServed: [
+    { "@type": "Country", name: "Madagascar" },
+    { "@type": "Country", name: "France" },
+  ],
+  serviceType: "ERP / Digitalisation",
+};
+
 export default function DigitalPage() {
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
 
       {/* Hero split */}
       <section className="relative overflow-hidden grid-bg" style={{ backgroundColor: "var(--ink)", minHeight: "70vh" }}>

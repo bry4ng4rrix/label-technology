@@ -1,5 +1,66 @@
+import type { Metadata } from "next";
 import CtaSection from "@/components/home/CtaSection";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Nos Services — 7 Expertises Tech depuis Antananarivo",
+  description:
+    "Développement web & mobile, call center 50 postes, marketing digital, ERP, traitement de données, matériel informatique, comptabilité. Une couverture complète depuis Antananarivo.",
+  keywords: [
+    "services informatiques Madagascar",
+    "prestations externalisation Madagascar",
+    "agence complète Madagascar",
+    "7 expertises Madagascar",
+    "développement web Madagascar",
+    "call center Madagascar",
+    "marketing digital Madagascar",
+    "ERP Madagascar",
+    "traitement données Madagascar",
+    "matériel informatique Madagascar",
+    "comptabilité externalisée Madagascar",
+    "BPO Madagascar",
+    "outsourcing Madagascar",
+    "prestataire IT Antananarivo",
+    "services tech Antananarivo",
+  ],
+  alternates: {
+    canonical: "https://labeltechnology.mg/services",
+  },
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    url: "https://labeltechnology.mg/services",
+    siteName: "Label Technology",
+    title: "Nos Services — 7 Expertises Tech depuis Antananarivo",
+    description:
+      "Développement web & mobile, call center 50 postes, marketing digital, ERP, traitement de données, matériel informatique, comptabilité.",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Services Label Technology" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Nos Services — 7 Expertises Tech | Label Technology",
+    description:
+      "Développement web, call center, marketing digital, ERP, données, matériel, comptabilité. Depuis Antananarivo.",
+    images: ["/og-image.png"],
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Services Label Technology",
+  url: "https://labeltechnology.mg/services",
+  description: "7 pôles d'expertise technologique depuis Antananarivo, Madagascar.",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Développement Web & Mobile", url: "https://labeltechnology.mg/services/dev" },
+    { "@type": "ListItem", position: 2, name: "Call Center 50 Postes FR/EN", url: "https://labeltechnology.mg/services/callcenter" },
+    { "@type": "ListItem", position: 3, name: "Marketing Digital", url: "https://labeltechnology.mg/services/marketing" },
+    { "@type": "ListItem", position: 4, name: "Digitalisation & ERP", url: "https://labeltechnology.mg/services/digital" },
+    { "@type": "ListItem", position: 5, name: "Traitement de Données", url: "https://labeltechnology.mg/services/data" },
+    { "@type": "ListItem", position: 6, name: "Matériel Informatique", url: "https://labeltechnology.mg/services/materiel" },
+    { "@type": "ListItem", position: 7, name: "Comptabilité & Reporting", url: "https://labeltechnology.mg/services/comptabilite" },
+  ],
+};
 
 const SERVICES = [
   {
@@ -70,6 +131,10 @@ const SERVICES = [
 export default function ServicesPage() {
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
 
       {/* Hero */}
       <section className="relative min-h-[55vh] flex flex-col justify-center grid-bg px-6 pt-24 pb-16"

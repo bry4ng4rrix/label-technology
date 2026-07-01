@@ -5,6 +5,40 @@ export const metadata: Metadata = {
   title: "Contact — Démarrez votre projet avec Label Technology",
   description:
     "Contactez Label Technology pour démarrer votre projet. Développement web, call center, marketing digital, ERP. Réponse sous 72h. Antananarivo, Madagascar.",
+  keywords: [
+    "contact Label Technology",
+    "devis Label Technology",
+    "devis développement web Madagascar",
+    "devis call center Madagascar",
+    "devis marketing digital Madagascar",
+    "devis ERP Madagascar",
+    "devis externalisation Madagascar",
+    "contacter agence web Madagascar",
+    "demande de projet Madagascar",
+    "devis gratuit informatique Madagascar",
+    "Label Technology Antananarivo",
+    "contact@labeltechnology.mg",
+  ],
+  alternates: {
+    canonical: "https://labeltechnology.mg/contact",
+  },
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    url: "https://labeltechnology.mg/contact",
+    siteName: "Label Technology",
+    title: "Contact — Démarrez votre projet avec Label Technology",
+    description:
+      "Contactez Label Technology pour démarrer votre projet. Réponse sous 72h. Antananarivo, Madagascar.",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Contact Label Technology" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact | Label Technology",
+    description:
+      "Contactez-nous pour votre projet tech. Réponse sous 72h. Antananarivo, Madagascar.",
+    images: ["/og-image.png"],
+  },
 };
 
 export default function ContactPage() {

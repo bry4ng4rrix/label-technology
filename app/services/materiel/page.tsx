@@ -11,6 +11,48 @@ import MaterielChart from "@/components/services/MaterielChartWrapper";
 export const metadata: Metadata = {
   title: "Vente Matériel Informatique — PC, Réseau, Infrastructure | Label Technology",
   description: "Ordinateurs, réseau, périphériques, serveurs. Marques professionnelles, installation sur site, maintenance. Devis en 4h depuis Antananarivo.",
+  keywords: [
+    "matériel informatique Antananarivo",
+    "ordinateurs professionnels Madagascar",
+    "vente PC Madagascar",
+    "réseau entreprise Madagascar",
+    "infrastructure informatique Madagascar",
+    "Lenovo Madagascar",
+    "HP Madagascar",
+    "Dell Madagascar",
+    "vente matériel informatique Madagascar",
+    "installation réseau Antananarivo",
+    "onduleur UPS Madagascar",
+    "switch réseau Madagascar",
+    "WiFi entreprise Madagascar",
+    "imprimante professionnelle Madagascar",
+    "maintenance informatique Antananarivo",
+    "support IT Madagascar",
+    "équipement informatique Madagascar",
+    "serveur Madagascar",
+    "workstation Madagascar",
+    "contrat maintenance informatique Madagascar",
+  ],
+  alternates: {
+    canonical: "https://labeltechnology.mg/services/materiel",
+  },
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    url: "https://labeltechnology.mg/services/materiel",
+    siteName: "Label Technology",
+    title: "Vente Matériel Informatique — PC, Réseau, Infrastructure | Label Technology",
+    description:
+      "Ordinateurs, réseau, périphériques, serveurs. Marques professionnelles, installation sur site, maintenance. Devis en 4h.",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Matériel Informatique — Label Technology" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Matériel Informatique — PC, Réseau | Label Technology",
+    description:
+      "Ordinateurs, réseau, périphériques. Marques pro, installation, maintenance. Devis en 4h Antananarivo.",
+    images: ["/og-image.png"],
+  },
 };
 
 const METRICS = [
@@ -49,9 +91,37 @@ const FAQ = [
   { q: "Proposez-vous de la location de matériel ?", a: "Nous proposons la location longue durée (LLD) sur certaines gammes de postes de travail et d'imprimantes. C'est une option intéressante pour préserver votre trésorerie et renouveler régulièrement votre parc." },
 ];
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Vente Matériel Informatique",
+  url: "https://labeltechnology.mg/services/materiel",
+  description:
+    "Vente et installation de matériel informatique professionnel à Antananarivo : PC, réseau, périphériques, serveurs, onduleurs. Maintenance et support inclus.",
+  provider: {
+    "@type": "Organization",
+    name: "Label Technology",
+    url: "https://labeltechnology.mg",
+  },
+  areaServed: [
+    { "@type": "Country", name: "Madagascar" },
+  ],
+  serviceType: "Vente de matériel informatique",
+  brand: [
+    { "@type": "Brand", name: "Lenovo" },
+    { "@type": "Brand", name: "HP" },
+    { "@type": "Brand", name: "Dell" },
+    { "@type": "Brand", name: "Cisco" },
+  ],
+};
+
 export default function MaterielPage() {
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
 
       {/* Hero split */}
       <section className="relative overflow-hidden grid-bg" style={{ backgroundColor: "var(--ink)", minHeight: "70vh" }}>

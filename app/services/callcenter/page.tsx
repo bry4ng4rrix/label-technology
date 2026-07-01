@@ -12,6 +12,43 @@ import PerformanceChart from "@/components/callcenter/PerformanceChartWrapper";
 export const metadata: Metadata = {
   title: "Call Center 50 Postes FR/EN — Prospection B2B & Support Client",
   description: "Externalisez votre call center à Antananarivo. 50 postes opérationnels, bilingue FR/EN, 24h/24. Prospection B2B, qualification de fichiers, support client. Activation < 2h.",
+  keywords: [
+    "call center Madagascar",
+    "externalisation call center",
+    "centre d'appels Antananarivo",
+    "call center bilingue FR EN",
+    "prospection B2B Madagascar",
+    "support client externalisé Madagascar",
+    "call center 50 postes",
+    "téléprospection France Madagascar",
+    "qualification de fichiers B2B",
+    "prise de rendez-vous externalisée",
+    "BPO voix Madagascar",
+    "centre d'appels offshore",
+    "call center pas cher qualité",
+    "externalisation prospection France",
+    "support client 24h Madagascar",
+  ],
+  alternates: {
+    canonical: "https://labeltechnology.mg/services/callcenter",
+  },
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    url: "https://labeltechnology.mg/services/callcenter",
+    siteName: "Label Technology",
+    title: "Call Center 50 Postes FR/EN — Prospection B2B & Support Client",
+    description:
+      "Externalisez votre call center à Antananarivo. 50 postes opérationnels, bilingue FR/EN, 24h/24. Activation en moins de 2h.",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Call Center Label Technology — Antananarivo" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Call Center 50 Postes FR/EN | Label Technology",
+    description:
+      "50 postes opérationnels, bilingue FR/EN, 24h/24. Prospection B2B, support client. Activation < 2h.",
+    images: ["/og-image.png"],
+  },
 };
 
 const METRICS = [
@@ -61,9 +98,41 @@ const FAQ = [
   { q: "Peut-on intégrer votre équipe à notre CRM ?", a: "Oui — intégration Salesforce, HubSpot, Pipedrive, Zoho et la plupart des CRM du marché. Pour les formules Enterprise, on configure l'accès direct à vos outils pour une synchronisation en temps réel." },
 ];
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Call Center 50 Postes FR/EN",
+  url: "https://labeltechnology.mg/services/callcenter",
+  description:
+    "Service de call center externalisé depuis Antananarivo. 50 postes opérationnels, bilingue français/anglais, disponible 24h/24. Prospection B2B, qualification de fichiers, support client.",
+  provider: {
+    "@type": "Organization",
+    name: "Label Technology",
+    url: "https://labeltechnology.mg",
+  },
+  areaServed: [
+    { "@type": "Country", name: "France" },
+    { "@type": "Country", name: "Belgique" },
+    { "@type": "Country", name: "Suisse" },
+    { "@type": "Country", name: "Madagascar" },
+  ],
+  serviceType: "Call Center / BPO",
+  availableLanguage: ["French", "English"],
+  offers: {
+    "@type": "AggregateOffer",
+    priceCurrency: "EUR",
+    description: "Tarifs sur devis selon volume et formule",
+    offerCount: 3,
+  },
+};
+
 export default function CallCenterPage() {
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
 
       {/* Hero split */}
       <section className="relative overflow-hidden grid-bg" style={{ backgroundColor: "var(--ink)", minHeight: "70vh" }}>
