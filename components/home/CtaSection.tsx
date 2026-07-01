@@ -30,7 +30,7 @@ export default function CtaSection() {
         </Badge>
 
         <h2
-          className="font-rostex text-white mb-5"
+          className="font-display text-white mb-5"
           style={{ fontSize: "clamp(36px, 5vw, 68px)", lineHeight: 1.05 }}
         >
           Votre projet mérite mieux
@@ -78,7 +78,10 @@ export default function CtaSection() {
         {/* Réassurance */}
         <div className="flex flex-wrap justify-center gap-x-8 gap-y-3">
           {REASSURANCE.map((item, i) => (
-            <div key={i} className="flex items-center gap-2 text-white/35 text-xs">
+            <div
+              key={i}
+              className="flex items-center gap-2 text-white/35 text-xs"
+            >
               <CheckCircle2 className="w-3.5 h-3.5 text-blue-400/50 shrink-0" />
               {item}
             </div>

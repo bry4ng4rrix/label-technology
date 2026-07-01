@@ -14,19 +14,28 @@ export default function ProjetsPage() {
       {/* Hero */}
       <section
         className="relative overflow-hidden grid-bg px-6"
-        style={{ backgroundColor: "var(--ink)", minHeight: "52vh", display: "flex", alignItems: "center" }}
+        style={{
+          backgroundColor: "var(--ink)",
+          minHeight: "52vh",
+          display: "flex",
+          alignItems: "center",
+        }}
       >
         {/* Halo bleu centré */}
         <div
           className="absolute top-[-60px] left-1/2 -translate-x-1/2 w-[600px] h-[400px] pointer-events-none"
           style={{
-            background: "radial-gradient(ellipse, rgba(46,85,212,0.18) 0%, transparent 70%)",
+            background:
+              "radial-gradient(ellipse, rgba(46,85,212,0.18) 0%, transparent 70%)",
             filter: "blur(40px)",
           }}
         />
 
         <div className="relative z-10 max-w-7xl mx-auto w-full py-28">
-          <p className="label-tag mb-5 animate-fadeup" style={{ color: "var(--brand-lt)" }}>
+          <p
+            className="label-tag mb-5 animate-fadeup"
+            style={{ color: "var(--brand-lt)" }}
+          >
             RÉALISATIONS
           </p>
           <h1
@@ -35,7 +44,9 @@ export default function ProjetsPage() {
           >
             Ce qu&apos;on a
             <br />
-            <span style={{ color: "var(--brand-lt)" }}>déjà construit.</span>
+            <span className="bg-gradient-to-r from-blue-500  to-emerald-500 bg-clip-text text-transparent">
+              déjà construit.
+            </span>
           </h1>
           <p className="text-white/55 text-lg font-light max-w-xl animate-fadeup-d2">
             13 projets sélectionnés. Filtrez par domaine. Chaque chiffre est

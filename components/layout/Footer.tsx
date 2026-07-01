@@ -27,7 +27,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="md:col-span-2">
             <Image
-              src="/logo.png"
+              src="/images/logo_dark.png"
               alt="Label Technology"
               width={180}
               height={34}

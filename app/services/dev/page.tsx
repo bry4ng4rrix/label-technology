@@ -291,12 +291,17 @@ export default function DevPage() {
       `}</style>
 
       {/* ── Hero ── */}
-      <section className="relative overflow-hidden grid-bg" style={{ backgroundColor: "var(--ink)", minHeight: "70vh" }}>
-        <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 items-center" style={{ minHeight: "70vh" }}>
-
+      <section
+        className="relative overflow-hidden grid-bg"
+        style={{ backgroundColor: "var(--ink)", minHeight: "70vh" }}
+      >
+        <div
+          className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 items-center"
+          style={{ minHeight: "70vh" }}
+        >
           {/* Texte */}
           <div className="py-28 lg:pr-12">
-            <p className="dev-hero-label label-tag mb-5" style={{ color: "var(--brand-lt)" }}>
+            <p className="dev-hero-label label-tag mb-5 bg-gradient-to-r from-blue-500  to-emerald-500 bg-clip-text text-transparent">
               DÉVELOPPEMENT WEB & MOBILE
             </p>
             <h1
@@ -305,32 +310,38 @@ export default function DevPage() {
             >
               On ne livre pas du code.
               <br />
-              <span style={{ color: "var(--brand-lt)" }}>On livre de la croissance.</span>
+              <span className="bg-gradient-to-r from-blue-500 to-emerald-500 bg-clip-text text-transparent">
+                On livre de la croissance.
+              </span>
             </h1>
-            <p className="dev-hero-desc text-white/70 text-lg leading-relaxed mb-10 max-w-xl" style={{ lineHeight: 1.8 }}>
+            <p
+              className="dev-hero-desc text-white/70 text-lg leading-relaxed mb-10 max-w-xl"
+              style={{ lineHeight: 1.8 }}
+            >
               Web, mobile, API, e-commerce. Depuis Antananarivo, avec les
               standards d&apos;une ESN européenne et les délais d&apos;une
               startup. Devis gratuit en 72h.
             </p>
             <div className="dev-hero-btns flex flex-wrap gap-4">
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3 font-semibold text-sm rounded-sm transition-all hover:opacity-90"
-                style={{ backgroundColor: "var(--brand-lt)", color: "#fff" }}
+              <Button className="h-14 text-medium bg-blue-500 text-white hover:scale-105 transition-all duration-300">
+                <Link href="/contact">Démarrer un projet</Link>
+                <ArrowRight className="w-4 h-4" />
+              </Button>
+
+              <Button
+                variant="outline"
+                className="h-14 text-medium hover:scale-105 transition-all duration-300 bg-transparent text-white hover:bg-transparent hover:text-white"
               >
-                Démarrer un projet →
-              </Link>
-              <Link
-                href="/projets"
-                className="inline-flex items-center gap-2 px-6 py-3 text-sm border border-white/25 text-white rounded-sm hover:border-white/60 transition-colors"
-              >
-                Voir nos réalisations
-              </Link>
+                <Link href="/projets">Voir nos réalisations</Link>
+              </Button>
             </div>
           </div>
 
           {/* Image */}
-          <div className="hidden lg:block relative" style={{ minHeight: "70vh" }}>
+          <div
+            className="hidden lg:block relative"
+            style={{ minHeight: "70vh" }}
+          >
             <Image
               src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=900&h=700&fit=crop&q=80"
               alt="Développement web & mobile — Label Technology"
@@ -340,7 +351,10 @@ export default function DevPage() {
             />
             <div
               className="absolute inset-0"
-              style={{ background: "linear-gradient(90deg, var(--ink) 0%, transparent 55%)" }}
+              style={{
+                background:
+                  "linear-gradient(90deg, var(--ink) 0%, transparent 55%)",
+              }}
             />
           </div>
         </div>
