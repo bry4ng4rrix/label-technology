@@ -91,23 +91,6 @@ const SERVICES = [
     icon: RefreshCw,
   },
   {
-    id: "data",
-    href: "/services/data",
-    tag: "Traitement de données",
-    headline: "Vos données dorment.",
-    headlineAccent: "On les réveille.",
-    desc: "Numérisation, saisie, nettoyage, structuration et analyse. Physique comme numérique.",
-    items: [
-      "Numérisation documents",
-      "Nettoyage & déduplication",
-      "Structuration & migration",
-      "Visualisation & analyse",
-    ],
-    featured: false,
-    color: "#8B5CF6",
-    icon: Database,
-  },
-  {
     id: "materiel",
     href: "/services/materiel",
     tag: "Matériel IT",
@@ -145,7 +128,7 @@ const SERVICES = [
 
 export default function ServicesGrid() {
   return (
-    <section className="relative py-24 px-6 bg-gray-100 overflow-hidden">
+    <section className="relative py-24 px-6 bg-red-400 overflow-hidden">
       <style>{`
         @keyframes fadeInUp {
           from {
@@ -279,19 +262,19 @@ export default function ServicesGrid() {
         {/* Section header */}
         <div className="flex items-end justify-between mb-14 flex-wrap gap-4 animate-slide-down">
           <div>
-            <p className="text-xs font-semibold tracking-widest mb-3 text-primary/70 uppercase">
+            <p className="text-xs font-semibold tracking-widest mb-3 text-foreground uppercase">
               NOS EXPERTISES
             </p>
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-tight">
+            <h2 className="text-4xl md:text-5xl font-bold text-blue-100 leading-tight">
               7 expertises.
               <br />
-              <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-sky-700 to-green-600 bg-clip-text text-transparent">
                 1 équipe.
               </span>
             </h2>
           </div>
           <Button
-            className="text-xs px-6 py-3 bg-gray-100 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg font-semibold"
+            className="text-xs px-6 py-3 h-14 bg-sky-500 hover:bg-sky-600 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg font-semibold"
             asChild
           >
             <Link href="/contact" className="flex items-center gap-2">
@@ -310,7 +293,7 @@ export default function ServicesGrid() {
             const IconComponent = s.icon;
             return (
               <Link key={s.id} href={s.href} className="group service-card">
-                <Card className="relative h-full border border-border/40 rounded-xl shadow-md hover:scale-105 hover:shadow-xl hover:border-primary/30 transition-all duration-300 ease-out overflow-hidden">
+                <Card className="relative h-full bg-blue-50 border border-border/40 rounded-xl shadow-lg shadow-white/20 hover:scale-105 hover:shadow-xl hover:border-primary/30 transition-all duration-300 ease-out overflow-hidden">
                   {/* Background gradient effect */}
                   <div
                     className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-300"
