@@ -127,7 +127,7 @@ export default function AProposPage() {
           >
             Antananarivo.
             <br />
-            <span style={{ color: "var(--brand-lt)" }}>
+            <span className="bg-gradient-to-r from-blue-500  to-emerald-500 bg-clip-text text-transparent ">
               Standards européens.
             </span>
           </h1>
@@ -172,7 +172,7 @@ export default function AProposPage() {
               <h2 className="font-display text-4xl md:text-5xl mb-4 leading-tight text-foreground">
                 Né à Madagascar.
                 <br />
-                <span style={{ color: "var(--brand)" }}>
+                <span className="bg-gradient-to-r from-blue-500  to-emerald-500 bg-clip-text text-transparent">
                   Pensé pour le monde.
                 </span>
               </h2>
@@ -271,7 +271,7 @@ export default function AProposPage() {
       </section>
 
       {/* Équipe dirigeante */}
-      <section
+      {/* <section
         className="py-24 px-6"
         style={{ backgroundColor: "var(--paper)" }}
       >
@@ -279,7 +279,7 @@ export default function AProposPage() {
           <p className="label-tag mb-3" style={{ color: "var(--brand)" }}>
             L'ÉQUIPE
           </p>
-          <h2 className="font-display text-4xl md:text-5xl mb-4 text-foreground">
+          <h2 className="font-display text-4xl md:text-5xl mb-4 bg-gradient-to-r from-blue-500  to-emerald-500 bg-clip-text text-transparent">
             Les gens derrière le travail.
           </h2>
           <p className="text-[15px] mb-16 max-w-xl text-muted-foreground">
@@ -318,7 +318,7 @@ export default function AProposPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       <MiniTestimonials items={TEMOIGNAGES_CLIENTS} />
       <CtaSection />

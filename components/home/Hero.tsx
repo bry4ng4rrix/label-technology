@@ -23,7 +23,10 @@ const Hero = () => {
           </p>
           <h1 className="text-4xl md:text-6xl font-bold mb-4 font-rostex text-white">
             La technologie au services{" "}
-            <span className="text-blue-500"> de votre croissance.</span>
+            <span className="bg-gradient-to-r from-blue-500  to-emerald-500 bg-clip-text text-transparent">
+              {" "}
+              de votre croissance.
+            </span>
           </h1>
           <p className="text-lg md:text-xl text-gray-200 mb-8 ">
             Développement web, Call Center 50 postes FR/EN, Marketing digital,
