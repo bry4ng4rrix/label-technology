@@ -327,19 +327,22 @@ export default function MarketingPage() {
         style={{ backgroundColor: "var(--paper)" }}
       >
         <div className="max-w-7xl mx-auto">
-          <p className="label-tag mb-3" style={{ color: "var(--brand)" }}>
-            NOS EXPERTISES
-          </p>
-          <h2 className="font-display text-4xl md:text-5xl mb-16 text-foreground">
-            Du trafic à la conversion.
-          </h2>
+          <Reveal>
+            <p className="label-tag mb-3" style={{ color: "var(--brand)" }}>
+              NOS EXPERTISES
+            </p>
+            <h2 className="font-display text-4xl md:text-5xl mb-16 bg-gradient-to-r from-blue-500 to-indigo-600 bg-clip-text text-transparent">
+              Du trafic à la conversion.
+            </h2>
+          </Reveal>
           <div className="grid md:grid-cols-3 gap-8">
             {SERVICES.map((s, i) => (
-              <div
+              <Reveal
                 key={i}
+                delay={i * 0.08}
                 className="p-7 border border-border rounded-sm card-hover bg-card"
               >
-                <span className="text-3xl mb-4 block">{s.icon}</span>
+                <span className="svc-icon-float text-3xl mb-4 block">{s.icon}</span>
                 <h3 className="font-display text-xl mb-3 text-foreground">
                   {s.title}
                 </h3>
@@ -349,7 +352,7 @@ export default function MarketingPage() {
                 >
                   {s.desc}
                 </p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -358,7 +361,7 @@ export default function MarketingPage() {
       {/* Chart résultats */}
       <section className="py-20 px-6" style={{ backgroundColor: "var(--ink)" }}>
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
-          <div>
+          <Reveal>
             <p className="label-tag mb-3" style={{ color: "var(--brand-lt)" }}>
               RÉSULTATS PROUVÉS
             </p>
@@ -391,31 +394,35 @@ export default function MarketingPage() {
                 — Engagement Label Technology
               </p>
             </div>
-          </div>
-          <MarketingChart />
+          </Reveal>
+          <Reveal delay={0.15}>
+            <MarketingChart />
+          </Reveal>
         </div>
       </section>
 
       {/* Process */}
       <section className="py-24 px-6 bg-background">
         <div className="max-w-7xl mx-auto">
-          <p className="label-tag mb-3" style={{ color: "var(--brand)" }}>
-            NOTRE APPROCHE
-          </p>
-          <h2 className="font-display text-4xl md:text-5xl mb-16 text-foreground">
-            De l'audit aux résultats.
-          </h2>
+          <Reveal>
+            <p className="label-tag mb-3" style={{ color: "var(--brand)" }}>
+              NOTRE APPROCHE
+            </p>
+            <h2 className="font-display text-4xl md:text-5xl mb-16 text-foreground">
+              De l'audit aux résultats.
+            </h2>
+          </Reveal>
           <div className="grid md:grid-cols-4 gap-px bg-border/30">
             {PROCESS.map((p, i) => (
-              <div key={i} className="p-8 bg-card">
+              <Reveal key={i} delay={i * 0.1} className="svc-step p-8 bg-card">
                 <div
-                  className="font-display text-5xl mb-6 opacity-15"
-                  style={{ color: "var(--brand)", lineHeight: 1 }}
+                  className="svc-step-num font-display text-5xl mb-6"
+                  style={{ color: "var(--brand)", lineHeight: 1, opacity: 0.3 }}
                 >
                   {p.num}
                 </div>
                 <div
-                  className="w-8 h-0.5 mb-5"
+                  className="svc-step-line w-8 h-0.5 mb-5"
                   style={{ backgroundColor: "var(--brand)" }}
                 />
                 <h3 className="font-display text-lg mb-3 text-foreground">
@@ -427,7 +434,7 @@ export default function MarketingPage() {
                 >
                   {p.desc}
                 </p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>

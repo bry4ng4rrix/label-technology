@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import CtaSection from "@/components/home/CtaSection";
 import Link from "next/link";
+import Reveal from "@/components/shared/Reveal";
 
 export const metadata: Metadata = {
   title: "Nos Services — 7 Expertises Tech depuis Antananarivo",
@@ -141,7 +142,7 @@ export default function ServicesPage() {
         style={{ backgroundColor: "var(--ink)" }}>
         <div className="absolute inset-0 opacity-10 pointer-events-none"
           style={{ background: "radial-gradient(ellipse at 50% 50%, var(--brand) 0%, transparent 70%)" }} />
-        <div className="relative max-w-7xl mx-auto w-full">
+        <Reveal className="relative max-w-7xl mx-auto w-full">
           <p className="label-tag mb-5" style={{ color: "var(--brand-lt)" }}>NOS EXPERTISES</p>
           <h1 className="font-display text-white mb-6 leading-tight" style={{ fontSize: "clamp(36px, 5vw, 72px)" }}>
             7 expertises.<br />
@@ -151,7 +152,7 @@ export default function ServicesPage() {
             Développement, Call Center, Marketing, Digitalisation, Données, Matériel, Comptabilité.
             Une couverture complète depuis Antananarivo.
           </p>
-        </div>
+        </Reveal>
       </section>
 
       {/* Grid services */}
@@ -159,35 +160,37 @@ export default function ServicesPage() {
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {SERVICES.map((s, i) => (
-              <Link key={i} href={s.href}
-                className="group p-8 border rounded-sm flex flex-col transition-all card-hover bg-card"
-                style={{ borderColor: s.featured ? "var(--brand)" : "transparent" }}>
-                <span className="label-tag text-[10px] mb-3"
-                  style={{ color: s.featured ? "var(--brand-lt)" : "var(--brand)" }}>
-                  {s.tag}
-                </span>
-                <h2 className="font-display text-2xl mb-2 text-foreground">
-                  {s.title}
-                </h2>
-                <p className="text-sm font-light italic mb-5 text-muted-foreground">
-                  {s.accroche}
-                </p>
-                <p className="text-sm font-light leading-relaxed mb-6 flex-1 text-muted-foreground">
-                  {s.desc}
-                </p>
-                <ul className="space-y-1.5 mb-6">
-                  {s.items.map((item, j) => (
-                    <li key={j} className="flex items-center gap-2 text-xs text-muted-foreground">
-                      <span style={{ color: "var(--gold)" }}>◆</span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <span className="text-sm font-medium group-hover:gap-3 transition-all flex items-center gap-2"
-                  style={{ color: s.featured ? "var(--brand-lt)" : "var(--brand)" }}>
-                  Découvrir →
-                </span>
-              </Link>
+              <Reveal key={i} delay={(i % 3) * 0.1} className="h-full">
+                <Link href={s.href}
+                  className="group p-8 border rounded-sm flex flex-col h-full transition-all card-hover bg-card"
+                  style={{ borderColor: s.featured ? "var(--brand)" : "transparent" }}>
+                  <span className="label-tag text-[10px] mb-3"
+                    style={{ color: s.featured ? "var(--brand-lt)" : "var(--brand)" }}>
+                    {s.tag}
+                  </span>
+                  <h2 className="font-display text-2xl mb-2 text-foreground">
+                    {s.title}
+                  </h2>
+                  <p className="text-sm font-light italic mb-5 text-muted-foreground">
+                    {s.accroche}
+                  </p>
+                  <p className="text-sm font-light leading-relaxed mb-6 flex-1 text-muted-foreground">
+                    {s.desc}
+                  </p>
+                  <ul className="space-y-1.5 mb-6">
+                    {s.items.map((item, j) => (
+                      <li key={j} className="flex items-center gap-2 text-xs text-muted-foreground">
+                        <span style={{ color: "var(--gold)" }}>◆</span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                  <span className="text-sm font-medium group-hover:gap-3 transition-all flex items-center gap-2"
+                    style={{ color: s.featured ? "var(--brand-lt)" : "var(--brand)" }}>
+                    Découvrir →
+                  </span>
+                </Link>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -202,10 +205,10 @@ export default function ServicesPage() {
             { v: "FR/EN", l: "Bilingue certifié" },
             { v: "<72h", l: "Délai de réponse" },
           ].map((m, i) => (
-            <div key={i} className="text-center py-8">
+            <Reveal key={i} delay={i * 0.1} className="text-center py-8">
               <div className="font-display text-3xl text-white mb-1">{m.v}</div>
               <div className="label-tag text-white/50 text-[10px]">{m.l}</div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>
