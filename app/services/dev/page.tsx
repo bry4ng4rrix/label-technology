@@ -749,7 +749,7 @@ export default function DevPage() {
           </Badge>
 
           <h2
-            className="animate-fadeup-d1 font-rostex text-white"
+            className="animate-fadeup-d1  text-white"
             style={{ fontSize: "clamp(36px, 5vw, 64px)", lineHeight: 1.05 }}
           >
             Prêt à transformer

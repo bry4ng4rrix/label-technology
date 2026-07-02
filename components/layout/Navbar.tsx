@@ -3,9 +3,8 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Switch } from "@/components/ui/switch";
 import { useTheme } from "next-themes";
-import { Sun, Moon, Menu } from "lucide-react";
+import { Menu } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -35,6 +34,7 @@ const Navbar = () => {
     { name: "Projets", href: "/projets" },
     { name: "À propos", href: "/about" },
     { name: "Blog", href: "/blog" },
+    { name: "Recrutement", href: "/recru" },
   ];
 
   const services = [
@@ -86,7 +86,7 @@ const Navbar = () => {
   return (
     /* Pas de text-white global — le Viewport du NavigationMenu gère ses propres couleurs */
     <nav className="fixed top-0 left-0 w-full z-50 bg-slate-950/80 backdrop-blur border-b border-white/10">
-      <div className="max-w-7xl mx-auto h-16 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-8xl mx-auto h-16 px-4 sm:px-6 lg:px-8">
         <div className="flex h-full items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center shrink-0">
@@ -102,15 +102,18 @@ const Navbar = () => {
               className="h-10 w-auto"
               loading="eager"
             />
+            <div className=" text-white font-semibold text-xl tracking-tight">
+              Label <span className="text-blue-400">Technology</span>
+            </div>
           </Link>
 
           {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-8">
             {/* NavigationMenu isolé — text-white explicite sur le trigger uniquement */}
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="text-white/80 hover:text-white hover:bg-white/10 focus:bg-white/10 data-open:bg-white/10">
+                  <NavigationMenuTrigger className="text-md font-semibold text-white/80  hover:bg-white/10 focus:bg-white/10 data-open:bg-white/10">
                     Services
                   </NavigationMenuTrigger>
                   <NavigationMenuContent className="border-0 shadow-lg bg-slate-300/95 dark:bg-slate-800/90 backdrop-blur-sm rounded-lg p-0">
@@ -135,7 +138,7 @@ const Navbar = () => {
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-sm font-medium text-white/70 hover:text-white transition-colors"
+                className="text-md gap-5 font-semibold space-x-10 text-white/70 hover:text-white transition-all"
               >
                 {link.name}
               </Link>
@@ -181,7 +184,7 @@ const Navbar = () => {
                       key={service.key}
                       variant="ghost"
                       asChild
-                      className="justify-start font-normal text-white hover:bg-white/10 hover:text-white"
+                      className="justify-start gap-5 font-normal text-white hover:bg-white/10 hover:text-white"
                     >
                       <Link href={service.href}>{service.labelFr}</Link>
                     </Button>
