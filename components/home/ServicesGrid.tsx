@@ -128,7 +128,7 @@ const SERVICES = [
 
 export default function ServicesGrid() {
   return (
-    <section className="relative py-24 px-6 bg-red-400 overflow-hidden">
+    <section className="relative py-24 px-6 bg-yellow-100 overflow-hidden">
       <style>{`
         @keyframes fadeInUp {
           from {
@@ -265,7 +265,7 @@ export default function ServicesGrid() {
             <p className="text-xs font-semibold tracking-widest mb-3 text-foreground uppercase">
               NOS EXPERTISES
             </p>
-            <h2 className="text-4xl md:text-5xl font-bold text-blue-100 leading-tight">
+            <h2 className="text-4xl md:text-5xl font-bold text-blue-500 leading-tight">
               7 expertises.
               <br />
               <span className="bg-gradient-to-r from-sky-700 to-green-600 bg-clip-text text-transparent">

@@ -240,10 +240,10 @@ export default function MarketingPage() {
         style={{ backgroundColor: "var(--ink)", minHeight: "70vh" }}
       >
         <div
-          className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 items-center"
+          className="relative max-w-7xl mx-auto px-6 grid lg:grid-cols-2 items-center"
           style={{ minHeight: "70vh" }}
         >
-          <div className="py-28 lg:pr-12">
+          <div className="relative z-10 py-28 lg:pr-12">
             <p className="label-tag mb-5 bg-gradient-to-r from-blue-500 to-emerald-500 bg-clip-text text-transparent">
               MARKETING DIGITAL
             </p>
@@ -276,7 +276,7 @@ export default function MarketingPage() {
             </div>
           </div>
           <div
-            className="hidden lg:block relative"
+            className="absolute inset-0 z-0 lg:relative lg:inset-auto h-full"
             style={{ minHeight: "70vh" }}
           >
             <Image
@@ -284,10 +284,17 @@ export default function MarketingPage() {
               alt="Marketing digital et analytics"
               fill
               className="object-cover"
-              style={{ opacity: 0.45 }}
+              style={{ opacity: 10 }}
             />
             <div
-              className="absolute inset-0"
+              className="absolute inset-0 lg:hidden"
+              style={{
+                background:
+                  "linear-gradient(180deg, var(--ink) 0%, rgba(10,14,26,0.7) 40%, var(--ink) 100%)",
+              }}
+            />
+            <div
+              className="absolute inset-0 hidden lg:block"
               style={{
                 background:
                   "linear-gradient(90deg, var(--ink) 0%, transparent 55%)",

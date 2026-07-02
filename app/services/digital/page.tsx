@@ -120,8 +120,8 @@ export default function DigitalPage() {
 
       {/* Hero split */}
       <section className="relative overflow-hidden grid-bg" style={{ backgroundColor: "var(--ink)", minHeight: "70vh" }}>
-        <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 items-center" style={{ minHeight: "70vh" }}>
-          <div className="py-28 lg:pr-12">
+        <div className="relative max-w-7xl mx-auto px-6 grid lg:grid-cols-2 items-center" style={{ minHeight: "70vh" }}>
+          <div className="relative z-10 py-28 lg:pr-12">
             <p className="label-tag mb-5" style={{ color: "var(--brand-lt)" }}>DIGITALISATION & LOGICIELS DE GESTION</p>
             <h1 className="font-display text-white mb-6 leading-tight" style={{ fontSize: "clamp(36px, 5vw, 72px)" }}>
               Vos processus méritent<br />
@@ -139,15 +139,16 @@ export default function DigitalPage() {
               </Link>
             </div>
           </div>
-          <div className="hidden lg:flex items-center justify-center py-8">
+          <div className="absolute inset-0 z-0 lg:relative lg:inset-auto h-full" style={{ minHeight: "70vh" }}>
             <Image
               src="/images/digitalisation.png"
               alt="Digitalisation et ERP — Label Technology"
-              width={1330}
-              height={1408}
-              className="w-full h-auto rounded-sm"
-              style={{ opacity: 0.9 }}
+              fill
+              className="object-cover"
+              style={{ opacity: 10 }}
             />
+            <div className="absolute inset-0 lg:hidden" style={{ background: "linear-gradient(180deg, var(--ink) 0%, rgba(10,14,26,0.7) 40%, var(--ink) 100%)" }} />
+            <div className="absolute inset-0 hidden lg:block" style={{ background: "linear-gradient(90deg, var(--ink) 0%, transparent 55%)" }} />
           </div>
         </div>
       </section>
