@@ -82,6 +82,37 @@ body {
   box-shadow: 0 8px 24px rgba(30,63,171,0.12);
 }
 
+@keyframes svcIconFloat {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-6px); }
+}
+@keyframes svcPulseGlow {
+  0%, 100% { opacity: 0.3; }
+  50%       { opacity: 0.55; }
+}
+@keyframes svcScaleInX {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+.svc-icon-float { display: inline-block; animation: svcIconFloat 3s ease-in-out infinite; }
+.svc-step-num   { animation: svcPulseGlow 3s ease-in-out infinite; }
+.svc-step-line  { transition: transform 0.3s ease; }
+.svc-step:hover .svc-step-line { transform: scaleX(1.5); }
+.svc-bar {
+  transform-origin: left;
+  animation: svcScaleInX 1.2s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .svc-icon-float, .svc-step-num, .svc-bar {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .svc-bar { transform: scaleX(1) !important; }
+}
+
 :root {
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.148 0.004 228.8);

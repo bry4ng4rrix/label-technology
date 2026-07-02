@@ -123,18 +123,18 @@ export default function DataPage() {
       <section className="relative overflow-hidden grid-bg" style={{ backgroundColor: "var(--ink)", minHeight: "70vh" }}>
         <div className="relative max-w-7xl mx-auto px-6 grid lg:grid-cols-2 items-center" style={{ minHeight: "70vh" }}>
           <div className="relative z-10 py-28 lg:pr-12">
-            <p className="label-tag mb-5" style={{ color: "var(--brand-lt)" }}>TRAITEMENT DE DONNÉES</p>
-            <h1 className="font-display text-white mb-6 leading-tight" style={{ fontSize: "clamp(36px, 5vw, 72px)" }}>
+            <p className="animate-fadeup label-tag mb-5" style={{ color: "var(--brand-lt)" }}>TRAITEMENT DE DONNÉES</p>
+            <h1 className="animate-fadeup-d1 font-display text-white mb-6 leading-tight" style={{ fontSize: "clamp(36px, 5vw, 72px)" }}>
               Vos données sont un actif.<br />
-              <span style={{ color: "var(--brand-lt)" }}>On les rend exploitables.</span>
+              <span className="bg-gradient-to-r from-[var(--brand)] to-[var(--brand-lt)] bg-clip-text text-transparent">On les rend exploitables.</span>
             </h1>
-            <p className="text-white/70 text-lg leading-relaxed mb-10 max-w-xl" style={{ lineHeight: 1.8 }}>
+            <p className="animate-fadeup-d2 text-white/70 text-lg leading-relaxed mb-10 max-w-xl" style={{ lineHeight: 1.8 }}>
               Saisie, nettoyage, analyse, automatisation. Une équipe spécialisée
               pour traiter des volumes importants avec une précision garantie à 99,5%.
             </p>
-            <div className="flex flex-wrap gap-4">
+            <div className="animate-fadeup-d3 flex flex-wrap gap-4">
               <Link href="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3 font-semibold text-sm rounded-sm transition-all hover:opacity-90"
+                className="inline-flex items-center gap-2 px-6 py-3 font-semibold text-sm rounded-sm transition-all hover:opacity-90 hover:scale-105 duration-300"
                 style={{ backgroundColor: "var(--brand)", color: "#fff" }}>
                 Parler de mon projet →
               </Link>
@@ -158,7 +158,7 @@ export default function DataPage() {
       <section style={{ backgroundColor: "var(--brand)" }}>
         <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 divide-x divide-white/15">
           {METRICS.map((m, i) => (
-            <div key={i} className="text-center py-6 px-4">
+            <div key={i} className="animate-fadeup text-center py-6 px-4" style={{ animationDelay: `${i * 0.1}s` }}>
               <div className="font-display text-2xl text-white mb-1">{m.v}</div>
               <div className="label-tag text-white/55 text-[10px]">{m.l}</div>
             </div>
@@ -169,14 +169,14 @@ export default function DataPage() {
       {/* Services */}
       <section className="py-24 px-6" style={{ backgroundColor: "var(--paper)" }}>
         <div className="max-w-7xl mx-auto">
-          <p className="label-tag mb-3" style={{ color: "var(--brand)" }}>NOS PRESTATIONS</p>
-          <h2 className="font-display text-4xl md:text-5xl mb-16 text-foreground">
+          <p className="animate-fadeup label-tag mb-3" style={{ color: "var(--brand)" }}>NOS PRESTATIONS</p>
+          <h2 className="animate-fadeup-d1 font-display text-4xl md:text-5xl mb-16 bg-gradient-to-r from-blue-500 to-indigo-600 bg-clip-text text-transparent">
             De la donnée brute à la décision.
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             {SERVICES.map((s, i) => (
-              <div key={i} className="p-7 border border-border rounded-sm card-hover bg-card">
-                <span className="text-3xl mb-4 block">{s.icon}</span>
+              <div key={i} className="animate-fadeup p-7 border border-border rounded-sm card-hover bg-card" style={{ animationDelay: `${i * 0.08}s` }}>
+                <span className="svc-icon-float text-3xl mb-4 block">{s.icon}</span>
                 <h3 className="font-display text-xl mb-3 text-foreground">{s.title}</h3>
                 <p className="text-[15px] leading-relaxed text-muted-foreground" style={{ lineHeight: 1.7 }}>{s.desc}</p>
               </div>
@@ -189,11 +189,11 @@ export default function DataPage() {
       <section className="py-20 px-6" style={{ backgroundColor: "var(--ink)" }}>
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
           <div>
-            <p className="label-tag mb-3" style={{ color: "var(--brand-lt)" }}>EN CHIFFRES</p>
-            <h2 className="font-display text-3xl md:text-4xl text-white mb-6 leading-tight">
+            <p className="animate-fadeup label-tag mb-3" style={{ color: "var(--brand-lt)" }}>EN CHIFFRES</p>
+            <h2 className="animate-fadeup-d1 font-display text-3xl md:text-4xl text-white mb-6 leading-tight">
               Volume, rigueur<br />et confidentialité.
             </h2>
-            <p className="text-white/60 text-base leading-relaxed mb-8" style={{ lineHeight: 1.8 }}>
+            <p className="animate-fadeup-d2 text-white/60 text-base leading-relaxed mb-8" style={{ lineHeight: 1.8 }}>
               Nos équipes traitent des millions d'entrées chaque mois pour des clients
               en France, en Belgique et à Madagascar. Chaque mission est documentée,
               traçable et conforme aux exigences RGPD.
@@ -210,7 +210,7 @@ export default function DataPage() {
                     <span className="font-display text-sm" style={{ color: "var(--brand-lt)" }}>{s.v}</span>
                   </div>
                   <div className="h-1.5 rounded-full overflow-hidden" style={{ backgroundColor: "rgba(255,255,255,0.08)" }}>
-                    <div className="h-full rounded-full" style={{ width: s.v, backgroundColor: "var(--brand-lt)" }} />
+                    <div className="svc-bar h-full rounded-full" style={{ width: s.v, backgroundColor: "var(--brand-lt)", animationDelay: `${0.3 + i * 0.18}s` }} />
                   </div>
                 </div>
               ))}
@@ -223,15 +223,15 @@ export default function DataPage() {
       {/* Process */}
       <section className="py-24 px-6 bg-background">
         <div className="max-w-7xl mx-auto">
-          <p className="label-tag mb-3" style={{ color: "var(--brand)" }}>NOTRE MÉTHODE</p>
-          <h2 className="font-display text-4xl md:text-5xl mb-16 text-foreground">
+          <p className="animate-fadeup label-tag mb-3" style={{ color: "var(--brand)" }}>NOTRE MÉTHODE</p>
+          <h2 className="animate-fadeup-d1 font-display text-4xl md:text-5xl mb-16 text-foreground">
             Rigueur à chaque étape.
           </h2>
           <div className="grid md:grid-cols-4 gap-px bg-border/30">
             {PROCESS.map((p, i) => (
-              <div key={i} className="p-8 bg-card">
-                <div className="font-display text-5xl mb-6 opacity-15" style={{ color: "var(--brand)", lineHeight: 1 }}>{p.num}</div>
-                <div className="w-8 h-0.5 mb-5" style={{ backgroundColor: "var(--brand)" }} />
+              <div key={i} className="svc-step animate-fadeup p-8 bg-card" style={{ animationDelay: `${i * 0.1}s` }}>
+                <div className="svc-step-num font-display text-5xl mb-6" style={{ color: "var(--brand)", lineHeight: 1, opacity: 0.3 }}>{p.num}</div>
+                <div className="svc-step-line w-8 h-0.5 mb-5" style={{ backgroundColor: "var(--brand)" }} />
                 <h3 className="font-display text-lg mb-3 text-foreground">{p.title}</h3>
                 <p className="text-[15px] leading-relaxed text-muted-foreground" style={{ lineHeight: 1.7 }}>{p.desc}</p>
               </div>

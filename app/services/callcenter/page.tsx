@@ -201,38 +201,38 @@ export default function CallCenterPage() {
           style={{ minHeight: "70vh" }}
         >
           <div className="relative z-10 py-28 lg:pr-12">
-            <p className="label-tag mb-5" style={{ color: "var(--gold)" }}>
+            <p className="animate-fadeup label-tag mb-5" style={{ color: "var(--gold)" }}>
               CALL CENTER · 50 POSTES · ANTANANARIVO
             </p>
             <h1
-              className="font-display text-white mb-6 leading-tight"
+              className="animate-fadeup-d1 font-display text-white mb-6 leading-tight"
               style={{ fontSize: "clamp(36px, 5vw, 72px)" }}
             >
               50 voix.
               <br />
-              <span style={{ color: "var(--gold)" }}>
+              <span className="bg-gradient-to-r from-[var(--gold)] to-amber-300 bg-clip-text text-transparent">
                 Votre support permanent.
               </span>
             </h1>
             <p
-              className="text-white/70 text-lg leading-relaxed mb-10 max-w-xl"
+              className="animate-fadeup-d2 text-white/70 text-lg leading-relaxed mb-10 max-w-xl"
               style={{ lineHeight: 1.8 }}
             >
               Prospection B2B, qualification de fichiers, support client
               bilingue FR/EN. Une équipe dédiée, disponible 24h/24 —
               opérationnelle en moins de 2h.
             </p>
-            <div className="flex flex-wrap gap-4">
+            <div className="animate-fadeup-d3 flex flex-wrap gap-4">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3 font-semibold text-sm rounded-sm transition-all hover:opacity-90"
+                className="inline-flex items-center gap-2 px-6 py-3 font-semibold text-sm rounded-sm transition-all hover:opacity-90 hover:scale-105 duration-300"
                 style={{ backgroundColor: "var(--gold)", color: "var(--ink)" }}
               >
                 Demander un devis gratuit →
               </Link>
               <a
                 href="#formules"
-                className="inline-flex items-center gap-2 px-6 py-3 text-sm border border-white/25 text-white rounded-sm hover:border-white/60 transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3 text-sm border border-white/25 text-white rounded-sm hover:border-white/60 hover:scale-105 transition-all duration-300"
               >
                 Voir les formules
               </a>
@@ -271,7 +271,11 @@ export default function CallCenterPage() {
       <section style={{ backgroundColor: "var(--brand)" }}>
         <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 divide-x divide-white/15">
           {METRICS.map((m, i) => (
-            <div key={i} className="text-center py-6 px-4">
+            <div
+              key={i}
+              className="animate-fadeup text-center py-6 px-4"
+              style={{ animationDelay: `${i * 0.1}s` }}
+            >
               <div className="font-display text-2xl text-white mb-1">
                 {m.value}
               </div>
@@ -289,10 +293,10 @@ export default function CallCenterPage() {
         style={{ backgroundColor: "var(--paper)" }}
       >
         <div className="max-w-7xl mx-auto">
-          <p className="label-tag mb-3" style={{ color: "var(--brand)" }}>
+          <p className="animate-fadeup label-tag mb-3" style={{ color: "var(--brand)" }}>
             NOTRE OFFRE
           </p>
-          <h2 className="font-display text-4xl md:text-5xl mb-16 bg-gradient-to-r from-blue-500  to-emerald-500 bg-clip-text text-transparent">
+          <h2 className="animate-fadeup-d1 font-display text-4xl md:text-5xl mb-16 bg-gradient-to-r from-blue-500  to-emerald-500 bg-clip-text text-transparent">
             Ce qu'on fait pour vous.
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
@@ -330,9 +334,10 @@ export default function CallCenterPage() {
             ].map((s, i) => (
               <div
                 key={i}
-                className="p-7 border border-border rounded-lg card-hover bg-card"
+                className="animate-fadeup p-7 border border-border rounded-lg card-hover bg-card"
+                style={{ animationDelay: `${i * 0.08}s` }}
               >
-                <span className="text-3xl mb-4 block">{s.icon}</span>
+                <span className="svc-icon-float text-3xl mb-4 block">{s.icon}</span>
                 <h3 className="font-display text-xl mb-3 text-foreground">
                   {s.title}
                 </h3>
@@ -352,16 +357,16 @@ export default function CallCenterPage() {
       <section className="py-20 px-6" style={{ backgroundColor: "var(--ink)" }}>
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
           <div>
-            <p className="label-tag mb-3" style={{ color: "var(--gold)" }}>
+            <p className="animate-fadeup label-tag mb-3" style={{ color: "var(--gold)" }}>
               PERFORMANCE EN TEMPS RÉEL
             </p>
-            <h2 className="font-display text-3xl md:text-4xl text-white mb-6 leading-tight">
+            <h2 className="animate-fadeup-d1 font-display text-3xl md:text-4xl text-white mb-6 leading-tight">
               Des chiffres,
               <br />
               pas des promesses.
             </h2>
             <p
-              className="text-white/60 text-base leading-relaxed mb-8"
+              className="animate-fadeup-d2 text-white/60 text-base leading-relaxed mb-8"
               style={{ lineHeight: 1.8 }}
             >
               2 500+ appels par semaine, 96% de satisfaction client, durée
@@ -377,10 +382,11 @@ export default function CallCenterPage() {
               ].map((s, i) => (
                 <div
                   key={i}
-                  className="flex items-center justify-between p-4 rounded-sm"
+                  className="animate-fadeup flex items-center justify-between p-4 rounded-sm hover:bg-white/[0.06] transition-colors"
                   style={{
                     backgroundColor: "rgba(255,255,255,0.04)",
                     border: "1px solid rgba(255,255,255,0.06)",
+                    animationDelay: `${0.3 + i * 0.1}s`,
                   }}
                 >
                   <span className="text-white/50 text-sm">{s.l}</span>
@@ -409,13 +415,13 @@ export default function CallCenterPage() {
       {/* Formules */}
       <section id="formules" className="py-24 px-6 bg-background">
         <div className="max-w-7xl mx-auto">
-          <p className="label-tag mb-3" style={{ color: "var(--brand)" }}>
+          <p className="animate-fadeup label-tag mb-3" style={{ color: "var(--brand)" }}>
             FORMULES
           </p>
-          <h2 className="font-display text-4xl md:text-5xl mb-4 bg-gradient-to-r from-blue-500  to-emerald-500 bg-clip-text text-transparent">
+          <h2 className="animate-fadeup-d1 font-display text-4xl md:text-5xl mb-4 bg-gradient-to-r from-blue-500  to-emerald-500 bg-clip-text text-transparent">
             Choisissez votre format.
           </h2>
-          <p className="text-base mb-16 max-w-xl text-muted-foreground">
+          <p className="animate-fadeup-d2 text-base mb-16 max-w-xl text-muted-foreground">
             Tous les tarifs sont sur devis — adaptés à votre volume, vos
             horaires et vos objectifs.
           </p>
@@ -423,9 +429,10 @@ export default function CallCenterPage() {
             {FORMULES.map((f, i) => (
               <div
                 key={i}
-                className="p-8 flex flex-col hover:scale-105 transition-all duration-400 hover:shadow-2xl shadow-xl"
+                className="animate-fadeup p-8 flex flex-col hover:scale-105 transition-all duration-400 hover:shadow-2xl shadow-xl"
                 style={{
                   backgroundColor: f.featured ? "var(--ink)" : "var(--paper)",
+                  animationDelay: `${0.1 + i * 0.12}s`,
                 }}
               >
                 {f.featured && (

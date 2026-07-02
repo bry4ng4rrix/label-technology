@@ -122,18 +122,18 @@ export default function DigitalPage() {
       <section className="relative overflow-hidden grid-bg" style={{ backgroundColor: "var(--ink)", minHeight: "70vh" }}>
         <div className="relative max-w-7xl mx-auto px-6 grid lg:grid-cols-2 items-center" style={{ minHeight: "70vh" }}>
           <div className="relative z-10 py-28 lg:pr-12">
-            <p className="label-tag mb-5" style={{ color: "var(--brand-lt)" }}>DIGITALISATION & LOGICIELS DE GESTION</p>
-            <h1 className="font-display text-white mb-6 leading-tight" style={{ fontSize: "clamp(36px, 5vw, 72px)" }}>
+            <p className="animate-fadeup label-tag mb-5" style={{ color: "var(--brand-lt)" }}>DIGITALISATION & LOGICIELS DE GESTION</p>
+            <h1 className="animate-fadeup-d1 font-display text-white mb-6 leading-tight" style={{ fontSize: "clamp(36px, 5vw, 72px)" }}>
               Vos processus méritent<br />
-              <span style={{ color: "var(--brand-lt)" }}>mieux.</span>
+              <span className="bg-gradient-to-r from-[var(--brand)] to-[var(--brand-lt)] bg-clip-text text-transparent">mieux.</span>
             </h1>
-            <p className="text-white/70 text-lg leading-relaxed mb-10 max-w-xl" style={{ lineHeight: 1.8 }}>
+            <p className="animate-fadeup-d2 text-white/70 text-lg leading-relaxed mb-10 max-w-xl" style={{ lineHeight: 1.8 }}>
               ERP, SIRH, GED, logiciels métier sur mesure. On transforme vos processus
               manuels en flux automatisés — sans casser ce qui fonctionne déjà.
             </p>
-            <div className="flex flex-wrap gap-4">
+            <div className="animate-fadeup-d3 flex flex-wrap gap-4">
               <Link href="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3 font-semibold text-sm rounded-sm transition-all hover:opacity-90"
+                className="inline-flex items-center gap-2 px-6 py-3 font-semibold text-sm rounded-sm transition-all hover:opacity-90 hover:scale-105 duration-300"
                 style={{ backgroundColor: "var(--brand)", color: "#fff" }}>
                 Analyser mes processus →
               </Link>
@@ -157,7 +157,7 @@ export default function DigitalPage() {
       <section style={{ backgroundColor: "var(--brand)" }}>
         <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 divide-x divide-white/15">
           {METRICS.map((m, i) => (
-            <div key={i} className="text-center py-6 px-4">
+            <div key={i} className="animate-fadeup text-center py-6 px-4" style={{ animationDelay: `${i * 0.1}s` }}>
               <div className="font-display text-2xl text-white mb-1">{m.v}</div>
               <div className="label-tag text-white/55 text-[10px]">{m.l}</div>
             </div>
@@ -168,14 +168,14 @@ export default function DigitalPage() {
       {/* Services */}
       <section className="py-24 px-6" style={{ backgroundColor: "var(--paper)" }}>
         <div className="max-w-7xl mx-auto">
-          <p className="label-tag mb-3" style={{ color: "var(--brand)" }}>NOS SOLUTIONS</p>
-          <h2 className="font-display text-4xl md:text-5xl mb-16 text-foreground">
+          <p className="animate-fadeup label-tag mb-3" style={{ color: "var(--brand)" }}>NOS SOLUTIONS</p>
+          <h2 className="animate-fadeup-d1 font-display text-4xl md:text-5xl mb-16 bg-gradient-to-r from-blue-500 to-indigo-600 bg-clip-text text-transparent">
             Automatiser pour mieux travailler.
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             {SERVICES.map((s, i) => (
-              <div key={i} className="p-7 border border-border rounded-sm card-hover bg-card">
-                <span className="text-3xl mb-4 block">{s.icon}</span>
+              <div key={i} className="animate-fadeup p-7 border border-border rounded-sm card-hover bg-card" style={{ animationDelay: `${i * 0.08}s` }}>
+                <span className="svc-icon-float text-3xl mb-4 block">{s.icon}</span>
                 <h3 className="font-display text-xl mb-3 text-foreground">{s.title}</h3>
                 <p className="text-[15px] leading-relaxed text-muted-foreground" style={{ lineHeight: 1.7 }}>{s.desc}</p>
               </div>
@@ -188,11 +188,11 @@ export default function DigitalPage() {
       <section className="py-20 px-6" style={{ backgroundColor: "var(--paper)" }}>
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
           <div>
-            <p className="label-tag mb-3" style={{ color: "var(--brand)" }}>AVANT / APRÈS</p>
-            <h2 className="font-display text-3xl md:text-4xl mb-6 leading-tight text-foreground">
+            <p className="animate-fadeup label-tag mb-3" style={{ color: "var(--brand)" }}>AVANT / APRÈS</p>
+            <h2 className="animate-fadeup-d1 font-display text-3xl md:text-4xl mb-6 leading-tight text-foreground">
               Ce que la digitalisation<br />change concrètement.
             </h2>
-            <p className="text-base leading-relaxed mb-6 text-muted-foreground" style={{ lineHeight: 1.8 }}>
+            <p className="animate-fadeup-d2 text-base leading-relaxed mb-6 text-muted-foreground" style={{ lineHeight: 1.8 }}>
               Ces données sont issues de mesures réalisées auprès de nos clients PME
               après 3 mois d'utilisation. La digitalisation ne réduit pas seulement
               le temps de travail — elle réduit aussi les erreurs et améliore la traçabilité.
@@ -203,14 +203,14 @@ export default function DigitalPage() {
                 { label: "Délai de clôture comptable", val: "−70%" },
                 { label: "Satisfaction des équipes RH", val: "+85%" },
               ].map((s, i) => (
-                <div key={i} className="flex items-center justify-between p-4 rounded-sm border"
-                  style={{ borderColor: "rgba(0,0,0,0.07)", backgroundColor: "var(--white)" }}>
+                <div key={i} className="animate-fadeup flex items-center justify-between p-4 rounded-sm border hover:shadow-md transition-shadow"
+                  style={{ borderColor: "rgba(0,0,0,0.07)", backgroundColor: "var(--white)", animationDelay: `${0.3 + i * 0.1}s` }}>
                   <span className="text-sm text-muted-foreground">{s.label}</span>
                   <span className="font-display text-lg font-bold" style={{ color: "var(--brand)" }}>{s.val}</span>
                 </div>
               ))}
             </div>
-            <div className="mt-6 p-5" style={{ borderLeft: "3px solid var(--brand)", backgroundColor: "rgba(30,63,171,0.05)" }}>
+            <div className="animate-fadeup-d3 mt-6 p-5" style={{ borderLeft: "3px solid var(--brand)", backgroundColor: "rgba(30,63,171,0.05)" }}>
               <p className="text-base italic leading-relaxed text-foreground">
                 "Nous n'ajoutons pas un outil à votre quotidien, nous bâtissons les fondations de votre expansion."
               </p>
@@ -223,15 +223,15 @@ export default function DigitalPage() {
       {/* Process */}
       <section className="py-24 px-6 bg-background">
         <div className="max-w-7xl mx-auto">
-          <p className="label-tag mb-3" style={{ color: "var(--brand)" }}>NOTRE MÉTHODE</p>
-          <h2 className="font-display text-4xl md:text-5xl mb-16 text-foreground">
+          <p className="animate-fadeup label-tag mb-3" style={{ color: "var(--brand)" }}>NOTRE MÉTHODE</p>
+          <h2 className="animate-fadeup-d1 font-display text-4xl md:text-5xl mb-16 text-foreground">
             Une transition sans turbulences.
           </h2>
           <div className="grid md:grid-cols-4 gap-px bg-border/30">
             {PROCESS.map((p, i) => (
-              <div key={i} className="p-8 bg-card">
-                <div className="font-display text-5xl mb-6 opacity-15" style={{ color: "var(--brand)", lineHeight: 1 }}>{p.num}</div>
-                <div className="w-8 h-0.5 mb-5" style={{ backgroundColor: "var(--brand)" }} />
+              <div key={i} className="svc-step animate-fadeup p-8 bg-card" style={{ animationDelay: `${i * 0.1}s` }}>
+                <div className="svc-step-num font-display text-5xl mb-6" style={{ color: "var(--brand)", lineHeight: 1, opacity: 0.3 }}>{p.num}</div>
+                <div className="svc-step-line w-8 h-0.5 mb-5" style={{ backgroundColor: "var(--brand)" }} />
                 <h3 className="font-display text-lg mb-3 text-foreground">{p.title}</h3>
                 <p className="text-[15px] leading-relaxed text-muted-foreground" style={{ lineHeight: 1.7 }}>{p.desc}</p>
               </div>
