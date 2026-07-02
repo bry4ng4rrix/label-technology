@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ContactForm from "@/components/contact/ContactForm";
+import Reveal from "@/components/shared/Reveal";
 
 export const metadata: Metadata = {
   title: "Contact — Démarrez votre projet avec Label Technology",
@@ -50,14 +51,16 @@ export default function ContactPage() {
 
             {/* Left */}
             <div>
-              <p className="label-tag mb-4" style={{ color: "var(--brand)" }}>CONTACT</p>
-              <h1 className="font-display text-5xl md:text-6xl mb-6 leading-tight text-foreground">
-                Parlons de<br />votre projet.
-              </h1>
-              <p className="text-base font-light leading-relaxed mb-12 text-muted-foreground">
-                Décrivez-nous votre besoin. Un expert vous répond sous 72h avec
-                une proposition concrète — pas un formulaire générique.
-              </p>
+              <Reveal>
+                <p className="label-tag mb-4" style={{ color: "var(--brand)" }}>CONTACT</p>
+                <h1 className="font-display text-5xl md:text-6xl mb-6 leading-tight text-foreground">
+                  Parlons de<br />votre projet.
+                </h1>
+                <p className="text-base font-light leading-relaxed mb-12 text-muted-foreground">
+                  Décrivez-nous votre besoin. Un expert vous répond sous 72h avec
+                  une proposition concrète — pas un formulaire générique.
+                </p>
+              </Reveal>
 
               <div className="space-y-6">
                 {[
@@ -65,8 +68,8 @@ export default function ContactPage() {
                   { icon: "📞", label: "Téléphone", href: "tel:+261340503129", linkText: "+261 34 05 031 29" },
                   { icon: "✉️", label: "Email", href: "mailto:contact@labeltechnology.mg", linkText: "contact@labeltechnology.mg" },
                   { icon: "🕐", label: "Horaires", content: "Lun–Ven : 08h00 – 18h00 (UTC+3)\nCall Center : 24h/24, 7j/7" },
-                ].map((item) => (
-                  <div key={item.label} className="flex items-start gap-4">
+                ].map((item, i) => (
+                  <Reveal key={item.label} delay={0.15 + i * 0.08} className="flex items-start gap-4">
                     <span className="text-xl mt-0.5">{item.icon}</span>
                     <div>
                       <p className="font-medium text-sm mb-1 text-foreground">{item.label}</p>
@@ -80,13 +83,15 @@ export default function ContactPage() {
                         </p>
                       )}
                     </div>
-                  </div>
+                  </Reveal>
                 ))}
               </div>
             </div>
 
             {/* Right — Form */}
-            <ContactForm />
+            <Reveal delay={0.1}>
+              <ContactForm />
+            </Reveal>
           </div>
         </div>
       </section>

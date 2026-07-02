@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
+import Reveal from "@/components/shared/Reveal";
 
 const REASSURANCE = [
   "Réponse sous 72h garantie",
@@ -22,34 +23,42 @@ export default function CtaSection() {
       <div className="absolute bottom-[-40px] right-[-60px] w-[320px] h-[280px] bg-violet-700/15 rounded-full blur-[90px] pointer-events-none" />
 
       <div className="relative z-10 max-w-4xl mx-auto text-center">
-        <Badge
-          variant="secondary"
-          className="mb-6 bg-white/8 text-white/60 border border-white/15 text-[10px] tracking-widest px-4 py-1.5 rounded-full"
-        >
-          PRÊT À DÉMARRER ?
-        </Badge>
+        <Reveal>
+          <Badge
+            variant="secondary"
+            className="mb-6 bg-white/8 text-white/60 border border-white/15 text-[10px] tracking-widest px-4 py-1.5 rounded-full"
+          >
+            PRÊT À DÉMARRER ?
+          </Badge>
+        </Reveal>
 
-        <h2
-          className="font-display text-white mb-5"
-          style={{ fontSize: "clamp(36px, 5vw, 68px)", lineHeight: 1.05 }}
-        >
-          Votre projet mérite mieux
-          <br />
-          <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
-            qu&apos;une agence généraliste.
-          </span>
-        </h2>
+        <Reveal delay={0.1}>
+          <h2
+            className="font-display text-white mb-5"
+            style={{ fontSize: "clamp(36px, 5vw, 68px)", lineHeight: 1.05 }}
+          >
+            Votre projet mérite mieux
+            <br />
+            <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
+              qu&apos;une agence généraliste.
+            </span>
+          </h2>
+        </Reveal>
 
-        <p className="text-blue-200/60 text-xl italic mb-8 font-display">
-          Quittez la posture d&apos;acheteur. Prenez la place de partenaire.
-        </p>
+        <Reveal delay={0.2}>
+          <p className="text-blue-200/60 text-xl italic mb-8 font-display">
+            Quittez la posture d&apos;acheteur. Prenez la place de partenaire.
+          </p>
+        </Reveal>
 
-        <p className="text-white/40 font-light text-base max-w-lg mx-auto mb-12 leading-relaxed">
-          Décrivez-nous votre besoin. On vous répond sous 72h avec une
-          proposition concrète — pas un formulaire de plus.
-        </p>
+        <Reveal delay={0.3}>
+          <p className="text-white/40 font-light text-base max-w-lg mx-auto mb-12 leading-relaxed">
+            Décrivez-nous votre besoin. On vous répond sous 72h avec une
+            proposition concrète — pas un formulaire de plus.
+          </p>
+        </Reveal>
 
-        <div className="flex flex-wrap items-center justify-center gap-4">
+        <Reveal delay={0.4} className="flex flex-wrap items-center justify-center gap-4">
           <Button
             asChild
             size="lg"
@@ -71,12 +80,12 @@ export default function CtaSection() {
               Voir l&apos;offre Call Center
             </Link>
           </Button>
-        </div>
+        </Reveal>
 
         <Separator className="my-10 bg-white/8 max-w-xs mx-auto" />
 
         {/* Réassurance */}
-        <div className="flex flex-wrap justify-center gap-x-8 gap-y-3">
+        <Reveal delay={0.5} className="flex flex-wrap justify-center gap-x-8 gap-y-3">
           {REASSURANCE.map((item, i) => (
             <div
               key={i}
@@ -86,7 +95,7 @@ export default function CtaSection() {
               {item}
             </div>
           ))}
-        </div>
+        </Reveal>
       </div>
     </section>
   );

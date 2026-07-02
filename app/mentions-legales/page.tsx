@@ -1,12 +1,16 @@
+import Reveal from "@/components/shared/Reveal";
+
 export default function MentionsLegalesPage() {
   return (
     <main>
       <section className="px-6 pt-28 pb-24" style={{ backgroundColor: "var(--paper)" }}>
         <div className="max-w-3xl mx-auto">
-          <p className="label-tag mb-4" style={{ color: "var(--brand)" }}>LÉGAL</p>
-          <h1 className="font-display text-4xl mb-12 text-foreground">Mentions légales</h1>
+          <Reveal>
+            <p className="label-tag mb-4" style={{ color: "var(--brand)" }}>LÉGAL</p>
+            <h1 className="font-display text-4xl mb-12 text-foreground">Mentions légales</h1>
+          </Reveal>
 
-          <div className="space-y-10 text-sm font-light leading-relaxed text-muted-foreground">
+          <Reveal delay={0.1} className="space-y-10 text-sm font-light leading-relaxed text-muted-foreground">
             <section>
               <h2 className="font-display text-xl mb-4 text-foreground">Éditeur du site</h2>
               <p>
@@ -72,7 +76,7 @@ export default function MentionsLegalesPage() {
                 vers lesquels ce site renvoie. Ces liens sont fournis à titre informatif uniquement.
               </p>
             </section>
-          </div>
+          </Reveal>
         </div>
       </section>
     </main>

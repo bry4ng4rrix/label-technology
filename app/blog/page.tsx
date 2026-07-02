@@ -6,6 +6,7 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import Reveal from "@/components/shared/Reveal";
 
 const ARTICLES = [
   {
@@ -74,7 +75,7 @@ export default function BlogPage() {
               "radial-gradient(ellipse at 50% 50%, var(--brand) 0%, transparent 70%)",
           }}
         />
-        <div className="relative max-w-7xl mx-auto w-full">
+        <Reveal className="relative max-w-7xl mx-auto w-full">
           <p className="label-tag mb-5" style={{ color: "var(--brand-lt)" }}>
             BLOG
           </p>
@@ -88,7 +89,7 @@ export default function BlogPage() {
             Articles techniques, retours d&apos;expérience, analyses
             sectorielles. Par l&apos;équipe Label Technology.
           </p>
-        </div>
+        </Reveal>
       </section>
 
       {/* Articles */}
@@ -99,43 +100,45 @@ export default function BlogPage() {
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {ARTICLES.map((a, i) => (
-              <Card key={i} className="flex flex-col bg-card border-border">
-                <CardHeader className="pb-3">
-                  <div className="flex items-center justify-between mb-2">
-                    <Badge
-                      variant="secondary"
-                      className="text-[10px] px-2 py-0.5 rounded-sm"
-                      style={{
-                        backgroundColor: "rgba(30,63,171,0.08)",
-                        color: "var(--brand)",
-                      }}
+              <Reveal key={i} delay={(i % 3) * 0.1} className="h-full">
+                <Card className="flex flex-col h-full bg-card border-border">
+                  <CardHeader className="pb-3">
+                    <div className="flex items-center justify-between mb-2">
+                      <Badge
+                        variant="secondary"
+                        className="text-[10px] px-2 py-0.5 rounded-sm"
+                        style={{
+                          backgroundColor: "rgba(30,63,171,0.08)",
+                          color: "var(--brand)",
+                        }}
+                      >
+                        {a.tag}
+                      </Badge>
+                      <span className="text-[11px] text-muted-foreground">
+                        {a.date} · {a.readtime}
+                      </span>
+                    </div>
+                    <CardTitle className="font-display text-lg leading-snug text-foreground">
+                      {a.title}
+                    </CardTitle>
+                  </CardHeader>
+
+                  <CardContent className="flex-1 pt-0">
+                    <p className="text-sm font-light leading-relaxed text-muted-foreground">
+                      {a.excerpt}
+                    </p>
+                  </CardContent>
+
+                  <CardFooter>
+                    <span
+                      className="text-sm font-medium"
+                      style={{ color: "var(--brand)" }}
                     >
-                      {a.tag}
-                    </Badge>
-                    <span className="text-[11px] text-muted-foreground">
-                      {a.date} · {a.readtime}
+                      Lire l&apos;article →
                     </span>
-                  </div>
-                  <CardTitle className="font-display text-lg leading-snug text-foreground">
-                    {a.title}
-                  </CardTitle>
-                </CardHeader>
-
-                <CardContent className="flex-1 pt-0">
-                  <p className="text-sm font-light leading-relaxed text-muted-foreground">
-                    {a.excerpt}
-                  </p>
-                </CardContent>
-
-                <CardFooter>
-                  <span
-                    className="text-sm font-medium"
-                    style={{ color: "var(--brand)" }}
-                  >
-                    Lire l&apos;article →
-                  </span>
-                </CardFooter>
-              </Card>
+                  </CardFooter>
+                </Card>
+              </Reveal>
             ))}
           </div>
         </div>

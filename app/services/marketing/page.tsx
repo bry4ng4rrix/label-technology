@@ -9,6 +9,7 @@ import Link from "next/link";
 import MarketingChart from "@/components/services/MarketingChartWrapper";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import Reveal from "@/components/shared/Reveal";
 
 export const metadata: Metadata = {
   title: "Marketing Digital — SEO, Google Ads, Social Media | Label Technology",
@@ -244,28 +245,32 @@ export default function MarketingPage() {
           style={{ minHeight: "70vh" }}
         >
           <div className="relative z-10 py-28 lg:pr-12">
-            <p className="label-tag mb-5 bg-gradient-to-r from-blue-500 to-emerald-500 bg-clip-text text-transparent">
-              MARKETING DIGITAL
-            </p>
-            <h1
-              className="font-display text-white mb-6 leading-tight"
-              style={{ fontSize: "clamp(36px, 5vw, 72px)" }}
-            >
-              Votre audience existe.
-              <br />
-              <span className="bg-gradient-to-r from-blue-500  to-emerald-500 bg-clip-text text-transparent">
-                On va la trouver.
-              </span>
-            </h1>
-            <p
-              className="text-white/70 text-lg leading-relaxed mb-10 max-w-xl"
-              style={{ lineHeight: 1.8 }}
-            >
-              SEO, publicité digitale, social media, email marketing. Des
-              stratégies mesurables, pas des promesses. On parle ROI dès le
-              premier brief.
-            </p>
-            <div className="flex flex-wrap gap-4">
+            <Reveal>
+              <p className="label-tag mb-5 bg-gradient-to-r from-blue-500 to-emerald-500 bg-clip-text text-transparent">
+                MARKETING DIGITAL
+              </p>
+              <h1
+                className="font-display text-white mb-6 leading-tight"
+                style={{ fontSize: "clamp(36px, 5vw, 72px)" }}
+              >
+                Votre audience existe.
+                <br />
+                <span className="bg-gradient-to-r from-blue-500  to-emerald-500 bg-clip-text text-transparent">
+                  On va la trouver.
+                </span>
+              </h1>
+            </Reveal>
+            <Reveal delay={0.15}>
+              <p
+                className="text-white/70 text-lg leading-relaxed mb-10 max-w-xl"
+                style={{ lineHeight: 1.8 }}
+              >
+                SEO, publicité digitale, social media, email marketing. Des
+                stratégies mesurables, pas des promesses. On parle ROI dès le
+                premier brief.
+              </p>
+            </Reveal>
+            <Reveal delay={0.3} className="flex flex-wrap gap-4">
               <Button
                 className="h-14 text-medium bg-blue-500 text-white hover:scale-105 transition-all duration-300 justify-center items-center gap-2"
                 size="lg"
@@ -273,7 +278,7 @@ export default function MarketingPage() {
                 <Link href="/contact">Obtenir un audit gratuit</Link>
                 <ArrowRight className="w-4 h-4" />
               </Button>
-            </div>
+            </Reveal>
           </div>
           <div
             className="absolute inset-0 z-0 lg:relative lg:inset-auto h-full"
@@ -308,10 +313,10 @@ export default function MarketingPage() {
       <section style={{ backgroundColor: "var(--brand)" }}>
         <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 divide-x divide-white/15">
           {METRICS.map((m, i) => (
-            <div key={i} className="text-center py-6 px-4">
+            <Reveal key={i} delay={i * 0.1} className="text-center py-6 px-4">
               <div className="font-display text-2xl text-white mb-1">{m.v}</div>
               <div className="label-tag text-white/55 text-[10px]">{m.l}</div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>

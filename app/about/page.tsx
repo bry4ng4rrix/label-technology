@@ -3,6 +3,7 @@ import Image from "next/image";
 
 import CtaSection from "@/components/home/CtaSection";
 import MiniTestimonials from "@/components/shared/MiniTestimonials";
+import Reveal from "@/components/shared/Reveal";
 
 import GrowthChart from "@/components/apropos/GrowthChartWrapper";
 
@@ -180,27 +181,31 @@ export default function AProposPage() {
           }}
         />
         <div className="relative max-w-7xl mx-auto w-full">
-          <p className="label-tag mb-5" style={{ color: "var(--brand-lt)" }}>
-            À PROPOS
-          </p>
-          <h1
-            className="font-display text-white mb-6 leading-tight"
-            style={{ fontSize: "clamp(36px, 5vw, 72px)" }}
-          >
-            Antananarivo.
-            <br />
-            <span className="bg-gradient-to-r from-blue-500  to-emerald-500 bg-clip-text text-transparent ">
-              Standards européens.
-            </span>
-          </h1>
-          <p
-            className="text-white/70 text-lg leading-relaxed max-w-2xl"
-            style={{ lineHeight: 1.8 }}
-          >
-            Fondée il y a 4 ans à Madagascar, Label Technology est aujourd'hui
-            un partenaire technologique de référence pour les entreprises
-            françaises, africaines et malgaches.
-          </p>
+          <Reveal>
+            <p className="label-tag mb-5" style={{ color: "var(--brand-lt)" }}>
+              À PROPOS
+            </p>
+            <h1
+              className="font-display text-white mb-6 leading-tight"
+              style={{ fontSize: "clamp(36px, 5vw, 72px)" }}
+            >
+              Antananarivo.
+              <br />
+              <span className="bg-gradient-to-r from-blue-500  to-emerald-500 bg-clip-text text-transparent ">
+                Standards européens.
+              </span>
+            </h1>
+          </Reveal>
+          <Reveal delay={0.15}>
+            <p
+              className="text-white/70 text-lg leading-relaxed max-w-2xl"
+              style={{ lineHeight: 1.8 }}
+            >
+              Fondée il y a 4 ans à Madagascar, Label Technology est aujourd'hui
+              un partenaire technologique de référence pour les entreprises
+              françaises, africaines et malgaches.
+            </p>
+          </Reveal>
         </div>
       </section>
 
@@ -208,14 +213,14 @@ export default function AProposPage() {
       <section style={{ backgroundColor: "var(--brand)" }}>
         <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 divide-x divide-white/10">
           {CHIFFRES.map((c, i) => (
-            <div key={i} className="text-center py-7 px-4">
+            <Reveal key={i} delay={i * 0.08} className="text-center py-7 px-4">
               <div className="font-display text-3xl text-white mb-1">
                 {c.value}
               </div>
               <div className="label-tag text-white/50 text-[10px]">
                 {c.label}
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>
@@ -227,7 +232,7 @@ export default function AProposPage() {
       >
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
+            <Reveal>
               <p className="label-tag mb-4" style={{ color: "var(--brand)" }}>
                 NOTRE HISTOIRE
               </p>
@@ -268,15 +273,17 @@ export default function AProposPage() {
                   avec la transparence et l'exigence d'un partenaire interne.
                 </p>
               </div>
-            </div>
-            <GrowthChart />
+            </Reveal>
+            <Reveal delay={0.15}>
+              <GrowthChart />
+            </Reveal>
           </div>
         </div>
       </section>
 
       {/* Manifeste */}
       <section className="py-24 px-6" style={{ backgroundColor: "var(--ink)" }}>
-        <div className="max-w-3xl mx-auto text-center">
+        <Reveal className="max-w-3xl mx-auto text-center">
           <p className="label-tag mb-8" style={{ color: "var(--brand-lt)" }}>
             NOTRE ENGAGEMENT
           </p>
@@ -296,21 +303,23 @@ export default function AProposPage() {
           >
             — Label Technology · Notre engagement depuis 2022
           </p>
-        </div>
+        </Reveal>
       </section>
 
       {/* Valeurs */}
       <section className="py-24 px-6 bg-background">
         <div className="max-w-7xl mx-auto">
-          <p className="label-tag mb-3" style={{ color: "var(--brand)" }}>
-            NOS VALEURS
-          </p>
-          <h2 className="font-display text-4xl md:text-5xl mb-16 text-foreground">
-            Ce qui nous guide.
-          </h2>
+          <Reveal>
+            <p className="label-tag mb-3" style={{ color: "var(--brand)" }}>
+              NOS VALEURS
+            </p>
+            <h2 className="font-display text-4xl md:text-5xl mb-16 text-foreground">
+              Ce qui nous guide.
+            </h2>
+          </Reveal>
           <div className="grid md:grid-cols-2 gap-px bg-black/5">
             {VALEURS.map((v, i) => (
-              <div key={i} className="p-8 bg-card">
+              <Reveal key={i} delay={i * 0.1} className="p-8 bg-card">
                 <p
                   className="font-display text-5xl mb-4"
                   style={{ color: "rgba(30,63,171,0.12)" }}
@@ -326,7 +335,7 @@ export default function AProposPage() {
                 >
                   {v.desc}
                 </p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
