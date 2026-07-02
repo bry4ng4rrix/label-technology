@@ -8,6 +8,8 @@ import MiniTestimonials from "@/components/shared/MiniTestimonials";
 import Link from "next/link";
 
 import PerformanceChart from "@/components/callcenter/PerformanceChartWrapper";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Call Center 50 Postes FR/EN — Prospection B2B & Support Client",
@@ -201,7 +203,7 @@ export default function CallCenterPage() {
           style={{ minHeight: "70vh" }}
         >
           <div className="relative z-10 py-28 lg:pr-12">
-            <p className="animate-fadeup label-tag mb-5" style={{ color: "var(--gold)" }}>
+            <p className="animate-fadeup label-tag mb-5 font-semibold tracking-widest text-blue-500/80">
               CALL CENTER · 50 POSTES · ANTANANARIVO
             </p>
             <h1
@@ -210,7 +212,7 @@ export default function CallCenterPage() {
             >
               50 voix.
               <br />
-              <span className="bg-gradient-to-r from-[var(--gold)] to-amber-300 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-sky-500 to-green-300 bg-clip-text text-transparent">
                 Votre support permanent.
               </span>
             </h1>
@@ -223,13 +225,10 @@ export default function CallCenterPage() {
               opérationnelle en moins de 2h.
             </p>
             <div className="animate-fadeup-d3 flex flex-wrap gap-4">
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3 font-semibold text-sm rounded-sm transition-all hover:opacity-90 hover:scale-105 duration-300"
-                style={{ backgroundColor: "var(--gold)", color: "var(--ink)" }}
-              >
-                Demander un devis gratuit →
-              </Link>
+              <Button className="bg-blue-500 h-14 rounded-sm hover:scale-105">
+                <Link href="/contact">Demander un devis gratuit</Link>
+                <ArrowRight className="w-4 h-4" />
+              </Button>
               <a
                 href="#formules"
                 className="inline-flex items-center gap-2 px-6 py-3 text-sm border border-white/25 text-white rounded-sm hover:border-white/60 hover:scale-105 transition-all duration-300"
@@ -268,7 +267,7 @@ export default function CallCenterPage() {
       </section>
 
       {/* Métriques */}
-      <section style={{ backgroundColor: "var(--brand)" }}>
+      <section className="bg-gradient-to-b from-blue-500 to-sky-500">
         <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 divide-x divide-white/15">
           {METRICS.map((m, i) => (
             <div
@@ -293,7 +292,10 @@ export default function CallCenterPage() {
         style={{ backgroundColor: "var(--paper)" }}
       >
         <div className="max-w-7xl mx-auto">
-          <p className="animate-fadeup label-tag mb-3" style={{ color: "var(--brand)" }}>
+          <p
+            className="animate-fadeup label-tag mb-3"
+            style={{ color: "var(--brand)" }}
+          >
             NOTRE OFFRE
           </p>
           <h2 className="animate-fadeup-d1 font-display text-4xl md:text-5xl mb-16 bg-gradient-to-r from-blue-500  to-emerald-500 bg-clip-text text-transparent">
@@ -337,7 +339,9 @@ export default function CallCenterPage() {
                 className="animate-fadeup p-7 border border-border rounded-lg card-hover bg-card"
                 style={{ animationDelay: `${i * 0.08}s` }}
               >
-                <span className="svc-icon-float text-3xl mb-4 block">{s.icon}</span>
+                <span className="svc-icon-float text-3xl mb-4 block">
+                  {s.icon}
+                </span>
                 <h3 className="font-display text-xl mb-3 text-foreground">
                   {s.title}
                 </h3>
@@ -357,7 +361,10 @@ export default function CallCenterPage() {
       <section className="py-20 px-6" style={{ backgroundColor: "var(--ink)" }}>
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
           <div>
-            <p className="animate-fadeup label-tag mb-3" style={{ color: "var(--gold)" }}>
+            <p
+              className="animate-fadeup label-tag mb-3"
+              style={{ color: "var(--gold)" }}
+            >
               PERFORMANCE EN TEMPS RÉEL
             </p>
             <h2 className="animate-fadeup-d1 font-display text-3xl md:text-4xl text-white mb-6 leading-tight">
@@ -415,7 +422,10 @@ export default function CallCenterPage() {
       {/* Formules */}
       <section id="formules" className="py-24 px-6 bg-background">
         <div className="max-w-7xl mx-auto">
-          <p className="animate-fadeup label-tag mb-3" style={{ color: "var(--brand)" }}>
+          <p
+            className="animate-fadeup label-tag mb-3"
+            style={{ color: "var(--brand)" }}
+          >
             FORMULES
           </p>
           <h2 className="animate-fadeup-d1 font-display text-4xl md:text-5xl mb-4 bg-gradient-to-r from-blue-500  to-emerald-500 bg-clip-text text-transparent">
