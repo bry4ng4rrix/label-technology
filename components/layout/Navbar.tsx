@@ -165,12 +165,15 @@ const Navbar = () => {
                   <Menu className="h-5 w-5" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-72">
+              <SheetContent
+                side="right"
+                className="w-72 bg-slate-950/90 backdrop-blur-sm border-white/10 text-white"
+              >
                 <SheetHeader>
-                  <SheetTitle className="text-left">Menu</SheetTitle>
+                  <SheetTitle className="text-left text-white">Menu</SheetTitle>
                 </SheetHeader>
                 <div className="mt-6 flex flex-col gap-1">
-                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider px-2 mb-2">
+                  <p className="text-xs font-semibold text-white/40 uppercase tracking-wider px-2 mb-2">
                     Services
                   </p>
                   {services.map((service) => (
@@ -178,23 +181,23 @@ const Navbar = () => {
                       key={service.key}
                       variant="ghost"
                       asChild
-                      className="justify-start font-normal"
+                      className="justify-start font-normal text-white hover:bg-white/10 hover:text-white"
                     >
                       <Link href={service.href}>{service.labelFr}</Link>
                     </Button>
                   ))}
-                  <Separator className="my-3" />
+                  <Separator className="my-3 bg-white/10" />
                   {links.map((link) => (
                     <Button
                       key={link.name}
                       variant="ghost"
                       asChild
-                      className="justify-start font-normal"
+                      className="justify-start font-normal text-white hover:bg-white/10 hover:text-white"
                     >
                       <Link href={link.href}>{link.name}</Link>
                     </Button>
                   ))}
-                  <Separator className="my-3" />
+                  <Separator className="my-3 bg-white/10" />
                   <Button
                     asChild
                     className="bg-blue-500 hover:bg-blue-600 text-white mt-1"
