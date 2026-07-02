@@ -18,27 +18,30 @@ const Hero = () => {
       </div>
       <div className="relative my-20 sm:mt-10 z-10 flex flex-col items-center justify-center h-full text-center px-4 ">
         <div className="max-w-[1600px] px-10  space-y-2">
-          <p className="font-semibold text-white/70">
+          <p className="animate-fadeup font-semibold text-white/70">
             Antananarivo · Madagascar · International
           </p>
-          <p className="text-sm  md:text-md text-white/70 ">
+          <p className="animate-fadeup-d1 text-sm  md:text-md text-white/70 ">
             "Votre vision, notre expertise : l'alliance qui transforme le
             potentiel en performance."
           </p>
-          <h1 className="text-5xl sm:text-6xl md:text-8xl font-bold mb-4  text-white">
+          <h1 className="animate-fadeup-d2 text-5xl sm:text-6xl md:text-8xl font-bold mb-4  text-white">
             La technologie au services{" "}
             <span className="bg-gradient-to-r from-blue-500  to-emerald-500 bg-clip-text text-transparent">
               {" "}
               de votre croissance.
             </span>
           </h1>
-          <p className="text-sm md:text-md text-gray-200 mb-8 max-w-3xl mx-auto">
+          <p className="animate-fadeup-d3 text-sm md:text-md text-gray-200 mb-8 max-w-3xl mx-auto">
             Développement web, Call Center 50 postes FR/EN, Marketing digital,
             Digitalisation, Traitement de données, Matériel IT & Comptabilité —
             une seule équipe, sept expertises, des résultats mesurables.
           </p>
 
-          <div className="flex space-x-4 justify-center items-center mt-8">
+          <div
+            className="animate-fadeup flex space-x-4 justify-center items-center mt-8"
+            style={{ animationDelay: "0.45s" }}
+          >
             <Button
               className="h-14 text-medium bg-blue-500 text-white hover:scale-105 transition-all duration-300"
               size="lg"
