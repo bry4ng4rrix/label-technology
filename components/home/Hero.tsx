@@ -37,25 +37,6 @@ const Hero = () => {
             Digitalisation, Traitement de données, Matériel IT & Comptabilité —
             une seule équipe, sept expertises, des résultats mesurables.
           </p>
-
-          <div
-            className="animate-fadeup flex space-x-4 justify-center items-center mt-8"
-            style={{ animationDelay: "0.45s" }}
-          >
-            <Button
-              className="h-14 text-medium bg-blue-500 text-white hover:scale-105 transition-all duration-300"
-              size="lg"
-            >
-              <Link href="/contact">Demarrer un projets</Link>
-            </Button>
-            <Button
-              className="h-14 text-medium hover:scale-105 transition-all duration-300"
-              variant="outline"
-              size="lg"
-            >
-              Call Center 50 postes
-            </Button>
-          </div>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-px rounded-sm overflow-hidden animate-fadeup-d5 my-10 ">
           {STATS.map((stat, i) => (
