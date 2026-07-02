@@ -117,7 +117,7 @@ const Hero = () => {
 
         {/* Texte central */}
         <div className="relative z-10 max-w-7xl mx-auto text-center py-16 md:py-24">
-          <p className="animate-fadeup-d1 text-xs md:text-sm font-semibold text-white/70 bg-slate-800/30 backdrop-blur-2xl mx-auto px-4 py-1.5 rounded-full w-fit mb-6">
+          <p className="animate-fadeup-d1 text-xs md:text-sm font-semibold text-slate-800 bg-white backdrop-blur-2xl mx-auto px-4 py-1.5 rounded-full w-fit mb-6">
             " Label Technology"
           </p>
           <h1 className="animate-fadeup-d2 font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-5 leading-tight text-white">

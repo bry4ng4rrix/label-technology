@@ -1,12 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
+import Aurora from "@/components/Aurora";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -37,6 +33,7 @@ const SERVICES = [
     featured: false,
     color: "#3B82F6",
     icon: Code2,
+    src: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=900&fit=crop&q=80",
   },
   {
     id: "callcenter",
@@ -55,6 +52,7 @@ const SERVICES = [
     badge: "50 postes",
     color: "#F59E0B",
     icon: Phone,
+    src: "/images/callcenter-fetra.png",
   },
   {
     id: "marketing",
@@ -72,6 +70,7 @@ const SERVICES = [
     featured: false,
     color: "#EC4899",
     icon: TrendingUp,
+    src: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=900&fit=crop&q=80",
   },
   {
     id: "digital",
@@ -89,6 +88,7 @@ const SERVICES = [
     featured: false,
     color: "#10B981",
     icon: RefreshCw,
+    src: "/images/digitalisation.png",
   },
 
   {
@@ -107,6 +107,7 @@ const SERVICES = [
     featured: false,
     color: "var(--brand)",
     icon: Database,
+    src: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=900&fit=crop&q=80",
   },
   {
     id: "materiel",
@@ -124,6 +125,7 @@ const SERVICES = [
     featured: false,
     color: "#06B6D4",
     icon: Server,
+    src: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&h=900&fit=crop&q=80",
   },
   {
     id: "comptabilite",
@@ -141,31 +143,28 @@ const SERVICES = [
     featured: false,
     color: "#EF4444",
     icon: DollarSign,
+    src: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&h=900&fit=crop&q=80",
   },
 ];
 
 export default function ServicesGrid() {
   return (
-    <section className="relative py-24 px-6 bg-white overflow-hidden">
-      {/* Animated gradient orbs */}
-      <div aria-hidden="true">
-        <div className="sg-blob sg-blob-1" />
-        <div className="sg-blob sg-blob-2" />
-        <div className="sg-blob sg-blob-3" />
+    <section
+      className="relative py-10 px-6 grid-bg overflow-hidden"
+      style={{ backgroundColor: "var(--ink)" }}
+    >
+      {/* Aurora background */}
+      <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
+        {/* <Aurora /> */}
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto">
+      <div className="relative z-10 p-2 mx-auto">
         {/* Section header */}
         <div className="flex items-end justify-between mb-14 flex-wrap gap-4 animate-slide-down">
           <div>
-            <p className="text-xs font-semibold tracking-widest mb-3 text-foreground uppercase">
-              NOS EXPERTISES
-            </p>
             <h2 className="text-4xl md:text-5xl font-bold text-blue-500 leading-tight">
-              7 expertises.
-              <br />
               <span className="bg-gradient-to-r from-sky-700 to-green-600 bg-clip-text text-transparent">
-                1 équipe.
+                NOS EXPERTISES
               </span>
             </h2>
           </div>
@@ -184,78 +183,76 @@ export default function ServicesGrid() {
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {SERVICES.map((s) => {
             const IconComponent = s.icon;
             return (
-              <Link key={s.id} href={s.href} className="group service-card">
-                <Card className="relative h-full bg-blue-50 border border-border/40 rounded-xl shadow-lg shadow-white/20 hover:scale-105 hover:shadow-xl hover:border-primary/30 transition-all duration-300 ease-out overflow-hidden">
-                  {/* Background gradient effect */}
-                  <div
-                    className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-300"
-                    style={{
-                      background: `radial-gradient(circle at top right, ${s.color}20 0%, transparent 70%)`,
-                    }}
-                  />
+              <Link
+                key={s.id}
+                href={s.href}
+                className="group service-card relative block h-full rounded-xl overflow-hidden ring-1 ring-white/10 bg-slate-950 shadow-lg transition-all duration-300 ease-out hover:-translate-y-2 hover:ring-white/25 hover:shadow-xl"
+              >
+                {/* Photo de fond (comme l'arc du Hero) */}
+                <Image
+                  src={s.src}
+                  alt={s.tag}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 16vw"
+                  className="object-cover opacity-30 transition-transform duration-500 ease-out group-hover:scale-110"
+                />
 
-                  <CardHeader className="relative pb-4">
-                    {/* Icon section */}
-                    <div className="mb-4">
-                      <div
-                        className="inline-flex p-3 rounded-lg mb-4 animate-icon-float shadow-md transition-all duration-300 "
-                        style={{
-                          backgroundColor: `${s.color}15`,
-                          color: s.color,
-                        }}
-                      >
-                        <IconComponent size={24} strokeWidth={1.5} />
-                      </div>
+                {/* Voile sombre pour la lisibilité du texte */}
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/85 to-slate-950/50" />
+
+                {/* Dégradé couleur au survol */}
+                <div
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{
+                    background: `linear-gradient(180deg, transparent 40%, ${s.color}55 100%)`,
+                  }}
+                />
+
+                <div className="relative z-10 flex h-full flex-col p-6">
+                  {/* Icon section */}
+                  <div className="mb-4">
+                    <div
+                      className="inline-flex p-3 rounded-lg mb-4 animate-icon-float shadow-md transition-all duration-300"
+                      style={{
+                        backgroundColor: `${s.color}25`,
+                        color: s.color,
+                      }}
+                    >
+                      <IconComponent size={24} strokeWidth={1.5} />
                     </div>
+                  </div>
 
-                    {s.badge && (
-                      <Badge
-                        className="absolute top-6 right-6 text-[10px] px-2 py-1 rounded-full border-0 font-semibold shadow-md transition-all duration-300"
-                        style={{
-                          backgroundColor: `${s.color}20`,
-                          color: s.color,
-                        }}
-                      >
-                        {s.badge}
-                      </Badge>
-                    )}
+                  {s.badge && (
+                    <Badge
+                      className="absolute top-6 right-6 text-[10px] px-2 py-1 rounded-full border-0 font-semibold shadow-md transition-all duration-300"
+                      style={{
+                        backgroundColor: `${s.color}30`,
+                        color: s.color,
+                      }}
+                    >
+                      {s.badge}
+                    </Badge>
+                  )}
 
-                    <p className="text-[11px] font-semibold tracking-widest mb-3 text-muted-foreground uppercase">
-                      {s.tag}
-                    </p>
+                  <p className="text-[11px] font-semibold tracking-widest mb-3 text-white/60 uppercase">
+                    {s.tag}
+                  </p>
 
-                    <h3 className="text-xl md:text-2xl font-bold leading-tight text-foreground">
-                      {s.headline}{" "}
-                      <span style={{ color: s.color }}>{s.headlineAccent}</span>
-                    </h3>
-                  </CardHeader>
+                  <h3 className="text-xl md:text-2xl font-bold leading-tight text-white">
+                    {s.headline} <span>{s.headlineAccent}</span>
+                  </h3>
 
-                  <CardContent className="relative flex-1 pb-4">
-                    <p className="text-sm leading-relaxed mb-6 text-muted-foreground">
+                  <div className="flex-1 pt-4">
+                    <p className="text-sm leading-relaxed mb-6 text-white/70">
                       {s.desc}
                     </p>
+                  </div>
 
-                    <ul className="space-y-2">
-                      {s.items.map((item, i) => (
-                        <li
-                          key={i}
-                          className="flex items-center gap-3 text-sm text-muted-foreground group/item"
-                        >
-                          <span
-                            className="inline-block w-1.5 h-1.5 rounded-full transition-all duration-300 group-hover/item:scale-125"
-                            style={{ backgroundColor: s.color }}
-                          />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-
-                  <CardFooter className="relative">
+                  <div className="pt-4">
                     <span
                       className="text-xs font-semibold opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center gap-2"
                       style={{ color: s.color }}
@@ -266,8 +263,8 @@ export default function ServicesGrid() {
                         className="transition-transform group-hover:translate-x-1"
                       />
                     </span>
-                  </CardFooter>
-                </Card>
+                  </div>
+                </div>
               </Link>
             );
           })}

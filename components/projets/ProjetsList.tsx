@@ -94,13 +94,13 @@ const PROJETS: Projet[] = [
 
 const TAGS = ["TOUS", "CALL CENTER", "DÉVELOPPEMENT", "MARKETING", "DIGITALISATION", "DONNÉES", "INFRASTRUCTURE"];
 
-const TAG_META: Record<string, { color: string; bg: string }> = {
-  "CALL CENTER":    { color: "#F59E0B", bg: "rgba(245,158,11,0.10)" },
-  "DÉVELOPPEMENT":  { color: "#3B82F6", bg: "rgba(59,130,246,0.10)" },
-  "MARKETING":      { color: "#EC4899", bg: "rgba(236,72,153,0.10)" },
-  "DIGITALISATION": { color: "#10B981", bg: "rgba(16,185,129,0.10)" },
-  "DONNÉES":        { color: "#8B5CF6", bg: "rgba(139,92,246,0.10)" },
-  "INFRASTRUCTURE": { color: "#06B6D4", bg: "rgba(6,182,212,0.10)" },
+const TAG_META: Record<string, { color: string; bg: string; border: string }> = {
+  "CALL CENTER":    { color: "#F59E0B", bg: "rgba(245,158,11,0.10)", border: "rgba(245,158,11,0.30)" },
+  "DÉVELOPPEMENT":  { color: "#3B82F6", bg: "rgba(59,130,246,0.10)", border: "rgba(59,130,246,0.30)" },
+  "MARKETING":      { color: "#EC4899", bg: "rgba(236,72,153,0.10)", border: "rgba(236,72,153,0.30)" },
+  "DIGITALISATION": { color: "#10B981", bg: "rgba(16,185,129,0.10)", border: "rgba(16,185,129,0.30)" },
+  "DONNÉES":        { color: "#8B5CF6", bg: "rgba(139,92,246,0.10)", border: "rgba(139,92,246,0.30)" },
+  "INFRASTRUCTURE": { color: "#06B6D4", bg: "rgba(6,182,212,0.10)", border: "rgba(6,182,212,0.30)" },
 };
 
 export default function ProjetsList() {
@@ -142,6 +142,11 @@ export default function ProjetsList() {
         .proj-filter-btn.active {
           transform: translateY(-1px);
           box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .proj-card:hover {
+          border-color: var(--tag-color) !important;
+          box-shadow: 0 20px 40px -12px color-mix(in srgb, var(--tag-color) 35%, transparent);
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -200,7 +205,8 @@ export default function ProjetsList() {
             return (
               <article
                 key={`${active}-${i}`}
-                className="proj-card group flex flex-col bg-white rounded-xl overflow-hidden border border-black/6 hover:border-transparent hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300"
+                className="proj-card group flex flex-col bg-white rounded-xl overflow-hidden border hover:-translate-y-1.5 transition-all duration-300"
+                style={{ borderColor: meta.border, "--tag-color": meta.color } as React.CSSProperties}
               >
                 {/* Barre colorée en haut */}
                 <div className="h-1 w-full" style={{ backgroundColor: meta.color }} />
