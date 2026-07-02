@@ -167,7 +167,7 @@ const Navbar = () => {
               </SheetTrigger>
               <SheetContent
                 side="right"
-                className="w-72 bg-slate-950/90 backdrop-blur-sm border-white/10 text-white"
+                className="w-72 bg-slate-950/90 backdrop-blur-lg border-white/10 text-white"
               >
                 <SheetHeader>
                   <SheetTitle className="text-left text-white">Menu</SheetTitle>
