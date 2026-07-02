@@ -90,6 +90,24 @@ const SERVICES = [
     color: "#10B981",
     icon: RefreshCw,
   },
+
+  {
+    id: "data",
+    href: "/services/data",
+    tag: "Traitement de données",
+    headline: "Vos données dorment.",
+    headlineAccent: "On les réveille.",
+    desc: "Numérisation, saisie, nettoyage, structuration et analyse. Physique comme numérique.",
+    items: [
+      "Numérisation documents",
+      "Nettoyage & déduplication",
+      "Structuration & migration",
+      "Visualisation & analyse",
+    ],
+    featured: false,
+    color: "var(--brand)",
+    icon: Database,
+  },
   {
     id: "materiel",
     href: "/services/materiel",
@@ -128,129 +146,7 @@ const SERVICES = [
 
 export default function ServicesGrid() {
   return (
-    <section className="relative py-24 px-6 bg-yellow-100 overflow-hidden">
-      <style>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes slideDown {
-          from {
-            opacity: 0;
-            transform: translateY(-20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes iconFloat {
-          0%, 100% {
-            transform: translateY(0px);
-          }
-          50% {
-            transform: translateY(-8px);
-          }
-        }
-
-        @keyframes blobDrift1 {
-          0%, 100% { transform: translate(0, 0) scale(1); }
-          33%       { transform: translate(-60px, 80px) scale(1.07); }
-          66%       { transform: translate(40px, -40px) scale(0.94); }
-        }
-
-        @keyframes blobDrift2 {
-          0%, 100% { transform: translate(0, 0) scale(1); }
-          40%       { transform: translate(70px, -60px) scale(1.06); }
-          80%       { transform: translate(-30px, 50px) scale(0.96); }
-        }
-
-        @keyframes blobDrift3 {
-          0%, 100% { transform: translate(0, 0) scale(1); }
-          50%       { transform: translate(-50px, -70px) scale(1.05); }
-        }
-
-        .sg-blob {
-          position: absolute;
-          border-radius: 50%;
-          filter: blur(90px);
-          pointer-events: none;
-        }
-
-        .sg-blob-1 {
-          width: 600px;
-          height: 600px;
-          background: radial-gradient(circle, rgba(59,130,246,0.22), rgba(139,92,246,0.10));
-          top: -180px;
-          right: -80px;
-          animation: blobDrift1 14s ease-in-out infinite;
-        }
-
-        .sg-blob-2 {
-          width: 480px;
-          height: 480px;
-          background: radial-gradient(circle, rgba(236,72,153,0.15), rgba(139,92,246,0.12));
-          bottom: -120px;
-          left: -60px;
-          animation: blobDrift2 18s ease-in-out infinite;
-          animation-delay: -5s;
-        }
-
-        .sg-blob-3 {
-          width: 320px;
-          height: 320px;
-          background: radial-gradient(circle, rgba(16,185,129,0.12), rgba(59,130,246,0.08));
-          top: 40%;
-          left: 35%;
-          animation: blobDrift3 22s ease-in-out infinite;
-          animation-delay: -10s;
-        }
-
-        .animate-fade-in-up {
-          animation: fadeInUp 0.6s ease-out forwards;
-        }
-
-        .animate-slide-down {
-          animation: slideDown 0.6s ease-out forwards;
-        }
-
-        .animate-icon-float {
-          animation: iconFloat 3s ease-in-out infinite;
-        }
-
-        .service-card {
-          opacity: 0;
-        }
-
-        .service-card:nth-child(1) { animation: fadeInUp 0.6s ease-out 0.1s forwards; }
-        .service-card:nth-child(2) { animation: fadeInUp 0.6s ease-out 0.2s forwards; }
-        .service-card:nth-child(3) { animation: fadeInUp 0.6s ease-out 0.3s forwards; }
-        .service-card:nth-child(4) { animation: fadeInUp 0.6s ease-out 0.4s forwards; }
-        .service-card:nth-child(5) { animation: fadeInUp 0.6s ease-out 0.5s forwards; }
-        .service-card:nth-child(6) { animation: fadeInUp 0.6s ease-out 0.6s forwards; }
-        .service-card:nth-child(7) { animation: fadeInUp 0.6s ease-out 0.7s forwards; }
-
-        @media (prefers-reduced-motion: reduce) {
-          .animate-fade-in-up,
-          .animate-slide-down,
-          .animate-icon-float,
-          .sg-blob,
-          .service-card {
-            animation: none !important;
-            opacity: 1 !important;
-            transform: none !important;
-          }
-        }
-      `}</style>
-
+    <section className="relative py-24 px-6 bg-white overflow-hidden">
       {/* Animated gradient orbs */}
       <div aria-hidden="true">
         <div className="sg-blob sg-blob-1" />

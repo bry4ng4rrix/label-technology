@@ -17,7 +17,7 @@ const Hero = () => {
         <Aurora />
       </div>
       <div className="relative my-20 sm:mt-10 z-10 flex flex-col items-center justify-center h-full text-center px-4 ">
-        <div className="max-w-[1600px] px-10  space-y-2">
+        <div className="max-w-7xl px-10  space-y-2">
           <p className="animate-fadeup font-semibold text-white/70">
             Antananarivo · Madagascar · International
           </p>
@@ -27,7 +27,7 @@ const Hero = () => {
           </p>
           <h1 className="animate-fadeup-d2 text-5xl sm:text-6xl md:text-8xl font-bold mb-4  text-white">
             La technologie au services{" "}
-            <span className="bg-gradient-to-r from-blue-500  to-emerald-500 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-blue-500  to-emerald-500 bg-clip-text text-transparent">
               {" "}
               de votre croissance.
             </span>
