@@ -301,13 +301,7 @@ export default function JobsList() {
             return (
               <article
                 key={`${active}-${i}`}
-                className="job-card group flex flex-col bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl  hover:-translate-y-1.5 transition-all duration-300"
-                style={
-                  {
-                    borderColor: meta.border,
-                    "--tag-color": meta.color,
-                  } as React.CSSProperties
-                }
+                className="group flex flex-col bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl  hover:-translate-y-1.5 transition-all duration-300"
               >
                 <div className="p-6 flex flex-col flex-1">
                   {/* Tag + urgent */}
