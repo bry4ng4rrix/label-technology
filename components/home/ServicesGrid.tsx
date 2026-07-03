@@ -70,7 +70,7 @@ const SERVICES = [
     featured: false,
     color: "#EC4899",
     icon: TrendingUp,
-    src: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=900&fit=crop&q=80",
+    src: "/images/services/mark.jpg",
   },
   {
     id: "digital",
@@ -88,7 +88,7 @@ const SERVICES = [
     featured: false,
     color: "#10B981",
     icon: RefreshCw,
-    src: "/images/digitalisation.png",
+    src: "/images/services/digit.jpg",
   },
 
   {
