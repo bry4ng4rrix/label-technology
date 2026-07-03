@@ -149,7 +149,7 @@ const SERVICES = [
 
 export default function ServicesGrid() {
   return (
-    <section className="relative py-10 px-6 grid-bg overflow-hidden bg-white">
+    <section className="relative py-10 px-6 grid-bg overflow-hidden bg-gray-100 sm:py-16 lg:py-20">
       {/* Aurora background */}
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
         {/* <Aurora /> */}
@@ -187,7 +187,8 @@ export default function ServicesGrid() {
               <Link
                 key={s.id}
                 href={s.href}
-                className="group service-card relative block h-full rounded-xl overflow-hidden ring-1 ring-white/10 bg-slate-950 shadow-lg transition-all duration-300 ease-out hover:-translate-y-2 hover:ring-white/25 hover:shadow-xl"
+                className="group service-card relative block h-full rounded-xl overflow-hidden ring-1 ring-white/10 bg-slate-950 shadow-lg transition-all duration-300 ease-out hover:-translate-y-2 hover:ring-white/25
+                shadow-sky-200 hover:shadow-xl"
               >
                 {/* Photo de fond (comme l'arc du Hero) */}
                 <Image

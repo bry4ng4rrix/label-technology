@@ -343,7 +343,7 @@ export default function DevPage() {
             style={{ minHeight: "70vh" }}
           >
             <Image
-              src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=900&h=700&fit=crop&q=80"
+              src="/images/services/dev.jpg"
               alt="Développement web & mobile — Label Technology"
               fill
               className="object-cover"
