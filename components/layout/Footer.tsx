@@ -11,7 +11,7 @@ const LINKS = {
     { label: "Matériel informatique", href: "/services/materiel" },
   ],
   Entreprise: [
-    { label: "À propos", href: "/a-propos" },
+    { label: "À propos", href: "/about" },
     { label: "Nos projets", href: "/projets" },
     { label: "Blog", href: "/blog" },
     { label: "Contact", href: "/contact" },
