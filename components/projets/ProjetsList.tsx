@@ -16,7 +16,11 @@ const PROJETS: Projet[] = [
     tag: "DÉVELOPPEMENT",
     title: "Application de gestion de boutique cosmétique & habillement",
     desc: "Solution de gestion de magasin en temps réel pour une boutique de cosmétique et prêt-à-porter. Gestion des stocks, des commerçants, transferts de produits par employé et chat intégré.",
-    metrics: ["Flux de stock en temps réel", "Chat client intégré", "Gestion multi-commerçants"],
+    metrics: [
+      "Flux de stock en temps réel",
+      "Chat client intégré",
+      "Gestion multi-commerçants",
+    ],
   },
   {
     tag: "CALL CENTER",
@@ -92,21 +96,55 @@ const PROJETS: Projet[] = [
   },
 ];
 
-const TAGS = ["TOUS", "CALL CENTER", "DÉVELOPPEMENT", "MARKETING", "DIGITALISATION", "DONNÉES", "INFRASTRUCTURE"];
+const TAGS = [
+  "TOUS",
+  "CALL CENTER",
+  "DÉVELOPPEMENT",
+  "MARKETING",
+  "DIGITALISATION",
+  "DONNÉES",
+  "INFRASTRUCTURE",
+];
 
-const TAG_META: Record<string, { color: string; bg: string; border: string }> = {
-  "CALL CENTER":    { color: "#F59E0B", bg: "rgba(245,158,11,0.10)", border: "rgba(245,158,11,0.30)" },
-  "DÉVELOPPEMENT":  { color: "#3B82F6", bg: "rgba(59,130,246,0.10)", border: "rgba(59,130,246,0.30)" },
-  "MARKETING":      { color: "#EC4899", bg: "rgba(236,72,153,0.10)", border: "rgba(236,72,153,0.30)" },
-  "DIGITALISATION": { color: "#10B981", bg: "rgba(16,185,129,0.10)", border: "rgba(16,185,129,0.30)" },
-  "DONNÉES":        { color: "#8B5CF6", bg: "rgba(139,92,246,0.10)", border: "rgba(139,92,246,0.30)" },
-  "INFRASTRUCTURE": { color: "#06B6D4", bg: "rgba(6,182,212,0.10)", border: "rgba(6,182,212,0.30)" },
-};
+const TAG_META: Record<string, { color: string; bg: string; border: string }> =
+  {
+    "CALL CENTER": {
+      color: "#F59E0B",
+      bg: "rgba(245,158,11,0.10)",
+      border: "rgba(245,158,11,0.30)",
+    },
+    DÉVELOPPEMENT: {
+      color: "#3B82F6",
+      bg: "rgba(59,130,246,0.10)",
+      border: "rgba(59,130,246,0.30)",
+    },
+    MARKETING: {
+      color: "#EC4899",
+      bg: "rgba(236,72,153,0.10)",
+      border: "rgba(236,72,153,0.30)",
+    },
+    DIGITALISATION: {
+      color: "#10B981",
+      bg: "rgba(16,185,129,0.10)",
+      border: "rgba(16,185,129,0.30)",
+    },
+    DONNÉES: {
+      color: "#8B5CF6",
+      bg: "rgba(139,92,246,0.10)",
+      border: "rgba(139,92,246,0.30)",
+    },
+    INFRASTRUCTURE: {
+      color: "#06B6D4",
+      bg: "rgba(6,182,212,0.10)",
+      border: "rgba(6,182,212,0.30)",
+    },
+  };
 
 export default function ProjetsList() {
   const [active, setActive] = useState("TOUS");
 
-  const filtered = active === "TOUS" ? PROJETS : PROJETS.filter((p) => p.tag === active);
+  const filtered =
+    active === "TOUS" ? PROJETS : PROJETS.filter((p) => p.tag === active);
 
   return (
     <section className="py-20 px-6" style={{ backgroundColor: "var(--paper)" }}>
@@ -156,13 +194,15 @@ export default function ProjetsList() {
       `}</style>
 
       <div className="max-w-7xl mx-auto">
-
         {/* Filtres */}
         <div className="flex flex-wrap gap-2 mb-14">
           {TAGS.map((tag) => {
             const isActive = active === tag;
             const meta = TAG_META[tag];
-            const count = tag === "TOUS" ? PROJETS.length : PROJETS.filter((p) => p.tag === tag).length;
+            const count =
+              tag === "TOUS"
+                ? PROJETS.length
+                : PROJETS.filter((p) => p.tag === tag).length;
 
             return (
               <button
@@ -187,7 +227,9 @@ export default function ProjetsList() {
                 <span
                   className="text-[10px] px-1.5 py-0.5 rounded-full font-bold"
                   style={{
-                    backgroundColor: isActive ? "rgba(255,255,255,0.25)" : "rgba(0,0,0,0.07)",
+                    backgroundColor: isActive
+                      ? "rgba(255,255,255,0.25)"
+                      : "rgba(0,0,0,0.07)",
                     color: isActive ? "#fff" : "var(--mid)",
                   }}
                 >
@@ -201,16 +243,15 @@ export default function ProjetsList() {
         {/* Grille */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filtered.map((p, i) => {
-            const meta = TAG_META[p.tag] ?? { color: "var(--brand)", bg: "rgba(30,63,171,0.08)" };
+            const meta = TAG_META[p.tag] ?? {
+              color: "var(--brand)",
+              bg: "rgba(30,63,171,0.08)",
+            };
             return (
               <article
                 key={`${active}-${i}`}
-                className="proj-card group flex flex-col bg-white rounded-xl overflow-hidden border hover:-translate-y-1.5 transition-all duration-300"
-                style={{ borderColor: meta.border, "--tag-color": meta.color } as React.CSSProperties}
+                className="proj-card group flex flex-col bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300"
               >
-                {/* Barre colorée en haut */}
-                <div className="h-1 w-full" style={{ backgroundColor: meta.color }} />
-
                 <div className="p-6 flex flex-col flex-1">
                   {/* Tag */}
                   <div className="flex items-center justify-between mb-4">
@@ -231,7 +272,10 @@ export default function ProjetsList() {
                   </h3>
 
                   {/* Description */}
-                  <p className="text-sm font-light leading-relaxed flex-1" style={{ color: "var(--mid)" }}>
+                  <p
+                    className="text-sm font-light leading-relaxed flex-1"
+                    style={{ color: "var(--mid)" }}
+                  >
                     {p.desc}
                   </p>
 

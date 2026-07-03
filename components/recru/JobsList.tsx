@@ -22,7 +22,12 @@ const OFFRES: Offre[] = [
     lieu: "Antananarivo",
     niveau: "Débutant accepté",
     desc: "Rejoignez notre plateau de 50 postes pour la prospection B2B et le support client de nos clients français et internationaux. Formation assurée dès l'intégration.",
-    missions: ["Prospection B2B", "Support client FR/EN", "Qualification de fichiers", "Prise de rendez-vous"],
+    missions: [
+      "Prospection B2B",
+      "Support client FR/EN",
+      "Qualification de fichiers",
+      "Prise de rendez-vous",
+    ],
     urgent: true,
   },
   {
@@ -32,7 +37,12 @@ const OFFRES: Offre[] = [
     lieu: "Antananarivo",
     niveau: "2 ans d'expérience",
     desc: "Encadrez une équipe d'agents, suivez les indicateurs de performance et garantissez la qualité de service sur nos campagnes B2B et support client.",
-    missions: ["Management d'équipe", "Suivi KPI", "Reporting client", "Formation continue"],
+    missions: [
+      "Management d'équipe",
+      "Suivi KPI",
+      "Reporting client",
+      "Formation continue",
+    ],
     urgent: true,
   },
   {
@@ -42,7 +52,12 @@ const OFFRES: Offre[] = [
     lieu: "Antananarivo / Hybride",
     niveau: "2+ ans d'expérience",
     desc: "Concevez et développez des applications web et mobiles pour nos clients européens et africains. Stack moderne, standards de code exigeants.",
-    missions: ["Développement Next.js/React", "APIs Node.js", "Revue de code", "Déploiement CI/CD"],
+    missions: [
+      "Développement Next.js/React",
+      "APIs Node.js",
+      "Revue de code",
+      "Déploiement CI/CD",
+    ],
   },
   {
     tag: "DÉVELOPPEMENT",
@@ -51,7 +66,12 @@ const OFFRES: Offre[] = [
     lieu: "Antananarivo / Hybride",
     niveau: "1+ an d'expérience",
     desc: "Participez au développement d'applications mobiles iOS/Android pour des clients dans la logistique, l'e-commerce et les services.",
-    missions: ["Développement React Native", "Intégration API", "Tests & débogage", "Publication stores"],
+    missions: [
+      "Développement React Native",
+      "Intégration API",
+      "Tests & débogage",
+      "Publication stores",
+    ],
   },
   {
     tag: "MARKETING",
@@ -60,7 +80,12 @@ const OFFRES: Offre[] = [
     lieu: "Antananarivo",
     niveau: "1+ an d'expérience",
     desc: "Pilotez des campagnes SEO, Google Ads et social media pour des clients français et malgaches. Résultats mesurables, reporting mensuel.",
-    missions: ["SEO & contenu", "Campagnes Google/Meta Ads", "Community management", "Analytics & reporting"],
+    missions: [
+      "SEO & contenu",
+      "Campagnes Google/Meta Ads",
+      "Community management",
+      "Analytics & reporting",
+    ],
   },
   {
     tag: "DIGITALISATION",
@@ -69,7 +94,12 @@ const OFFRES: Offre[] = [
     lieu: "Antananarivo",
     niveau: "2+ ans d'expérience",
     desc: "Accompagnez nos clients dans le déploiement et la configuration d'ERP Odoo : comptabilité, stocks, ventes, RH.",
-    missions: ["Paramétrage Odoo", "Formation utilisateurs", "Migration de données", "Support post-déploiement"],
+    missions: [
+      "Paramétrage Odoo",
+      "Formation utilisateurs",
+      "Migration de données",
+      "Support post-déploiement",
+    ],
   },
   {
     tag: "DONNÉES",
@@ -78,7 +108,12 @@ const OFFRES: Offre[] = [
     lieu: "Antananarivo",
     niveau: "Débutant accepté",
     desc: "Nettoyage, enrichissement et analyse de bases de données pour des clients en marketing direct et gestion de la relation client.",
-    missions: ["Saisie & nettoyage", "Déduplication", "Analyse & dataviz", "Automatisation ETL"],
+    missions: [
+      "Saisie & nettoyage",
+      "Déduplication",
+      "Analyse & dataviz",
+      "Automatisation ETL",
+    ],
   },
   {
     tag: "COMPTABILITÉ",
@@ -87,7 +122,12 @@ const OFFRES: Offre[] = [
     lieu: "Antananarivo",
     niveau: "2+ ans d'expérience",
     desc: "Gérez la saisie comptable, les rapprochements bancaires et le reporting mensuel pour un portefeuille de clients français.",
-    missions: ["Saisie comptable", "Rapprochements bancaires", "Reporting mensuel", "Relation client dédiée"],
+    missions: [
+      "Saisie comptable",
+      "Rapprochements bancaires",
+      "Reporting mensuel",
+      "Relation client dédiée",
+    ],
   },
   {
     tag: "INFRASTRUCTURE",
@@ -96,26 +136,70 @@ const OFFRES: Offre[] = [
     lieu: "Antananarivo",
     niveau: "1+ an d'expérience",
     desc: "Installation et maintenance de parcs informatiques, réseaux et serveurs pour nos clients à Antananarivo.",
-    missions: ["Installation postes & réseau", "Maintenance parc IT", "Support utilisateurs", "Câblage structuré"],
+    missions: [
+      "Installation postes & réseau",
+      "Maintenance parc IT",
+      "Support utilisateurs",
+      "Câblage structuré",
+    ],
   },
 ];
 
-const TAGS = ["TOUS", "CALL CENTER", "DÉVELOPPEMENT", "MARKETING", "DIGITALISATION", "DONNÉES", "COMPTABILITÉ", "INFRASTRUCTURE"];
+const TAGS = [
+  "TOUS",
+  "CALL CENTER",
+  "DÉVELOPPEMENT",
+  "MARKETING",
+  "DIGITALISATION",
+  "DONNÉES",
+  "COMPTABILITÉ",
+  "INFRASTRUCTURE",
+];
 
-const TAG_META: Record<string, { color: string; bg: string; border: string }> = {
-  "CALL CENTER":    { color: "#F59E0B", bg: "rgba(245,158,11,0.10)", border: "rgba(245,158,11,0.30)" },
-  "DÉVELOPPEMENT":  { color: "#3B82F6", bg: "rgba(59,130,246,0.10)", border: "rgba(59,130,246,0.30)" },
-  "MARKETING":      { color: "#EC4899", bg: "rgba(236,72,153,0.10)", border: "rgba(236,72,153,0.30)" },
-  "DIGITALISATION": { color: "#10B981", bg: "rgba(16,185,129,0.10)", border: "rgba(16,185,129,0.30)" },
-  "DONNÉES":        { color: "#8B5CF6", bg: "rgba(139,92,246,0.10)", border: "rgba(139,92,246,0.30)" },
-  "COMPTABILITÉ":   { color: "#EF4444", bg: "rgba(239,68,68,0.10)", border: "rgba(239,68,68,0.30)" },
-  "INFRASTRUCTURE": { color: "#06B6D4", bg: "rgba(6,182,212,0.10)", border: "rgba(6,182,212,0.30)" },
-};
+const TAG_META: Record<string, { color: string; bg: string; border: string }> =
+  {
+    "CALL CENTER": {
+      color: "#F59E0B",
+      bg: "rgba(245,158,11,0.10)",
+      border: "rgba(245,158,11,0.30)",
+    },
+    DÉVELOPPEMENT: {
+      color: "#3B82F6",
+      bg: "rgba(59,130,246,0.10)",
+      border: "rgba(59,130,246,0.30)",
+    },
+    MARKETING: {
+      color: "#EC4899",
+      bg: "rgba(236,72,153,0.10)",
+      border: "rgba(236,72,153,0.30)",
+    },
+    DIGITALISATION: {
+      color: "#10B981",
+      bg: "rgba(16,185,129,0.10)",
+      border: "rgba(16,185,129,0.30)",
+    },
+    DONNÉES: {
+      color: "#8B5CF6",
+      bg: "rgba(139,92,246,0.10)",
+      border: "rgba(139,92,246,0.30)",
+    },
+    COMPTABILITÉ: {
+      color: "#EF4444",
+      bg: "rgba(239,68,68,0.10)",
+      border: "rgba(239,68,68,0.30)",
+    },
+    INFRASTRUCTURE: {
+      color: "#06B6D4",
+      bg: "rgba(6,182,212,0.10)",
+      border: "rgba(6,182,212,0.30)",
+    },
+  };
 
 export default function JobsList() {
   const [active, setActive] = useState("TOUS");
 
-  const filtered = active === "TOUS" ? OFFRES : OFFRES.filter((o) => o.tag === active);
+  const filtered =
+    active === "TOUS" ? OFFRES : OFFRES.filter((o) => o.tag === active);
 
   return (
     <section className="py-20 px-6" style={{ backgroundColor: "var(--paper)" }}>
@@ -161,13 +245,15 @@ export default function JobsList() {
       `}</style>
 
       <div className="max-w-7xl mx-auto">
-
         {/* Filtres */}
         <div className="flex flex-wrap gap-2 mb-14">
           {TAGS.map((tag) => {
             const isActive = active === tag;
             const meta = TAG_META[tag];
-            const count = tag === "TOUS" ? OFFRES.length : OFFRES.filter((o) => o.tag === tag).length;
+            const count =
+              tag === "TOUS"
+                ? OFFRES.length
+                : OFFRES.filter((o) => o.tag === tag).length;
 
             return (
               <button
@@ -192,7 +278,9 @@ export default function JobsList() {
                 <span
                   className="text-[10px] px-1.5 py-0.5 rounded-full font-bold"
                   style={{
-                    backgroundColor: isActive ? "rgba(255,255,255,0.25)" : "rgba(0,0,0,0.07)",
+                    backgroundColor: isActive
+                      ? "rgba(255,255,255,0.25)"
+                      : "rgba(0,0,0,0.07)",
                     color: isActive ? "#fff" : "var(--mid)",
                   }}
                 >
@@ -206,16 +294,21 @@ export default function JobsList() {
         {/* Grille */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filtered.map((o, i) => {
-            const meta = TAG_META[o.tag] ?? { color: "var(--brand)", bg: "rgba(30,63,171,0.08)" };
+            const meta = TAG_META[o.tag] ?? {
+              color: "var(--brand)",
+              bg: "rgba(30,63,171,0.08)",
+            };
             return (
               <article
                 key={`${active}-${i}`}
-                className="job-card group flex flex-col bg-white rounded-xl overflow-hidden border hover:-translate-y-1.5 transition-all duration-300"
-                style={{ borderColor: meta.border, "--tag-color": meta.color } as React.CSSProperties}
+                className="job-card group flex flex-col bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl  hover:-translate-y-1.5 transition-all duration-300"
+                style={
+                  {
+                    borderColor: meta.border,
+                    "--tag-color": meta.color,
+                  } as React.CSSProperties
+                }
               >
-                {/* Barre colorée en haut */}
-                <div className="h-1 w-full" style={{ backgroundColor: meta.color }} />
-
                 <div className="p-6 flex flex-col flex-1">
                   {/* Tag + urgent */}
                   <div className="flex items-center justify-between mb-4 gap-2">
@@ -228,7 +321,10 @@ export default function JobsList() {
                     {o.urgent && (
                       <span
                         className="label-tag text-[10px] px-2.5 py-1 rounded-full font-semibold"
-                        style={{ backgroundColor: "rgba(245,166,35,0.12)", color: "var(--gold)" }}
+                        style={{
+                          backgroundColor: "rgba(245,166,35,0.12)",
+                          color: "var(--gold)",
+                        }}
                       >
                         RECRUTEMENT URGENT
                       </span>
@@ -244,7 +340,10 @@ export default function JobsList() {
                   </h3>
 
                   {/* Meta ligne */}
-                  <div className="flex flex-wrap gap-x-4 gap-y-1.5 mb-4 text-xs" style={{ color: "var(--mid)" }}>
+                  <div
+                    className="flex flex-wrap gap-x-4 gap-y-1.5 mb-4 text-xs"
+                    style={{ color: "var(--mid)" }}
+                  >
                     <span className="flex items-center gap-1.5">
                       <MapPin size={12} strokeWidth={2} />
                       {o.lieu}
@@ -260,7 +359,10 @@ export default function JobsList() {
                   </div>
 
                   {/* Description */}
-                  <p className="text-sm font-light leading-relaxed flex-1" style={{ color: "var(--mid)" }}>
+                  <p
+                    className="text-sm font-light leading-relaxed flex-1"
+                    style={{ color: "var(--mid)" }}
+                  >
                     {o.desc}
                   </p>
 

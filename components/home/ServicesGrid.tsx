@@ -149,10 +149,7 @@ const SERVICES = [
 
 export default function ServicesGrid() {
   return (
-    <section
-      className="relative py-10 px-6 grid-bg overflow-hidden"
-      style={{ backgroundColor: "var(--ink)" }}
-    >
+    <section className="relative py-10 px-6 grid-bg overflow-hidden bg-white">
       {/* Aurora background */}
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
         {/* <Aurora /> */}
