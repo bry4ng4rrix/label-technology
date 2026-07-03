@@ -285,7 +285,7 @@ export default function MarketingPage() {
             style={{ minHeight: "70vh" }}
           >
             <Image
-              src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&h=700&fit=crop&q=80"
+              src="/images/services/mark.jpg"
               alt="Marketing digital et analytics"
               fill
               className="object-cover"
@@ -342,7 +342,9 @@ export default function MarketingPage() {
                 delay={i * 0.08}
                 className="p-7 border border-border rounded-sm card-hover bg-card"
               >
-                <span className="svc-icon-float text-3xl mb-4 block">{s.icon}</span>
+                <span className="svc-icon-float text-3xl mb-4 block">
+                  {s.icon}
+                </span>
                 <h3 className="font-display text-xl mb-3 text-foreground">
                   {s.title}
                 </h3>
