@@ -14,8 +14,10 @@ export default function SiteLayout({
       defaultTheme="light"
       storageKey="label-theme"
     >
-      <Navbar />
-      {children}
+      <header>
+        <Navbar />
+      </header>
+      <main>{children}</main>
       <Footer />
     </ThemeProvider>
   );

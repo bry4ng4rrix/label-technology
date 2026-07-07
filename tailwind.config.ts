@@ -19,12 +19,11 @@ const config: Config = {
         border:  "var(--border)",
         background: "var(--background)",
         foreground: "var(--foreground)",
-      },fontFamily: {
-  display: ["Syne", "sans-serif"],
-  sans: ["var(--font-jakarta)", "DM Sans", "sans-serif"],
-  rytech: ["var(--font-rytech)", "sans-serif"],
-  rostex: ["Rostex", "sans-serif"], // ← ajout
-},
+      },
+      fontFamily: {
+        display: ["var(--font-display)", "var(--font-jakarta)", "sans-serif"],
+        sans: ["var(--font-jakarta)", "sans-serif"],
+      },
       fontSize: {
         hero: "clamp(48px, 7vw, 96px)",
       },

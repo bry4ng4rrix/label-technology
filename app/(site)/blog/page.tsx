@@ -48,10 +48,7 @@ export default async function BlogPage() {
           <p className="label-tag mb-5" style={{ color: "var(--brand-lt)" }}>
             BLOG
           </p>
-          <h1
-            className="font-display text-white mb-4 leading-tight"
-            style={{ fontSize: "clamp(32px, 4vw, 56px)" }}
-          >
+          <h1 className="h1-display text-white mb-4">
             Insights &amp; expertise.
           </h1>
           <p className="text-white/60 text-base font-light max-w-xl">

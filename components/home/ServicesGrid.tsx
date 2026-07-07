@@ -27,14 +27,14 @@ export default async function ServicesGrid() {
         {/* Section header */}
         <Reveal className="flex items-end justify-between mb-14 flex-wrap gap-4">
           <div>
-            <h2 className="text-4xl md:text-5xl font-bold text-blue-500 leading-tight">
-              <span className="bg-gradient-to-r from-sky-700 to-green-600 bg-clip-text text-transparent">
-                NOS EXPERTISES
+            <h2 className="h2-display uppercase">
+              <span className="bg-gradient-to-r from-brand to-brand-lt bg-clip-text text-transparent">
+                Nos expertises
               </span>
             </h2>
           </div>
           <Button
-            className="text-xs px-6 py-3 h-14 bg-sky-500 hover:bg-sky-600 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg font-semibold"
+            className="text-xs px-6 py-3 h-14 bg-brand hover:bg-brand-lt rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-brand/30 font-semibold"
             asChild
           >
             <Link href="/contact" className="flex items-center gap-2">

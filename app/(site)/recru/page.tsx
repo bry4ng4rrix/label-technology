@@ -75,10 +75,7 @@ export default async function RecruPage() {
           >
             RECRUTEMENT
           </p>
-          <h1
-            className="font-display text-white mb-6 leading-tight animate-fadeup-d1"
-            style={{ fontSize: "clamp(36px, 5vw, 64px)" }}
-          >
+          <h1 className="h1-display text-white mb-6 animate-fadeup-d1">
             Construisez la suite
             <br />
             <span className="bg-gradient-to-r from-blue-500 to-emerald-500 bg-clip-text text-transparent">
@@ -109,10 +106,7 @@ export default async function RecruPage() {
           >
             AUCUNE OFFRE NE CORRESPOND ?
           </p>
-          <h2
-            className="font-display text-white mb-5 animate-fadeup-d1"
-            style={{ fontSize: "clamp(32px, 4.5vw, 56px)", lineHeight: 1.05 }}
-          >
+          <h2 className="h2-cta text-white mb-5 animate-fadeup-d1">
             Envoyez-nous
             <br />
             <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">

@@ -149,7 +149,7 @@ const Navbar = () => {
           <div className="hidden md:flex items-center gap-3">
             <Button
               asChild
-              className="bg-blue-500 hover:bg-blue-600 text-white border-0"
+              className="bg-brand hover:bg-brand-lt text-white border-0 transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-brand/30"
             >
               <Link href="/contact">Démarrer un projet</Link>
             </Button>
@@ -162,7 +162,7 @@ const Navbar = () => {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="text-white/80 hover:text-white hover:bg-white/10"
+                  className="h-12 w-12 text-white/80 hover:text-white hover:bg-white/10"
                   aria-label="Menu"
                 >
                   <Menu className="h-5 w-5" />
@@ -184,7 +184,7 @@ const Navbar = () => {
                       key={service.key}
                       variant="ghost"
                       asChild
-                      className="justify-start gap-5 font-normal text-white hover:bg-white/10 hover:text-white"
+                      className="h-12 justify-start gap-5 font-normal text-white hover:bg-white/10 hover:text-white"
                     >
                       <Link href={service.href}>{service.labelFr}</Link>
                     </Button>
@@ -195,7 +195,7 @@ const Navbar = () => {
                       key={link.name}
                       variant="ghost"
                       asChild
-                      className="justify-start font-normal text-white hover:bg-white/10 hover:text-white"
+                      className="h-12 justify-start font-normal text-white hover:bg-white/10 hover:text-white"
                     >
                       <Link href={link.href}>{link.name}</Link>
                     </Button>
@@ -203,7 +203,7 @@ const Navbar = () => {
                   <Separator className="my-3 bg-white/10" />
                   <Button
                     asChild
-                    className="bg-blue-500 hover:bg-blue-600 text-white mt-1"
+                    className="h-12 bg-brand hover:bg-brand-lt text-white mt-1 transition-all duration-200"
                   >
                     <Link href="/contact">Démarrer un projet</Link>
                   </Button>

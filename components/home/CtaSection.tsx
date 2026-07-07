@@ -33,10 +33,7 @@ export default function CtaSection() {
         </Reveal>
 
         <Reveal delay={0.1}>
-          <h2
-            className="font-display text-white mb-5"
-            style={{ fontSize: "clamp(36px, 5vw, 68px)", lineHeight: 1.05 }}
-          >
+          <h2 className="h2-cta text-white mb-5">
             Votre projet mérite mieux
             <br />
             <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">

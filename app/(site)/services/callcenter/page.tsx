@@ -206,10 +206,7 @@ export default function CallCenterPage() {
             <p className="animate-fadeup label-tag mb-5 font-semibold tracking-widest text-blue-500/80">
               CALL CENTER · 50 POSTES · ANTANANARIVO
             </p>
-            <h1
-              className="animate-fadeup-d1 font-display text-white mb-6 leading-tight"
-              style={{ fontSize: "clamp(36px, 5vw, 72px)" }}
-            >
+            <h1 className="animate-fadeup-d1 h1-display text-white mb-6">
               50 voix.
               <br />
               <span className="bg-gradient-to-r from-sky-500 to-green-300 bg-clip-text text-transparent">

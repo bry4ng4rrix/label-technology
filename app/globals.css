@@ -29,10 +29,55 @@ body {
 }
 
 .font-display {
-  font-family: var(--font-jakarta), 'Plus Jakarta Sans', sans-serif;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1.0;
+  font-family: var(--font-display), var(--font-jakarta), sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+/*
+ * Hiérarchie typographique fluide — source unique de vérité pour les titres.
+ * Remplace les tailles "clamp(...)" dupliquées à la main dans chaque page.
+ */
+.h1-display {
+  font-family: var(--font-display), var(--font-jakarta), sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  font-size: clamp(2.25rem, 1.6rem + 3vw, 4.5rem); /* 36px → 72px */
+}
+
+.h2-display {
+  font-family: var(--font-display), var(--font-jakarta), sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.1;
+  font-size: clamp(1.75rem, 1.4rem + 1.8vw, 3rem); /* 28px → 48px */
+}
+
+/* Titres de section "CTA de clôture" (statement final avant contact) —
+   volontairement entre h1-display et h2-display, mais toujours unique. */
+.h2-cta {
+  font-family: var(--font-display), var(--font-jakarta), sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.08;
+  font-size: clamp(2rem, 1.55rem + 2.2vw, 3.5rem); /* 32px → 56px */
+}
+
+.h3-display {
+  font-family: var(--font-jakarta), sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  font-size: clamp(1.25rem, 1.1rem + 0.8vw, 1.5rem); /* 20px → 24px */
+}
+
+.lead-fluid {
+  font-family: var(--font-jakarta), sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  font-size: clamp(1.125rem, 1rem + 0.6vw, 1.75rem); /* 18px → 28px */
 }
 
 .label-tag {
@@ -235,10 +280,3 @@ body {
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
-@font-face {
-  font-family: "Rostex";
-  src: url("/fonts/Rostex.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}

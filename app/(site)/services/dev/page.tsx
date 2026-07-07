@@ -304,10 +304,7 @@ export default function DevPage() {
             <p className="dev-hero-label label-tag mb-5 bg-gradient-to-r from-blue-500  to-emerald-500 bg-clip-text text-transparent">
               DÉVELOPPEMENT WEB & MOBILE
             </p>
-            <h1
-              className="dev-hero-title font-display text-white mb-6 leading-tight"
-              style={{ fontSize: "clamp(36px, 5vw, 72px)" }}
-            >
+            <h1 className="dev-hero-title h1-display text-white mb-6">
               On ne livre pas du code.
               <br />
               <span className="bg-gradient-to-r from-blue-500 to-emerald-500 bg-clip-text text-transparent">
@@ -758,8 +755,7 @@ export default function DevPage() {
           </Badge>
 
           <h2
-            className="animate-fadeup-d1  text-white"
-            style={{ fontSize: "clamp(36px, 5vw, 64px)", lineHeight: 1.05 }}
+            className="animate-fadeup-d1 h2-cta text-white"
           >
             Prêt à transformer
             <br />

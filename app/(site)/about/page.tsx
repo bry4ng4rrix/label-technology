@@ -169,10 +169,7 @@ export default async function AProposPage() {
             <p className="label-tag mb-5" style={{ color: "var(--brand-lt)" }}>
               À PROPOS
             </p>
-            <h1
-              className="font-display text-white mb-6 leading-tight"
-              style={{ fontSize: "clamp(36px, 5vw, 72px)" }}
-            >
+            <h1 className="h1-display text-white mb-6">
               Antananarivo.
               <br />
               <span className="bg-gradient-to-r from-blue-500  to-emerald-500 bg-clip-text text-transparent ">

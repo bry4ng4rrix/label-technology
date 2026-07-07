@@ -47,10 +47,7 @@ export default async function ProjetsPage() {
           >
             RÉALISATIONS
           </p>
-          <h1
-            className="font-display text-white mb-6 leading-tight animate-fadeup-d1"
-            style={{ fontSize: "clamp(36px, 5vw, 64px)" }}
-          >
+          <h1 className="h1-display text-white mb-6 animate-fadeup-d1">
             Ce qu&apos;on a
             <br />
             <span className="bg-gradient-to-r from-blue-500  to-emerald-500 bg-clip-text text-transparent">

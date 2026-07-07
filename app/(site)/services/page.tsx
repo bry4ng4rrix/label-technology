@@ -144,7 +144,7 @@ export default function ServicesPage() {
           style={{ background: "radial-gradient(ellipse at 50% 50%, var(--brand) 0%, transparent 70%)" }} />
         <Reveal className="relative max-w-7xl mx-auto w-full">
           <p className="label-tag mb-5" style={{ color: "var(--brand-lt)" }}>NOS EXPERTISES</p>
-          <h1 className="font-display text-white mb-6 leading-tight" style={{ fontSize: "clamp(36px, 5vw, 72px)" }}>
+          <h1 className="h1-display text-white mb-6">
             7 expertises.<br />
             <span style={{ color: "var(--brand-lt)" }}>1 équipe.</span>
           </h1>

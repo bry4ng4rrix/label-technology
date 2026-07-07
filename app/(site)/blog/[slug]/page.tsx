@@ -76,10 +76,7 @@ export default async function BlogPostPage({
           >
             {post.tag}
           </Badge>
-          <h1
-            className="font-display text-white mb-4 leading-tight"
-            style={{ fontSize: "clamp(28px, 4vw, 48px)" }}
-          >
+          <h1 className="h2-display text-white mb-4">
             {post.title}
           </h1>
           <p className="text-white/50 text-sm font-light">

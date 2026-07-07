@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
-import localFont from "next/font/local";
+import { Plus_Jakarta_Sans, Sora } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
@@ -11,9 +10,12 @@ const jakarta = Plus_Jakarta_Sans({
   display: "swap",
 });
 
-const rytech = localFont({
-  src: "../public/fonts/Rytech.ttf",
-  variable: "--font-rytech",
+// Police d'accent pour les titres (h1/h2/CTA) — crée un vrai contraste
+// hiérarchique avec le Plus Jakarta Sans utilisé pour le corps de texte.
+const sora = Sora({
+  subsets: ["latin"],
+  weight: ["600", "700", "800"],
+  variable: "--font-display",
   display: "swap",
 });
 
@@ -110,7 +112,7 @@ export default function RootLayout({
   return (
     <html
       lang="fr"
-      className={cn(jakarta.variable, rytech.variable)}
+      className={cn(jakarta.variable, sora.variable)}
       suppressHydrationWarning
     >
       <body className="antialiased font-sans">{children}</body>

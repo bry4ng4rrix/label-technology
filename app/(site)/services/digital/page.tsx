@@ -123,7 +123,7 @@ export default function DigitalPage() {
         <div className="relative max-w-7xl mx-auto px-6 grid lg:grid-cols-2 items-center" style={{ minHeight: "70vh" }}>
           <div className="relative z-10 py-28 lg:pr-12">
             <p className="animate-fadeup label-tag mb-5" style={{ color: "var(--brand-lt)" }}>DIGITALISATION & LOGICIELS DE GESTION</p>
-            <h1 className="animate-fadeup-d1 font-display text-white mb-6 leading-tight" style={{ fontSize: "clamp(36px, 5vw, 72px)" }}>
+            <h1 className="animate-fadeup-d1 h1-display text-white mb-6">
               Vos processus méritent<br />
               <span className="bg-gradient-to-r from-[var(--brand)] to-[var(--brand-lt)] bg-clip-text text-transparent">mieux.</span>
             </h1>

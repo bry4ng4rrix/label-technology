@@ -88,11 +88,15 @@ const Hero = () => {
       <div className="relative mb-14 md:mb-20">
         {/* Arc de photos (fond) */}
         <div className="animate-fadeup-d5 absolute inset-0 flex items-center justify-center gap-2 sm:gap-3 md:gap-4">
-          {PHOTOS.map((p) => (
+          {PHOTOS.map((p, i) => (
             <Link
               key={p.id}
               href={p.href}
-              className={`group relative block flex-1 min-w-0 ${p.h} rounded-2xl overflow-hidden ring-1 ring-white/10 transition-transform duration-300 hover:-translate-y-2 hover:ring-white/25`}
+              className={`group relative block flex-1 min-w-0 ${p.h} rounded-2xl overflow-hidden ring-1 ring-white/10 transition-transform duration-300 hover:-translate-y-2 hover:ring-white/25 ${
+                /* Sur mobile, 7 tuiles côte à côte deviennent des lamelles
+                   illisibles : on n'en garde que 4, l'arc complet revient dès sm. */
+                i >= 4 ? "hidden sm:block" : ""
+              }`}
             >
               <Image
                 src={p.src}
@@ -122,7 +126,7 @@ const Hero = () => {
           <p className="animate-fadeup-d1 text-xs md:text-sm font-semibold text-slate-800 bg-white backdrop-blur-2xl mx-auto px-4 py-1.5 rounded-full w-fit mb-6">
             " Label Technology"
           </p>
-          <h1 className="animate-fadeup-d2 font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-5 leading-tight text-white">
+          <h1 className="animate-fadeup-d2 h1-display mb-5 text-white">
             Votre vision, notre expertise :{" "}
             <span className="bg-linear-to-r from-blue-500 to-emerald-500 bg-clip-text text-transparent">
               l'alliance qui transforme le potentiel en performance.
