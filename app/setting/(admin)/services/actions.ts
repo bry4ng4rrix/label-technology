@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { requireAdmin } from "@/lib/auth";
-import { prisma } from "@/lib/db";
+import { supabase } from "@/lib/supabase";
 
 export type ServiceFormState = {
   status: "idle" | "error";
@@ -36,11 +36,11 @@ function readServiceFormData(formData: FormData) {
       slug,
       tag,
       headline,
-      headlineAccent,
+      headline_accent: headlineAccent,
       desc,
       color,
       icon,
-      imageUrl,
+      image_url: imageUrl,
       badge: badgeRaw || null,
       items,
       featured,
@@ -63,9 +63,8 @@ export async function createService(
   const result = readServiceFormData(formData);
   if ("error" in result) return { status: "error", message: result.error };
 
-  try {
-    await prisma.service.create({ data: result.data });
-  } catch {
+  const { error } = await supabase.from("services").insert(result.data);
+  if (error) {
     return { status: "error", message: "Ce slug est déjà utilisé par un autre service." };
   }
 
@@ -83,9 +82,8 @@ export async function updateService(
   const result = readServiceFormData(formData);
   if ("error" in result) return { status: "error", message: result.error };
 
-  try {
-    await prisma.service.update({ where: { id }, data: result.data });
-  } catch {
+  const { error } = await supabase.from("services").update(result.data).eq("id", id);
+  if (error) {
     return { status: "error", message: "Ce slug est déjà utilisé par un autre service." };
   }
 
@@ -95,7 +93,7 @@ export async function updateService(
 
 export async function deleteService(id: string): Promise<void> {
   await requireAdmin();
-  await prisma.service.delete({ where: { id } });
+  await supabase.from("services").delete().eq("id", id);
   revalidatePublicPages();
   revalidatePath("/setting/services");
 }

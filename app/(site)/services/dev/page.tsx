@@ -627,11 +627,20 @@ export default function DevPage() {
                 className="dev-gradient-bg absolute inset-0 opacity-10"
                 aria-hidden="true"
               />
+              {/*  
               <Code2
                 size={72}
                 strokeWidth={0.7}
                 className="relative z-10"
                 style={{ color: "var(--brand-lt)", opacity: 0.3 }}
+              />
+*/}
+              <Image
+                src="/images/services/dev.png&"
+                alt="Stack technique maîtrisée — Label Technology"
+                width={200}
+                height={200}
+                className="relative z-10"
               />
             </div>
           </div>

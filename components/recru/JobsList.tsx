@@ -1,9 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { MapPin, Clock, Briefcase, ArrowRight } from "lucide-react";
 
 type Offre = {
+  id: string;
   tag: string;
   title: string;
   contrat: string;
@@ -13,148 +15,6 @@ type Offre = {
   missions: string[];
   urgent?: boolean;
 };
-
-const OFFRES: Offre[] = [
-  {
-    tag: "CALL CENTER",
-    title: "Agent Call Center Bilingue FR/EN",
-    contrat: "CDI · Temps plein",
-    lieu: "Antananarivo",
-    niveau: "Débutant accepté",
-    desc: "Rejoignez notre plateau de 50 postes pour la prospection B2B et le support client de nos clients français et internationaux. Formation assurée dès l'intégration.",
-    missions: [
-      "Prospection B2B",
-      "Support client FR/EN",
-      "Qualification de fichiers",
-      "Prise de rendez-vous",
-    ],
-    urgent: true,
-  },
-  {
-    tag: "CALL CENTER",
-    title: "Superviseur Plateau Call Center",
-    contrat: "CDI · Temps plein",
-    lieu: "Antananarivo",
-    niveau: "2 ans d'expérience",
-    desc: "Encadrez une équipe d'agents, suivez les indicateurs de performance et garantissez la qualité de service sur nos campagnes B2B et support client.",
-    missions: [
-      "Management d'équipe",
-      "Suivi KPI",
-      "Reporting client",
-      "Formation continue",
-    ],
-    urgent: true,
-  },
-  {
-    tag: "DÉVELOPPEMENT",
-    title: "Développeur Full-Stack Next.js / Node.js",
-    contrat: "CDI · Temps plein",
-    lieu: "Antananarivo / Hybride",
-    niveau: "2+ ans d'expérience",
-    desc: "Concevez et développez des applications web et mobiles pour nos clients européens et africains. Stack moderne, standards de code exigeants.",
-    missions: [
-      "Développement Next.js/React",
-      "APIs Node.js",
-      "Revue de code",
-      "Déploiement CI/CD",
-    ],
-  },
-  {
-    tag: "DÉVELOPPEMENT",
-    title: "Développeur React Native",
-    contrat: "CDI · Temps plein",
-    lieu: "Antananarivo / Hybride",
-    niveau: "1+ an d'expérience",
-    desc: "Participez au développement d'applications mobiles iOS/Android pour des clients dans la logistique, l'e-commerce et les services.",
-    missions: [
-      "Développement React Native",
-      "Intégration API",
-      "Tests & débogage",
-      "Publication stores",
-    ],
-  },
-  {
-    tag: "MARKETING",
-    title: "Chargé(e) de Marketing Digital & SEO",
-    contrat: "CDI · Temps plein",
-    lieu: "Antananarivo",
-    niveau: "1+ an d'expérience",
-    desc: "Pilotez des campagnes SEO, Google Ads et social media pour des clients français et malgaches. Résultats mesurables, reporting mensuel.",
-    missions: [
-      "SEO & contenu",
-      "Campagnes Google/Meta Ads",
-      "Community management",
-      "Analytics & reporting",
-    ],
-  },
-  {
-    tag: "DIGITALISATION",
-    title: "Consultant ERP Odoo",
-    contrat: "CDI · Temps plein",
-    lieu: "Antananarivo",
-    niveau: "2+ ans d'expérience",
-    desc: "Accompagnez nos clients dans le déploiement et la configuration d'ERP Odoo : comptabilité, stocks, ventes, RH.",
-    missions: [
-      "Paramétrage Odoo",
-      "Formation utilisateurs",
-      "Migration de données",
-      "Support post-déploiement",
-    ],
-  },
-  {
-    tag: "DONNÉES",
-    title: "Data Analyst / Traitement de Données",
-    contrat: "CDI · Temps plein",
-    lieu: "Antananarivo",
-    niveau: "Débutant accepté",
-    desc: "Nettoyage, enrichissement et analyse de bases de données pour des clients en marketing direct et gestion de la relation client.",
-    missions: [
-      "Saisie & nettoyage",
-      "Déduplication",
-      "Analyse & dataviz",
-      "Automatisation ETL",
-    ],
-  },
-  {
-    tag: "COMPTABILITÉ",
-    title: "Comptable Externalisation FR",
-    contrat: "CDI · Temps plein",
-    lieu: "Antananarivo",
-    niveau: "2+ ans d'expérience",
-    desc: "Gérez la saisie comptable, les rapprochements bancaires et le reporting mensuel pour un portefeuille de clients français.",
-    missions: [
-      "Saisie comptable",
-      "Rapprochements bancaires",
-      "Reporting mensuel",
-      "Relation client dédiée",
-    ],
-  },
-  {
-    tag: "INFRASTRUCTURE",
-    title: "Technicien Support IT & Réseau",
-    contrat: "CDI · Temps plein",
-    lieu: "Antananarivo",
-    niveau: "1+ an d'expérience",
-    desc: "Installation et maintenance de parcs informatiques, réseaux et serveurs pour nos clients à Antananarivo.",
-    missions: [
-      "Installation postes & réseau",
-      "Maintenance parc IT",
-      "Support utilisateurs",
-      "Câblage structuré",
-    ],
-  },
-];
-
-const TAGS = [
-  "TOUS",
-  "CALL CENTER",
-  "DÉVELOPPEMENT",
-  "MARKETING",
-  "DIGITALISATION",
-  "DONNÉES",
-  "COMPTABILITÉ",
-  "INFRASTRUCTURE",
-];
 
 const TAG_META: Record<string, { color: string; bg: string; border: string }> =
   {
@@ -195,11 +55,13 @@ const TAG_META: Record<string, { color: string; bg: string; border: string }> =
     },
   };
 
-export default function JobsList() {
+export default function JobsList({ offres }: { offres: Offre[] }) {
   const [active, setActive] = useState("TOUS");
 
+  const TAGS = ["TOUS", ...Array.from(new Set(offres.map((o) => o.tag)))];
+
   const filtered =
-    active === "TOUS" ? OFFRES : OFFRES.filter((o) => o.tag === active);
+    active === "TOUS" ? offres : offres.filter((o) => o.tag === active);
 
   return (
     <section className="py-20 px-6" style={{ backgroundColor: "var(--paper)" }}>
@@ -252,8 +114,8 @@ export default function JobsList() {
             const meta = TAG_META[tag];
             const count =
               tag === "TOUS"
-                ? OFFRES.length
-                : OFFRES.filter((o) => o.tag === tag).length;
+                ? offres.length
+                : offres.filter((o) => o.tag === tag).length;
 
             return (
               <button
@@ -293,14 +155,14 @@ export default function JobsList() {
 
         {/* Grille */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filtered.map((o, i) => {
+          {filtered.map((o) => {
             const meta = TAG_META[o.tag] ?? {
               color: "var(--brand)",
               bg: "rgba(30,63,171,0.08)",
             };
             return (
               <article
-                key={`${active}-${i}`}
+                key={o.id}
                 className="group flex flex-col bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl  hover:-translate-y-1.5 transition-all duration-300"
               >
                 <div className="p-6 flex flex-col flex-1">
@@ -377,14 +239,14 @@ export default function JobsList() {
                   </div>
 
                   {/* Postuler */}
-                  <a
-                    href={`mailto:contact@labeltechnology.mg?subject=${encodeURIComponent("Candidature — " + o.title)}`}
+                  <Link
+                    href={`/recru/postuler/${o.id}`}
                     className="mt-5 inline-flex items-center gap-2 text-sm font-medium group-hover:gap-3 transition-all"
                     style={{ color: meta.color }}
                   >
                     Postuler
                     <ArrowRight size={14} strokeWidth={2.5} />
-                  </a>
+                  </Link>
                 </div>
               </article>
             );

@@ -1,7 +1,7 @@
-import { prisma } from "@/lib/db";
+import { countRows } from "@/lib/supabase";
 import ComingSoon from "../ComingSoon";
 
 export default async function ContentAdminPage() {
-  const count = await prisma.setting.count();
+  const count = await countRows("settings");
   return <ComingSoon title="Contenu du site" count={count} />;
 }

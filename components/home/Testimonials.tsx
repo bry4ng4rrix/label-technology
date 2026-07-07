@@ -1,43 +1,26 @@
-"use client";
-
-import Image from "next/image";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { supabase, type Testimonial } from "@/lib/supabase";
 
-const TESTIMONIALS = [
-  {
-    quote:
-      "On cherchait un call center francophone fiable pour nos campagnes B2B en France. On a trouvé une équipe qui comprend nos prospects mieux que certains de nos propres commerciaux. Taux de prise de RDV en hausse de 40% dès le deuxième mois.",
-    author: "François B.",
-    role: "Directeur Commercial",
-    company: "PME industrielle, Lyon",
-    tag: "Call Center",
-    color: "#D4AF37",
-    gradientColor: "from-amber-500/20 to-yellow-600/10",
-  },
-  {
-    quote:
-      "Livraison en 6 semaines, dans les délais et dans le budget. Le code est propre, la documentation complète. On a déjà démarré un deuxième projet — cette fois plus ambitieux.",
-    author: "Hery R.",
-    role: "Directeur Général",
-    company: "Groupe éducatif, Antananarivo",
-    tag: "Développement Web",
-    color: "#3B82F6",
-    gradientColor: "from-blue-500/20 to-blue-600/10",
-  },
-  {
-    quote:
-      "80 000 documents numérisés en trois mois, zéro interruption de service. Chaque fichier est indexé, searchable, conforme RGPD. Label Technology a transformé une contrainte en vrai avantage opérationnel.",
-    author: "Isabelle M.",
-    role: "Directrice des Systèmes d'Information",
-    company: "Institution publique, Madagascar",
-    tag: "Traitement de données",
-    color: "#10B981",
-    gradientColor: "from-emerald-500/20 to-teal-600/10",
-  },
-];
+export default async function Testimonials() {
+  const { data } = await supabase
+    .from("testimonials")
+    .select("*")
+    .eq("context", "home")
+    .eq("published", true)
+    .order("order", { ascending: true })
+    .returns<Testimonial[]>();
 
-export default function Testimonials() {
+  const TESTIMONIALS = (data ?? []).map((t) => ({
+    quote: t.quote,
+    author: t.author,
+    role: t.role,
+    company: t.company,
+    tag: t.tag ?? "",
+    color: t.color ?? "var(--brand)",
+    gradientColor: t.gradient_color ?? "from-blue-500/20 to-blue-600/10",
+  }));
+
   return (
     <section className="relative py-24 px-6 bg-background overflow-hidden">
       <style>{`

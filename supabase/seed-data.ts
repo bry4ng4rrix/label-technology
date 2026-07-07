@@ -7,7 +7,7 @@ export const services = [
     order: 0,
     tag: "Développement",
     headline: "On ne livre pas du code.",
-    headlineAccent: "On livre de la croissance.",
+    headline_accent: "On livre de la croissance.",
     desc: "Applications web & mobile sur mesure, ERP, CRM, plateformes métier. Du prototype au système d'information complet.",
     items: [
       "Sites & e-commerce",
@@ -19,7 +19,7 @@ export const services = [
     badge: null,
     color: "#3B82F6",
     icon: "Code2",
-    imageUrl:
+    image_url:
       "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=900&fit=crop&q=80",
   },
   {
@@ -27,7 +27,7 @@ export const services = [
     order: 1,
     tag: "Call Center",
     headline: "50 voix.",
-    headlineAccent: "Votre support permanent.",
+    headline_accent: "Votre support permanent.",
     desc: "Prospection B2B, qualification de fichiers, support client bilingue FR/EN depuis Antananarivo.",
     items: [
       "Prospection B2B",
@@ -39,14 +39,14 @@ export const services = [
     badge: "50 postes",
     color: "#F59E0B",
     icon: "Phone",
-    imageUrl: "/images/callcenter-fetra.png",
+    image_url: "/images/callcenter-fetra.png",
   },
   {
     slug: "marketing",
     order: 2,
     tag: "Marketing Digital",
     headline: "Votre audience existe déjà.",
-    headlineAccent: "On va la trouver.",
+    headline_accent: "On va la trouver.",
     desc: "SEO, SEA, réseaux sociaux, analytics. Une stratégie orientée résultats mesurables.",
     items: [
       "SEO / SEA",
@@ -58,14 +58,14 @@ export const services = [
     badge: null,
     color: "#EC4899",
     icon: "TrendingUp",
-    imageUrl: "/images/services/mark.jpg",
+    image_url: "/images/services/mark.jpg",
   },
   {
     slug: "digital",
     order: 3,
     tag: "Digitalisation",
     headline: "Vos processus papier",
-    headlineAccent: "coûtent de l'argent.",
+    headline_accent: "coûtent de l'argent.",
     desc: "Audit, conseil, déploiement ERP/CRM, formation équipes. Transformation numérique complète.",
     items: [
       "Audit & conseil",
@@ -77,14 +77,14 @@ export const services = [
     badge: null,
     color: "#10B981",
     icon: "RefreshCw",
-    imageUrl: "/images/services/digit.jpg",
+    image_url: "/images/services/digit.jpg",
   },
   {
     slug: "data",
     order: 4,
     tag: "Traitement de données",
     headline: "Vos données dorment.",
-    headlineAccent: "On les réveille.",
+    headline_accent: "On les réveille.",
     desc: "Numérisation, saisie, nettoyage, structuration et analyse. Physique comme numérique.",
     items: [
       "Numérisation documents",
@@ -96,7 +96,7 @@ export const services = [
     badge: null,
     color: "var(--brand)",
     icon: "Database",
-    imageUrl:
+    image_url:
       "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=900&fit=crop&q=80",
   },
   {
@@ -104,7 +104,7 @@ export const services = [
     order: 5,
     tag: "Matériel IT",
     headline: "L'infrastructure",
-    headlineAccent: "qui tient la route.",
+    headline_accent: "qui tient la route.",
     desc: "Ordinateurs, serveurs, réseau, périphériques. Conseil, livraison et installation B2B sur Antananarivo et régions.",
     items: [
       "Postes de travail & laptops",
@@ -116,7 +116,7 @@ export const services = [
     badge: null,
     color: "#06B6D4",
     icon: "Server",
-    imageUrl:
+    image_url:
       "https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&h=900&fit=crop&q=80",
   },
   {
@@ -124,7 +124,7 @@ export const services = [
     order: 6,
     tag: "Comptabilité",
     headline: "Vos chiffres,",
-    headlineAccent: "enfin lisibles.",
+    headline_accent: "enfin lisibles.",
     desc: "Saisie comptable, rapprochements bancaires, reporting financier mensuel. Des décisions éclairées, fondées sur des données fiables.",
     items: [
       "Saisie comptable & TVA",
@@ -136,18 +136,18 @@ export const services = [
     badge: null,
     color: "#EF4444",
     icon: "DollarSign",
-    imageUrl:
+    image_url:
       "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&h=900&fit=crop&q=80",
   },
 ];
 
 export const projectTagMeta = [
-  { name: "CALL CENTER", color: "#F59E0B", bg: "rgba(245,158,11,0.10)", border: "rgba(245,158,11,0.30)", order: 0 },
-  { name: "DÉVELOPPEMENT", color: "#3B82F6", bg: "rgba(59,130,246,0.10)", border: "rgba(59,130,246,0.30)", order: 1 },
-  { name: "MARKETING", color: "#EC4899", bg: "rgba(236,72,153,0.10)", border: "rgba(236,72,153,0.30)", order: 2 },
-  { name: "DIGITALISATION", color: "#10B981", bg: "rgba(16,185,129,0.10)", border: "rgba(16,185,129,0.30)", order: 3 },
-  { name: "DONNÉES", color: "#8B5CF6", bg: "rgba(139,92,246,0.10)", border: "rgba(139,92,246,0.30)", order: 4 },
-  { name: "INFRASTRUCTURE", color: "#06B6D4", bg: "rgba(6,182,212,0.10)", border: "rgba(6,182,212,0.30)", order: 5 },
+  { kind: "PROJECT", name: "CALL CENTER", color: "#F59E0B", bg: "rgba(245,158,11,0.10)", border: "rgba(245,158,11,0.30)", order: 0 },
+  { kind: "PROJECT", name: "DÉVELOPPEMENT", color: "#3B82F6", bg: "rgba(59,130,246,0.10)", border: "rgba(59,130,246,0.30)", order: 1 },
+  { kind: "PROJECT", name: "MARKETING", color: "#EC4899", bg: "rgba(236,72,153,0.10)", border: "rgba(236,72,153,0.30)", order: 2 },
+  { kind: "PROJECT", name: "DIGITALISATION", color: "#10B981", bg: "rgba(16,185,129,0.10)", border: "rgba(16,185,129,0.30)", order: 3 },
+  { kind: "PROJECT", name: "DONNÉES", color: "#8B5CF6", bg: "rgba(139,92,246,0.10)", border: "rgba(139,92,246,0.30)", order: 4 },
+  { kind: "PROJECT", name: "INFRASTRUCTURE", color: "#06B6D4", bg: "rgba(6,182,212,0.10)", border: "rgba(6,182,212,0.30)", order: 5 },
 ];
 
 export const projects = [
@@ -167,13 +167,13 @@ export const projects = [
 ];
 
 export const jobTagMeta = [
-  { name: "CALL CENTER", color: "#F59E0B", bg: "rgba(245,158,11,0.10)", border: "rgba(245,158,11,0.30)", order: 0 },
-  { name: "DÉVELOPPEMENT", color: "#3B82F6", bg: "rgba(59,130,246,0.10)", border: "rgba(59,130,246,0.30)", order: 1 },
-  { name: "MARKETING", color: "#EC4899", bg: "rgba(236,72,153,0.10)", border: "rgba(236,72,153,0.30)", order: 2 },
-  { name: "DIGITALISATION", color: "#10B981", bg: "rgba(16,185,129,0.10)", border: "rgba(16,185,129,0.30)", order: 3 },
-  { name: "DONNÉES", color: "#8B5CF6", bg: "rgba(139,92,246,0.10)", border: "rgba(139,92,246,0.30)", order: 4 },
-  { name: "COMPTABILITÉ", color: "#EF4444", bg: "rgba(239,68,68,0.10)", border: "rgba(239,68,68,0.30)", order: 5 },
-  { name: "INFRASTRUCTURE", color: "#06B6D4", bg: "rgba(6,182,212,0.10)", border: "rgba(6,182,212,0.30)", order: 6 },
+  { kind: "JOB", name: "CALL CENTER", color: "#F59E0B", bg: "rgba(245,158,11,0.10)", border: "rgba(245,158,11,0.30)", order: 0 },
+  { kind: "JOB", name: "DÉVELOPPEMENT", color: "#3B82F6", bg: "rgba(59,130,246,0.10)", border: "rgba(59,130,246,0.30)", order: 1 },
+  { kind: "JOB", name: "MARKETING", color: "#EC4899", bg: "rgba(236,72,153,0.10)", border: "rgba(236,72,153,0.30)", order: 2 },
+  { kind: "JOB", name: "DIGITALISATION", color: "#10B981", bg: "rgba(16,185,129,0.10)", border: "rgba(16,185,129,0.30)", order: 3 },
+  { kind: "JOB", name: "DONNÉES", color: "#8B5CF6", bg: "rgba(139,92,246,0.10)", border: "rgba(139,92,246,0.30)", order: 4 },
+  { kind: "JOB", name: "COMPTABILITÉ", color: "#EF4444", bg: "rgba(239,68,68,0.10)", border: "rgba(239,68,68,0.30)", order: 5 },
+  { kind: "JOB", name: "INFRASTRUCTURE", color: "#06B6D4", bg: "rgba(6,182,212,0.10)", border: "rgba(6,182,212,0.30)", order: 6 },
 ];
 
 export const jobOffers = [
@@ -189,22 +189,19 @@ export const jobOffers = [
 ];
 
 export const blogPosts = [
-  { slug: "externaliser-call-center-madagascar", tag: "CALL CENTER", publishedAt: new Date("2026-05-01"), title: "Externaliser son call center à Madagascar : ce que personne ne vous dit", excerpt: "Madagascar n'est pas le premier pays qui vient à l'esprit pour l'externalisation. C'est exactement pourquoi les entreprises qui y vont en premier gardent un avantage compétitif durable.", readtime: "5 min" },
-  { slug: "nextjs-14-migration-projets-clients", tag: "DÉVELOPPEMENT", publishedAt: new Date("2026-04-01"), title: "Next.js 14 : pourquoi on a migré tous nos projets clients dessus", excerpt: "App Router, Server Components, performances Core Web Vitals. Retour d'expérience après 12 mois de projets en production sur Next.js 14.", readtime: "8 min" },
-  { slug: "erp-sur-mesure-vs-odoo", tag: "DIGITALISATION", publishedAt: new Date("2026-04-01"), title: "ERP sur mesure vs Odoo : comment choisir pour une PME ?", excerpt: "La question revient sur chaque projet de digitalisation. Voici notre grille de décision après avoir déployé les deux solutions pour des dizaines d'entreprises.", readtime: "6 min" },
-  { slug: "seo-b2b-erreurs-qui-coutent-cher", tag: "MARKETING", publishedAt: new Date("2026-03-01"), title: "SEO pour entreprises B2B : les 3 erreurs qui coûtent cher", excerpt: "Le SEO B2B n'obéit pas aux mêmes règles que le B2C. Volume faible, intentions précises, cycle long. Voici ce qu'on ne corrige plus chez nos clients.", readtime: "4 min" },
-  { slug: "nettoyer-base-crm-50000-contacts", tag: "DONNÉES", publishedAt: new Date("2026-03-01"), title: "Comment nettoyer une base CRM de 50 000 contacts en 3 semaines", excerpt: "Déduplication, validation emails, enrichissement sectoriel. Le processus exact qu'on a utilisé pour un client marketing direct.", readtime: "7 min" },
-  { slug: "antananarivo-hub-tech-ocean-indien", tag: "STRATÉGIE", publishedAt: new Date("2026-02-01"), title: "Pourquoi Antananarivo devient le hub tech de l'océan Indien", excerpt: "Universités techniques, vivier de talents bilingues, coûts compétitifs. Les données derrière la montée en puissance de la tech malgache.", readtime: "5 min" },
+  { slug: "externaliser-call-center-madagascar", tag: "CALL CENTER", published_at: "2026-05-01", title: "Externaliser son call center à Madagascar : ce que personne ne vous dit", excerpt: "Madagascar n'est pas le premier pays qui vient à l'esprit pour l'externalisation. C'est exactement pourquoi les entreprises qui y vont en premier gardent un avantage compétitif durable.", readtime: "5 min" },
+  { slug: "nextjs-14-migration-projets-clients", tag: "DÉVELOPPEMENT", published_at: "2026-04-01", title: "Next.js 14 : pourquoi on a migré tous nos projets clients dessus", excerpt: "App Router, Server Components, performances Core Web Vitals. Retour d'expérience après 12 mois de projets en production sur Next.js 14.", readtime: "8 min" },
+  { slug: "erp-sur-mesure-vs-odoo", tag: "DIGITALISATION", published_at: "2026-04-01", title: "ERP sur mesure vs Odoo : comment choisir pour une PME ?", excerpt: "La question revient sur chaque projet de digitalisation. Voici notre grille de décision après avoir déployé les deux solutions pour des dizaines d'entreprises.", readtime: "6 min" },
+  { slug: "seo-b2b-erreurs-qui-coutent-cher", tag: "MARKETING", published_at: "2026-03-01", title: "SEO pour entreprises B2B : les 3 erreurs qui coûtent cher", excerpt: "Le SEO B2B n'obéit pas aux mêmes règles que le B2C. Volume faible, intentions précises, cycle long. Voici ce qu'on ne corrige plus chez nos clients.", readtime: "4 min" },
+  { slug: "nettoyer-base-crm-50000-contacts", tag: "DONNÉES", published_at: "2026-03-01", title: "Comment nettoyer une base CRM de 50 000 contacts en 3 semaines", excerpt: "Déduplication, validation emails, enrichissement sectoriel. Le processus exact qu'on a utilisé pour un client marketing direct.", readtime: "7 min" },
+  { slug: "antananarivo-hub-tech-ocean-indien", tag: "STRATÉGIE", published_at: "2026-02-01", title: "Pourquoi Antananarivo devient le hub tech de l'océan Indien", excerpt: "Universités techniques, vivier de talents bilingues, coûts compétitifs. Les données derrière la montée en puissance de la tech malgache.", readtime: "5 min" },
 ];
 
-export const testimonialsHome = [
-  { quote: "On cherchait un call center francophone fiable pour nos campagnes B2B en France. On a trouvé une équipe qui comprend nos prospects mieux que certains de nos propres commerciaux. Taux de prise de RDV en hausse de 40% dès le deuxième mois.", author: "François B.", role: "Directeur Commercial", company: "PME industrielle, Lyon", tag: "Call Center", color: "#D4AF37", gradientColor: "from-amber-500/20 to-yellow-600/10", context: "home", order: 0 },
-  { quote: "Livraison en 6 semaines, dans les délais et dans le budget. Le code est propre, la documentation complète. On a déjà démarré un deuxième projet — cette fois plus ambitieux.", author: "Hery R.", role: "Directeur Général", company: "Groupe éducatif, Antananarivo", tag: "Développement Web", color: "#3B82F6", gradientColor: "from-blue-500/20 to-blue-600/10", context: "home", order: 1 },
-  { quote: "80 000 documents numérisés en trois mois, zéro interruption de service. Chaque fichier est indexé, searchable, conforme RGPD. Label Technology a transformé une contrainte en vrai avantage opérationnel.", author: "Isabelle M.", role: "Directrice des Systèmes d'Information", company: "Institution publique, Madagascar", tag: "Traitement de données", color: "#10B981", gradientColor: "from-emerald-500/20 to-teal-600/10", context: "home", order: 2 },
-];
-
-export const testimonialsAbout = [
-  { quote: "En 18 mois de partenariat, Label Technology est devenu une extension naturelle de notre équipe. Réactivité, qualité, transparence — c'est rare de trouver les trois ensemble.", author: "François D.", role: "CEO", company: "Startup B2B, Paris", tag: null, color: null, gradientColor: null, context: "about", order: 0 },
-  { quote: "On a commencé par un projet de développement web, puis on leur a confié notre call center, puis notre SEO. Aujourd'hui ils gèrent 3 pôles pour nous. C'est la définition d'un partenaire.", author: "Marie-Claire V.", role: "COO", company: "Groupe retail, Lyon", tag: null, color: null, gradientColor: null, context: "about", order: 1 },
-  { quote: "La combinaison de talent local et standards européens qu'ils proposent est vraiment unique en Afrique de l'Est. On les recommande systématiquement à notre réseau.", author: "Dr. Andry R.", role: "Président", company: "Association Tech Madagascar", tag: null, color: null, gradientColor: null, context: "about", order: 2 },
+export const testimonials = [
+  { quote: "On cherchait un call center francophone fiable pour nos campagnes B2B en France. On a trouvé une équipe qui comprend nos prospects mieux que certains de nos propres commerciaux. Taux de prise de RDV en hausse de 40% dès le deuxième mois.", author: "François B.", role: "Directeur Commercial", company: "PME industrielle, Lyon", tag: "Call Center", color: "#D4AF37", gradient_color: "from-amber-500/20 to-yellow-600/10", context: "home", order: 0 },
+  { quote: "Livraison en 6 semaines, dans les délais et dans le budget. Le code est propre, la documentation complète. On a déjà démarré un deuxième projet — cette fois plus ambitieux.", author: "Hery R.", role: "Directeur Général", company: "Groupe éducatif, Antananarivo", tag: "Développement Web", color: "#3B82F6", gradient_color: "from-blue-500/20 to-blue-600/10", context: "home", order: 1 },
+  { quote: "80 000 documents numérisés en trois mois, zéro interruption de service. Chaque fichier est indexé, searchable, conforme RGPD. Label Technology a transformé une contrainte en vrai avantage opérationnel.", author: "Isabelle M.", role: "Directrice des Systèmes d'Information", company: "Institution publique, Madagascar", tag: "Traitement de données", color: "#10B981", gradient_color: "from-emerald-500/20 to-teal-600/10", context: "home", order: 2 },
+  { quote: "En 18 mois de partenariat, Label Technology est devenu une extension naturelle de notre équipe. Réactivité, qualité, transparence — c'est rare de trouver les trois ensemble.", author: "François D.", role: "CEO", company: "Startup B2B, Paris", tag: null, color: null, gradient_color: null, context: "about", order: 0 },
+  { quote: "On a commencé par un projet de développement web, puis on leur a confié notre call center, puis notre SEO. Aujourd'hui ils gèrent 3 pôles pour nous. C'est la définition d'un partenaire.", author: "Marie-Claire V.", role: "COO", company: "Groupe retail, Lyon", tag: null, color: null, gradient_color: null, context: "about", order: 1 },
+  { quote: "La combinaison de talent local et standards européens qu'ils proposent est vraiment unique en Afrique de l'Est. On les recommande systématiquement à notre réseau.", author: "Dr. Andry R.", role: "Président", company: "Association Tech Madagascar", tag: null, color: null, gradient_color: null, context: "about", order: 2 },
 ];

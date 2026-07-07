@@ -1,25 +1,33 @@
 import Link from "next/link";
-import { prisma } from "@/lib/db";
+import { countRows } from "@/lib/supabase";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Boxes, Briefcase, Users, Newspaper, MessageSquareQuote, Settings2 } from "lucide-react";
+import { Boxes, Briefcase, Users, Newspaper, MessageSquareQuote, Settings2, Inbox } from "lucide-react";
 
 export default async function AdminDashboard() {
-  const [servicesCount, projectsCount, jobsCount, postsCount, testimonialsCount] =
-    await Promise.all([
-      prisma.service.count(),
-      prisma.project.count(),
-      prisma.jobOffer.count(),
-      prisma.blogPost.count(),
-      prisma.testimonial.count(),
-    ]);
+  const [
+    servicesCount,
+    projectsCount,
+    jobsCount,
+    postsCount,
+    testimonialsCount,
+    applicationsCount,
+  ] = await Promise.all([
+    countRows("services"),
+    countRows("projects"),
+    countRows("job_offers"),
+    countRows("blog_posts"),
+    countRows("testimonials"),
+    countRows("job_applications"),
+  ]);
 
   const sections = [
     { href: "/setting/services", label: "Services", icon: Boxes, count: servicesCount, ready: true },
-    { href: "/setting/projects", label: "Projets", icon: Briefcase, count: projectsCount, ready: false },
-    { href: "/setting/jobs", label: "Emplois", icon: Users, count: jobsCount, ready: false },
-    { href: "/setting/blog", label: "Blog", icon: Newspaper, count: postsCount, ready: false },
-    { href: "/setting/testimonials", label: "Témoignages", icon: MessageSquareQuote, count: testimonialsCount, ready: false },
+    { href: "/setting/projects", label: "Projets", icon: Briefcase, count: projectsCount, ready: true },
+    { href: "/setting/jobs", label: "Offres d'emploi", icon: Users, count: jobsCount, ready: true },
+    { href: "/setting/jobs/candidatures", label: "Candidatures", icon: Inbox, count: applicationsCount, ready: true },
+    { href: "/setting/blog", label: "Blog", icon: Newspaper, count: postsCount, ready: true },
+    { href: "/setting/testimonials", label: "Témoignages", icon: MessageSquareQuote, count: testimonialsCount, ready: true },
     { href: "/setting/content", label: "Contenu du site", icon: Settings2, count: null, ready: false },
   ];
 

@@ -5,14 +5,16 @@ import Reveal from "@/components/shared/Reveal";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import { prisma } from "@/lib/db";
+import { supabase, type Service } from "@/lib/supabase";
 import { getIcon } from "@/lib/icons";
 
 export default async function ServicesGrid() {
-  const services = await prisma.service.findMany({
-    where: { published: true },
-    orderBy: { order: "asc" },
-  });
+  const { data: services } = await supabase
+    .from("services")
+    .select("*")
+    .eq("published", true)
+    .order("order", { ascending: true })
+    .returns<Service[]>();
 
   return (
     <section className="relative py-10 px-6 grid-bg overflow-hidden bg-gray-100 sm:py-16 lg:py-20">
@@ -47,7 +49,7 @@ export default async function ServicesGrid() {
 
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {services.map((s, i) => {
+          {(services ?? []).map((s, i) => {
             const IconComponent = getIcon(s.icon);
             return (
               <Reveal key={s.id} delay={(i % 4) * 0.08} className="h-full">
@@ -58,7 +60,7 @@ export default async function ServicesGrid() {
                 >
                   {/* Photo de fond (comme l'arc du Hero) */}
                   <Image
-                    src={s.imageUrl}
+                    src={s.image_url}
                     alt={s.tag}
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 16vw"
@@ -107,7 +109,7 @@ export default async function ServicesGrid() {
                     </p>
 
                     <h3 className="text-xl md:text-2xl font-bold leading-tight text-white">
-                      {s.headline} <span>{s.headlineAccent}</span>
+                      {s.headline} <span>{s.headline_accent}</span>
                     </h3>
 
                     <div className="flex-1 pt-4">

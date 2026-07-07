@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import CtaSection from "@/components/home/CtaSection";
 import ProjetsList from "@/components/projets/ProjetsList";
+import { supabase, type Project } from "@/lib/supabase";
 
 export const metadata: Metadata = {
   title: "Nos Réalisations — Projets web, call center, marketing, ERP",
@@ -8,7 +9,15 @@ export const metadata: Metadata = {
     "Découvrez les projets réalisés par Label Technology : développement web & mobile, call center B2B, marketing digital, digitalisation. 13 réalisations détaillées avec métriques.",
 };
 
-export default function ProjetsPage() {
+export default async function ProjetsPage() {
+  const { data } = await supabase
+    .from("projects")
+    .select("*")
+    .eq("published", true)
+    .order("order", { ascending: true })
+    .returns<Project[]>();
+  const projets = data ?? [];
+
   return (
     <main>
       {/* Hero */}
@@ -49,13 +58,13 @@ export default function ProjetsPage() {
             </span>
           </h1>
           <p className="text-white/55 text-lg font-light max-w-xl animate-fadeup-d2">
-            13 projets sélectionnés. Filtrez par domaine. Chaque chiffre est
+            {projets.length} projets sélectionnés. Filtrez par domaine. Chaque chiffre est
             mesuré, pas estimé.
           </p>
         </div>
       </section>
 
-      <ProjetsList />
+      <ProjetsList projets={projets} />
       <CtaSection />
     </main>
   );

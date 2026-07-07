@@ -11,101 +11,6 @@ type Projet = {
   metrics: string[];
 };
 
-const PROJETS: Projet[] = [
-  {
-    tag: "DÉVELOPPEMENT",
-    title: "Application de gestion de boutique cosmétique & habillement",
-    desc: "Solution de gestion de magasin en temps réel pour une boutique de cosmétique et prêt-à-porter. Gestion des stocks, des commerçants, transferts de produits par employé et chat intégré.",
-    metrics: [
-      "Flux de stock en temps réel",
-      "Chat client intégré",
-      "Gestion multi-commerçants",
-    ],
-  },
-  {
-    tag: "CALL CENTER",
-    title: "Prospection B2B France — Secteur Immobilier",
-    desc: "Campagne de qualification de fichiers et prise de rendez-vous pour un réseau d'agences immobilières français. 3 mois, 12 agents dédiés, 400+ RDV qualifiés livrés.",
-    metrics: ["400+ RDV qualifiés", "12 agents", "3 mois"],
-  },
-  {
-    tag: "CALL CENTER",
-    title: "Support client multicanal — E-commerce FR",
-    desc: "Gestion des appels entrants, emails et chat pour une boutique en ligne française. 98% de satisfaction client mesuré sur 6 mois.",
-    metrics: ["98% satisfaction", "8 agents", "6 mois"],
-  },
-  {
-    tag: "DÉVELOPPEMENT",
-    title: "Plateforme de gestion RH — Secteur Education",
-    desc: "Application web de gestion du personnel pour un réseau d'écoles privées à Madagascar. 500 utilisateurs, gestion des contrats, paie et congés.",
-    metrics: ["500 utilisateurs", "React + Node.js", "6 mois"],
-  },
-  {
-    tag: "DÉVELOPPEMENT",
-    title: "Application mobile logistique iOS/Android",
-    desc: "Application React Native de suivi de flotte et gestion des livraisons. Synchronisation temps réel, offline-first, 200 chauffeurs.",
-    metrics: ["200 utilisateurs", "React Native", "4 mois"],
-  },
-  {
-    tag: "MARKETING",
-    title: "Refonte SEO & campagnes Google Ads",
-    desc: "Audit SEO complet, refonte de la stratégie de contenu et gestion de campagnes Google Ads pour un e-commerçant français. +180% de trafic organique.",
-    metrics: ["+180% trafic", "+45% conversions", "6 mois"],
-  },
-  {
-    tag: "MARKETING",
-    title: "Stratégie social media B2B — LinkedIn",
-    desc: "Community management et stratégie de contenu LinkedIn pour un cabinet de conseil. Audience triplée, 15 leads qualifiés par mois.",
-    metrics: ["×3 audience", "15 leads/mois", "4 mois"],
-  },
-  {
-    tag: "DIGITALISATION",
-    title: "Déploiement ERP Odoo — PME Madagascar",
-    desc: "Migration d'un système papier vers Odoo pour une entreprise de distribution. Comptabilité, stocks, achats et ventes centralisés. Formation de 30 employés.",
-    metrics: ["30 utilisateurs", "Odoo", "4 mois"],
-  },
-  {
-    tag: "DIGITALISATION",
-    title: "SIRH sur mesure — Réseau d'hôtels",
-    desc: "Logiciel de gestion RH adapté au droit malgache pour un groupe hôtelier. Bulletins de paie, gestion des plannings, suivi des absences.",
-    metrics: ["250 employés", "Sur mesure", "5 mois"],
-  },
-  {
-    tag: "DONNÉES",
-    title: "Traitement & enrichissement base CRM",
-    desc: "Nettoyage et enrichissement d'une base de 50 000 contacts pour une société de marketing direct. Déduplication, vérification emails, enrichissement secteur.",
-    metrics: ["50 000 contacts", "98% précision", "3 semaines"],
-  },
-  {
-    tag: "DONNÉES",
-    title: "Numérisation archives documentaires",
-    desc: "12 ans d'archives papier numérisés, indexés et classés en GED pour un cabinet notarial. Recherche full-text, conformité RGPD.",
-    metrics: ["80 000 docs", "GED complète", "2 mois"],
-  },
-  {
-    tag: "INFRASTRUCTURE",
-    title: "Équipement réseau bureau — Antananarivo",
-    desc: "Installation complète réseau WiFi, câblage structuré, NAS et postes de travail pour un cabinet de 25 personnes.",
-    metrics: ["25 postes", "Infrastructure complète", "2 semaines"],
-  },
-  {
-    tag: "INFRASTRUCTURE",
-    title: "Infrastructure réseau ONG internationale",
-    desc: "Modernisation complète de l'infrastructure réseau d'une ONG internationale, 3 sites à Antananarivo. Zéro downtime pendant les travaux.",
-    metrics: ["3 sites", "Cisco", "3 semaines"],
-  },
-];
-
-const TAGS = [
-  "TOUS",
-  "CALL CENTER",
-  "DÉVELOPPEMENT",
-  "MARKETING",
-  "DIGITALISATION",
-  "DONNÉES",
-  "INFRASTRUCTURE",
-];
-
 const TAG_META: Record<string, { color: string; bg: string; border: string }> =
   {
     "CALL CENTER": {
@@ -140,11 +45,13 @@ const TAG_META: Record<string, { color: string; bg: string; border: string }> =
     },
   };
 
-export default function ProjetsList() {
+export default function ProjetsList({ projets }: { projets: Projet[] }) {
   const [active, setActive] = useState("TOUS");
 
+  const TAGS = ["TOUS", ...Array.from(new Set(projets.map((p) => p.tag)))];
+
   const filtered =
-    active === "TOUS" ? PROJETS : PROJETS.filter((p) => p.tag === active);
+    active === "TOUS" ? projets : projets.filter((p) => p.tag === active);
 
   return (
     <section className="py-20 px-6" style={{ backgroundColor: "var(--paper)" }}>
@@ -201,8 +108,8 @@ export default function ProjetsList() {
             const meta = TAG_META[tag];
             const count =
               tag === "TOUS"
-                ? PROJETS.length
-                : PROJETS.filter((p) => p.tag === tag).length;
+                ? projets.length
+                : projets.filter((p) => p.tag === tag).length;
 
             return (
               <button

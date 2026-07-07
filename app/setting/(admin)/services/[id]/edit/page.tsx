@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { prisma } from "@/lib/db";
+import { supabase, type Service } from "@/lib/supabase";
 import ServiceForm from "../../ServiceForm";
 import { updateService } from "../../actions";
 
@@ -9,7 +9,12 @@ export default async function EditServicePage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const service = await prisma.service.findUnique({ where: { id } });
+  const { data: service } = await supabase
+    .from("services")
+    .select("*")
+    .eq("id", id)
+    .returns<Service[]>()
+    .maybeSingle();
   if (!service) notFound();
 
   const boundUpdate = updateService.bind(null, service.id);
@@ -25,11 +30,11 @@ export default async function EditServicePage({
             slug: service.slug,
             tag: service.tag,
             headline: service.headline,
-            headlineAccent: service.headlineAccent,
+            headlineAccent: service.headline_accent,
             desc: service.desc,
             color: service.color,
             icon: service.icon,
-            imageUrl: service.imageUrl,
+            imageUrl: service.image_url,
             badge: service.badge,
             items: service.items,
             featured: service.featured,

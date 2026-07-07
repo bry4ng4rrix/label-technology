@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Mail } from "lucide-react";
 import JobsList from "@/components/recru/JobsList";
+import { supabase, type JobOffer } from "@/lib/supabase";
 
 export const metadata: Metadata = {
   title: "Recrutement — Offres d'emploi Label Technology",
@@ -36,7 +37,15 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RecruPage() {
+export default async function RecruPage() {
+  const { data } = await supabase
+    .from("job_offers")
+    .select("*")
+    .eq("published", true)
+    .order("order", { ascending: true })
+    .returns<JobOffer[]>();
+  const offres = data ?? [];
+
   return (
     <main>
       {/* Hero */}
@@ -84,7 +93,7 @@ export default function RecruPage() {
         </div>
       </section>
 
-      <JobsList />
+      <JobsList offres={offres} />
 
       {/* CTA candidature spontanée */}
       <section className="relative py-28 px-6 overflow-hidden bg-[#080D1A]">

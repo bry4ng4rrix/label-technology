@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { prisma } from "@/lib/db";
+import { supabase, type Service } from "@/lib/supabase";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -14,7 +14,12 @@ import { Plus, Pencil } from "lucide-react";
 import DeleteServiceButton from "./DeleteServiceButton";
 
 export default async function ServicesAdminPage() {
-  const services = await prisma.service.findMany({ orderBy: { order: "asc" } });
+  const { data } = await supabase
+    .from("services")
+    .select("*")
+    .order("order", { ascending: true })
+    .returns<Service[]>();
+  const services = data ?? [];
 
   return (
     <div>
@@ -55,7 +60,7 @@ export default async function ServicesAdminPage() {
                 </TableCell>
                 <TableCell className="text-sm text-muted-foreground">{s.tag}</TableCell>
                 <TableCell className="font-medium">
-                  {s.headline} {s.headlineAccent}
+                  {s.headline} {s.headline_accent}
                 </TableCell>
                 <TableCell className="space-x-1">
                   {s.featured && <Badge variant="secondary">Mis en avant</Badge>}

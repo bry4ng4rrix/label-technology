@@ -6,6 +6,7 @@ import MiniTestimonials from "@/components/shared/MiniTestimonials";
 import Reveal from "@/components/shared/Reveal";
 
 import GrowthChart from "@/components/apropos/GrowthChartWrapper";
+import { supabase, type Testimonial } from "@/lib/supabase";
 
 export const metadata: Metadata = {
   title: "À Propos — Label Technology, fondée en 2022 à Antananarivo",
@@ -88,30 +89,6 @@ const EQUIPE = [
   },
 ];
 
-const TEMOIGNAGES_CLIENTS = [
-  {
-    quote:
-      "En 18 mois de partenariat, Label Technology est devenu une extension naturelle de notre équipe. Réactivité, qualité, transparence — c'est rare de trouver les trois ensemble.",
-    author: "François D.",
-    role: "CEO",
-    company: "Startup B2B, Paris",
-  },
-  {
-    quote:
-      "On a commencé par un projet de développement web, puis on leur a confié notre call center, puis notre SEO. Aujourd'hui ils gèrent 3 pôles pour nous. C'est la définition d'un partenaire.",
-    author: "Marie-Claire V.",
-    role: "COO",
-    company: "Groupe retail, Lyon",
-  },
-  {
-    quote:
-      "La combinaison de talent local et standards européens qu'ils proposent est vraiment unique en Afrique de l'Est. On les recommande systématiquement à notre réseau.",
-    author: "Dr. Andry R.",
-    role: "Président",
-    company: "Association Tech Madagascar",
-  },
-];
-
 const VALEURS = [
   {
     num: "01",
@@ -161,7 +138,14 @@ const jsonLd = {
   },
 };
 
-export default function AProposPage() {
+export default async function AProposPage() {
+  const { data: testimonials } = await supabase
+    .from("testimonials")
+    .select("*")
+    .eq("context", "about")
+    .eq("published", true)
+    .order("order", { ascending: true })
+    .returns<Testimonial[]>();
   return (
     <main>
       <script
@@ -391,7 +375,7 @@ export default function AProposPage() {
         </div>
       </section> */}
 
-      <MiniTestimonials items={TEMOIGNAGES_CLIENTS} />
+      <MiniTestimonials items={testimonials ?? []} />
       <CtaSection />
     </main>
   );

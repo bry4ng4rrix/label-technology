@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { getSession } from "@/lib/auth";
 import { logout } from "@/app/setting/actions/auth";
 import { Button } from "@/components/ui/button";
+import ThemeToggle from "@/components/theme-toggle";
 import {
   LayoutDashboard,
   Boxes,
@@ -11,6 +12,7 @@ import {
   Newspaper,
   MessageSquareQuote,
   Settings2,
+  Inbox,
   LogOut,
 } from "lucide-react";
 
@@ -18,7 +20,8 @@ const NAV = [
   { href: "/setting", label: "Dashboard", icon: LayoutDashboard, exact: true },
   { href: "/setting/services", label: "Services", icon: Boxes },
   { href: "/setting/projects", label: "Projets", icon: Briefcase },
-  { href: "/setting/jobs", label: "Emplois", icon: Users },
+  { href: "/setting/jobs", label: "Offres d'emploi", icon: Users },
+  { href: "/setting/jobs/candidatures", label: "Candidatures", icon: Inbox },
   { href: "/setting/blog", label: "Blog", icon: Newspaper },
   { href: "/setting/testimonials", label: "Témoignages", icon: MessageSquareQuote },
   { href: "/setting/content", label: "Contenu", icon: Settings2 },
@@ -34,9 +37,12 @@ export default async function AdminLayout({
   return (
     <div className="flex min-h-screen bg-muted/20">
       <aside className="flex w-60 shrink-0 flex-col border-r bg-card">
-        <div className="border-b p-5">
-          <p className="text-sm font-semibold">Label Technology</p>
-          <p className="text-xs text-muted-foreground">Administration</p>
+        <div className="flex items-center justify-between border-b p-5">
+          <div>
+            <p className="text-sm font-semibold">Label Technology</p>
+            <p className="text-xs text-muted-foreground">Administration</p>
+          </div>
+          <ThemeToggle />
         </div>
         <nav className="flex-1 space-y-1 p-3">
           {NAV.map((item) => (

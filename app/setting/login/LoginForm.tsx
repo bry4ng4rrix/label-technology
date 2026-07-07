@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { AlertCircle, Loader2, Lock } from "lucide-react";
+import ThemeToggle from "@/components/theme-toggle";
 
 const initialState: LoginState = { status: "idle" };
 
@@ -30,7 +31,10 @@ export default function LoginForm() {
   const [state, action] = useActionState(login, initialState);
 
   return (
-    <div className="w-full max-w-sm rounded-xl border bg-card p-8 shadow-lg">
+    <div className="relative w-full max-w-sm rounded-xl border bg-card p-8 shadow-lg">
+      <div className="absolute right-3 top-3">
+        <ThemeToggle />
+      </div>
       <div className="mb-6 flex flex-col items-center gap-3 text-center">
         <div className="flex h-12 w-12 items-center justify-center rounded-full bg-muted">
           <Lock className="h-5 w-5" />

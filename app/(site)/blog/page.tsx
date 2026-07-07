@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   Card,
   CardContent,
@@ -7,60 +8,28 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Reveal from "@/components/shared/Reveal";
+import { supabase, type BlogPost } from "@/lib/supabase";
 
-const ARTICLES = [
-  {
-    tag: "CALL CENTER",
-    date: "Mai 2026",
-    title:
-      "Externaliser son call center à Madagascar : ce que personne ne vous dit",
-    excerpt:
-      "Madagascar n'est pas le premier pays qui vient à l'esprit pour l'externalisation. C'est exactement pourquoi les entreprises qui y vont en premier gardent un avantage compétitif durable.",
-    readtime: "5 min",
-  },
-  {
-    tag: "DÉVELOPPEMENT",
-    date: "Avril 2026",
-    title: "Next.js 14 : pourquoi on a migré tous nos projets clients dessus",
-    excerpt:
-      "App Router, Server Components, performances Core Web Vitals. Retour d'expérience après 12 mois de projets en production sur Next.js 14.",
-    readtime: "8 min",
-  },
-  {
-    tag: "DIGITALISATION",
-    date: "Avril 2026",
-    title: "ERP sur mesure vs Odoo : comment choisir pour une PME ?",
-    excerpt:
-      "La question revient sur chaque projet de digitalisation. Voici notre grille de décision après avoir déployé les deux solutions pour des dizaines d'entreprises.",
-    readtime: "6 min",
-  },
-  {
-    tag: "MARKETING",
-    date: "Mars 2026",
-    title: "SEO pour entreprises B2B : les 3 erreurs qui coûtent cher",
-    excerpt:
-      "Le SEO B2B n'obéit pas aux mêmes règles que le B2C. Volume faible, intentions précises, cycle long. Voici ce qu'on ne corrige plus chez nos clients.",
-    readtime: "4 min",
-  },
-  {
-    tag: "DONNÉES",
-    date: "Mars 2026",
-    title: "Comment nettoyer une base CRM de 50 000 contacts en 3 semaines",
-    excerpt:
-      "Déduplication, validation emails, enrichissement sectoriel. Le processus exact qu'on a utilisé pour un client marketing direct.",
-    readtime: "7 min",
-  },
-  {
-    tag: "STRATÉGIE",
-    date: "Février 2026",
-    title: "Pourquoi Antananarivo devient le hub tech de l'océan Indien",
-    excerpt:
-      "Universités techniques, vivier de talents bilingues, coûts compétitifs. Les données derrière la montée en puissance de la tech malgache.",
-    readtime: "5 min",
-  },
-];
+export default async function BlogPage() {
+  const { data } = await supabase
+    .from("blog_posts")
+    .select("*")
+    .eq("published", true)
+    .order("published_at", { ascending: false })
+    .returns<BlogPost[]>();
 
-export default function BlogPage() {
+  const ARTICLES = (data ?? []).map((p) => ({
+    slug: p.slug,
+    tag: p.tag,
+    date: new Date(p.published_at).toLocaleDateString("fr-FR", {
+      month: "long",
+      year: "numeric",
+    }),
+    title: p.title,
+    excerpt: p.excerpt,
+    readtime: p.readtime,
+  }));
+
   return (
     <main>
       {/* Hero */}
@@ -100,46 +69,53 @@ export default function BlogPage() {
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {ARTICLES.map((a, i) => (
-              <Reveal key={i} delay={(i % 3) * 0.1} className="h-full">
-                <Card className="flex flex-col h-full bg-card border-border">
-                  <CardHeader className="pb-3">
-                    <div className="flex items-center justify-between mb-2">
-                      <Badge
-                        variant="secondary"
-                        className="text-[10px] px-2 py-0.5 rounded-sm"
-                        style={{
-                          backgroundColor: "rgba(30,63,171,0.08)",
-                          color: "var(--brand)",
-                        }}
+              <Reveal key={a.slug} delay={(i % 3) * 0.1} className="h-full">
+                <Link href={`/blog/${a.slug}`} className="block h-full">
+                  <Card className="flex flex-col h-full bg-card border-border transition-shadow hover:shadow-md">
+                    <CardHeader className="pb-3">
+                      <div className="flex items-center justify-between mb-2">
+                        <Badge
+                          variant="secondary"
+                          className="text-[10px] px-2 py-0.5 rounded-sm"
+                          style={{
+                            backgroundColor: "rgba(30,63,171,0.08)",
+                            color: "var(--brand)",
+                          }}
+                        >
+                          {a.tag}
+                        </Badge>
+                        <span className="text-[11px] text-muted-foreground">
+                          {a.date} · {a.readtime}
+                        </span>
+                      </div>
+                      <CardTitle className="font-display text-lg leading-snug text-foreground">
+                        {a.title}
+                      </CardTitle>
+                    </CardHeader>
+
+                    <CardContent className="flex-1 pt-0">
+                      <p className="text-sm font-light leading-relaxed text-muted-foreground">
+                        {a.excerpt}
+                      </p>
+                    </CardContent>
+
+                    <CardFooter>
+                      <span
+                        className="text-sm font-medium"
+                        style={{ color: "var(--brand)" }}
                       >
-                        {a.tag}
-                      </Badge>
-                      <span className="text-[11px] text-muted-foreground">
-                        {a.date} · {a.readtime}
+                        Lire l&apos;article →
                       </span>
-                    </div>
-                    <CardTitle className="font-display text-lg leading-snug text-foreground">
-                      {a.title}
-                    </CardTitle>
-                  </CardHeader>
-
-                  <CardContent className="flex-1 pt-0">
-                    <p className="text-sm font-light leading-relaxed text-muted-foreground">
-                      {a.excerpt}
-                    </p>
-                  </CardContent>
-
-                  <CardFooter>
-                    <span
-                      className="text-sm font-medium"
-                      style={{ color: "var(--brand)" }}
-                    >
-                      Lire l&apos;article →
-                    </span>
-                  </CardFooter>
-                </Card>
+                    </CardFooter>
+                  </Card>
+                </Link>
               </Reveal>
             ))}
+            {ARTICLES.length === 0 && (
+              <p className="col-span-full py-10 text-center text-muted-foreground">
+                Aucun article pour le moment.
+              </p>
+            )}
           </div>
         </div>
       </section>
