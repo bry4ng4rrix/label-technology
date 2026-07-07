@@ -1,0 +1,111 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum TagKind {
+  PROJECT
+  JOB
+}
+
+model Service {
+  id             String   @id @default(cuid())
+  slug           String   @unique
+  order          Int      @default(0)
+  tag            String
+  headline       String
+  headlineAccent String
+  desc           String
+  items          String[]
+  featured       Boolean  @default(false)
+  badge          String?
+  color          String
+  icon           String
+  imageUrl       String
+  published      Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model Project {
+  id        String   @id @default(cuid())
+  tag       String
+  title     String
+  desc      String
+  metrics   String[]
+  order     Int      @default(0)
+  published Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model JobOffer {
+  id        String   @id @default(cuid())
+  tag       String
+  title     String
+  contrat   String
+  lieu      String
+  niveau    String
+  desc      String
+  missions  String[]
+  urgent    Boolean  @default(false)
+  order     Int      @default(0)
+  published Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model BlogPost {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  tag         String
+  publishedAt DateTime @default(now())
+  title       String
+  excerpt     String
+  body        String?  @db.Text
+  readtime    String
+  published   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Testimonial {
+  id            String   @id @default(cuid())
+  quote         String   @db.Text
+  author        String
+  role          String
+  company       String
+  tag           String?
+  color         String?
+  gradientColor String?
+  context       String   @default("home")
+  order         Int      @default(0)
+  published     Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model TagMeta {
+  id     String  @id @default(cuid())
+  kind   TagKind
+  name   String
+  color  String
+  bg     String
+  border String
+  order  Int     @default(0)
+
+  @@unique([kind, name])
+}
+
+model Setting {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  group     String
+  label     String
+  value     Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

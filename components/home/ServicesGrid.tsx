@@ -1,154 +1,19 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import Aurora from "@/components/Aurora";
 import Reveal from "@/components/shared/Reveal";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  Code2,
-  Phone,
-  TrendingUp,
-  RefreshCw,
-  Database,
-  Server,
-  DollarSign,
-  ArrowRight,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { prisma } from "@/lib/db";
+import { getIcon } from "@/lib/icons";
 
-const SERVICES = [
-  {
-    id: "dev",
-    href: "/services/dev",
-    tag: "Développement",
-    headline: "On ne livre pas du code.",
-    headlineAccent: "On livre de la croissance.",
-    desc: "Applications web & mobile sur mesure, ERP, CRM, plateformes métier. Du prototype au système d'information complet.",
-    items: [
-      "Sites & e-commerce",
-      "Apps métier sur mesure",
-      "Mobile iOS & Android",
-      "APIs & intégrations",
-    ],
-    featured: false,
-    color: "#3B82F6",
-    icon: Code2,
-    src: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=900&fit=crop&q=80",
-  },
-  {
-    id: "callcenter",
-    href: "/services/callcenter",
-    tag: "Call Center",
-    headline: "50 voix.",
-    headlineAccent: "Votre support permanent.",
-    desc: "Prospection B2B, qualification de fichiers, support client bilingue FR/EN depuis Antananarivo.",
-    items: [
-      "Prospection B2B",
-      "Qualification de fichiers",
-      "Support entrant & sortant",
-      "Reporting temps réel",
-    ],
-    featured: false,
-    badge: "50 postes",
-    color: "#F59E0B",
-    icon: Phone,
-    src: "/images/callcenter-fetra.png",
-  },
-  {
-    id: "marketing",
-    href: "/services/marketing",
-    tag: "Marketing Digital",
-    headline: "Votre audience existe déjà.",
-    headlineAccent: "On va la trouver.",
-    desc: "SEO, SEA, réseaux sociaux, analytics. Une stratégie orientée résultats mesurables.",
-    items: [
-      "SEO / SEA",
-      "Réseaux sociaux",
-      "Email marketing",
-      "Analytics & reporting",
-    ],
-    featured: false,
-    color: "#EC4899",
-    icon: TrendingUp,
-    src: "/images/services/mark.jpg",
-  },
-  {
-    id: "digital",
-    href: "/services/digital",
-    tag: "Digitalisation",
-    headline: "Vos processus papier",
-    headlineAccent: "coûtent de l'argent.",
-    desc: "Audit, conseil, déploiement ERP/CRM, formation équipes. Transformation numérique complète.",
-    items: [
-      "Audit & conseil",
-      "Déploiement ERP/CRM",
-      "Automatisation (RPA)",
-      "Formation & conduite",
-    ],
-    featured: false,
-    color: "#10B981",
-    icon: RefreshCw,
-    src: "/images/services/digit.jpg",
-  },
+export default async function ServicesGrid() {
+  const services = await prisma.service.findMany({
+    where: { published: true },
+    orderBy: { order: "asc" },
+  });
 
-  {
-    id: "data",
-    href: "/services/data",
-    tag: "Traitement de données",
-    headline: "Vos données dorment.",
-    headlineAccent: "On les réveille.",
-    desc: "Numérisation, saisie, nettoyage, structuration et analyse. Physique comme numérique.",
-    items: [
-      "Numérisation documents",
-      "Nettoyage & déduplication",
-      "Structuration & migration",
-      "Visualisation & analyse",
-    ],
-    featured: false,
-    color: "var(--brand)",
-    icon: Database,
-    src: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=900&fit=crop&q=80",
-  },
-  {
-    id: "materiel",
-    href: "/services/materiel",
-    tag: "Matériel IT",
-    headline: "L'infrastructure",
-    headlineAccent: "qui tient la route.",
-    desc: "Ordinateurs, serveurs, réseau, périphériques. Conseil, livraison et installation B2B sur Antananarivo et régions.",
-    items: [
-      "Postes de travail & laptops",
-      "Serveurs & NAS",
-      "Réseau (Cisco, Ubiquiti)",
-      "Installation & support",
-    ],
-    featured: false,
-    color: "#06B6D4",
-    icon: Server,
-    src: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&h=900&fit=crop&q=80",
-  },
-  {
-    id: "comptabilite",
-    href: "/services/comptabilite",
-    tag: "Comptabilité",
-    headline: "Vos chiffres,",
-    headlineAccent: "enfin lisibles.",
-    desc: "Saisie comptable, rapprochements bancaires, reporting financier mensuel. Des décisions éclairées, fondées sur des données fiables.",
-    items: [
-      "Saisie comptable & TVA",
-      "Rapprochements bancaires",
-      "Reporting mensuel",
-      "Tableaux de bord dirigeants",
-    ],
-    featured: false,
-    color: "#EF4444",
-    icon: DollarSign,
-    src: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&h=900&fit=crop&q=80",
-  },
-];
-
-export default function ServicesGrid() {
   return (
     <section className="relative py-10 px-6 grid-bg overflow-hidden bg-gray-100 sm:py-16 lg:py-20">
       {/* Aurora background */}
@@ -182,18 +47,18 @@ export default function ServicesGrid() {
 
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {SERVICES.map((s, i) => {
-            const IconComponent = s.icon;
+          {services.map((s, i) => {
+            const IconComponent = getIcon(s.icon);
             return (
               <Reveal key={s.id} delay={(i % 4) * 0.08} className="h-full">
                 <Link
-                  href={s.href}
+                  href={`/services/${s.slug}`}
                   className="group service-card relative block h-full rounded-xl overflow-hidden ring-1 ring-white/10 bg-slate-950 shadow-lg transition-all duration-300 ease-out hover:-translate-y-2 hover:ring-white/25
                 shadow-sky-200 hover:shadow-xl"
                 >
                   {/* Photo de fond (comme l'arc du Hero) */}
                   <Image
-                    src={s.src}
+                    src={s.imageUrl}
                     alt={s.tag}
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 16vw"

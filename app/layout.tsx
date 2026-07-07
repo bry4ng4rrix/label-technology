@@ -4,10 +4,6 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
-import { ThemeProvider } from "next-themes";
-
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800"],
@@ -117,18 +113,7 @@ export default function RootLayout({
       className={cn(jakarta.variable, rytech.variable)}
       suppressHydrationWarning
     >
-      <body className="antialiased font-sans">
-        <ThemeProvider
-          attribute="class"
-          enableSystem={false}
-          defaultTheme="light"
-          storageKey="label-theme"
-        >
-          <Navbar />
-          {children}
-          <Footer />
-        </ThemeProvider>
-      </body>
+      <body className="antialiased font-sans">{children}</body>
     </html>
   );
 }

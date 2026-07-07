@@ -7,6 +7,8 @@ import Process from "@/components/home/Process";
 import Testimonials from "@/components/home/Testimonials";
 import CtaSection from "@/components/home/CtaSection";
 
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: "Label Technology — Votre Partenaire Technologique Premium",
   description:
