@@ -35,13 +35,13 @@ const HeroSplit = () => {
       <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         {/* Colonne texte (gauche) */}
         <div>
-          <Badge className="animate-fadeup-d1 inline-flex items-center gap-2 text-xs md:text-sm font-semibold text-slate-800 bg-white px-4 py-1.5 rounded-full w-fit mb-6">
+          <p className="animate-fadeup-d1 inline-flex items-center gap-2 text-xs md:text-sm font-semibold text-slate-800 bg-white px-4 py-1.5 rounded-full w-fit mb-6">
             <span
               className="h-1.5 w-1.5 rounded-full"
               style={{ backgroundColor: "var(--gold)" }}
             />
             Label Technology
-          </Badge>
+          </p>
 
           <h1
             className="animate-fadeup-d2 font-display mb-5 text-white"
