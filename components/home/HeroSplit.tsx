@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { Typewriter } from "react-simple-typewriter";
 import DotField from "@/components/DotField";
 
 const STATS = [
@@ -31,7 +32,7 @@ const HeroSplit = () => {
         />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-10 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         {/* Colonne texte (gauche) */}
         <div>
           <p className="animate-fadeup-d1 inline-flex items-center gap-2 text-xs md:text-sm font-semibold text-slate-800 bg-white px-4 py-1.5 rounded-full w-fit mb-6">
@@ -48,8 +49,19 @@ const HeroSplit = () => {
           >
             Votre vision, notre expertise : l&apos;alliance qui transforme le{" "}
             <span className="bg-linear-to-r from-blue-500 to-emerald-500 bg-clip-text text-transparent">
-              potentiel en performance.
-            </span>{" "}
+              <Typewriter
+                words={[
+                  "potentiel en performance.",
+                  "potentiel en performance.",
+                  "potentiel en performance.",
+                  "potentiel en performance.",
+                ]}
+                loop={1}
+                typeSpeed={50}
+                cursorStyle="|"
+                cursorColor="#10B981"
+              />
+            </span>
           </h1>
 
           <p className="animate-fadeup-d3 text-sm md:text-base mb-9 max-w-xl text-gray-300">
@@ -80,60 +92,70 @@ const HeroSplit = () => {
         </div>
 
         {/* Colonne photos (droite) */}
-        <div className="animate-fadeup-d5 relative h-105 sm:h-120 md:h-140">
-          {/* Décor pointillé */}
-          <div
-            className="pointer-events-none absolute -top-6 right-8 h-28 w-28 opacity-30"
-            style={{
-              backgroundImage:
-                "radial-gradient(circle, rgba(255,255,255,0.5) 1.5px, transparent 1.5px)",
-              backgroundSize: "12px 12px",
-            }}
-          />
-
+        <div className="animate-fadeup-d5 relative h-115 sm:h-130 md:h-155">
           {/* Grande photo, en bas à gauche */}
-          <div className="absolute left-0 bottom-0 h-[70%] w-[58%] rounded-4xl overflow-hidden ring-1 ring-white/10 shadow-2xl">
-            <Image
-              src="/images/services/dev.jpg"
-              alt="Équipe développement Label Technology"
-              fill
-              sizes="(max-width: 1024px) 60vw, 320px"
-              className="object-cover"
-              priority
-            />
+          <div
+            className="group absolute left-0 bottom-0 h-[74%] w-[62%] hero-photo"
+            style={{ "--shadow-color": "#3B82F6" } as React.CSSProperties}
+          >
+            <div className="relative h-full w-full rounded-4xl overflow-hidden ring-1 ring-white/10 shadow-2xl transition-shadow duration-300 group-hover:shadow-[0_25px_60px_-8px_var(--shadow-color)]">
+              <Image
+                src="/images/services/dev.jpg"
+                alt="Équipe développement Label Technology"
+                fill
+                sizes="(max-width: 1024px) 62vw, 340px"
+                className="object-cover"
+                priority
+              />
+            </div>
           </div>
 
           {/* Photo ronde, en haut à droite */}
-          <div className="absolute top-0 right-0 h-[44%] w-[44%] rounded-full overflow-hidden ring-4 ring-slate-950 shadow-xl">
-            <Image
-              src="/images/services/call.jpg"
-              alt="Call center Label Technology"
-              fill
-              sizes="(max-width: 1024px) 45vw, 240px"
-              className="object-cover"
-            />
+          <div
+            className="group absolute top-0 right-0 h-[46%] w-[46%] hero-photo"
+            style={{ "--shadow-color": "#F59E0B" } as React.CSSProperties}
+          >
+            <div className="relative h-full w-full rounded-full overflow-hidden ring-4 ring-slate-950 shadow-xl transition-shadow duration-300 group-hover:shadow-[0_25px_60px_-8px_var(--shadow-color)]">
+              <Image
+                src="/images/services/call.jpg"
+                alt="Call center Label Technology"
+                fill
+                sizes="(max-width: 1024px) 46vw, 250px"
+                className="object-cover"
+              />
+            </div>
           </div>
 
           {/* Petite photo carrée, au centre droit */}
-          <div className="absolute top-[46%] right-[6%] h-[26%] w-[30%] rounded-2xl overflow-hidden ring-4 ring-slate-950 shadow-xl">
-            <Image
-              src="/images/services/it.jpg"
-              alt="Matériel IT Label Technology"
-              fill
-              sizes="(max-width: 1024px) 30vw, 180px"
-              className="object-cover"
-            />
+          <div
+            className="group absolute top-[48%] right-[2%] h-[28%] w-[32%] hero-photo"
+            style={{ "--shadow-color": "#06B6D4" } as React.CSSProperties}
+          >
+            <div className="relative h-full w-full rounded-2xl overflow-hidden ring-4 ring-slate-950 shadow-xl transition-shadow duration-300 group-hover:shadow-[0_25px_60px_-8px_var(--shadow-color)]">
+              <Image
+                src="/images/services/it.jpg"
+                alt="Matériel IT Label Technology"
+                fill
+                sizes="(max-width: 1024px) 32vw, 190px"
+                className="object-cover"
+              />
+            </div>
           </div>
 
           {/* Photo basse, milieu droit — chevauchement */}
-          <div className="absolute bottom-0 right-[8%] h-[30%] w-[34%] rounded-2xl overflow-hidden ring-4 ring-slate-950 shadow-xl">
-            <Image
-              src="/images/services/mark.jpg"
-              alt="Marketing digital Label Technology"
-              fill
-              sizes="(max-width: 1024px) 34vw, 200px"
-              className="object-cover"
-            />
+          <div
+            className="group absolute bottom-0 right-[4%] h-[32%] w-[36%] hero-photo"
+            style={{ "--shadow-color": "#8B5CF6" } as React.CSSProperties}
+          >
+            <div className="relative h-full w-full rounded-2xl overflow-hidden ring-4 ring-slate-950 shadow-xl transition-shadow duration-300 group-hover:shadow-[0_25px_60px_-8px_var(--shadow-color)]">
+              <Image
+                src="/images/services/mark.jpg"
+                alt="Marketing digital Label Technology"
+                fill
+                sizes="(max-width: 1024px) 36vw, 210px"
+                className="object-cover"
+              />
+            </div>
           </div>
         </div>
       </div>

@@ -158,6 +158,26 @@ body {
   .svc-bar { transform: scaleX(1) !important; }
 }
 
+@keyframes heroPhotoFloat {
+  0%, 100% { transform: translateY(0) scale(1.06); }
+  50%      { transform: translateY(-10px) scale(1.06); }
+}
+
+.hero-photo {
+  transition: transform 0.3s ease;
+}
+.hero-photo:hover {
+  z-index: 20;
+  animation: heroPhotoFloat 1.7s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-photo:hover {
+    animation: none;
+    transform: scale(1.05);
+  }
+}
+
 .reveal {
   opacity: 0;
   transform: translateY(28px);
