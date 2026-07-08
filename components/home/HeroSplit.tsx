@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { Typewriter } from "react-simple-typewriter";
 import DotField from "@/components/DotField";
-
+import { Badge } from "@/components/ui/badge";
 const STATS = [
   { value: "50", label: "postes Call Center" },
   { value: "7", label: "domaines d'expertise" },
@@ -35,13 +35,13 @@ const HeroSplit = () => {
       <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         {/* Colonne texte (gauche) */}
         <div>
-          <p className="animate-fadeup-d1 inline-flex items-center gap-2 text-xs md:text-sm font-semibold text-slate-800 bg-white px-4 py-1.5 rounded-full w-fit mb-6">
+          <Badge className="animate-fadeup-d1 inline-flex items-center gap-2 text-xs md:text-sm font-semibold text-slate-800 bg-white px-4 py-1.5 rounded-full w-fit mb-6">
             <span
               className="h-1.5 w-1.5 rounded-full"
               style={{ backgroundColor: "var(--gold)" }}
             />
             Label Technology
-          </p>
+          </Badge>
 
           <h1
             className="animate-fadeup-d2 font-display mb-5 text-white"
@@ -49,12 +49,14 @@ const HeroSplit = () => {
           >
             Votre vision, notre expertise : l&apos;alliance qui transforme le{" "}
             <span className="bg-linear-to-r from-blue-500 to-emerald-500 bg-clip-text text-transparent">
+              potentiel en
               <Typewriter
                 words={[
-                  "potentiel en performance.",
-                  "potentiel en performance.",
-                  "potentiel en performance.",
-                  "potentiel en performance.",
+                  " performance.",
+                  " réalité.",
+                  " succès.",
+                  " excellence.",
+                  " innovation.",
                 ]}
                 loop={1}
                 typeSpeed={50}
