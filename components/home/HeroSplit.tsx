@@ -119,7 +119,7 @@ const HeroSplit = () => {
           >
             <div className="relative h-full w-full rounded-full overflow-hidden ring-4 ring-slate-950 shadow-xl transition-shadow duration-300 group-hover:shadow-[0_25px_60px_-8px_var(--shadow-color)]">
               <Image
-                src="/images/services/call.jpg"
+                src="/images/services/callsy.png"
                 alt="Call center Label Technology"
                 fill
                 sizes="(max-width: 1024px) 46vw, 250px"
