@@ -78,7 +78,7 @@ export default async function RecruPage() {
           <h1 className="h1-display text-white mb-6 animate-fadeup-d1">
             Construisez la suite
             <br />
-            <span className="bg-gradient-to-r from-blue-500 to-emerald-500 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-blue-500 to-emerald-500 bg-clip-text text-transparent">
               avec nous.
             </span>
           </h1>
@@ -94,7 +94,7 @@ export default async function RecruPage() {
 
       {/* CTA candidature spontanée */}
       <section className="relative py-28 px-6 overflow-hidden bg-[#080D1A]">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#080D1A] via-[#0f1f5c] to-[#080D1A]" />
+        <div className="absolute inset-0 bg-linear-to-br from-[#080D1A] via-[#0f1f5c] to-[#080D1A]" />
         <div className="absolute top-[-80px] left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-blue-600/25 rounded-full blur-[130px] pointer-events-none" />
         <div className="absolute bottom-[-60px] left-[-80px] w-[400px] h-[350px] bg-indigo-700/20 rounded-full blur-[100px] pointer-events-none" />
         <div className="absolute bottom-[-40px] right-[-60px] w-[320px] h-[280px] bg-violet-700/15 rounded-full blur-[90px] pointer-events-none" />
@@ -109,11 +109,11 @@ export default async function RecruPage() {
           <h2 className="h2-cta text-white mb-5 animate-fadeup-d1">
             Envoyez-nous
             <br />
-            <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
               une candidature spontanée.
             </span>
           </h2>
-          <p className="text-white/40 font-light text-base max-w-lg mx-auto mb-10 leading-relaxed animate-fadeup-d2">
+          <p className="text-white/50 font-light text-base max-w-lg mx-auto mb-10 leading-relaxed animate-fadeup-d2">
             On grandit vite et de nouveaux postes s&apos;ouvrent régulièrement.
             Parlez-nous de vous, on revient vers vous sous 72h.
           </p>

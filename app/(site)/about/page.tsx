@@ -172,7 +172,7 @@ export default async function AProposPage() {
             <h1 className="h1-display text-white mb-6">
               Antananarivo.
               <br />
-              <span className="bg-gradient-to-r from-blue-500  to-emerald-500 bg-clip-text text-transparent ">
+              <span className="bg-linear-to-r from-blue-500  to-emerald-500 bg-clip-text text-transparent ">
                 Standards européens.
               </span>
             </h1>
@@ -220,7 +220,7 @@ export default async function AProposPage() {
               <h2 className="font-display text-4xl md:text-5xl mb-4 leading-tight text-foreground">
                 Né à Madagascar.
                 <br />
-                <span className="bg-gradient-to-r from-blue-500  to-emerald-500 bg-clip-text text-transparent">
+                <span className="bg-linear-to-r from-blue-500  to-emerald-500 bg-clip-text text-transparent">
                   Pensé pour le monde.
                 </span>
               </h2>
@@ -331,7 +331,7 @@ export default async function AProposPage() {
           <p className="label-tag mb-3" style={{ color: "var(--brand)" }}>
             L'ÉQUIPE
           </p>
-          <h2 className="font-display text-4xl md:text-5xl mb-4 bg-gradient-to-r from-blue-500  to-emerald-500 bg-clip-text text-transparent">
+          <h2 className="font-display text-4xl md:text-5xl mb-4 bg-linear-to-r from-blue-500  to-emerald-500 bg-clip-text text-transparent">
             Les gens derrière le travail.
           </h2>
           <p className="text-[15px] mb-16 max-w-xl text-muted-foreground">

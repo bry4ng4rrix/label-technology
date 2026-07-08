@@ -209,7 +209,7 @@ export default function CallCenterPage() {
             <h1 className="animate-fadeup-d1 h1-display text-white mb-6">
               50 voix.
               <br />
-              <span className="bg-gradient-to-r from-sky-500 to-green-300 bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-sky-500 to-green-300 bg-clip-text text-transparent">
                 Votre support permanent.
               </span>
             </h1>
@@ -264,7 +264,7 @@ export default function CallCenterPage() {
       </section>
 
       {/* Métriques */}
-      <section className="bg-gradient-to-b from-blue-500 to-sky-500">
+      <section className="bg-linear-to-b from-blue-500 to-sky-500">
         <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 divide-x divide-white/15">
           {METRICS.map((m, i) => (
             <div
@@ -295,7 +295,7 @@ export default function CallCenterPage() {
           >
             NOTRE OFFRE
           </p>
-          <h2 className="animate-fadeup-d1 font-display text-4xl md:text-5xl mb-16 bg-gradient-to-r from-blue-500  to-emerald-500 bg-clip-text text-transparent">
+          <h2 className="animate-fadeup-d1 font-display text-4xl md:text-5xl mb-16 bg-linear-to-r from-blue-500  to-emerald-500 bg-clip-text text-transparent">
             Ce qu'on fait pour vous.
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
@@ -425,7 +425,7 @@ export default function CallCenterPage() {
           >
             FORMULES
           </p>
-          <h2 className="animate-fadeup-d1 font-display text-4xl md:text-5xl mb-4 bg-gradient-to-r from-blue-500  to-emerald-500 bg-clip-text text-transparent">
+          <h2 className="animate-fadeup-d1 font-display text-4xl md:text-5xl mb-4 bg-linear-to-r from-blue-500  to-emerald-500 bg-clip-text text-transparent">
             Choisissez votre format.
           </h2>
           <p className="animate-fadeup-d2 text-base mb-16 max-w-xl text-muted-foreground">

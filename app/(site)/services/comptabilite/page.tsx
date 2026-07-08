@@ -123,7 +123,7 @@ export default function ComptabilitePage() {
             <p className="animate-fadeup label-tag mb-5" style={{ color: "var(--brand-lt)" }}>COMPTABILITÉ & REPORTING</p>
             <h1 className="animate-fadeup-d1 h1-display text-white mb-6">
               Vos chiffres,<br />
-              <span className="bg-gradient-to-r from-[var(--brand)] to-[var(--brand-lt)] bg-clip-text text-transparent">enfin lisibles.</span>
+              <span className="bg-linear-to-r from-[var(--brand)] to-[var(--brand-lt)] bg-clip-text text-transparent">enfin lisibles.</span>
             </h1>
             <p className="animate-fadeup-d2 text-white/70 text-lg leading-relaxed mb-10 max-w-xl" style={{ lineHeight: 1.8 }}>
               Saisie comptable, rapprochements bancaires, reporting mensuel
@@ -168,7 +168,7 @@ export default function ComptabilitePage() {
       <section className="py-24 px-6" style={{ backgroundColor: "var(--paper)" }}>
         <div className="max-w-7xl mx-auto">
           <p className="animate-fadeup label-tag mb-3" style={{ color: "var(--brand)" }}>NOS PRESTATIONS</p>
-          <h2 className="animate-fadeup-d1 font-display text-4xl md:text-5xl mb-16 bg-gradient-to-r from-blue-500 to-indigo-600 bg-clip-text text-transparent">
+          <h2 className="animate-fadeup-d1 font-display text-4xl md:text-5xl mb-16 bg-linear-to-r from-blue-500 to-indigo-600 bg-clip-text text-transparent">
             La comptabilité qui libère du temps.
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
@@ -220,8 +220,8 @@ export default function ComptabilitePage() {
                 { label: "Disponibilité", interne: "Congés, turnover", externe: "Continuité garantie" },
               ].map((r, i) => (
                 <div key={i} className="grid grid-cols-3 gap-2 text-sm border-b pb-4" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
-                  <span className="text-white/40">{r.label}</span>
-                  <span className="text-white/40 text-center">{r.interne}</span>
+                  <span className="text-white/50">{r.label}</span>
+                  <span className="text-white/50 text-center">{r.interne}</span>
                   <span className="font-medium text-center" style={{ color: "var(--brand-lt)" }}>{r.externe}</span>
                 </div>
               ))}

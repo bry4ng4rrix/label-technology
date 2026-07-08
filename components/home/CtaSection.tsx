@@ -17,7 +17,7 @@ export default function CtaSection() {
   return (
     <section className="relative py-28 px-6 overflow-hidden bg-[#080D1A]">
       {/* Gradient layers */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#080D1A] via-[#0f1f5c] to-[#080D1A]" />
+      <div className="absolute inset-0 bg-linear-to-br from-[#080D1A] via-[#0f1f5c] to-[#080D1A]" />
       <div className="absolute top-[-80px] left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-blue-600/25 rounded-full blur-[130px] pointer-events-none" />
       <div className="absolute bottom-[-60px] left-[-80px] w-[400px] h-[350px] bg-indigo-700/20 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute bottom-[-40px] right-[-60px] w-[320px] h-[280px] bg-violet-700/15 rounded-full blur-[90px] pointer-events-none" />
@@ -36,7 +36,7 @@ export default function CtaSection() {
           <h2 className="h2-cta text-white mb-5">
             Votre projet mérite mieux
             <br />
-            <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
               qu&apos;une agence généraliste.
             </span>
           </h2>
@@ -49,7 +49,7 @@ export default function CtaSection() {
         </Reveal>
 
         <Reveal delay={0.3}>
-          <p className="text-white/40 font-light text-base max-w-lg mx-auto mb-12 leading-relaxed">
+          <p className="text-white/50 font-light text-base max-w-lg mx-auto mb-12 leading-relaxed">
             Décrivez-nous votre besoin. On vous répond sous 72h avec une
             proposition concrète — pas un formulaire de plus.
           </p>
@@ -86,7 +86,7 @@ export default function CtaSection() {
           {REASSURANCE.map((item, i) => (
             <div
               key={i}
-              className="flex items-center gap-2 text-white/35 text-xs"
+              className="flex items-center gap-2 text-white/50 text-xs"
             >
               <CheckCircle2 className="w-3.5 h-3.5 text-blue-400/50 shrink-0" />
               {item}

@@ -28,7 +28,7 @@ export default async function ServicesGrid() {
         <Reveal className="flex items-end justify-between mb-14 flex-wrap gap-4">
           <div>
             <h2 className="h2-display uppercase">
-              <span className="bg-gradient-to-r from-brand to-brand-lt bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-brand to-brand-lt bg-clip-text text-transparent">
                 Nos expertises
               </span>
             </h2>
@@ -68,7 +68,7 @@ export default async function ServicesGrid() {
                   />
 
                   {/* Voile sombre pour la lisibilité du texte */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/85 to-slate-950/50" />
+                  <div className="absolute inset-0 bg-linear-to-t from-slate-950 via-slate-950/85 to-slate-950/50" />
 
                   {/* Dégradé couleur au survol */}
                   <div

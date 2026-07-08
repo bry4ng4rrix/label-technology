@@ -44,7 +44,7 @@ export default function CallCenterHighlight() {
                   <div className="font-display text-3xl mb-1" style={{ color: "var(--gold)" }}>
                     {m.value}
                   </div>
-                  <div className="label-tag text-white/40 text-[10px]">{m.label}</div>
+                  <div className="label-tag text-white/50 text-[10px]">{m.label}</div>
                 </Reveal>
               ))}
             </div>

@@ -14,7 +14,7 @@ export default function DevChart() {
   return (
     <div className="p-6 rounded-sm border" style={{ backgroundColor: "rgba(255,255,255,0.03)", borderColor: "rgba(255,255,255,0.08)" }}>
       <p className="label-tag text-[10px] mb-1" style={{ color: "var(--brand-lt)" }}>MAÎTRISE TECHNIQUE</p>
-      <p className="text-white/30 text-xs mb-4">Score d'expertise par domaine</p>
+      <p className="text-white/50 text-xs mb-4">Score d'expertise par domaine</p>
       <ResponsiveContainer width="100%" height={260}>
         <RadarChart data={DATA} margin={{ top: 10, right: 30, bottom: 10, left: 30 }}>
           <PolarGrid stroke="rgba(255,255,255,0.08)" />

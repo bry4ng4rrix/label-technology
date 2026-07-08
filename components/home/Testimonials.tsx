@@ -92,7 +92,7 @@ export default async function Testimonials() {
           <h2 className="font-display text-4xl md:text-5xl text-foreground">
             Des résultats,
             <br />
-            <span className="bg-gradient-to-r from-blue-500  to-emerald-500 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-blue-500  to-emerald-500 bg-clip-text text-transparent">
               pas des promesses.
             </span>
           </h2>

@@ -33,12 +33,12 @@ export default function Footer() {
               height={34}
               className="mb-6"
             />
-            <p className="text-white/40 text-sm font-light leading-relaxed max-w-xs mb-6">
+            <p className="text-white/50 text-sm font-light leading-relaxed max-w-xs mb-6">
               Votre partenaire technologique premium depuis Antananarivo,
               Madagascar. Développement, Call Center, Marketing, Data et
               Matériel IT.
             </p>
-            <div className="space-y-2 text-sm text-white/30">
+            <div className="space-y-2 text-sm text-white/50">
               <p>Akany Riandrano, Manjaka Ilafy</p>
               <p>Antananarivo Avaradrano, Madagascar</p>
               <a
@@ -59,7 +59,7 @@ export default function Footer() {
           {/* Links */}
           {Object.entries(LINKS).map(([section, items]) => (
             <div key={section}>
-              <p className="label-tag text-white/30 text-[10px] mb-5">
+              <p className="label-tag text-white/50 text-[10px] mb-5">
                 {section.toUpperCase()}
               </p>
               <ul className="space-y-2.5">
@@ -67,7 +67,7 @@ export default function Footer() {
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      className="text-white/40 text-sm hover:text-white transition-colors"
+                      className="text-white/50 text-sm hover:text-white transition-colors"
                     >
                       {item.label}
                     </Link>
@@ -83,13 +83,13 @@ export default function Footer() {
           className="mt-14 pt-6 flex flex-wrap items-center justify-between gap-4 border-t"
           style={{ borderColor: "rgba(255,255,255,0.06)" }}
         >
-          <p className="text-white/20 text-xs">
+          <p className="text-white/50 text-xs">
             © 2026 Label Technology · Consulting & Services · Antananarivo,
             Madagascar
           </p>
           <div className="flex items-center gap-1">
             <span className="w-1.5 h-1.5 rounded-full bg-green-400 pulse-dot inline-block" />
-            <span className="text-white/20 text-xs ml-1">
+            <span className="text-white/50 text-xs ml-1">
               labeltechnology.mg
             </span>
           </div>

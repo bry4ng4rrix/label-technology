@@ -301,13 +301,13 @@ export default function DevPage() {
         >
           {/* Texte */}
           <div className="relative z-10 py-28 lg:pr-12">
-            <p className="dev-hero-label label-tag mb-5 bg-gradient-to-r from-blue-500  to-emerald-500 bg-clip-text text-transparent">
+            <p className="dev-hero-label label-tag mb-5 bg-linear-to-r from-blue-500  to-emerald-500 bg-clip-text text-transparent">
               DÉVELOPPEMENT WEB & MOBILE
             </p>
             <h1 className="dev-hero-title h1-display text-white mb-6">
               On ne livre pas du code.
               <br />
-              <span className="bg-gradient-to-r from-blue-500 to-emerald-500 bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-blue-500 to-emerald-500 bg-clip-text text-transparent">
                 On livre de la croissance.
               </span>
             </h1>
@@ -380,7 +380,7 @@ export default function DevPage() {
                 >
                   {m.value}
                 </div>
-                <div className="label-tag text-white/40 text-[10px]">
+                <div className="label-tag text-white/50 text-[10px]">
                   {m.label}
                 </div>
               </div>
@@ -402,7 +402,7 @@ export default function DevPage() {
             <h2 className="font-display text-4xl sm:text-5xl text-foreground leading-tight">
               Du code qui
               <br />
-              <span className="bg-gradient-to-r from-blue-500 to-indigo-600 bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-blue-500 to-indigo-600 bg-clip-text text-transparent">
                 travaille pour vous.
               </span>
             </h2>
@@ -466,7 +466,7 @@ export default function DevPage() {
               >
                 {tech}
               </span>
-              <span className="text-white/20 text-xs">◆</span>
+              <span className="text-white/50 text-xs">◆</span>
             </span>
           ))}
         </div>
@@ -496,7 +496,7 @@ export default function DevPage() {
             </p>
             <h2 className="font-display text-4xl sm:text-5xl text-foreground leading-tight">
               De l&apos;idée{" "}
-              <span className="bg-gradient-to-r from-blue-500 to-emerald-500 bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-blue-500 to-emerald-500 bg-clip-text text-transparent">
                 à la mise en ligne.
               </span>
             </h2>
@@ -595,7 +595,7 @@ export default function DevPage() {
                       style={{ backgroundColor: "rgba(0,0,0,0.08)" }}
                     >
                       <div
-                        className="dev-bar h-full rounded-full bg-gradient-to-r from-blue-500 to-indigo-500"
+                        className="dev-bar h-full rounded-full bg-linear-to-r from-blue-500 to-indigo-500"
                         style={{
                           width: s.width,
                           animationDelay: `${0.3 + i * 0.18}s`,
@@ -734,7 +734,7 @@ export default function DevPage() {
 
       {/* ── CTA Final ── */}
       <section className="relative py-28 px-4 sm:px-6 overflow-hidden bg-[#080D1A]">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#080D1A] via-[#0f1f5c] to-[#080D1A]" />
+        <div className="absolute inset-0 bg-linear-to-br from-[#080D1A] via-[#0f1f5c] to-[#080D1A]" />
         <div
           aria-hidden="true"
           className="dev-blob-1 absolute top-[-80px] left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full pointer-events-none"
@@ -759,12 +759,12 @@ export default function DevPage() {
           >
             Prêt à transformer
             <br />
-            <span className="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
               votre idée en réalité ?
             </span>
           </h2>
 
-          <p className="animate-fadeup-d2 text-white/40 font-light text-base max-w-md mx-auto leading-relaxed">
+          <p className="animate-fadeup-d2 text-white/50 font-light text-base max-w-md mx-auto leading-relaxed">
             Discutons de votre projet. Premier devis gratuit en 72h — sans
             engagement.
           </p>
@@ -797,7 +797,7 @@ export default function DevPage() {
               (item, i) => (
                 <div
                   key={i}
-                  className="flex items-center gap-2 text-white/35 text-xs"
+                  className="flex items-center gap-2 text-white/50 text-xs"
                 >
                   <CheckCircle2 className="w-3.5 h-3.5 text-blue-400/50 shrink-0" />
                   {item}

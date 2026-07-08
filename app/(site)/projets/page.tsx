@@ -50,7 +50,7 @@ export default async function ProjetsPage() {
           <h1 className="h1-display text-white mb-6 animate-fadeup-d1">
             Ce qu&apos;on a
             <br />
-            <span className="bg-gradient-to-r from-blue-500  to-emerald-500 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-blue-500  to-emerald-500 bg-clip-text text-transparent">
               déjà construit.
             </span>
           </h1>

@@ -246,13 +246,13 @@ export default function MarketingPage() {
         >
           <div className="relative z-10 py-28 lg:pr-12">
             <Reveal>
-              <p className="label-tag mb-5 bg-gradient-to-r from-blue-500 to-emerald-500 bg-clip-text text-transparent">
+              <p className="label-tag mb-5 bg-linear-to-r from-blue-500 to-emerald-500 bg-clip-text text-transparent">
                 MARKETING DIGITAL
               </p>
               <h1 className="h1-display text-white mb-6">
                 Votre audience existe.
                 <br />
-                <span className="bg-gradient-to-r from-blue-500  to-emerald-500 bg-clip-text text-transparent">
+                <span className="bg-linear-to-r from-blue-500  to-emerald-500 bg-clip-text text-transparent">
                   On va la trouver.
                 </span>
               </h1>
@@ -328,7 +328,7 @@ export default function MarketingPage() {
             <p className="label-tag mb-3" style={{ color: "var(--brand)" }}>
               NOS EXPERTISES
             </p>
-            <h2 className="font-display text-4xl md:text-5xl mb-16 bg-gradient-to-r from-blue-500 to-indigo-600 bg-clip-text text-transparent">
+            <h2 className="font-display text-4xl md:text-5xl mb-16 bg-linear-to-r from-blue-500 to-indigo-600 bg-clip-text text-transparent">
               Du trafic à la conversion.
             </h2>
           </Reveal>
@@ -389,7 +389,7 @@ export default function MarketingPage() {
                 atteint pas au bout de 3 mois, on travaille gratuitement jusqu'à
                 ce que ce soit le cas."
               </p>
-              <p className="text-white/30 text-xs mt-2">
+              <p className="text-white/50 text-xs mt-2">
                 — Engagement Label Technology
               </p>
             </div>

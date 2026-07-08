@@ -45,8 +45,8 @@ export default function PerformanceChart() {
     <div className="space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between px-5 pt-4">
-        <span className="label-tag text-white/40 text-[10px]">PERFORMANCE — 7 DERNIERS JOURS</span>
-        <span className="flex items-center gap-1.5 text-[10px] text-white/30">
+        <span className="label-tag text-white/50 text-[10px]">PERFORMANCE — 7 DERNIERS JOURS</span>
+        <span className="flex items-center gap-1.5 text-[10px] text-white/50">
           <span className="w-1.5 h-1.5 rounded-full bg-green-400 pulse-dot inline-block" />
           LIVE
         </span>
@@ -56,21 +56,21 @@ export default function PerformanceChart() {
       <div className="grid grid-cols-3 divide-x px-0" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
         <div className="text-center py-3">
           <div className="font-display text-2xl text-green-400">2 563</div>
-          <div className="label-tag text-[9px] text-white/30">appels / semaine</div>
+          <div className="label-tag text-[9px] text-white/50">appels / semaine</div>
         </div>
         <div className="text-center py-3">
           <div className="font-display text-2xl" style={{ color: "var(--gold)" }}>96%</div>
-          <div className="label-tag text-[9px] text-white/30">satisfaction client</div>
+          <div className="label-tag text-[9px] text-white/50">satisfaction client</div>
         </div>
         <div className="text-center py-3">
           <div className="font-display text-2xl" style={{ color: "var(--brand-lt)" }}>1m42</div>
-          <div className="label-tag text-[9px] text-white/30">durée moy. appel</div>
+          <div className="label-tag text-[9px] text-white/50">durée moy. appel</div>
         </div>
       </div>
 
       {/* Area chart — volume hebdo */}
       <div className="px-2">
-        <p className="label-tag text-[9px] text-white/20 px-3 mb-2">VOLUME D'APPELS HEBDOMADAIRE</p>
+        <p className="label-tag text-[9px] text-white/50 px-3 mb-2">VOLUME D'APPELS HEBDOMADAIRE</p>
         <ResponsiveContainer width="100%" height={110}>
           <AreaChart data={WEEKLY} margin={{ top: 4, right: 8, left: -28, bottom: 0 }}>
             <defs>
@@ -90,7 +90,7 @@ export default function PerformanceChart() {
 
       {/* Bar chart — charge horaire */}
       <div className="px-2 pb-4">
-        <p className="label-tag text-[9px] text-white/20 px-3 mb-2">CHARGE PAR HEURE (AUJOURD'HUI)</p>
+        <p className="label-tag text-[9px] text-white/50 px-3 mb-2">CHARGE PAR HEURE (AUJOURD'HUI)</p>
         <ResponsiveContainer width="100%" height={80}>
           <BarChart data={HORAIRE} margin={{ top: 0, right: 8, left: -28, bottom: 0 }} barSize={8}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" vertical={false} />

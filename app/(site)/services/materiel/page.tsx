@@ -130,7 +130,7 @@ export default function MaterielPage() {
             <p className="animate-fadeup label-tag mb-5" style={{ color: "var(--brand-lt)" }}>VENTE DE MATÉRIEL INFORMATIQUE</p>
             <h1 className="animate-fadeup-d1 h1-display text-white mb-6">
               Le bon matériel.<br />
-              <span className="bg-gradient-to-r from-[var(--brand)] to-[var(--brand-lt)] bg-clip-text text-transparent">Au juste prix.</span>
+              <span className="bg-linear-to-r from-[var(--brand)] to-[var(--brand-lt)] bg-clip-text text-transparent">Au juste prix.</span>
             </h1>
             <p className="animate-fadeup-d2 text-white/70 text-lg leading-relaxed mb-10 max-w-xl" style={{ lineHeight: 1.8 }}>
               Ordinateurs, réseau, périphériques, infrastructure serveur.
@@ -175,7 +175,7 @@ export default function MaterielPage() {
       <section className="py-24 px-6" style={{ backgroundColor: "var(--paper)" }}>
         <div className="max-w-7xl mx-auto">
           <p className="animate-fadeup label-tag mb-3" style={{ color: "var(--brand)" }}>NOS GAMMES</p>
-          <h2 className="animate-fadeup-d1 font-display text-4xl md:text-5xl mb-16 bg-gradient-to-r from-blue-500 to-indigo-600 bg-clip-text text-transparent">
+          <h2 className="animate-fadeup-d1 font-display text-4xl md:text-5xl mb-16 bg-linear-to-r from-blue-500 to-indigo-600 bg-clip-text text-transparent">
             Équipement & Support IT.
           </h2>
           <div className="grid md:grid-cols-3 gap-8">

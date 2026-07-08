@@ -126,7 +126,7 @@ export default function DataPage() {
             <p className="animate-fadeup label-tag mb-5" style={{ color: "var(--brand-lt)" }}>TRAITEMENT DE DONNÉES</p>
             <h1 className="animate-fadeup-d1 h1-display text-white mb-6">
               Vos données sont un actif.<br />
-              <span className="bg-gradient-to-r from-[var(--brand)] to-[var(--brand-lt)] bg-clip-text text-transparent">On les rend exploitables.</span>
+              <span className="bg-linear-to-r from-[var(--brand)] to-[var(--brand-lt)] bg-clip-text text-transparent">On les rend exploitables.</span>
             </h1>
             <p className="animate-fadeup-d2 text-white/70 text-lg leading-relaxed mb-10 max-w-xl" style={{ lineHeight: 1.8 }}>
               Saisie, nettoyage, analyse, automatisation. Une équipe spécialisée
@@ -170,7 +170,7 @@ export default function DataPage() {
       <section className="py-24 px-6" style={{ backgroundColor: "var(--paper)" }}>
         <div className="max-w-7xl mx-auto">
           <p className="animate-fadeup label-tag mb-3" style={{ color: "var(--brand)" }}>NOS PRESTATIONS</p>
-          <h2 className="animate-fadeup-d1 font-display text-4xl md:text-5xl mb-16 bg-gradient-to-r from-blue-500 to-indigo-600 bg-clip-text text-transparent">
+          <h2 className="animate-fadeup-d1 font-display text-4xl md:text-5xl mb-16 bg-linear-to-r from-blue-500 to-indigo-600 bg-clip-text text-transparent">
             De la donnée brute à la décision.
           </h2>
           <div className="grid md:grid-cols-3 gap-8">

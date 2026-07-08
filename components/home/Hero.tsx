@@ -31,15 +31,6 @@ const PHOTOS = [
     h: "h-[255px] sm:h-[295px] md:h-[335px] lg:h-[475px]",
   },
   {
-    id: "marketing",
-    href: "/services/marketing",
-    tag: "Marketing Digital",
-    color: "#EC4899",
-    src: "/images/services/mark.jpg",
-    alt: "Marketing digital — Label Technology",
-    h: "h-[285px] sm:h-[325px] md:h-[365px] lg:h-[505px]",
-  },
-  {
     id: "digital",
     href: "/services/digital",
     tag: "Digitalisation",
@@ -47,16 +38,6 @@ const PHOTOS = [
     src: "/images/services/digit.jpg",
     alt: "Digitalisation & ERP — Label Technology",
     h: "h-[310px] sm:h-[350px] md:h-[290px] lg:h-[620px]",
-  },
-
-  {
-    id: "comptabilite",
-    href: "/services/comptabilite",
-    tag: "Comptabilité",
-    color: "#EF4444",
-    src: "/images/services/compta.png",
-    alt: "Comptabilité & reporting — Label Technology",
-    h: "h-[285px] sm:h-[325px] md:h-[365px] lg:h-[505px]",
   },
   {
     id: "materiel",

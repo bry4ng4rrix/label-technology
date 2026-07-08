@@ -176,7 +176,7 @@ const Navbar = () => {
                   <SheetTitle className="text-left text-white">Menu</SheetTitle>
                 </SheetHeader>
                 <div className="mt-6 flex flex-col gap-1">
-                  <p className="text-xs font-semibold text-white/40 uppercase tracking-wider px-2 mb-2">
+                  <p className="text-xs font-semibold text-white/50 uppercase tracking-wider px-2 mb-2">
                     Services
                   </p>
                   {services.map((service) => (

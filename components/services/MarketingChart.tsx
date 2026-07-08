@@ -14,14 +14,14 @@ export default function MarketingChart() {
   return (
     <div className="p-6 rounded-sm" style={{ backgroundColor: "var(--ink)", border: "1px solid rgba(255,255,255,0.08)" }}>
       <p className="label-tag text-[10px] mb-1" style={{ color: "var(--brand-lt)" }}>RÉSULTATS CLIENTS MOYENS</p>
-      <p className="text-white/30 text-xs mb-4">Amélioration constatée après 6 mois</p>
+      <p className="text-white/50 text-xs mb-4">Amélioration constatée après 6 mois</p>
 
       <div className="grid grid-cols-2 gap-3 mb-6">
         {RESULTS.map((r, i) => (
           <div key={i} className="p-4 rounded-sm" style={{ backgroundColor: "rgba(255,255,255,0.04)" }}>
             <div className="font-display text-2xl mb-0.5" style={{ color: COLORS[i] }}>{r.label}</div>
-            <div className="label-tag text-[9px] text-white/30">{r.canal}</div>
-            <div className="text-white/20 text-[10px] mt-0.5">{r.unit}</div>
+            <div className="label-tag text-[9px] text-white/50">{r.canal}</div>
+            <div className="text-white/50 text-[10px] mt-0.5">{r.unit}</div>
           </div>
         ))}
       </div>

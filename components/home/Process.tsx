@@ -148,7 +148,7 @@ export default function Process() {
           <h2 className="font-display text-4xl md:text-5xl text-foreground">
             Comment on
             <br />
-            <span className="bg-gradient-to-r from-blue-500 to-emerald-500 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-blue-500 to-emerald-500 bg-clip-text text-transparent">
               travaille.
             </span>
           </h2>
@@ -162,7 +162,7 @@ export default function Process() {
             >
               {/* Gradient background on hover */}
               <div
-                className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity  duration-300 bg-gradient-to-br ${step.gradientColor}`}
+                className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity  duration-300 bg-linear-to-br ${step.gradientColor}`}
               />
 
               <div className="step-content relative z-20">

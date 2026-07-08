@@ -19,7 +19,7 @@ export default function DataChart() {
   return (
     <div className="p-6 rounded-sm border" style={{ backgroundColor: "rgba(255,255,255,0.03)", borderColor: "rgba(255,255,255,0.08)" }}>
       <p className="label-tag text-[10px] mb-1" style={{ color: "var(--brand-lt)" }}>RÉPARTITION DES MISSIONS</p>
-      <p className="text-white/30 text-xs mb-4">Types de traitement réalisés</p>
+      <p className="text-white/50 text-xs mb-4">Types de traitement réalisés</p>
 
       <div className="grid grid-cols-2 gap-4">
         <ResponsiveContainer width="100%" height={200}>
@@ -49,7 +49,7 @@ export default function DataChart() {
         {KPIS.map((k, i) => (
           <div key={i} className="text-center py-3 px-1" style={{ backgroundColor: "rgba(0,0,0,0.4)" }}>
             <div className="font-display text-lg" style={{ color: "var(--brand-lt)" }}>{k.v}</div>
-            <div className="label-tag text-[8px] text-white/25 mt-0.5">{k.l}</div>
+            <div className="label-tag text-[8px] text-white/50 mt-0.5">{k.l}</div>
           </div>
         ))}
       </div>

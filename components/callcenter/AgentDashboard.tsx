@@ -66,8 +66,8 @@ export default function AgentDashboard() {
     <div className="rounded-sm overflow-hidden border" style={{ borderColor:"rgba(255,255,255,0.08)", backgroundColor:"rgba(0,0,0,0.5)" }}>
       {/* Header */}
       <div className="flex items-center justify-between px-5 py-3 border-b" style={{ borderColor:"rgba(255,255,255,0.06)" }}>
-        <span className="label-tag text-white/40 text-[10px]">TABLEAU DE BORD — AGENTS EN DIRECT</span>
-        <span className="flex items-center gap-2 text-[10px] text-white/30">
+        <span className="label-tag text-white/50 text-[10px]">TABLEAU DE BORD — AGENTS EN DIRECT</span>
+        <span className="flex items-center gap-2 text-[10px] text-white/50">
           <span className="w-1.5 h-1.5 rounded-full bg-green-400 pulse-dot inline-block" />
           LIVE · {AGENTS.length} POSTES ACTIFS
         </span>
@@ -78,7 +78,7 @@ export default function AgentDashboard() {
         {(Object.entries(counts) as [Status, number][]).map(([status, count]) => (
           <div key={status} className="px-1">
             <div className="font-display text-2xl" style={{ color: COLORS[status] }}>{count}</div>
-            <div className="label-tag text-white/30 mt-0.5 truncate" style={{ fontSize: "8px" }}>{status}</div>
+            <div className="label-tag text-white/50 mt-0.5 truncate" style={{ fontSize: "8px" }}>{status}</div>
           </div>
         ))}
       </div>
@@ -96,7 +96,7 @@ export default function AgentDashboard() {
             </div>
             <div className="flex items-center gap-3">
               {agent.duration && (
-                <span className="text-white/20 text-[10px] font-mono">{agent.duration}</span>
+                <span className="text-white/50 text-[10px] font-mono">{agent.duration}</span>
               )}
               <span className="label-tag text-[9px] px-2 py-0.5 rounded-sm"
                 style={{ color: COLORS[agent.status], backgroundColor:`${COLORS[agent.status]}18` }}>
@@ -108,7 +108,7 @@ export default function AgentDashboard() {
       </div>
 
       <div className="px-5 py-2.5 border-t text-center" style={{ borderColor:"rgba(255,255,255,0.06)" }}>
-        <span className="text-white/15 text-[10px]">+ {50 - AGENTS.length} agents · simulation temps réel</span>
+        <span className="text-white/50 text-[10px]">+ {50 - AGENTS.length} agents · simulation temps réel</span>
       </div>
     </div>
   );
