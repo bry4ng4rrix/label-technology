@@ -3,6 +3,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import Aurora from "@/components/Aurora";
+import {
+  DevIllustration,
+  CallCenterIllustration,
+  ITIllustration,
+  DataIllustration,
+} from "@/components/home/illustrations";
 
 const STATS = [
   { value: "50", label: "postes Call Center" },
@@ -17,7 +23,7 @@ const PHOTOS = [
     href: "/services/dev",
     tag: "Développement",
     color: "#3B82F6",
-    src: "/images/services/dev.jpg",
+    Illustration: DevIllustration,
     alt: "Développement web & mobile — Label Technology",
     h: "h-[220px] sm:h-[260px] md:h-[300px] lg:h-[440px]",
   },
@@ -26,7 +32,7 @@ const PHOTOS = [
     href: "/services/callcenter",
     tag: "Call Center",
     color: "#F59E0B",
-    src: "/images/services/call.jpg",
+    Illustration: CallCenterIllustration,
     alt: "Call center 50 postes — Label Technology",
     h: "h-[255px] sm:h-[295px] md:h-[335px] lg:h-[475px]",
   },
@@ -44,7 +50,7 @@ const PHOTOS = [
     href: "/services/materiel",
     tag: "Matériel IT",
     color: "#06B6D4",
-    src: "/images/services/it.jpg",
+    Illustration: ITIllustration,
     alt: "Matériel informatique — Label Technology",
     h: "h-[255px] sm:h-[295px] md:h-[335px] lg:h-[475px]",
   },
@@ -53,8 +59,8 @@ const PHOTOS = [
     id: "data",
     href: "/services/data",
     tag: "Traitement de données",
-    color: "var(--brand-lt)",
-    src: "/images/services/data.jpg",
+    color: "#22C55E",
+    Illustration: DataIllustration,
     alt: "Traitement de données — Label Technology",
     h: "h-[220px] sm:h-[260px] md:h-[300px] lg:h-[440px]",
   },
@@ -79,13 +85,19 @@ const Hero = () => {
                 i >= 4 ? "hidden sm:block" : ""
               }`}
             >
-              <Image
-                src={p.src}
-                alt={p.alt}
-                fill
-                sizes="(max-width: 1200px) 13vw, 240px"
-                className="object-cover transition-transform duration-500 ease-out group-hover:scale-110 opacity-30"
-              />
+              {"Illustration" in p && p.Illustration ? (
+                <div className="absolute inset-0 transition-transform duration-500 ease-out group-hover:scale-110 opacity-60">
+                  <p.Illustration color={p.color} />
+                </div>
+              ) : (
+                <Image
+                  src={p.src!}
+                  alt={p.alt}
+                  fill
+                  sizes="(max-width: 1200px) 13vw, 240px"
+                  className="object-cover transition-transform duration-500 ease-out group-hover:scale-110 opacity-30"
+                />
+              )}
               <div
                 className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 style={{
