@@ -1,4 +1,4 @@
-"use client";
+pi"use client";
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
@@ -43,13 +43,6 @@ const Navbar = () => {
       href: "/services/dev",
       labelFr: "Développement",
       labelEn: "Web & Mobile",
-    },
-    {
-      key: "callcenter",
-      href: "/services/callcenter",
-      labelFr: "Call Center",
-      labelEn: "50 postes FR/EN",
-      badge: "50P",
     },
     {
       key: "marketing",
