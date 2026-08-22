@@ -20,6 +20,7 @@ export const metadata: Metadata = {
     "Label Technologie Madagascar",
     "Label Technologie Antananarivo",
     "Label Technologie Ilafy",
+    "Label Technologie Call center",
     "Label Technologie Developpement web",
     "Label Technologie Developpeur",
     "Label Technologie Developpeur web",
