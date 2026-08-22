@@ -73,8 +73,8 @@ export default function CtaSection() {
             variant="outline"
             className="border-white/15 text-white/80 bg-white/5 hover:bg-white/10 hover:text-white hover:border-white/25 px-8 h-12 rounded-lg transition-all duration-200 hover:scale-105"
           >
-            <Link href="/services/callcenter">
-              Voir l&apos;offre Call Center
+            <Link href="/services">
+              Voir nos services
             </Link>
           </Button>
         </Reveal>

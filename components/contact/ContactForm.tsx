@@ -176,7 +176,6 @@ export default function ContactForm() {
                 <SelectValue placeholder="Choisir un service…" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="Call Center">Call Center</SelectItem>
                 <SelectItem value="Développement Web & Mobile">
                   Développement Web &amp; Mobile
                 </SelectItem>

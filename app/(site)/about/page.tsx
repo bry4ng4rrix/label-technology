@@ -43,14 +43,14 @@ export const metadata: Metadata = {
     siteName: "Label Technology",
     title: "À Propos — Label Technology, fondée en 2022 à Antananarivo",
     description:
-      "4 ans d'expérience, 60+ collaborateurs, 7 pôles de services. Label Technology : la tech malgache au niveau européen.",
+      "4 ans d'expérience, 60+ collaborateurs, 6 pôles de services. Label Technology : la tech malgache au niveau européen.",
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Label Technology — À Propos" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "À Propos — Label Technology",
     description:
-      "4 ans d'expérience, 60+ collaborateurs, 7 pôles de services. Label Technology depuis Antananarivo.",
+      "4 ans d'expérience, 60+ collaborateurs, 6 pôles de services. Label Technology depuis Antananarivo.",
     images: ["/og-image.png"],
   },
 };
@@ -73,7 +73,7 @@ const EQUIPE = [
     photo: "/images/team/dina.png",
     nom: "Dina A.",
     role: "Responsable Opérations",
-    desc: "Supervision des 50 agents. Standards qualité, formation continue, SLA clients. Ancienne consultante CCaaS Paris.",
+    desc: "Supervision des équipes opérationnelles. Standards qualité, formation continue, SLA clients.",
   },
   {
     photo: "/images/team/sarah.png",
@@ -115,8 +115,7 @@ const VALEURS = [
 const CHIFFRES = [
   { value: "60+", label: "Collaborateurs" },
   { value: "4", label: "Ans d'expérience" },
-  { value: "50", label: "Postes Call Center" },
-  { value: "7", label: "Pôles de services" },
+  { value: "6", label: "Pôles de services" },
   { value: "FR/EN", label: "Bilingue certifié" },
   { value: "24h/24", label: "Disponibilité" },
 ];
@@ -127,7 +126,7 @@ const jsonLd = {
   name: "À Propos — Label Technology",
   url: "https://labeltechnology.mg/about",
   description:
-    "Label Technology, fondée en 2022 à Antananarivo. 60+ collaborateurs, 7 pôles de services, standards européens.",
+    "Label Technology, fondée en 2022 à Antananarivo. 60+ collaborateurs, 6 pôles de services, standards européens.",
   mainEntity: {
     "@type": "Organization",
     name: "Label Technology",
@@ -245,9 +244,9 @@ export default async function AProposPage() {
                 <p>
                   En 4 ans, nous avons construit une équipe de 60 collaborateurs
                   couvrant 6 pôles de services complémentaires : développement
-                  web et mobile, call center 50 postes, marketing digital,
-                  digitalisation, traitement de données et vente de matériel
-                  informatique.
+                  web et mobile, marketing digital, digitalisation, traitement
+                  de données, vente de matériel informatique et comptabilité
+                  externalisée.
                 </p>
                 <p>
                   Notre modèle : externalisation de qualité, à coût compétitif,

@@ -4,9 +4,9 @@ import ProjetsList from "@/components/projets/ProjetsList";
 import { supabase, type Project } from "@/lib/supabase";
 
 export const metadata: Metadata = {
-  title: "Nos Réalisations — Projets web, call center, marketing, ERP",
+  title: "Nos Réalisations — Projets web, marketing, ERP",
   description:
-    "Découvrez les projets réalisés par Label Technology : développement web & mobile, call center B2B, marketing digital, digitalisation. 13 réalisations détaillées avec métriques.",
+    "Découvrez les projets réalisés par Label Technology : développement web & mobile, marketing digital, digitalisation. Réalisations détaillées avec métriques.",
 };
 
 export default async function ProjetsPage() {

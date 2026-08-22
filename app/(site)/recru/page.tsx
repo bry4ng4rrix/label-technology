@@ -7,11 +7,10 @@ import { supabase, type JobOffer } from "@/lib/supabase";
 export const metadata: Metadata = {
   title: "Recrutement — Offres d'emploi Label Technology",
   description:
-    "Rejoignez Label Technology à Antananarivo : offres d'emploi en Call Center, Développement, Marketing Digital, Digitalisation, Data, Comptabilité et Infrastructure IT.",
+    "Rejoignez Label Technology à Antananarivo : offres d'emploi en Développement, Marketing Digital, Digitalisation, Data, Comptabilité et Infrastructure IT.",
   keywords: [
     "recrutement Madagascar",
     "offre d'emploi Antananarivo",
-    "emploi call center Madagascar",
     "emploi développeur Madagascar",
     "recrutement Label Technology",
   ],
@@ -25,7 +24,7 @@ export const metadata: Metadata = {
     siteName: "Label Technology",
     title: "Recrutement — Offres d'emploi Label Technology",
     description:
-      "Rejoignez une équipe de 60+ collaborateurs à Antananarivo. Call Center, Développement, Marketing, Data, Comptabilité, Infrastructure.",
+      "Rejoignez une équipe de 60+ collaborateurs à Antananarivo. Développement, Marketing, Data, Comptabilité, Infrastructure.",
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Recrutement Label Technology" }],
   },
   twitter: {
@@ -83,9 +82,9 @@ export default async function RecruPage() {
             </span>
           </h1>
           <p className="text-white/55 text-lg font-light max-w-xl animate-fadeup-d2">
-            60+ collaborateurs, 7 expertises. Call Center, Développement,
-            Marketing, Digitalisation, Data, Comptabilité, Infrastructure —
-            toutes nos offres, à Antananarivo.
+            60+ collaborateurs, 6 expertises. Développement, Marketing,
+            Digitalisation, Data, Comptabilité, Infrastructure — toutes nos
+            offres, à Antananarivo.
           </p>
         </div>
       </section>

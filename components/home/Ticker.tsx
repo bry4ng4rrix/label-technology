@@ -2,7 +2,6 @@
 
 const ITEMS = [
   "Développement Web & Mobile",
-  "Call Center 50 postes FR/EN",
   "Marketing Digital & SEO",
   "Digitalisation & Logiciels",
   "Traitement de données",

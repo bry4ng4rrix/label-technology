@@ -15,14 +15,6 @@ const PHOTOS = [
     alt: "Développement web & mobile — Label Technology",
   },
   {
-    id: "callcenter",
-    href: "/services/callcenter",
-    tag: "Call Center",
-    color: "#F59E0B",
-    src: "/images/callcenter-fetra.png",
-    alt: "Call center 50 postes — Label Technology",
-  },
-  {
     id: "marketing",
     href: "/services/marketing",
     tag: "Marketing Digital",

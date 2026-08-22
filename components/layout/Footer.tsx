@@ -4,7 +4,6 @@ import Link from "next/link";
 const LINKS = {
   Services: [
     { label: "Développement Web & Mobile", href: "/services/dev" },
-    { label: "Call Center 50 postes", href: "/services/callcenter" },
     { label: "Marketing Digital", href: "/services/marketing" },
     { label: "Digitalisation", href: "/services/digital" },
     { label: "Traitement de données", href: "/services/data" },
@@ -35,8 +34,7 @@ export default function Footer() {
             />
             <p className="text-white/50 text-sm font-light leading-relaxed max-w-xs mb-6">
               Votre partenaire technologique premium depuis Antananarivo,
-              Madagascar. Développement, Call Center, Marketing, Data et
-              Matériel IT.
+              Madagascar. Développement, Marketing, Data et Matériel IT.
             </p>
             <div className="space-y-2 text-sm text-white/50">
               <p>Akany Riandrano, Manjaka Ilafy</p>

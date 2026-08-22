@@ -5,8 +5,8 @@ import { Typewriter } from "react-simple-typewriter";
 import DotField from "@/components/DotField";
 import { Badge } from "@/components/ui/badge";
 const STATS = [
-  { value: "50", label: "postes Call Center" },
-  { value: "7", label: "domaines d'expertise" },
+  { value: "60+", label: "collaborateurs" },
+  { value: "6", label: "domaines d'expertise" },
   { value: "FR/EN", label: "bilingue certifié" },
   { value: "72h", label: "délai de réponse" },
 ];
@@ -67,9 +67,9 @@ const HeroSplit = () => {
           </h1>
 
           <p className="animate-fadeup-d3 text-sm md:text-base mb-9 max-w-xl text-gray-300">
-            Développement web, Call Center 50 postes FR/EN, Marketing digital,
-            Digitalisation, Traitement de données, Matériel IT & Comptabilité —
-            une seule équipe, sept expertises, des résultats mesurables.
+            Développement web, Marketing digital, Digitalisation, Traitement de
+            données, Matériel IT & Comptabilité — une seule équipe, six
+            expertises, des résultats mesurables.
           </p>
 
           {/* Stats */}
@@ -120,7 +120,7 @@ const HeroSplit = () => {
             <div className="relative h-full w-full rounded-full overflow-hidden ring-4 ring-slate-950 shadow-xl transition-shadow duration-300 group-hover:shadow-[0_25px_60px_-8px_var(--shadow-color)]">
               <Image
                 src="/images/services/callsy.png"
-                alt="Call center Label Technology"
+                alt="Équipe Label Technology"
                 fill
                 sizes="(max-width: 1024px) 46vw, 250px"
                 className="object-cover"

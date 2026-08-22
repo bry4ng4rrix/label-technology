@@ -2,7 +2,6 @@
   "nav": {
     "services": "Services",
     "dev": "Development",
-    "callcenter": "Call Center",
     "marketing": "Digital Marketing",
     "digital": "Digitalization",
     "data": "Data Processing",
@@ -16,10 +15,9 @@
   "hero": {
     "tag": "Antananarivo · Madagascar · International",
     "headline": "Your premium technology partner",
-    "sub": "Development, 50-seat Call Center, Digital Marketing, Digitalization, Data and IT Equipment — one team, six expertises.",
+    "sub": "Development, Digital Marketing, Digitalization, Data and IT Equipment — one team, six expertises.",
     "cta_primary": "Start a project",
     "cta_secondary": "Discover our services",
-    "stat_seats": "50-seat Call Center",
     "stat_poles": "6 areas of expertise",
     "stat_lang": "Bilingual FR / EN",
     "stat_delay": "Response within 24h"
@@ -27,7 +25,6 @@
   "ticker": {
     "items": [
       "Web & Mobile Development",
-      "50-seat Call Center FR/EN",
       "Digital Marketing & SEO",
       "Digitalization & Software",
       "Data Processing",

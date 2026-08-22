@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
-import Hero from "@/components/home/Hero";
 import HeroSplit from "@/components/home/HeroSplit";
 import Ticker from "@/components/home/Ticker";
 import ServicesGrid from "@/components/home/ServicesGrid";
-import CallCenterHighlight from "@/components/home/CallCenterHighlight";
 import Process from "@/components/home/Process";
 import Testimonials from "@/components/home/Testimonials";
 import CtaSection from "@/components/home/CtaSection";
@@ -13,7 +11,7 @@ export const revalidate = 3600;
 export const metadata: Metadata = {
   title: "Label Technology — Votre Partenaire Technologique Premium",
   description:
-    "Call center 50 postes FR/EN, développement web & mobile, marketing digital, ERP, traitement de données. Depuis Antananarivo, pour la France et l'Afrique.",
+    "Développement web & mobile, marketing digital, ERP, traitement de données. Depuis Antananarivo, pour la France et l'Afrique.",
   keywords: [
     "Label Technology",
     "Label Technologie",
@@ -28,7 +26,6 @@ export const metadata: Metadata = {
     "Label Technologie Andry",
     "Label Technologie Oswald",
     "partenaire technologique Madagascar",
-    "call center 50 postes Madagascar",
     "développement web Antananarivo",
     "agence web Madagascar",
     "BPO Madagascar",
@@ -40,7 +37,6 @@ export const metadata: Metadata = {
     "société informatique Madagascar",
     "prestataire IT Madagascar",
     "développement application Madagascar",
-    "call center bilingue FR EN",
   ],
   alternates: {
     canonical: "https://labeltechnology.mg",
@@ -52,7 +48,7 @@ export const metadata: Metadata = {
     siteName: "Label Technology",
     title: "Label Technology — Votre Partenaire Technologique Premium",
     description:
-      "Call center 50 postes FR/EN, développement web & mobile, marketing digital, ERP, traitement de données. Depuis Antananarivo, pour la France et l'Afrique.",
+      "Développement web & mobile, marketing digital, ERP, traitement de données. Depuis Antananarivo, pour la France et l'Afrique.",
     images: [
       {
         url: "/og-image.png",
@@ -66,7 +62,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Label Technology — Votre Partenaire Technologique Premium",
     description:
-      "Call center 50P, développement web, marketing digital, ERP. Depuis Antananarivo, pour la France et l'Afrique.",
+      "Développement web, marketing digital, ERP. Depuis Antananarivo, pour la France et l'Afrique.",
     images: ["/og-image.png"],
   },
 };
@@ -78,7 +74,7 @@ const jsonLd = {
   url: "https://labeltechnology.mg",
   logo: "https://labeltechnology.mg/logo-seal.svg",
   description:
-    "Partenaire technologique premium basé à Antananarivo, Madagascar. Développement web & mobile, call center 50 postes FR/EN, marketing digital, ERP, traitement de données, comptabilité externalisée.",
+    "Partenaire technologique premium basé à Antananarivo, Madagascar. Développement web & mobile, marketing digital, ERP, traitement de données, comptabilité externalisée.",
   address: {
     "@type": "PostalAddress",
     streetAddress: "Akany Riandrano, Manajak Ilafy",
@@ -108,7 +104,6 @@ const jsonLd = {
   knowsAbout: [
     "Développement web",
     "Développement mobile",
-    "Call center",
     "Marketing digital",
     "SEO",
     "ERP Odoo",
@@ -135,14 +130,6 @@ const jsonLd = {
           "@type": "Service",
           name: "Développement Web & Mobile",
           url: "https://labeltechnology.mg/services/dev",
-        },
-      },
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Call Center 50 Postes FR/EN",
-          url: "https://labeltechnology.mg/services/callcenter",
         },
       },
       {
@@ -200,7 +187,6 @@ export default function Home() {
       <Ticker />
       <ServicesGrid />
       <Process />
-      <CallCenterHighlight />
       <Testimonials />
       <CtaSection />
     </div>

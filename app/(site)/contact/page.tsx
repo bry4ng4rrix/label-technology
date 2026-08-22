@@ -5,12 +5,11 @@ import Reveal from "@/components/shared/Reveal";
 export const metadata: Metadata = {
   title: "Contact — Démarrez votre projet avec Label Technology",
   description:
-    "Contactez Label Technology pour démarrer votre projet. Développement web, call center, marketing digital, ERP. Réponse sous 72h. Antananarivo, Madagascar.",
+    "Contactez Label Technology pour démarrer votre projet. Développement web, marketing digital, ERP. Réponse sous 72h. Antananarivo, Madagascar.",
   keywords: [
     "contact Label Technology",
     "devis Label Technology",
     "devis développement web Madagascar",
-    "devis call center Madagascar",
     "devis marketing digital Madagascar",
     "devis ERP Madagascar",
     "devis externalisation Madagascar",
@@ -67,7 +66,7 @@ export default function ContactPage() {
                   { icon: "📍", label: "Adresse", content: "Akany Riandrano, Manajak Ilafy\nAntananarivo Avaradrano, Madagascar" },
                   { icon: "📞", label: "Téléphone", href: "tel:+261340503129", linkText: "+261 34 05 031 29" },
                   { icon: "✉️", label: "Email", href: "mailto:contact@labeltechnology.mg", linkText: "contact@labeltechnology.mg" },
-                  { icon: "🕐", label: "Horaires", content: "Lun–Ven : 08h00 – 18h00 (UTC+3)\nCall Center : 24h/24, 7j/7" },
+                  { icon: "🕐", label: "Horaires", content: "Lun–Ven : 08h00 – 18h00 (UTC+3)" },
                 ].map((item, i) => (
                   <Reveal key={item.label} delay={0.15 + i * 0.08} className="flex items-start gap-4">
                     <span className="text-xl mt-0.5">{item.icon}</span>

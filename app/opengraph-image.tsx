@@ -77,14 +77,14 @@ export default function OgImage() {
             <span style={{ color: "#2E55D4" }}>technologique</span> premium
           </div>
           <div style={{ color: "rgba(255,255,255,0.5)", fontSize: 20, fontWeight: 300, marginTop: 8 }}>
-            Développement · Call Center 50P · Marketing · ERP · Data
+            Développement · Marketing · ERP · Data
           </div>
         </div>
 
         {/* Bottom metrics */}
         <div style={{ display: "flex", gap: 40, position: "relative" }}>
           {[
-            { v: "50", l: "postes Call Center" },
+            { v: "60+", l: "collaborateurs" },
             { v: "6", l: "expertises" },
             { v: "FR/EN", l: "bilingue" },
             { v: "4 ans", l: "expérience" },

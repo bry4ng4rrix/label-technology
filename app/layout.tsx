@@ -26,10 +26,9 @@ export const metadata: Metadata = {
     template: "%s | Label Technology",
   },
   description:
-    "Label Technology : développement web & mobile, call center 50 postes FR/EN, marketing digital, digitalisation, traitement de données. Depuis Antananarivo, pour la France et l'Afrique.",
+    "Label Technology : développement web & mobile, marketing digital, digitalisation, traitement de données. Depuis Antananarivo, pour la France et l'Afrique.",
   keywords: [
     "Label Technology",
-    "call center Madagascar",
     "développement web Madagascar",
     "agence web Madagascar",
     "marketing digital Madagascar",
@@ -46,7 +45,6 @@ export const metadata: Metadata = {
     "externalisation France Madagascar",
     "partenaire technologique Madagascar",
     "agence digitale Antananarivo",
-    "call center Antananarivo",
     "développeur web Antananarivo",
     "comptabilité externalisée Madagascar",
     "matériel informatique Antananarivo",
@@ -71,7 +69,7 @@ export const metadata: Metadata = {
     siteName: "Label Technology",
     title: "Label Technology — Partenaire Technologique Premium | Antananarivo",
     description:
-      "Développement web & mobile, call center 50 postes FR/EN, marketing digital, ERP, traitement de données. Depuis Antananarivo, avec l'exigence d'un partenaire européen.",
+      "Développement web & mobile, marketing digital, ERP, traitement de données. Depuis Antananarivo, avec l'exigence d'un partenaire européen.",
     images: [
       {
         url: "/og-image.png",
@@ -85,7 +83,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Label Technology — Partenaire Technologique Premium",
     description:
-      "Call center 50P, développement web, marketing digital, ERP. Depuis Antananarivo, pour la France et l'Afrique.",
+      "Développement web, marketing digital, ERP. Depuis Antananarivo, pour la France et l'Afrique.",
     images: ["/og-image.png"],
   },
   icons: {

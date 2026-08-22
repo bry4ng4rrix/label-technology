@@ -4,16 +4,15 @@ import Link from "next/link";
 import Reveal from "@/components/shared/Reveal";
 
 export const metadata: Metadata = {
-  title: "Nos Services — 7 Expertises Tech depuis Antananarivo",
+  title: "Nos Services — 6 Expertises Tech depuis Antananarivo",
   description:
-    "Développement web & mobile, call center 50 postes, marketing digital, ERP, traitement de données, matériel informatique, comptabilité. Une couverture complète depuis Antananarivo.",
+    "Développement web & mobile, marketing digital, ERP, traitement de données, matériel informatique, comptabilité. Une couverture complète depuis Antananarivo.",
   keywords: [
     "services informatiques Madagascar",
     "prestations externalisation Madagascar",
     "agence complète Madagascar",
-    "7 expertises Madagascar",
+    "6 expertises Madagascar",
     "développement web Madagascar",
-    "call center Madagascar",
     "marketing digital Madagascar",
     "ERP Madagascar",
     "traitement données Madagascar",
@@ -32,16 +31,16 @@ export const metadata: Metadata = {
     locale: "fr_FR",
     url: "https://labeltechnology.mg/services",
     siteName: "Label Technology",
-    title: "Nos Services — 7 Expertises Tech depuis Antananarivo",
+    title: "Nos Services — 6 Expertises Tech depuis Antananarivo",
     description:
-      "Développement web & mobile, call center 50 postes, marketing digital, ERP, traitement de données, matériel informatique, comptabilité.",
+      "Développement web & mobile, marketing digital, ERP, traitement de données, matériel informatique, comptabilité.",
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Services Label Technology" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nos Services — 7 Expertises Tech | Label Technology",
+    title: "Nos Services — 6 Expertises Tech | Label Technology",
     description:
-      "Développement web, call center, marketing digital, ERP, données, matériel, comptabilité. Depuis Antananarivo.",
+      "Développement web, marketing digital, ERP, données, matériel, comptabilité. Depuis Antananarivo.",
     images: ["/og-image.png"],
   },
 };
@@ -51,15 +50,14 @@ const jsonLd = {
   "@type": "ItemList",
   name: "Services Label Technology",
   url: "https://labeltechnology.mg/services",
-  description: "7 pôles d'expertise technologique depuis Antananarivo, Madagascar.",
+  description: "6 pôles d'expertise technologique depuis Antananarivo, Madagascar.",
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Développement Web & Mobile", url: "https://labeltechnology.mg/services/dev" },
-    { "@type": "ListItem", position: 2, name: "Call Center 50 Postes FR/EN", url: "https://labeltechnology.mg/services/callcenter" },
-    { "@type": "ListItem", position: 3, name: "Marketing Digital", url: "https://labeltechnology.mg/services/marketing" },
-    { "@type": "ListItem", position: 4, name: "Digitalisation & ERP", url: "https://labeltechnology.mg/services/digital" },
-    { "@type": "ListItem", position: 5, name: "Traitement de Données", url: "https://labeltechnology.mg/services/data" },
-    { "@type": "ListItem", position: 6, name: "Matériel Informatique", url: "https://labeltechnology.mg/services/materiel" },
-    { "@type": "ListItem", position: 7, name: "Comptabilité & Reporting", url: "https://labeltechnology.mg/services/comptabilite" },
+    { "@type": "ListItem", position: 2, name: "Marketing Digital", url: "https://labeltechnology.mg/services/marketing" },
+    { "@type": "ListItem", position: 3, name: "Digitalisation & ERP", url: "https://labeltechnology.mg/services/digital" },
+    { "@type": "ListItem", position: 4, name: "Traitement de Données", url: "https://labeltechnology.mg/services/data" },
+    { "@type": "ListItem", position: 5, name: "Matériel Informatique", url: "https://labeltechnology.mg/services/materiel" },
+    { "@type": "ListItem", position: 6, name: "Comptabilité & Reporting", url: "https://labeltechnology.mg/services/comptabilite" },
   ],
 };
 
@@ -72,15 +70,6 @@ const SERVICES = [
     desc: "Sites, applications web, mobiles, APIs. Next.js, React Native, Node.js. Standards ESN européenne, réactivité startup.",
     items: ["Sites & Apps Web", "Applications Mobiles", "APIs & Back-end", "E-commerce", "Refonte & Migration"],
     featured: true,
-  },
-  {
-    tag: "CALL CENTER",
-    href: "/services/callcenter",
-    title: "Call Center 50P",
-    accroche: "Madagascar n'est pas un plan B. C'est un avantage compétitif.",
-    desc: "50 postes opérationnels, bilingue FR/EN, disponibles 24h/24. Prospection B2B, support client, qualification de fichiers.",
-    items: ["Prospection B2B", "Support FR/EN", "Qualification fichiers", "Prise de RDV", "Enquêtes & sondages"],
-    featured: false,
   },
   {
     tag: "MARKETING",
@@ -145,11 +134,11 @@ export default function ServicesPage() {
         <Reveal className="relative max-w-7xl mx-auto w-full">
           <p className="label-tag mb-5" style={{ color: "var(--brand-lt)" }}>NOS EXPERTISES</p>
           <h1 className="h1-display text-white mb-6">
-            7 expertises.<br />
+            6 expertises.<br />
             <span style={{ color: "var(--brand-lt)" }}>1 équipe.</span>
           </h1>
           <p className="text-white/60 text-lg font-light leading-relaxed max-w-2xl">
-            Développement, Call Center, Marketing, Digitalisation, Données, Matériel, Comptabilité.
+            Développement, Marketing, Digitalisation, Données, Matériel, Comptabilité.
             Une couverture complète depuis Antananarivo.
           </p>
         </Reveal>

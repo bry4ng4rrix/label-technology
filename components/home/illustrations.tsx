@@ -90,42 +90,6 @@ export function DevIllustration({ color = "#3B82F6" }: { color?: string }) {
   );
 }
 
-export function CallCenterIllustration({ color = "#F59E0B" }: { color?: string }) {
-  return (
-    <svg {...svgProps} role="img" aria-label="Illustration call center bilingue">
-      <TileBackground color={color} patternId="cc-dots" />
-      <g transform="translate(190 250)">
-        {/* Casque */}
-        <path
-          d="M -70 10 A 70 70 0 0 1 70 10"
-          fill="none"
-          stroke={color}
-          strokeWidth="7"
-          strokeLinecap="round"
-        />
-        <rect x="-88" y="0" width="26" height="46" rx="10" fill={color} fillOpacity="0.15" stroke={color} strokeWidth="4" />
-        <rect x="62" y="0" width="26" height="46" rx="10" fill={color} fillOpacity="0.15" stroke={color} strokeWidth="4" />
-        {/* Micro */}
-        <path d="M 75 40 Q 95 55 60 70" fill="none" stroke={color} strokeWidth="4" strokeLinecap="round" />
-        <circle cx="58" cy="72" r="6" fill={color} />
-        {/* Ondes sonores */}
-        <path d="M 105 5 A 40 40 0 0 1 105 55" fill="none" stroke={color} strokeWidth="3" opacity="0.55" strokeLinecap="round" />
-        <path d="M 122 -10 A 62 62 0 0 1 122 70" fill="none" stroke={color} strokeWidth="3" opacity="0.3" strokeLinecap="round" />
-      </g>
-      {/* Bulle de conversation FR/EN */}
-      <g transform="translate(150 400)">
-        <rect x="-70" y="-34" width="140" height="60" rx="16" fill={color} fillOpacity="0.1" stroke={color} strokeWidth="3" />
-        <path d="M -20 26 L -32 44 L -4 26 Z" fill={color} fillOpacity="0.1" stroke={color} strokeWidth="3" strokeLinejoin="round" />
-        <circle cx="-24" cy="-4" r="6" fill={color} opacity="0.8" />
-        <circle cx="0" cy="-4" r="6" fill={color} opacity="0.55" />
-        <circle cx="24" cy="-4" r="6" fill={color} opacity="0.3" />
-      </g>
-      <circle cx="60" cy="140" r="4" fill={color} opacity="0.5" />
-      <circle cx="330" cy="500" r="5" fill={color} opacity="0.4" />
-    </svg>
-  );
-}
-
 export function ITIllustration({ color = "#06B6D4" }: { color?: string }) {
   return (
     <svg {...svgProps} role="img" aria-label="Illustration matériel informatique et infrastructure IT">
