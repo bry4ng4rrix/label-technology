@@ -1,4 +1,4 @@
-pi"use client";
+"use client";
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
@@ -116,7 +116,6 @@ const Navbar = () => {
                           key={service.key}
                           title={service.labelFr}
                           href={service.href}
-                          badge={service.badge}
                         >
                           {service.labelEn}
                         </ListItem>
