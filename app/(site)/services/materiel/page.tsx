@@ -9,7 +9,7 @@ import Link from "next/link";
 import MaterielChart from "@/components/services/MaterielChartWrapper";
 
 export const metadata: Metadata = {
-  title: "Vente Matériel Informatique — PC, Réseau, Infrastructure | Label Technology",
+  title: "Vente Matériel Informatique — PC, Réseau, Infrastructure",
   description: "Ordinateurs, réseau, périphériques, serveurs. Marques professionnelles, installation sur site, maintenance. Devis en 4h depuis Antananarivo.",
   keywords: [
     "matériel informatique Antananarivo",

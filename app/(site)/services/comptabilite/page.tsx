@@ -6,7 +6,7 @@ import MiniTestimonials from "@/components/shared/MiniTestimonials";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Comptabilité & Reporting — Saisie, Clôture, Tableaux de bord | Label Technology",
+  title: "Comptabilité & Reporting — Saisie, Clôture, Tableaux de bord",
   description: "Saisie comptable, rapprochements bancaires, reporting financier mensuel, tableaux de bord dirigeants. Expertise comptable externalisée depuis Antananarivo.",
   keywords: [
     "comptabilité externalisée Madagascar",

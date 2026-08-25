@@ -9,7 +9,7 @@ import Link from "next/link";
 import DigitalChart from "@/components/services/DigitalChartWrapper";
 
 export const metadata: Metadata = {
-  title: "Digitalisation & ERP — Odoo, SIRH, Logiciels métier | Label Technology",
+  title: "Digitalisation & ERP — Odoo, SIRH, Logiciels métier",
   description: "ERP, SIRH, GED, logiciels métier sur mesure. Déploiement Odoo, automatisation des processus, intégration de systèmes. Depuis Antananarivo.",
   keywords: [
     "ERP Madagascar",

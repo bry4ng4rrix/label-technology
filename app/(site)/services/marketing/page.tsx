@@ -12,7 +12,7 @@ import { ArrowRight } from "lucide-react";
 import Reveal from "@/components/shared/Reveal";
 
 export const metadata: Metadata = {
-  title: "Marketing Digital — SEO, Google Ads, Social Media | Label Technology",
+  title: "Marketing Digital — SEO, Google Ads, Social Media",
   description:
     "Stratégie digitale, SEO, publicité payante, social media, email marketing. Résultats mesurables depuis Antananarivo. Audit gratuit en 72h.",
   keywords: [

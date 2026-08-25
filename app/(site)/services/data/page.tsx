@@ -9,7 +9,7 @@ import Link from "next/link";
 import DataChart from "@/components/services/DataChartWrapper";
 
 export const metadata: Metadata = {
-  title: "Traitement de Données — Saisie, Nettoyage, Analyse | Label Technology",
+  title: "Traitement de Données — Saisie, Nettoyage, Analyse",
   description: "Saisie de données, nettoyage, normalisation, analyse et datavisualisation. Précision garantie à 99,5%. Depuis Antananarivo, pour clients MG/AF/EU.",
   keywords: [
     "traitement données Madagascar",
