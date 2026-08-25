@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { Typewriter } from "react-simple-typewriter";
 import DotField from "@/components/DotField";
 import { Badge } from "@/components/ui/badge";
@@ -95,13 +96,17 @@ const HeroSplit = () => {
 
           <div className="animate-fadeup-d5 mt-8 justify-around items-center flex gap-4 w-1/3">
             <Button
+              asChild
               className="w-full h-14 hover:scale-105 text-md hover:font-bold transition-all duration-300 bg-transparent/50 backdrop-blur-2xl text-white border border-white/20 hover:border-white/40 hover:shadow-md hover:bg-transparent hover:text-white hover:shadow-slate-500"
               variant="outline"
             >
-              Services IT{" "}
+              <Link href="/services">Services IT</Link>
             </Button>
-            <Button className="w-full h-14 hover:scale-105 text-md hover:font-bold transition-all duration-300 bg-blue-600">
-              Services Constructions
+            <Button
+              asChild
+              className="w-full h-14 hover:scale-105 text-md hover:font-bold transition-all duration-300 bg-blue-600"
+            >
+              <Link href="/construction">Services Constructions</Link>
             </Button>
           </div>
         </div>

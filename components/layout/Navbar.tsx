@@ -76,6 +76,27 @@ const Navbar = () => {
     },
   ];
 
+  const constructionServices = [
+    {
+      key: "route",
+      href: "/construction/route",
+      labelFr: "Route",
+      labelEn: "Travaux routiers",
+    },
+    {
+      key: "entreprise",
+      href: "/construction/entreprise",
+      labelFr: "Bâtiment Entreprise",
+      labelEn: "Construction commerciale & industrielle",
+    },
+    {
+      key: "projets",
+      href: "/construction/projets",
+      labelFr: "Projets BTP",
+      labelEn: "Réalisations chantiers",
+    },
+  ];
+
   return (
     /* Pas de text-white global — le Viewport du NavigationMenu gère ses propres couleurs */
     <nav className="fixed top-0 left-0 w-full z-50 bg-slate-950/80 backdrop-blur border-b border-white/10">
@@ -135,7 +156,7 @@ const Navbar = () => {
                   </NavigationMenuTrigger>
                   <NavigationMenuContent className="border-0 shadow-lg bg-slate-300/95 dark:bg-slate-800/90 backdrop-blur-sm rounded-lg p-0">
                     <ul className="grid w-[420px] gap-1 p-3 md:w-[520px] md:grid-cols-2 lg:w-[640px] ">
-                      {services.map((service) => (
+                      {constructionServices.map((service) => (
                         <ListItem
                           key={service.key}
                           title={service.labelFr}
@@ -193,9 +214,23 @@ const Navbar = () => {
                 </SheetHeader>
                 <div className="mt-6 flex flex-col gap-1">
                   <p className="text-xs font-semibold text-white/50 uppercase tracking-wider px-2 mb-2">
-                    Services
+                    Services IT
                   </p>
                   {services.map((service) => (
+                    <Button
+                      key={service.key}
+                      variant="ghost"
+                      asChild
+                      className="h-12 justify-start gap-5 font-normal text-white hover:bg-white/10 hover:text-white"
+                    >
+                      <Link href={service.href}>{service.labelFr}</Link>
+                    </Button>
+                  ))}
+                  <Separator className="my-3 bg-white/10" />
+                  <p className="text-xs font-semibold text-white/50 uppercase tracking-wider px-2 mb-2">
+                    Services Constructions
+                  </p>
+                  {constructionServices.map((service) => (
                     <Button
                       key={service.key}
                       variant="ghost"
