@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { Typewriter } from "react-simple-typewriter";
 import DotField from "@/components/DotField";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "../ui/button";
 const STATS = [
   { value: "60+", label: "collaborateurs" },
