@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Typewriter } from "react-simple-typewriter";
 import DotField from "@/components/DotField";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "../ui/button";
 const STATS = [
   { value: "60+", label: "collaborateurs" },
   { value: "6", label: "domaines d'expertise" },
@@ -90,6 +91,18 @@ const HeroSplit = () => {
                 </div>
               </div>
             ))}
+          </div>
+
+          <div className="animate-fadeup-d5 mt-8 justify-around items-center flex gap-4 w-1/3">
+            <Button
+              className="w-full h-14 hover:scale-105 text-md hover:font-bold transition-all duration-300 bg-transparent/50 backdrop-blur-2xl text-white border border-white/20 hover:border-white/40 hover:shadow-md hover:bg-transparent hover:text-white hover:shadow-slate-500"
+              variant="outline"
+            >
+              Services IT{" "}
+            </Button>
+            <Button className="w-full h-14 hover:scale-105 text-md hover:font-bold transition-all duration-300 bg-blue-600">
+              Services Constructions
+            </Button>
           </div>
         </div>
 

@@ -107,7 +107,31 @@ const Navbar = () => {
               <NavigationMenuList>
                 <NavigationMenuItem>
                   <NavigationMenuTrigger className="text-md font-semibold text-white/80  hover:bg-white/10 focus:bg-white/10 data-open:bg-white/10">
-                    Services
+                    Services IT
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent className="border-0 shadow-lg bg-slate-300/95 dark:bg-slate-800/90 backdrop-blur-sm rounded-lg p-0">
+                    <ul className="grid w-[420px] gap-1 p-3 md:w-[520px] md:grid-cols-2 lg:w-[640px] ">
+                      {services.map((service) => (
+                        <ListItem
+                          key={service.key}
+                          title={service.labelFr}
+                          href={service.href}
+                        >
+                          {service.labelEn}
+                        </ListItem>
+                      ))}
+                    </ul>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
+
+            {/* constructions  */}
+            <NavigationMenu>
+              <NavigationMenuList>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger className="text-md -mx-7 font-semibold text-white/80  hover:bg-white/10 focus:bg-white/10 data-open:bg-white/10">
+                    Services Constructions
                   </NavigationMenuTrigger>
                   <NavigationMenuContent className="border-0 shadow-lg bg-slate-300/95 dark:bg-slate-800/90 backdrop-blur-sm rounded-lg p-0">
                     <ul className="grid w-[420px] gap-1 p-3 md:w-[520px] md:grid-cols-2 lg:w-[640px] ">
