@@ -104,7 +104,7 @@ const HeroSplit = () => {
             </Button>
             <Button
               asChild
-              className="w-full h-14 hover:scale-105 text-md hover:font-bold transition-all duration-300 bg-blue-600"
+              className="w-full h-14 hover:scale-105 text-md hover:font-bold transition-all duration-300 bg-blue-600 hover:bg-blue-800"
             >
               <Link href="/construction">Services Constructions</Link>
             </Button>
