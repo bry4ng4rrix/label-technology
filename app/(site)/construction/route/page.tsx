@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import CtaSection from "@/components/home/CtaSection";
 import FaqSection from "@/components/shared/FaqSection";
-import MiniTestimonials from "@/components/shared/MiniTestimonials";
+import ActivityNotice from "@/components/construction/ActivityNotice";
+import ConstructionCta from "@/components/construction/ConstructionCta";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -41,11 +41,11 @@ export const metadata: Metadata = {
   },
 };
 
-const METRICS = [
-  { v: "J+2", l: "délai de devis" },
-  { v: "100%", l: "conformité normes" },
-  { v: "24/7", l: "suivi de chantier" },
-  { v: "FR/MG", l: "équipes bilingues" },
+const QUALITES = [
+  { icon: "🎯", l: "Approche structurée" },
+  { icon: "🛠", l: "Solutions sur mesure" },
+  { icon: "📋", l: "Suivi de projet" },
+  { icon: "💻", l: "Technologie & construction" },
 ];
 
 const SERVICES = [
@@ -62,11 +62,6 @@ const PROCESS = [
   { num: "02", title: "Planification", desc: "Planning de chantier, mobilisation des équipes et du matériel, coordination avec les riverains et autorités locales." },
   { num: "03", title: "Exécution", desc: "Terrassement, mise en œuvre du revêtement, assainissement. Contrôle qualité continu à chaque étape clé." },
   { num: "04", title: "Réception", desc: "Contrôle final, essais de conformité, levée de réserves. Remise du dossier de chantier complet." },
-];
-
-const TESTIMONIALS = [
-  { quote: "Le chantier de réfection de notre voirie d'accès a été livré dans les délais annoncés, avec un suivi photo régulier. On savait exactement où en étaient les travaux chaque semaine.", author: "Rado A.", role: "Directeur des opérations", company: "Zone industrielle, Antananarivo" },
-  { quote: "L'équipe a détecté un problème de drainage dès l'étude de sol, avant même le début des travaux. Ça nous a évité une réfection prématurée quelques mois après.", author: "Mialy R.", role: "Responsable infrastructure", company: "Lotissement privé, Antananarivo" },
 ];
 
 const FAQ = [
@@ -104,15 +99,18 @@ export default function RouteConstructionPage() {
       <section className="relative overflow-hidden grid-bg" style={{ backgroundColor: "var(--ink)", minHeight: "70vh" }}>
         <div className="relative max-w-7xl mx-auto px-6 grid lg:grid-cols-2 items-center" style={{ minHeight: "70vh" }}>
           <div className="relative z-10 py-28 lg:pr-12">
-            <p className="animate-fadeup label-tag mb-5" style={{ color: "var(--brand-lt)" }}>TRAVAUX ROUTIERS</p>
+            <p className="animate-fadeup label-tag mb-3" style={{ color: "var(--brand-lt)" }}>TRAVAUX ROUTIERS</p>
+            <p className="animate-fadeup text-white/40 text-xs font-light tracking-wide mb-5">
+              Nouvelle activité — Construction &amp; Génie Civil
+            </p>
             <h1 className="animate-fadeup-d1 h1-display text-white mb-6">
               Des routes qui<br />
               <span className="bg-linear-to-r from-[var(--brand)] to-[var(--brand-lt)] bg-clip-text text-transparent">tiennent la distance.</span>
             </h1>
             <p className="animate-fadeup-d2 text-white/70 text-lg leading-relaxed mb-10 max-w-xl" style={{ lineHeight: 1.8 }}>
-              Terrassement, revêtement, assainissement, signalisation. Un
-              suivi de chantier rigoureux, du relevé topographique à la
-              réception des travaux.
+              Terrassement, revêtement, assainissement, signalisation. Nous
+              développons une offre autour d&apos;un suivi de chantier
+              rigoureux, du relevé topographique à la réception des travaux.
             </p>
             <div className="animate-fadeup-d3 flex flex-wrap gap-4">
               <Link href="/contact"
@@ -136,13 +134,13 @@ export default function RouteConstructionPage() {
         </div>
       </section>
 
-      {/* Métriques */}
+      {/* Qualités */}
       <section style={{ backgroundColor: "var(--brand)" }}>
         <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 divide-x divide-white/15">
-          {METRICS.map((m, i) => (
-            <div key={i} className="animate-fadeup text-center py-6 px-4" style={{ animationDelay: `${i * 0.1}s` }}>
-              <div className="font-display text-2xl text-white mb-1">{m.v}</div>
-              <div className="label-tag text-white/55 text-[10px]">{m.l}</div>
+          {QUALITES.map((q, i) => (
+            <div key={i} className="animate-fadeup flex items-center justify-center gap-2 text-center py-6 px-4" style={{ animationDelay: `${i * 0.1}s` }}>
+              <span className="text-lg">{q.icon}</span>
+              <span className="label-tag text-white text-[11px]">{q.l}</span>
             </div>
           ))}
         </div>

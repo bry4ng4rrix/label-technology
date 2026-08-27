@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import CtaSection from "@/components/home/CtaSection";
 import FaqSection from "@/components/shared/FaqSection";
-import MiniTestimonials from "@/components/shared/MiniTestimonials";
+import ActivityNotice from "@/components/construction/ActivityNotice";
+import ConstructionCta from "@/components/construction/ConstructionCta";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -40,11 +40,11 @@ export const metadata: Metadata = {
   },
 };
 
-const METRICS = [
-  { v: "J+2", l: "délai de devis" },
-  { v: "1", l: "interlocuteur unique" },
-  { v: "100%", l: "conformité normes" },
-  { v: "FR/MG", l: "équipes bilingues" },
+const QUALITES = [
+  { icon: "🎯", l: "Approche structurée" },
+  { icon: "🛠", l: "Solutions sur mesure" },
+  { icon: "📋", l: "Suivi de projet" },
+  { icon: "💻", l: "Technologie & construction" },
 ];
 
 const SERVICES = [
@@ -61,11 +61,6 @@ const PROCESS = [
   { num: "02", title: "Planification", desc: "Planning de chantier, coordination des corps d'état, démarches administratives si nécessaires." },
   { num: "03", title: "Construction", desc: "Gros œuvre puis second œuvre, avec points d'étape réguliers et photos de suivi." },
   { num: "04", title: "Livraison", desc: "Réception des travaux, levée de réserves, remise des documents techniques du bâtiment." },
-];
-
-const TESTIMONIALS = [
-  { quote: "Notre entrepôt a été livré avec deux semaines d'avance sur le planning initial. La coordination entre les différents corps de métier était fluide, sans que ce soit à nous de tout superviser.", author: "Tojo H.", role: "Directeur logistique", company: "Distribution, Antananarivo" },
-  { quote: "On avait besoin d'agrandir nos bureaux sans interrompre l'activité. Le chantier a été phasé intelligemment, avec un seul interlocuteur pour tout coordonner.", author: "Nathalie P.", role: "Office Manager", company: "Société de services, Antananarivo" },
 ];
 
 const FAQ = [
@@ -103,14 +98,18 @@ export default function EntrepriseConstructionPage() {
       <section className="relative overflow-hidden grid-bg" style={{ backgroundColor: "var(--ink)", minHeight: "70vh" }}>
         <div className="relative max-w-7xl mx-auto px-6 grid lg:grid-cols-2 items-center" style={{ minHeight: "70vh" }}>
           <div className="relative z-10 py-28 lg:pr-12">
-            <p className="animate-fadeup label-tag mb-5" style={{ color: "var(--brand-lt)" }}>BÂTIMENT ENTREPRISE</p>
+            <p className="animate-fadeup label-tag mb-3" style={{ color: "var(--brand-lt)" }}>BÂTIMENT ENTREPRISE</p>
+            <p className="animate-fadeup text-white/40 text-xs font-light tracking-wide mb-5">
+              Nouvelle activité — Construction &amp; Génie Civil
+            </p>
             <h1 className="animate-fadeup-d1 h1-display text-white mb-6">
               Vos locaux,<br />
               <span className="bg-linear-to-r from-[var(--brand)] to-[var(--brand-lt)] bg-clip-text text-transparent">construits pour durer.</span>
             </h1>
             <p className="animate-fadeup-d2 text-white/70 text-lg leading-relaxed mb-10 max-w-xl" style={{ lineHeight: 1.8 }}>
               Gros œuvre, second œuvre, aménagement de locaux commerciaux et
-              industriels. Un interlocuteur unique, du permis à la livraison.
+              industriels. Nous développons une offre pensée pour un
+              interlocuteur unique, du permis à la livraison.
             </p>
             <div className="animate-fadeup-d3 flex flex-wrap gap-4">
               <Link href="/contact"
@@ -134,13 +133,13 @@ export default function EntrepriseConstructionPage() {
         </div>
       </section>
 
-      {/* Métriques */}
+      {/* Qualités */}
       <section style={{ backgroundColor: "var(--brand)" }}>
         <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 divide-x divide-white/15">
-          {METRICS.map((m, i) => (
-            <div key={i} className="animate-fadeup text-center py-6 px-4" style={{ animationDelay: `${i * 0.1}s` }}>
-              <div className="font-display text-2xl text-white mb-1">{m.v}</div>
-              <div className="label-tag text-white/55 text-[10px]">{m.l}</div>
+          {QUALITES.map((q, i) => (
+            <div key={i} className="animate-fadeup flex items-center justify-center gap-2 text-center py-6 px-4" style={{ animationDelay: `${i * 0.1}s` }}>
+              <span className="text-lg">{q.icon}</span>
+              <span className="label-tag text-white text-[11px]">{q.l}</span>
             </div>
           ))}
         </div>
@@ -185,9 +184,9 @@ export default function EntrepriseConstructionPage() {
         </div>
       </section>
 
-      <MiniTestimonials items={TESTIMONIALS} />
+      <ActivityNotice />
       <FaqSection items={FAQ} />
-      <CtaSection />
+      <ConstructionCta />
     </main>
   );
 }

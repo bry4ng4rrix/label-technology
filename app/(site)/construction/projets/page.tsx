@@ -1,23 +1,17 @@
 import type { Metadata } from "next";
-import CtaSection from "@/components/home/CtaSection";
-import ConstructionProjetsList from "@/components/construction/ProjetsList";
+import ProjectTypesGrid from "@/components/construction/ProjectTypesGrid";
+import ActivityNotice from "@/components/construction/ActivityNotice";
+import ConstructionCta from "@/components/construction/ConstructionCta";
 import Reveal from "@/components/shared/Reveal";
 
 export const metadata: Metadata = {
-  title: "Nos Réalisations BTP — Route & Bâtiment Entreprise",
+  title: "Les projets que nous souhaitons accompagner — Construction BTP",
   description:
-    "Découvrez les chantiers réalisés par Label Technology Construction : travaux routiers, construction et aménagement de bâtiments pour entreprises à Madagascar.",
+    "Label Technology développe une nouvelle activité Construction & Génie Civil à Madagascar. Découvrez les types de projets que nous souhaitons accompagner : résidentiel, professionnel, infrastructures, rénovation.",
   alternates: {
     canonical: "https://labeltechnology.mg/construction/projets",
   },
 };
-
-const PROJETS = [
-  { tag: "ROUTE", title: "Réfection de voirie d'accès — Zone industrielle", desc: "Réfection complète de la voirie d'accès d'une zone industrielle à Antananarivo : terrassement, revêtement enrobé, assainissement.", metrics: ["Chantier phasé", "Assainissement complet", "6 semaines"] },
-  { tag: "ROUTE", title: "Aménagement de voirie — Lotissement privé", desc: "Construction de la voirie interne d'un lotissement résidentiel : chaussée, drainage, signalisation et marquage au sol.", metrics: ["Voirie interne", "Marquage & signalisation", "8 semaines"] },
-  { tag: "ENTREPRISE", title: "Extension d'entrepôt logistique", desc: "Extension d'un entrepôt de stockage pour une société de distribution, avec coordination des corps d'état sans interruption d'activité.", metrics: ["Sans interruption d'activité", "Gros œuvre + second œuvre", "4 mois"] },
-  { tag: "ENTREPRISE", title: "Aménagement de bureaux — Société de services", desc: "Réaménagement complet d'un plateau de bureaux : cloisonnement, électricité, climatisation, finitions sur mesure.", metrics: ["Plateau de bureaux", "Corps d'état coordonnés", "6 semaines"] },
-];
 
 export default function ConstructionProjetsPage() {
   return (
@@ -42,22 +36,26 @@ export default function ConstructionProjetsPage() {
         />
         <Reveal className="relative max-w-7xl mx-auto w-full">
           <p className="label-tag mb-5" style={{ color: "var(--brand-lt)" }}>
-            RÉALISATIONS BTP
+            NOUVELLE ACTIVITÉ — CONSTRUCTION &amp; GÉNIE CIVIL
           </p>
           <h1 className="h1-display text-white mb-6">
-            Nos chantiers.<br />
-            <span style={{ color: "var(--brand-lt)" }}>Route & bâtiment.</span>
+            Les projets que nous<br />
+            <span style={{ color: "var(--brand-lt)" }}>souhaitons accompagner.</span>
           </h1>
           <p className="text-white/60 text-lg font-light leading-relaxed max-w-2xl">
-            Travaux routiers et constructions pour entreprises réalisés
-            depuis Antananarivo.
+            Notre activité Construction est en développement. Voici les
+            types de projets vers lesquels nous orientons progressivement
+            notre expertise, depuis Antananarivo.
           </p>
         </Reveal>
       </section>
 
-      <ConstructionProjetsList projets={PROJETS} />
+      <section className="py-24 px-6" style={{ backgroundColor: "var(--paper)" }}>
+        <ProjectTypesGrid />
+      </section>
 
-      <CtaSection />
+      <ActivityNotice />
+      <ConstructionCta />
     </main>
   );
 }
