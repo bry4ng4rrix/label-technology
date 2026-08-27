@@ -185,9 +185,9 @@ export default function RouteConstructionPage() {
         </div>
       </section>
 
-      <MiniTestimonials items={TESTIMONIALS} />
+      <ActivityNotice />
       <FaqSection items={FAQ} />
-      <CtaSection />
+      <ConstructionCta />
     </main>
   );
 }

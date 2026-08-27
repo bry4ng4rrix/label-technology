@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 
 import CtaSection from "@/components/home/CtaSection";
 import MiniTestimonials from "@/components/shared/MiniTestimonials";
@@ -319,6 +320,40 @@ export default async function AProposPage() {
             ))}
           </div>
         </div>
+      </section>
+
+      {/* Nouvelles orientations */}
+      <section className="py-24 px-6" style={{ backgroundColor: "var(--paper)" }}>
+        <Reveal className="max-w-3xl mx-auto text-center">
+          <p className="label-tag mb-4" style={{ color: "var(--brand)" }}>
+            NOUVELLES ORIENTATIONS
+          </p>
+          <h2 className="font-display text-3xl md:text-4xl mb-6 text-foreground">
+            Au-delà du numérique.
+          </h2>
+          <p
+            className="text-[15px] md:text-lg font-light leading-relaxed text-muted-foreground mb-4"
+            style={{ lineHeight: 1.8 }}
+          >
+            Label Technology développe progressivement de nouvelles
+            expertises afin d&apos;accompagner ses clients sur des
+            problématiques allant au-delà du numérique.
+          </p>
+          <p
+            className="text-[15px] md:text-lg font-light leading-relaxed text-muted-foreground mb-8"
+            style={{ lineHeight: 1.8 }}
+          >
+            Parmi ces nouvelles orientations figure le développement
+            d&apos;une activité dédiée à la Construction et au Génie Civil.
+          </p>
+          <Link
+            href="/construction"
+            className="inline-flex items-center gap-2 text-sm font-medium hover:gap-3 transition-all"
+            style={{ color: "var(--brand)" }}
+          >
+            Découvrir notre activité Construction →
+          </Link>
+        </Reveal>
       </section>
 
       {/* Équipe dirigeante */}

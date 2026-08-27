@@ -92,8 +92,8 @@ const Navbar = () => {
     {
       key: "projets",
       href: "/construction/projets",
-      labelFr: "Projets BTP",
-      labelEn: "Réalisations chantiers",
+      labelFr: "Nos futurs projets",
+      labelEn: "Types de projets visés",
     },
   ];
 
@@ -228,7 +228,7 @@ const Navbar = () => {
                   ))}
                   <Separator className="my-3 bg-white/10" />
                   <p className="text-xs font-semibold text-white/50 uppercase tracking-wider px-2 mb-2">
-                    Services Constructions
+                    Construction &amp; Génie Civil · Nouvelle activité
                   </p>
                   {constructionServices.map((service) => (
                     <Button

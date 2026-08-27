@@ -8,6 +8,7 @@ const LINKS = {
     { label: "Digitalisation", href: "/services/digital" },
     { label: "Traitement de données", href: "/services/data" },
     { label: "Matériel informatique", href: "/services/materiel" },
+    { label: "Construction & Génie Civil — Nouvelle activité", href: "/construction" },
   ],
   Entreprise: [
     { label: "À propos", href: "/about" },
