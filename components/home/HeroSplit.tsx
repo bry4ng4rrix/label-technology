@@ -92,7 +92,7 @@ const HeroSplit = () => {
               </div>
             ))}
           </div>
-
+          {/* 
           <div className="animate-fadeup-d5 mt-8 justify-around items-center flex gap-4 w-1/3">
             <Button
               asChild
@@ -107,7 +107,7 @@ const HeroSplit = () => {
             >
               <Link href="/construction">Services Constructions</Link>
             </Button>
-          </div>
+          </div> */}
         </div>
 
         {/* Colonne photos (droite) */}
