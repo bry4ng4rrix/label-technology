@@ -119,7 +119,7 @@ const HeroSplit = () => {
           >
             <div className="relative h-full w-full rounded-4xl overflow-hidden ring-1 ring-white/10 shadow-2xl transition-shadow duration-300 group-hover:shadow-[0_25px_60px_-8px_var(--shadow-color)]">
               <Image
-                src="/images/services/garrix.jpg"
+                src="/images/services/data.jpg"
                 alt="Équipe développement Label Technology"
                 fill
                 sizes="(max-width: 1024px) 62vw, 340px"
