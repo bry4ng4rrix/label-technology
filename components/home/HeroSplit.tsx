@@ -86,7 +86,7 @@ const HeroSplit = () => {
                 >
                   {stat.value}
                 </div>
-                <div className="text-white/50 text-[9px] label-tag">
+                <div className="text-white/50 text-xl label-tag">
                   {stat.label}
                 </div>
               </div>
