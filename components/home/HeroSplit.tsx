@@ -86,7 +86,7 @@ const HeroSplit = () => {
                 >
                   {stat.value}
                 </div>
-                <div className="text-white/50 text-xl label-tag">
+                <div className="text-white/50 text-md text-center font-bold ">
                   {stat.label}
                 </div>
               </div>
@@ -119,7 +119,7 @@ const HeroSplit = () => {
           >
             <div className="relative h-full w-full rounded-4xl overflow-hidden ring-1 ring-white/10 shadow-2xl transition-shadow duration-300 group-hover:shadow-[0_25px_60px_-8px_var(--shadow-color)]">
               <Image
-                src="/images/services/data.jpg"
+                src="/images/services/callsy.png"
                 alt="Équipe développement Label Technology"
                 fill
                 sizes="(max-width: 1024px) 62vw, 340px"
