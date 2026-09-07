@@ -79,8 +79,8 @@ export default async function CandidaturesAdminPage() {
                     )}
                   </div>
                 </TableCell>
-                <TableCell className="max-w-[180px] text-sm">{a.job_title}</TableCell>
-                <TableCell className="max-w-[260px] text-sm text-muted-foreground">
+                <TableCell className="max-w-[180px] truncate text-sm">{a.job_title}</TableCell>
+                <TableCell className="max-w-[260px] whitespace-normal text-sm text-muted-foreground">
                   {a.message ? (
                     <p className="line-clamp-3">{a.message}</p>
                   ) : (
