@@ -127,7 +127,7 @@ const Navbar = () => {
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="text-md font-semibold text-white/80  hover:bg-white/10 focus:bg-white/10 data-open:bg-white/10">
+                  <NavigationMenuTrigger className="text-md font-semibold text-white/80 hover:text-white hover:bg-white/10 focus:text-white focus:bg-white/10 data-open:text-white data-open:bg-white/10 data-open:hover:bg-white/15 data-open:focus:bg-white/15 data-popup-open:text-white data-popup-open:bg-white/10 data-popup-open:hover:bg-white/15">
                     Services IT
                   </NavigationMenuTrigger>
                   <NavigationMenuContent className="border-0 shadow-lg bg-slate-300/95 dark:bg-slate-800/90 backdrop-blur-sm rounded-lg p-0">
@@ -151,7 +151,7 @@ const Navbar = () => {
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="text-md -mx-7 font-semibold text-white/80  hover:bg-white/10 focus:bg-white/10 data-open:bg-white/10">
+                  <NavigationMenuTrigger className="text-md -mx-7 font-semibold text-white/80 hover:text-white hover:bg-white/10 focus:text-white focus:bg-white/10 data-open:text-white data-open:bg-white/10 data-open:hover:bg-white/15 data-open:focus:bg-white/15 data-popup-open:text-white data-popup-open:bg-white/10 data-popup-open:hover:bg-white/15">
                     Genie Civil
                   </NavigationMenuTrigger>
                   <NavigationMenuContent className="border-0 shadow-lg bg-slate-300/95 dark:bg-slate-800/90 backdrop-blur-sm rounded-lg p-0">
@@ -280,7 +280,7 @@ function ListItem({
       <NavigationMenuLink asChild>
         <Link
           href={href}
-          className="block select-none rounded-md p-3 transition-colors hover:bg-accent focus:bg-accent"
+          className="block select-none rounded-md p-3 transition-colors hover:bg-slate-900/10 focus:bg-slate-900/10 dark:hover:bg-white/10 dark:focus:bg-white/10"
         >
           <div className="flex items-center gap-2 mb-0.5">
             {/* text-foreground explicite — ne dépend pas du parent nav */}

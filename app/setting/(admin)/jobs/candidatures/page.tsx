@@ -1,17 +1,8 @@
 import Link from "next/link";
 import { supabase, type JobApplication } from "@/lib/supabase";
 import { Button } from "@/components/ui/button";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import { Briefcase, FileText, Mail, Phone } from "lucide-react";
-import StatusSelect from "./StatusSelect";
-import DeleteApplicationButton from "./DeleteApplicationButton";
+import { Briefcase, CheckCircle2, Inbox, Sparkles, Users } from "lucide-react";
+import ApplicationsTable from "./ApplicationsTable";
 
 export default async function CandidaturesAdminPage() {
   const { data } = await supabase
@@ -20,6 +11,38 @@ export default async function CandidaturesAdminPage() {
     .order("created_at", { ascending: false })
     .returns<JobApplication[]>();
   const applications = data ?? [];
+
+  const count = (status: string) => applications.filter((a) => a.status === status).length;
+  const sevenDaysAgo = Date.now() - 7 * 24 * 60 * 60 * 1000;
+  const stats = [
+    {
+      label: "Total",
+      value: applications.length,
+      hint: `${applications.filter((a) => new Date(a.created_at).getTime() >= sevenDaysAgo).length} cette semaine`,
+      icon: Inbox,
+    },
+    {
+      label: "Nouvelles",
+      value: count("nouveau"),
+      hint: "à traiter",
+      icon: Sparkles,
+      accent: "text-blue-600 dark:text-blue-400",
+    },
+    {
+      label: "En entretien",
+      value: count("entretien"),
+      hint: `${count("contacté")} contacté${count("contacté") > 1 ? "s" : ""}`,
+      icon: Users,
+      accent: "text-violet-600 dark:text-violet-400",
+    },
+    {
+      label: "Acceptées",
+      value: count("accepté"),
+      hint: `${count("refusé")} refusée${count("refusé") > 1 ? "s" : ""}`,
+      icon: CheckCircle2,
+      accent: "text-emerald-600 dark:text-emerald-400",
+    },
+  ];
 
   return (
     <div>
@@ -38,79 +61,27 @@ export default async function CandidaturesAdminPage() {
         </Button>
       </div>
 
-      <div className="mt-6 rounded-lg border bg-card">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Candidat</TableHead>
-              <TableHead>Offre</TableHead>
-              <TableHead>Message</TableHead>
-              <TableHead>Reçu le</TableHead>
-              <TableHead>Statut</TableHead>
-              <TableHead className="text-right">Actions</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {applications.map((a) => (
-              <TableRow key={a.id}>
-                <TableCell>
-                  <div className="font-medium">{a.full_name}</div>
-                  <div className="mt-0.5 flex flex-col gap-0.5 text-xs text-muted-foreground">
-                    <a href={`mailto:${a.email}`} className="flex items-center gap-1 hover:text-foreground">
-                      <Mail className="h-3 w-3" />
-                      {a.email}
-                    </a>
-                    {a.phone && (
-                      <span className="flex items-center gap-1">
-                        <Phone className="h-3 w-3" />
-                        {a.phone}
-                      </span>
-                    )}
-                    {a.cv_url && (
-                      <a
-                        href={a.cv_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-1 hover:text-foreground"
-                      >
-                        <FileText className="h-3 w-3" />
-                        CV
-                      </a>
-                    )}
-                  </div>
-                </TableCell>
-                <TableCell className="max-w-[180px] truncate text-sm">{a.job_title}</TableCell>
-                <TableCell className="max-w-[260px] whitespace-normal text-sm text-muted-foreground">
-                  {a.message ? (
-                    <p className="line-clamp-3">{a.message}</p>
-                  ) : (
-                    <span className="italic">—</span>
-                  )}
-                </TableCell>
-                <TableCell className="whitespace-nowrap text-sm text-muted-foreground">
-                  {new Date(a.created_at).toLocaleDateString("fr-FR", {
-                    day: "2-digit",
-                    month: "2-digit",
-                    year: "numeric",
-                  })}
-                </TableCell>
-                <TableCell>
-                  <StatusSelect id={a.id} status={a.status} />
-                </TableCell>
-                <TableCell className="text-right">
-                  <DeleteApplicationButton id={a.id} fullName={a.full_name} />
-                </TableCell>
-              </TableRow>
-            ))}
-            {applications.length === 0 && (
-              <TableRow>
-                <TableCell colSpan={6} className="py-10 text-center text-muted-foreground">
-                  Aucune candidature reçue pour le moment.
-                </TableCell>
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
+      <div className="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+        {stats.map(({ label, value, hint, icon: Icon, accent }) => (
+          <div key={label} className="flex items-center gap-4 rounded-lg border bg-card p-4">
+            <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-muted">
+              <Icon className={`size-5 ${accent ?? "text-muted-foreground"}`} />
+            </div>
+            <div className="min-w-0">
+              <div className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                {label}
+              </div>
+              <div className="flex items-baseline gap-2">
+                <span className="text-2xl font-semibold tabular-nums">{value}</span>
+                <span className="truncate text-xs text-muted-foreground">{hint}</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-6">
+        <ApplicationsTable data={applications} />
       </div>
     </div>
   );

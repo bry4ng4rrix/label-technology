@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import {
+  type Column,
   type ColumnDef,
   type ColumnFiltersState,
   type SortingState,
@@ -57,7 +58,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import StatusSelect from "./StatusSelect";
 import DeleteApplicationButton from "./DeleteApplicationButton";
 import { APPLICATION_STATUSES, STATUS_LABELS, STATUS_STYLES } from "./constants";
@@ -110,8 +111,7 @@ function CopyButton({ value, label }: { value: string; label: string }) {
           size="icon-xs"
           aria-label={`Copier ${label}`}
           className="text-muted-foreground opacity-0 transition-opacity group-hover/contact:opacity-100 focus-visible:opacity-100"
-          onClick={(e) => {
-            e.stopPropagation();
+          onClick={() => {
             navigator.clipboard.writeText(value).then(() => {
               setCopied(true);
               setTimeout(() => setCopied(false), 1500);
@@ -181,39 +181,40 @@ function ApplicationDialog({
 
             {/* Coordonnées */}
             <div className="grid gap-2 rounded-lg border bg-muted/30 p-3 sm:grid-cols-2">
-              <a
-                href={`mailto:${a.email}`}
-                className="group/contact flex items-center gap-2.5 rounded-md p-1.5 transition-colors hover:bg-muted"
-              >
-                <span className="flex size-8 shrink-0 items-center justify-center rounded-md bg-background ring-1 ring-border">
-                  <Mail className="size-4 text-muted-foreground" />
-                </span>
-                <span className="min-w-0 flex-1">
-                  <span className="block text-[11px] uppercase tracking-wide text-muted-foreground">
-                    Email
-                  </span>
-                  <span className="block truncate text-sm font-medium">{a.email}</span>
-                </span>
-                <CopyButton value={a.email} label="l'email" />
-              </a>
-              {a.phone ? (
-                <a
-                  href={`tel:${a.phone.replace(/\s+/g, "")}`}
-                  className="group/contact flex items-center gap-2.5 rounded-md p-1.5 transition-colors hover:bg-muted"
-                >
+              <div className="group/contact flex items-center gap-2.5 rounded-md p-1.5 transition-colors hover:bg-muted">
+                <a href={`mailto:${a.email}`} className="flex min-w-0 flex-1 items-center gap-2.5">
                   <span className="flex size-8 shrink-0 items-center justify-center rounded-md bg-background ring-1 ring-border">
-                    <Phone className="size-4 text-muted-foreground" />
+                    <Mail className="size-4 text-muted-foreground" />
                   </span>
                   <span className="min-w-0 flex-1">
                     <span className="block text-[11px] uppercase tracking-wide text-muted-foreground">
-                      Téléphone
+                      Email
                     </span>
-                    <span className="block truncate font-mono text-sm font-medium tabular-nums">
-                      {a.phone}
-                    </span>
+                    <span className="block truncate text-sm font-medium">{a.email}</span>
                   </span>
-                  <CopyButton value={a.phone} label="le numéro" />
                 </a>
+                <CopyButton value={a.email} label="l'email" />
+              </div>
+              {a.phone ? (
+                <div className="group/contact flex items-center gap-2.5 rounded-md p-1.5 transition-colors hover:bg-muted">
+                  <a
+                    href={`tel:${a.phone.replace(/\s+/g, "")}`}
+                    className="flex min-w-0 flex-1 items-center gap-2.5"
+                  >
+                    <span className="flex size-8 shrink-0 items-center justify-center rounded-md bg-background ring-1 ring-border">
+                      <Phone className="size-4 text-muted-foreground" />
+                    </span>
+                    <span className="min-w-0 flex-1">
+                      <span className="block text-[11px] uppercase tracking-wide text-muted-foreground">
+                        Téléphone
+                      </span>
+                      <span className="block truncate font-mono text-sm font-medium tabular-nums">
+                        {a.phone}
+                      </span>
+                    </span>
+                  </a>
+                  <CopyButton value={a.phone} label="le numéro" />
+                </div>
               ) : (
                 <div className="flex items-center gap-2.5 p-1.5 text-sm text-muted-foreground">
                   <span className="flex size-8 shrink-0 items-center justify-center rounded-md bg-background ring-1 ring-border">
@@ -338,14 +339,19 @@ export default function ApplicationsTable({ data }: { data: JobApplication[] }) 
                 {initials(a.full_name)}
               </div>
               <div className="min-w-0">
-                <div className="truncate font-medium">{a.full_name}</div>
+                <button
+                  type="button"
+                  onClick={() => setSelected(a)}
+                  className="block max-w-full truncate text-left font-medium underline-offset-4 hover:underline"
+                >
+                  {a.full_name}
+                </button>
                 <div className="mt-0.5 flex items-center gap-2 text-xs text-muted-foreground">
                   {a.cv_url ? (
                     <a
                       href={a.cv_url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      onClick={(e) => e.stopPropagation()}
                       className="inline-flex items-center gap-1 hover:text-foreground hover:underline"
                     >
                       <FileText className="size-3" />
@@ -373,7 +379,6 @@ export default function ApplicationsTable({ data }: { data: JobApplication[] }) 
                 <Mail className="size-3.5 shrink-0 text-muted-foreground" />
                 <a
                   href={`mailto:${a.email}`}
-                  onClick={(e) => e.stopPropagation()}
                   className="truncate text-sm hover:underline"
                   title={a.email}
                 >
@@ -386,8 +391,7 @@ export default function ApplicationsTable({ data }: { data: JobApplication[] }) 
                   <Phone className="size-3.5 shrink-0 text-muted-foreground" />
                   <a
                     href={`tel:${a.phone.replace(/\s+/g, "")}`}
-                    onClick={(e) => e.stopPropagation()}
-                    className="font-mono text-sm tabular-nums hover:underline"
+                      className="font-mono text-sm tabular-nums hover:underline"
                   >
                     {a.phone}
                   </a>
@@ -445,7 +449,7 @@ export default function ApplicationsTable({ data }: { data: JobApplication[] }) 
         header: () => <span className="sr-only">Actions</span>,
         enableSorting: false,
         cell: ({ row }) => (
-          <div className="flex justify-end" onClick={(e) => e.stopPropagation()}>
+          <div className="flex justify-end">
             <DeleteApplicationButton id={row.original.id} fullName={row.original.full_name} />
           </div>
         ),
@@ -497,6 +501,7 @@ export default function ApplicationsTable({ data }: { data: JobApplication[] }) 
   const rangeEnd = Math.min(total, (pageIndex + 1) * pageSize);
 
   return (
+    <TooltipProvider>
     <div className="space-y-4">
       {/* Barre de filtres */}
       <div className="flex flex-col gap-3">
@@ -616,11 +621,7 @@ export default function ApplicationsTable({ data }: { data: JobApplication[] }) 
               rows.map((row) => (
                 <TableRow
                   key={row.id}
-                  onClick={() => setSelected(row.original)}
-                  className={cn(
-                    "cursor-pointer",
-                    row.original.status === "nouveau" && "bg-primary/[0.03]",
-                  )}
+                  className={cn(row.original.status === "nouveau" && "bg-primary/[0.03]")}
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id} className="py-3 align-middle">
@@ -722,6 +723,7 @@ export default function ApplicationsTable({ data }: { data: JobApplication[] }) 
 
       <ApplicationDialog application={selected} onClose={() => setSelected(null)} />
     </div>
+    </TooltipProvider>
   );
 }
 
@@ -729,7 +731,6 @@ export default function ApplicationsTable({ data }: { data: JobApplication[] }) 
 /* En-tête triable                                                     */
 /* ------------------------------------------------------------------ */
 
-import type { Column } from "@tanstack/react-table";
 
 function SortHeader({
   column,
