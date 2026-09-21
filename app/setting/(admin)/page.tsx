@@ -3,6 +3,7 @@ import { supabase, countRows, type JobApplication } from "@/lib/supabase";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import AdminPageHeader from "./AdminPageHeader";
 import {
   Boxes,
   Briefcase,
@@ -146,47 +147,49 @@ export default async function AdminDashboard() {
 
   return (
     <div>
-      <div className="flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
-        <div>
-          <h1 className="text-2xl font-semibold tracking-tight">Dashboard</h1>
-          <p className="mt-1 text-sm text-muted-foreground">
-            Gérez le contenu public du site labeltechnology.mg.
+      <AdminPageHeader
+        title="Dashboard"
+        description="Gérez le contenu public du site labeltechnology.mg."
+        actions={
+          <p className="text-xs text-muted-foreground capitalize">
+            {new Date().toLocaleDateString("fr-FR", {
+              weekday: "long",
+              day: "2-digit",
+              month: "long",
+              year: "numeric",
+            })}
           </p>
-        </div>
-        <p className="text-xs text-muted-foreground">
-          {new Date().toLocaleDateString("fr-FR", {
-            weekday: "long",
-            day: "2-digit",
-            month: "long",
-            year: "numeric",
-          })}
-        </p>
-      </div>
+        }
+      />
 
-      <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
         {sections.map((s) => (
           <Link key={s.href} href={s.href} className="group">
-            <Card className="h-full transition-all group-hover:-translate-y-0.5 group-hover:shadow-md">
+            <Card className="h-full transition-[transform,box-shadow] duration-300 ease-out group-hover:-translate-y-0.5 group-hover:shadow-md">
               <CardContent className="flex items-start justify-between gap-3">
                 <div className="min-w-0">
                   <p className="truncate text-sm text-muted-foreground">{s.label}</p>
-                  <p className="mt-1.5 text-3xl font-semibold tabular-nums">{s.count ?? "—"}</p>
+                  <p className="font-display mt-1.5 text-3xl font-semibold tracking-tight tabular-nums">
+                    {s.count ?? "—"}
+                  </p>
                   {s.highlight ? (
-                    <Badge variant="destructive" className="mt-2 text-[10px]">
+                    <Badge variant="destructive" className="mt-2.5">
                       {s.highlight}
                     </Badge>
                   ) : !s.ready ? (
-                    <Badge variant="secondary" className="mt-2 text-[10px]">
+                    <Badge variant="secondary" className="mt-2.5">
                       Bientôt
                     </Badge>
                   ) : (
-                    <span className="mt-2 inline-flex items-center gap-1 text-xs text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100">
-                      Gérer <ArrowRight className="h-3 w-3" />
+                    <span className="mt-2.5 inline-flex items-center gap-1 text-xs text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100">
+                      Gérer <ArrowRight className="size-3" />
                     </span>
                   )}
                 </div>
-                <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${s.color}`}>
-                  <s.icon className="h-5 w-5" />
+                <div
+                  className={`flex size-11 shrink-0 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-105 ${s.color}`}
+                >
+                  <s.icon className="size-5" />
                 </div>
               </CardContent>
             </Card>
@@ -194,39 +197,53 @@ export default async function AdminDashboard() {
         ))}
       </div>
 
-      <div className="mt-8 grid grid-cols-1 gap-4 lg:grid-cols-3">
+      <div className="mt-6 grid grid-cols-1 gap-4 lg:grid-cols-3">
         <Card className="lg:col-span-2">
           <CardContent>
             <div className="flex items-center justify-between">
-              <h2 className="text-base font-semibold">Candidatures récentes</h2>
+              <h2 className="font-display text-base font-semibold">Candidatures récentes</h2>
               <Button variant="ghost" size="sm" asChild>
                 <Link href="/setting/jobs/candidatures">
-                  Voir tout <ArrowRight className="ml-1 h-3.5 w-3.5" />
+                  Voir tout <ArrowRight className="ml-1 size-3.5" />
                 </Link>
               </Button>
             </div>
-            <div className="mt-3 divide-y">
+            <div className="mt-3 divide-y divide-border/70">
               {recentApplications.length === 0 && (
-                <p className="py-8 text-center text-sm text-muted-foreground">
-                  Aucune candidature reçue pour le moment.
-                </p>
+                <div className="flex flex-col items-center gap-2 py-10 text-center">
+                  <Inbox className="size-7 text-muted-foreground/50" strokeWidth={1.5} />
+                  <p className="text-sm text-muted-foreground">
+                    Aucune candidature reçue pour le moment.
+                  </p>
+                </div>
               )}
               {recentApplications.map((a) => (
-                <div key={a.id} className="flex items-center justify-between gap-3 py-3">
-                  <div className="min-w-0">
-                    <p className="truncate text-sm font-medium">{a.full_name}</p>
-                    <p className="flex items-center gap-1 truncate text-xs text-muted-foreground">
-                      <Mail className="h-3 w-3 shrink-0" />
-                      {a.job_title}
-                    </p>
+                <Link
+                  key={a.id}
+                  href="/setting/jobs/candidatures"
+                  className="-mx-2 flex items-center justify-between gap-3 rounded-lg px-2 py-3 transition-colors hover:bg-muted/50"
+                >
+                  <div className="flex min-w-0 items-center gap-3">
+                    <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-semibold text-primary">
+                      {a.full_name.trim().charAt(0).toUpperCase()}
+                    </span>
+                    <div className="min-w-0">
+                      <p className="truncate text-sm font-medium">{a.full_name}</p>
+                      <p className="flex items-center gap-1 truncate text-xs text-muted-foreground">
+                        <Mail className="size-3 shrink-0" />
+                        {a.job_title}
+                      </p>
+                    </div>
                   </div>
                   <div className="flex shrink-0 items-center gap-3">
-                    <span className="text-xs text-muted-foreground">{timeAgo(a.created_at)}</span>
+                    <span className="hidden text-xs text-muted-foreground sm:inline">
+                      {timeAgo(a.created_at)}
+                    </span>
                     <Badge variant={STATUS_VARIANT[a.status] ?? "outline"}>
                       {STATUS_LABELS[a.status] ?? a.status}
                     </Badge>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </CardContent>
@@ -234,12 +251,12 @@ export default async function AdminDashboard() {
 
         <Card>
           <CardContent>
-            <h2 className="text-base font-semibold">Actions rapides</h2>
+            <h2 className="font-display text-base font-semibold">Actions rapides</h2>
             <div className="mt-3 flex flex-col gap-2">
               {quickActions.map((a) => (
                 <Button key={a.href} variant="outline" className="justify-start" asChild>
                   <Link href={a.href}>
-                    <Plus className="h-4 w-4" />
+                    <Plus className="size-4 text-muted-foreground" />
                     {a.label}
                   </Link>
                 </Button>

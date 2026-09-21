@@ -1,27 +1,23 @@
-"use client";
-
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import { Separator } from "@/components/ui/separator";
-import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
-  Code2,
-  Smartphone,
-  Zap,
-  Wrench,
-  ShoppingCart,
-  Shield,
   CheckCircle2,
+  Code2,
+  Phone,
+  Shield,
+  ShoppingCart,
+  Smartphone,
+  Wrench,
+  Zap,
 } from "lucide-react";
+import FaqSection from "@/components/shared/FaqSection";
+import MetricsBand from "@/components/shared/MetricsBand";
+import MiniTestimonials from "@/components/shared/MiniTestimonials";
+import PageHero from "@/components/shared/PageHero";
+import Reveal from "@/components/shared/Reveal";
+import SectionHeader from "@/components/shared/SectionHeader";
+import DevChart from "@/components/services/DevChartWrapper";
+import { Button } from "@/components/ui/button";
 
 const METRICS = [
   { value: "800€", label: "projet à partir de" },
@@ -169,273 +165,66 @@ const FAQ = [
 
 export default function DevPage() {
   return (
-    <div className="text-foreground min-h-screen">
-      <style>{`
-        /* ── Keyframes ── */
-        @keyframes devFadeInUp {
-          from { opacity: 0; transform: translateY(22px); }
-          to   { opacity: 1; transform: translateY(0); }
+    <main>
+      <PageHero
+        size="lg"
+        eyebrow="Développement web & mobile"
+        title={
+          <>
+            On ne livre pas du code.
+            <br />
+            <span className="gradient-text-light">On livre de la croissance.</span>
+          </>
         }
-        @keyframes devSlideDown {
-          from { opacity: 0; transform: translateY(-16px); }
-          to   { opacity: 1; transform: translateY(0); }
+        description="Web, mobile, API, e-commerce. Depuis Antananarivo, avec les standards d'une ESN européenne et les délais d'une startup. Devis gratuit en 72h."
+        image={{ src: "/images/services/dev.jpg", alt: "Développement web & mobile — Label Technology", priority: true }}
+        actions={
+          <>
+            <Button asChild size="lg" className="rounded-full">
+              <Link href="/contact">
+                Démarrer un projet
+                <ArrowRight data-icon="inline-end" />
+              </Link>
+            </Button>
+            <Button asChild size="lg" variant="glass" className="rounded-full">
+              <Link href="/projets">Voir nos réalisations</Link>
+            </Button>
+          </>
         }
-        @keyframes devIconFloat {
-          0%, 100% { transform: translateY(0px); }
-          50%       { transform: translateY(-7px); }
-        }
-        @keyframes devPulseGlow {
-          0%, 100% { opacity: 0.3; }
-          50%       { opacity: 0.55; }
-        }
-        @keyframes devScaleInX {
-          from { transform: scaleX(0); }
-          to   { transform: scaleX(1); }
-        }
-        @keyframes devBlobDrift1 {
-          0%, 100% { transform: translate(0, 0) scale(1); }
-          33%       { transform: translate(-50px, 70px) scale(1.07); }
-          66%       { transform: translate(40px, -30px) scale(0.95); }
-        }
-        @keyframes devBlobDrift2 {
-          0%, 100% { transform: translate(0, 0) scale(1); }
-          40%       { transform: translate(60px, -50px) scale(1.05); }
-          80%       { transform: translate(-30px, 40px) scale(0.96); }
-        }
-        @keyframes devGradientShift {
-          0%   { background-position: 0% 50%; }
-          50%  { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
-        }
+      />
 
-        /* ── Hero ── */
-        .dev-hero-label { animation: devSlideDown 0.6s ease-out both; }
-        .dev-hero-title { animation: devFadeInUp 0.7s 0.12s ease-out both; }
-        .dev-hero-desc  { animation: devFadeInUp 0.7s 0.26s ease-out both; }
-        .dev-hero-btns  { animation: devFadeInUp 0.7s 0.40s ease-out both; }
-
-        /* ── Blobs ── */
-        .dev-blob-1 { animation: devBlobDrift1 14s ease-in-out infinite; }
-        .dev-blob-2 { animation: devBlobDrift2 18s ease-in-out infinite; animation-delay: -7s; }
-
-        /* ── Metrics ── */
-        .dev-metric { opacity: 0; }
-        .dev-metric:nth-child(1) { animation: devFadeInUp 0.5s 0.15s ease-out forwards; }
-        .dev-metric:nth-child(2) { animation: devFadeInUp 0.5s 0.25s ease-out forwards; }
-        .dev-metric:nth-child(3) { animation: devFadeInUp 0.5s 0.35s ease-out forwards; }
-        .dev-metric:nth-child(4) { animation: devFadeInUp 0.5s 0.45s ease-out forwards; }
-
-        /* ── Service cards ── */
-        .dev-card { opacity: 0; }
-        .dev-card:nth-child(1) { animation: devFadeInUp 0.6s 0.10s ease-out forwards; }
-        .dev-card:nth-child(2) { animation: devFadeInUp 0.6s 0.19s ease-out forwards; }
-        .dev-card:nth-child(3) { animation: devFadeInUp 0.6s 0.28s ease-out forwards; }
-        .dev-card:nth-child(4) { animation: devFadeInUp 0.6s 0.37s ease-out forwards; }
-        .dev-card:nth-child(5) { animation: devFadeInUp 0.6s 0.46s ease-out forwards; }
-        .dev-card:nth-child(6) { animation: devFadeInUp 0.6s 0.55s ease-out forwards; }
-        .dev-card-icon { animation: devIconFloat 3s ease-in-out infinite; }
-
-        /* ── Tech stack ticker ── */
-        @keyframes devTicker    { from { transform: translateX(0); }    to { transform: translateX(-50%); } }
-        @keyframes devTickerRev { from { transform: translateX(-50%); } to { transform: translateX(0); }    }
-        .dev-ticker     { animation: devTicker    22s linear infinite; }
-        .dev-ticker-rev { animation: devTickerRev 18s linear infinite; }
-
-        /* ── Process steps ── */
-        .dev-step { opacity: 0; }
-        .dev-step:nth-child(1) { animation: devFadeInUp 0.6s 0.10s ease-out forwards; }
-        .dev-step:nth-child(2) { animation: devFadeInUp 0.6s 0.22s ease-out forwards; }
-        .dev-step:nth-child(3) { animation: devFadeInUp 0.6s 0.34s ease-out forwards; }
-        .dev-step:nth-child(4) { animation: devFadeInUp 0.6s 0.46s ease-out forwards; }
-        .dev-step-num { animation: devPulseGlow 3s ease-in-out infinite; }
-        .dev-step-line { transition: transform 0.3s ease, box-shadow 0.3s ease; }
-        .dev-step:hover .dev-step-line { transform: scaleX(1.5); }
-
-        /* ── Progress bars ── */
-        .dev-bar {
-          transform-origin: left;
-          animation: devScaleInX 1.2s cubic-bezier(0.4, 0, 0.2, 1) both;
-        }
-
-        /* ── Testimonials ── */
-        .dev-testimonial { opacity: 0; }
-        .dev-testimonial:nth-child(1) { animation: devFadeInUp 0.6s 0.10s ease-out forwards; }
-        .dev-testimonial:nth-child(2) { animation: devFadeInUp 0.6s 0.22s ease-out forwards; }
-        .dev-testimonial:nth-child(3) { animation: devFadeInUp 0.6s 0.34s ease-out forwards; }
-
-        /* ── FAQ ── */
-        .dev-faq { animation: devFadeInUp 0.7s 0.20s ease-out both; }
-
-        /* ── Section headers ── */
-        .dev-header { animation: devSlideDown 0.6s ease-out both; }
-
-        /* ── Gradient animated background ── */
-        .dev-gradient-bg {
-          background: linear-gradient(-45deg, #1E3FAB, #3B82F6, #8B5CF6, #1E3FAB);
-          background-size: 400% 400%;
-          animation: devGradientShift 12s ease infinite;
-        }
-
-        /* ── Reduced motion ── */
-        @media (prefers-reduced-motion: reduce) {
-          .dev-hero-label, .dev-hero-title, .dev-hero-desc, .dev-hero-btns,
-          .dev-metric, .dev-card, .dev-step, .dev-testimonial,
-          .dev-card-icon, .dev-step-num, .dev-bar, .dev-blob-1, .dev-blob-2,
-          .dev-faq, .dev-header {
-            animation: none !important;
-            opacity: 1 !important;
-            transform: none !important;
-          }
-          .dev-bar { transform: scaleX(1) !important; }
-        }
-      `}</style>
-
-      {/* ── Hero ── */}
-      <section
-        className="relative overflow-hidden grid-bg"
-        style={{ backgroundColor: "var(--ink)", minHeight: "70vh" }}
-      >
-        <div
-          className="relative max-w-7xl mx-auto px-6 grid lg:grid-cols-2 items-center"
-          style={{ minHeight: "70vh" }}
-        >
-          {/* Texte */}
-          <div className="relative z-10 py-28 lg:pr-12">
-            <p className="dev-hero-label label-tag mb-5 bg-linear-to-r from-blue-500  to-emerald-500 bg-clip-text text-transparent">
-              DÉVELOPPEMENT WEB & MOBILE
-            </p>
-            <h1 className="dev-hero-title h1-display text-white mb-6">
-              On ne livre pas du code.
-              <br />
-              <span className="bg-linear-to-r from-blue-500 to-emerald-500 bg-clip-text text-transparent">
-                On livre de la croissance.
-              </span>
-            </h1>
-            <p
-              className="dev-hero-desc text-white/70 text-lg leading-relaxed mb-10 max-w-xl"
-              style={{ lineHeight: 1.8 }}
-            >
-              Web, mobile, API, e-commerce. Depuis Antananarivo, avec les
-              standards d&apos;une ESN européenne et les délais d&apos;une
-              startup. Devis gratuit en 72h.
-            </p>
-            <div className="dev-hero-btns flex flex-wrap gap-4">
-              <Button className="h-14 text-medium bg-blue-500 text-white hover:scale-105 transition-all duration-300">
-                <Link href="/contact">Démarrer un projet</Link>
-                <ArrowRight className="w-4 h-4" />
-              </Button>
-
-              <Button
-                variant="outline"
-                className="h-14 text-medium hover:scale-105 transition-all duration-300 bg-transparent text-white hover:bg-transparent hover:text-white"
-              >
-                <Link href="/projets">Voir nos réalisations</Link>
-              </Button>
-            </div>
-          </div>
-
-          {/* Image */}
-          <div
-            className="absolute inset-0 z-0 lg:relative lg:inset-auto h-full"
-            style={{ minHeight: "70vh" }}
-          >
-            <Image
-              src="/images/services/dev.jpg"
-              alt="Développement web & mobile — Label Technology"
-              fill
-              className="object-cover"
-              style={{ opacity: 10 }}
-            />
-            <div
-              className="absolute inset-0 lg:hidden"
-              style={{
-                background:
-                  "linear-gradient(180deg, var(--ink) 0%, rgba(10,14,26,0.7) 40%, var(--ink) 100%)",
-              }}
-            />
-            <div
-              className="absolute inset-0 hidden lg:block"
-              style={{
-                background:
-                  "linear-gradient(90deg, var(--ink) 0%, transparent 55%)",
-              }}
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* ── Métriques ── */}
-      <section style={{ backgroundColor: "var(--ink)" }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8  bg-transparent overflow-hidden">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-white/10">
-            {METRICS.map((m, i) => (
-              <div
-                key={i}
-                className="dev-metric py-8 px-6 text-center hover:bg-white/5 transition-colors"
-                style={{ backgroundColor: "rgba(255,255,255,0.03)" }}
-              >
-                <div
-                  className="font-display text-3xl sm:text-4xl mb-1"
-                  style={{ color: "var(--brand-lt)" }}
-                >
-                  {m.value}
-                </div>
-                <div className="label-tag text-white/50 text-[10px]">
-                  {m.label}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <MetricsBand items={METRICS} />
 
       {/* ── Services ── */}
-      <section
-        className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8"
-        style={{ backgroundColor: "var(--paper)" }}
-      >
-        <div className="max-w-7xl mx-auto space-y-14">
-          <div className="dev-header">
-            <p className="label-tag mb-3" style={{ color: "var(--brand)" }}>
-              CE QU&apos;ON FAIT
-            </p>
-            <h2 className="font-display text-4xl sm:text-5xl text-foreground leading-tight">
-              Du code qui
-              <br />
-              <span className="bg-linear-to-r from-blue-500 to-indigo-600 bg-clip-text text-transparent">
-                travaille pour vous.
-              </span>
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <section className="surface-light section relative">
+        <div className="container-x">
+          <SectionHeader
+            eyebrow="Ce qu'on fait"
+            title={
+              <>
+                Du code qui <span className="gradient-text">travaille pour vous.</span>
+              </>
+            }
+          />
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {SERVICES.map((s, i) => {
               const Icon = s.icon;
               return (
-                <Card
-                  key={i}
-                  className="dev-card border border-border/50 hover:border-blue-400/40 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 bg-white group"
-                >
-                  <CardHeader className="pb-3">
+                <Reveal key={i} delay={(i % 3) * 0.08} className="h-full">
+                  <div
+                    className="card-premium group flex h-full flex-col p-7"
+                    style={{ ["--accent" as string]: s.color }}
+                  >
                     <div
-                      className="dev-card-icon inline-flex p-3 rounded-lg mb-3 w-fit transition-colors duration-300 group-hover:scale-110"
-                      style={{
-                        backgroundColor: `${s.color}15`,
-                        color: s.color,
-                      }}
+                      className="mb-5 flex size-12 items-center justify-center rounded-xl transition-transform duration-300 group-hover:-translate-y-0.5"
+                      style={{ backgroundColor: `${s.color}14`, color: s.color }}
                     >
-                      <Icon size={22} strokeWidth={1.5} />
+                      <Icon size={22} strokeWidth={1.6} />
                     </div>
-                    <CardTitle className="text-lg text-foreground">
-                      {s.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      {s.desc}
-                    </p>
-                  </CardContent>
-                </Card>
+                    <h3 className="h3-display text-foreground">{s.title}</h3>
+                    <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground">{s.desc}</p>
+                  </div>
+                </Reveal>
               );
             })}
           </div>
@@ -443,370 +232,182 @@ export default function DevPage() {
       </section>
 
       {/* ── Tech Stack ── */}
-      <section
-        className="py-16 sm:py-20 grid-bg overflow-hidden"
-        style={{ backgroundColor: "var(--ink)" }}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 text-center">
-          <p
-            className="dev-header label-tag"
-            style={{ color: "var(--brand-lt)" }}
-          >
-            NOTRE STACK TECHNIQUE
+      <section className="surface-dark noise hairline-top relative overflow-hidden py-16 sm:py-20">
+        <div aria-hidden className="grid-fade absolute inset-0 -z-10 opacity-60" />
+        <div className="container-x mb-8 text-center">
+          <p className="label-tag inline-flex items-center gap-3 text-brand-glow">
+            <span className="h-px w-6 bg-brand-glow/70" />
+            Notre stack technique
+            <span className="h-px w-6 bg-brand-glow/70" />
           </p>
         </div>
 
-        {/* Row 1 — scrolls left */}
-        <div className="flex whitespace-nowrap dev-ticker mb-3">
-          {[...TECH_STACK, ...TECH_STACK].map((tech, i) => (
-            <span key={i} className="inline-flex items-center gap-4 px-5">
-              <span
-                className="text-sm font-medium tracking-wide px-4 py-1.5 rounded-full border border-white/12 text-white/70"
-                style={{ backgroundColor: "rgba(255,255,255,0.05)" }}
-              >
-                {tech}
-              </span>
-              <span className="text-white/50 text-xs">◆</span>
-            </span>
-          ))}
-        </div>
-
-        {/* Row 2 — scrolls right */}
-        <div className="flex whitespace-nowrap dev-ticker-rev">
-          {[...TECH_STACK, ...TECH_STACK].map((tech, i) => (
-            <span key={i} className="inline-flex items-center gap-4 px-5">
-              <span
-                className="text-sm font-medium tracking-wide px-4 py-1.5 rounded-full border border-blue-400/20 text-blue-300/60"
-                style={{ backgroundColor: "rgba(59,130,246,0.06)" }}
-              >
-                {tech}
-              </span>
-              <span className="text-blue-400/20 text-xs">◆</span>
-            </span>
+        <div className="space-y-3 [mask-image:linear-gradient(90deg,transparent,#000_10%,#000_90%,transparent)]">
+          {[false, true].map((reverse, row) => (
+            <div
+              key={row}
+              aria-hidden={row === 1}
+              className="flex whitespace-nowrap will-change-transform"
+              style={{ animation: `ticker ${reverse ? 36 : 30}s linear infinite${reverse ? " reverse" : ""}` }}
+            >
+              {[...TECH_STACK, ...TECH_STACK].map((tech, i) => (
+                <span key={i} className="inline-flex items-center gap-4 px-4">
+                  <span className="glass-dark rounded-full px-4 py-1.5 text-[13px] font-medium tracking-wide text-white/75">
+                    {tech}
+                  </span>
+                  <span className="size-1 rounded-full bg-brand-glow/50" />
+                </span>
+              ))}
+            </div>
           ))}
         </div>
       </section>
 
       {/* ── Processus ── */}
-      <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-background">
-        <div className="max-w-7xl mx-auto space-y-14">
-          <div className="dev-header">
-            <p className="label-tag mb-3" style={{ color: "#3B82F6" }}>
-              NOTRE MÉTHODE
-            </p>
-            <h2 className="font-display text-4xl sm:text-5xl text-foreground leading-tight">
-              De l&apos;idée{" "}
-              <span className="bg-linear-to-r from-blue-500 to-emerald-500 bg-clip-text text-transparent">
-                à la mise en ligne.
-              </span>
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-border/30">
+      <section className="section bg-background">
+        <div className="container-x">
+          <SectionHeader
+            eyebrow="Notre méthode"
+            title={
+              <>
+                De l&apos;idée <span className="gradient-text">à la mise en ligne.</span>
+              </>
+            }
+          />
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {PROCESS.map((p, i) => (
-              <div
-                key={i}
-                className="dev-step relative p-8 group hover:shadow-xl transition-all duration-300"
-              >
-                <div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style={{
-                    background: `linear-gradient(135deg, ${p.color}12 0%, transparent 70%)`,
-                  }}
-                />
-                <div className="relative z-10">
-                  <div
-                    className="dev-step-num font-display text-6xl font-extrabold mb-5 leading-none"
-                    style={{ color: p.color, opacity: 0.3 }}
-                  >
-                    {p.step}
-                  </div>
-                  <div
-                    className="dev-step-line w-8 h-0.5 mb-5"
-                    style={{ backgroundColor: p.color }}
-                  />
-                  <h3
-                    className="font-display text-xl mb-3 transition-transform duration-300 group-hover:translate-x-1"
-                    style={{ color: p.color }}
-                  >
-                    {p.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {p.desc}
-                  </p>
-                  {i < PROCESS.length - 1 && (
-                    <div
-                      className="hidden lg:block absolute top-1/2 -right-3 z-10 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 font-bold text-lg"
-                      style={{ color: p.color }}
+              <Reveal key={i} delay={i * 0.08} className="h-full">
+                <div className="card-premium group flex h-full flex-col p-7">
+                  <div className="mb-6 flex items-center justify-between">
+                    <span
+                      className="font-display text-4xl leading-none text-foreground/15 transition-colors duration-300 group-hover:text-[var(--accent)]"
+                      style={{ ["--accent" as string]: p.color }}
                     >
-                      →
-                    </div>
-                  )}
+                      {p.step}
+                    </span>
+                    <span
+                      className="size-2.5 rounded-full ring-4 ring-background"
+                      style={{ backgroundColor: p.color }}
+                    />
+                  </div>
+                  <div className="mb-5 h-0.5 w-8 rounded-full" style={{ backgroundColor: p.color }} />
+                  <h3 className="h3-display text-foreground">{p.title}</h3>
+                  <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground">{p.desc}</p>
                 </div>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
       {/* ── Expertise ── */}
-      <section
-        className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8"
-        style={{ backgroundColor: "var(--paper)" }}
-      >
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-8">
-              <div className="dev-header">
-                <p className="label-tag mb-3" style={{ color: "var(--brand)" }}>
-                  NOTRE EXPERTISE
-                </p>
-                <h2 className="font-display text-4xl sm:text-5xl text-foreground leading-tight">
-                  Une stack technique maîtrisée{" "}
-                  <span style={{ color: "var(--brand-lt)" }}>
-                    de bout en bout.
-                  </span>
-                </h2>
-              </div>
-              <p className="text-muted-foreground font-light leading-relaxed animate-fadeup-d1">
+      <section className="surface-light section relative overflow-hidden">
+        <div className="container-x">
+          <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
+            <Reveal>
+              <p className="label-tag mb-4 inline-flex items-center gap-2.5 text-brand">
+                <span className="h-px w-6 bg-brand/60" />
+                Notre expertise
+              </p>
+              <h2 className="h2-display text-foreground">
+                Une stack technique maîtrisée{" "}
+                <span className="gradient-text">de bout en bout.</span>
+              </h2>
+              <p className="prose-body mt-6 text-muted-foreground">
                 Pas de sous-traitance, pas de développeurs juniors sur vos
                 projets critiques. Notre équipe maîtrise chaque couche de la
                 stack — du design à l&apos;infrastructure.
               </p>
 
-              <div className="space-y-5">
+              <div className="mt-8 space-y-5">
                 {STATS.map((s, i) => (
-                  <div
-                    key={i}
-                    className="space-y-2"
-                    style={{ animationDelay: `${i * 0.15}s` }}
-                  >
-                    <div className="flex justify-between text-sm">
+                  <div key={i}>
+                    <div className="mb-1.5 flex justify-between text-sm">
                       <span className="text-muted-foreground">{s.label}</span>
-                      <span
-                        className="font-bold"
-                        style={{ color: "var(--brand-lt)" }}
-                      >
-                        {s.value}
-                      </span>
+                      <span className="font-display font-bold text-brand">{s.value}</span>
                     </div>
-                    <div
-                      className="w-full h-1.5 rounded-full overflow-hidden"
-                      style={{ backgroundColor: "rgba(0,0,0,0.08)" }}
-                    >
+                    <div className="h-1.5 w-full overflow-hidden rounded-full bg-foreground/8">
                       <div
-                        className="dev-bar h-full rounded-full bg-linear-to-r from-blue-500 to-indigo-500"
-                        style={{
-                          width: s.width,
-                          animationDelay: `${0.3 + i * 0.18}s`,
-                        }}
+                        className="svc-bar h-full rounded-full bg-linear-to-r from-brand to-brand-lt"
+                        style={{ width: s.width, animationDelay: `${0.3 + i * 0.18}s` }}
                       />
                     </div>
                   </div>
                 ))}
               </div>
 
-              <div
-                className="animate-fadeup-d3 p-5 rounded-lg border-l-2 font-light text-sm italic text-muted-foreground"
-                style={{
-                  borderColor: "var(--brand-lt)",
-                  backgroundColor: "rgba(46,85,212,0.05)",
-                }}
-              >
-                &ldquo;Parce qu&apos;une technologie sans accompagnement
-                n&apos;est qu&apos;un coût. Nous en faisons un levier.&rdquo;
+              <div className="mt-8 rounded-r-2xl border-l-2 border-brand bg-brand/5 p-5">
+                <p className="font-display text-base leading-relaxed font-medium text-foreground italic">
+                  &ldquo;Parce qu&apos;une technologie sans accompagnement
+                  n&apos;est qu&apos;un coût. Nous en faisons un levier.&rdquo;
+                </p>
               </div>
-            </div>
+            </Reveal>
 
-            {/* Animated gradient visual */}
-            <div className="hidden lg:flex h-80 rounded-sm items-center justify-center overflow-hidden relative">
-              <div
-                className="dev-gradient-bg absolute inset-0 opacity-10"
-                aria-hidden="true"
-              />
-              {/*  
-              <Code2
-                size={72}
-                strokeWidth={0.7}
-                className="relative z-10"
-                style={{ color: "var(--brand-lt)", opacity: 0.3 }}
-              />
-*/}
-              <Image
-                src="/images/services/dev.png&"
-                alt="Stack technique maîtrisée — Label Technology"
-                width={200}
-                height={200}
-                className="relative z-10"
-              />
-            </div>
+            <Reveal delay={0.15}>
+              <div className="surface-dark noise relative overflow-hidden rounded-3xl p-3 sm:p-4">
+                <div aria-hidden className="grid-fade absolute inset-0 -z-10 opacity-70" />
+                <DevChart />
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
 
-      {/* ── Témoignages ── */}
-      <section className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-background">
-        <div className="max-w-7xl mx-auto space-y-14">
-          <div className="dev-header">
-            <p className="label-tag mb-3" style={{ color: "var(--brand)" }}>
-              TÉMOIGNAGES
-            </p>
-            <h2 className="font-display text-4xl sm:text-5xl text-foreground">
-              Des résultats,
-              <br />
-              <span style={{ color: "var(--brand-lt)" }}>
-                pas des promesses.
-              </span>
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {TESTIMONIALS.map((t, i) => (
-              <Card
-                key={i}
-                className="dev-testimonial shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
-              >
-                <CardContent className="pt-7 pb-6">
-                  <div
-                    className="font-display text-5xl leading-none mb-4 opacity-20"
-                    style={{ color: t.color }}
-                  >
-                    &ldquo;
-                  </div>
-                  <p className="text-base leading-relaxed font-light text-foreground mb-6">
-                    {t.quote}
-                  </p>
-                  <Separator className="mb-5" />
-                  <div>
-                    <p className="font-semibold text-sm text-foreground">
-                      {t.author}
-                    </p>
-                    <p className="text-xs text-muted-foreground mt-0.5">
-                      {t.role} · {t.company}
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── FAQ ── */}
-      <section
-        className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 grid-bg"
-        style={{ backgroundColor: "var(--ink)" }}
-      >
-        <div className="max-w-3xl mx-auto space-y-12">
-          <div className="dev-header">
-            <p className="label-tag mb-3" style={{ color: "var(--brand-lt)" }}>
-              FAQ
-            </p>
-            <h2 className="font-display text-4xl sm:text-5xl text-white leading-tight">
-              Questions fréquentes.
-            </h2>
-          </div>
-
-          <Accordion type="single" collapsible className="dev-faq space-y-3">
-            {FAQ.map((item, i) => (
-              <AccordionItem
-                key={i}
-                value={`item-${i}`}
-                className="rounded-sm px-6 border transition-colors duration-200 hover:border-white/15"
-                style={{
-                  borderColor: "rgba(255,255,255,0.08)",
-                  backgroundColor: "rgba(255,255,255,0.03)",
-                }}
-              >
-                <AccordionTrigger className="py-6 hover:no-underline text-left">
-                  <span className="font-semibold text-white/90 text-base">
-                    {item.q}
-                  </span>
-                </AccordionTrigger>
-                <AccordionContent className="text-sm text-white/50 pb-6 leading-relaxed">
-                  {item.a}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </div>
-      </section>
+      <MiniTestimonials items={TESTIMONIALS} />
+      <FaqSection items={FAQ} />
 
       {/* ── CTA Final ── */}
-      <section className="relative py-28 px-4 sm:px-6 overflow-hidden bg-[#080D1A]">
-        <div className="absolute inset-0 bg-linear-to-br from-[#080D1A] via-[#0f1f5c] to-[#080D1A]" />
+      <section className="surface-dark noise hairline-top relative overflow-hidden py-24 sm:py-28 lg:py-36">
+        <div aria-hidden className="grid-fade absolute inset-0 -z-10 opacity-70" />
         <div
-          aria-hidden="true"
-          className="dev-blob-1 absolute top-[-80px] left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full pointer-events-none"
-          style={{ background: "rgba(59,130,246,0.18)", filter: "blur(120px)" }}
+          aria-hidden
+          className="halo -top-32 left-1/2 -z-10 h-[460px] w-[760px] -translate-x-1/2 bg-brand-lt/35"
         />
-        <div
-          aria-hidden="true"
-          className="dev-blob-2 absolute bottom-[-60px] right-[-40px] w-[350px] h-[300px] rounded-full pointer-events-none"
-          style={{ background: "rgba(139,92,246,0.12)", filter: "blur(90px)" }}
-        />
-
-        <div className="relative z-10 max-w-3xl mx-auto text-center space-y-8">
-          <Badge
-            variant="secondary"
-            className="animate-fadeup bg-white/8 text-white/60 border border-white/15 text-[10px] tracking-widest px-4 py-1.5 rounded-full"
-          >
-            PRÊT À DÉMARRER ?
-          </Badge>
-
-          <h2
-            className="animate-fadeup-d1 h2-cta text-white"
-          >
-            Prêt à transformer
-            <br />
-            <span className="bg-linear-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
-              votre idée en réalité ?
-            </span>
-          </h2>
-
-          <p className="animate-fadeup-d2 text-white/50 font-light text-base max-w-md mx-auto leading-relaxed">
-            Discutons de votre projet. Premier devis gratuit en 72h — sans
-            engagement.
-          </p>
-
-          <div className="animate-fadeup-d3 flex flex-col sm:flex-row gap-4 justify-center pt-2">
-            <Button
-              asChild
-              size="lg"
-              className="bg-white text-slate-900 hover:bg-white/90 px-8 h-12 font-medium shadow-lg shadow-white/10 hover:scale-105 active:scale-95 transition-all"
-            >
-              <Link href="/contact" className="flex items-center gap-2">
-                Demander un devis
-                <CheckCircle2 className="size-4" />
-              </Link>
-            </Button>
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="border-white/15 text-white/80 bg-white/5 hover:bg-white/10 hover:text-white px-8 h-12 hover:scale-105 active:scale-95 transition-all"
-            >
-              <Link href="tel:+261">Appeler maintenant</Link>
-            </Button>
-          </div>
-
-          <Separator className="bg-white/8 max-w-xs mx-auto mt-10" />
-
-          <div className="animate-fadeup-d5 flex flex-wrap justify-center gap-x-8 gap-y-3 pt-2">
-            {["Pas d'engagement", "Devis gratuit", "Réponse sous 72h"].map(
-              (item, i) => (
-                <div
-                  key={i}
-                  className="flex items-center gap-2 text-white/50 text-xs"
-                >
-                  <CheckCircle2 className="w-3.5 h-3.5 text-blue-400/50 shrink-0" />
+        <div className="container-x">
+          <div className="mx-auto max-w-3xl text-center">
+            <Reveal>
+              <span className="glass-dark inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[11px] font-semibold tracking-[0.16em] text-white/70 uppercase">
+                <span className="pulse-dot size-1.5 rounded-full bg-emerald-400" />
+                Prêt à démarrer ?
+              </span>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <h2 className="h2-cta mt-7 text-white">
+                Prêt à transformer{" "}
+                <span className="gradient-text-light">votre idée en réalité ?</span>
+              </h2>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <p className="mx-auto mt-6 max-w-md text-base leading-relaxed text-white/55">
+                Discutons de votre projet. Premier devis gratuit en 72h — sans engagement.
+              </p>
+            </Reveal>
+            <Reveal delay={0.3} className="mt-10 flex flex-wrap items-center justify-center gap-3">
+              <Button asChild size="xl" variant="inverse" className="rounded-full">
+                <Link href="/contact">
+                  Demander un devis
+                  <CheckCircle2 data-icon="inline-end" />
+                </Link>
+              </Button>
+              <Button asChild size="xl" variant="glass" className="rounded-full">
+                <a href="tel:+261340503129">
+                  <Phone data-icon="inline-start" />
+                  Appeler maintenant
+                </a>
+              </Button>
+            </Reveal>
+            <Reveal delay={0.4} className="mt-14 flex flex-wrap justify-center gap-x-8 gap-y-3">
+              {["Pas d'engagement", "Devis gratuit", "Réponse sous 72h"].map((item) => (
+                <span key={item} className="flex items-center gap-2 text-xs text-white/50">
+                  <CheckCircle2 className="size-3.5 shrink-0 text-emerald-400/80" />
                   {item}
-                </div>
-              ),
-            )}
+                </span>
+              ))}
+            </Reveal>
           </div>
         </div>
       </section>
-    </div>
+    </main>
   );
 }

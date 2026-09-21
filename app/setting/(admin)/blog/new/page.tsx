@@ -1,11 +1,15 @@
 import BlogForm from "../BlogForm";
+import AdminPageHeader from "../../AdminPageHeader";
 import { createBlogPost } from "../actions";
 
 export default function NewBlogPostPage() {
   return (
     <div>
-      <h1 className="text-2xl font-semibold">Nouvel article</h1>
-      <div className="mt-6">
+      <AdminPageHeader
+        title={<>Nouvel article</>}
+        back={{ href: "/setting/blog", label: "Blog" }}
+      />
+      <div>
         <BlogForm action={createBlogPost} submitLabel="Créer l'article" />
       </div>
     </div>

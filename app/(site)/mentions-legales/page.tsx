@@ -3,16 +3,21 @@ import Reveal from "@/components/shared/Reveal";
 export default function MentionsLegalesPage() {
   return (
     <main>
-      <section className="px-6 pt-28 pb-24" style={{ backgroundColor: "var(--paper)" }}>
-        <div className="max-w-3xl mx-auto">
+      <section className="surface-light relative overflow-hidden pt-32 pb-24 sm:pt-36 lg:pt-40">
+        <div aria-hidden className="grid-fade absolute inset-0 -z-10 opacity-50" />
+        <div className="container-x">
+          <div className="mx-auto max-w-3xl">
           <Reveal>
-            <p className="label-tag mb-4" style={{ color: "var(--brand)" }}>LÉGAL</p>
-            <h1 className="font-display text-4xl mb-12 text-foreground">Mentions légales</h1>
+            <p className="label-tag mb-4 inline-flex items-center gap-2.5 text-brand">
+              <span className="h-px w-6 bg-brand/60" />
+              Légal
+            </p>
+            <h1 className="h2-display mb-12 text-foreground">Mentions légales</h1>
           </Reveal>
 
-          <Reveal delay={0.1} className="space-y-10 text-sm font-light leading-relaxed text-muted-foreground">
+          <Reveal delay={0.1} className="card-premium space-y-10 p-6 text-[15px] leading-relaxed text-muted-foreground hover:translate-y-0 sm:p-10">
             <section>
-              <h2 className="font-display text-xl mb-4 text-foreground">Éditeur du site</h2>
+              <h2 className="h3-display mb-4 text-foreground">Éditeur du site</h2>
               <p>
                 <strong className="text-foreground">Label Technology</strong><br />
                 Akany Riandrano, Manajak Ilafy<br />
@@ -23,18 +28,18 @@ export default function MentionsLegalesPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-xl mb-4 text-foreground">Hébergement</h2>
+              <h2 className="h3-display mb-4 text-foreground">Hébergement</h2>
               <p>
                 Ce site est hébergé par <strong className="text-foreground">Vercel Inc.</strong><br />
                 440 N Barranca Ave #4133, Covina, CA 91723, USA<br />
-                <a href="https://vercel.com" className="hover:underline" style={{ color: "var(--brand)" }}>
+                <a href="https://vercel.com" className="font-medium text-brand hover:underline">
                   vercel.com
                 </a>
               </p>
             </section>
 
             <section>
-              <h2 className="font-display text-xl mb-4 text-foreground">Propriété intellectuelle</h2>
+              <h2 className="h3-display mb-4 text-foreground">Propriété intellectuelle</h2>
               <p>
                 L&apos;ensemble du contenu de ce site (textes, images, logos, graphismes) est la
                 propriété exclusive de Label Technology. Toute reproduction, représentation,
@@ -44,7 +49,7 @@ export default function MentionsLegalesPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-xl mb-4 text-foreground">Protection des données</h2>
+              <h2 className="h3-display mb-4 text-foreground">Protection des données</h2>
               <p>
                 Label Technology s&apos;engage à protéger vos données personnelles conformément
                 aux réglementations en vigueur. Les données collectées via ce site sont
@@ -54,14 +59,14 @@ export default function MentionsLegalesPage() {
               <p className="mt-3">
                 Vous disposez d&apos;un droit d&apos;accès, de rectification et de suppression de vos
                 données. Pour exercer ces droits, contactez-nous à :
-                <a href="mailto:contact@labeltechnology.mg" className="ml-1 hover:underline" style={{ color: "var(--brand)" }}>
+                <a href="mailto:contact@labeltechnology.mg" className="ml-1 font-medium text-brand hover:underline">
                   contact@labeltechnology.mg
                 </a>
               </p>
             </section>
 
             <section>
-              <h2 className="font-display text-xl mb-4 text-foreground">Cookies</h2>
+              <h2 className="h3-display mb-4 text-foreground">Cookies</h2>
               <p>
                 Ce site peut utiliser des cookies techniques nécessaires à son fonctionnement.
                 Aucun cookie publicitaire ou de tracking tiers n&apos;est déposé sans votre
@@ -70,13 +75,14 @@ export default function MentionsLegalesPage() {
             </section>
 
             <section>
-              <h2 className="font-display text-xl mb-4 text-foreground">Liens externes</h2>
+              <h2 className="h3-display mb-4 text-foreground">Liens externes</h2>
               <p>
                 Label Technology ne peut être tenu responsable du contenu des sites externes
                 vers lesquels ce site renvoie. Ces liens sont fournis à titre informatif uniquement.
               </p>
             </section>
           </Reveal>
+          </div>
         </div>
       </section>
     </main>

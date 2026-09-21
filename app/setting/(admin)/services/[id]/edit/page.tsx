@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { supabase, type Service } from "@/lib/supabase";
 import ServiceForm from "../../ServiceForm";
+import AdminPageHeader from "../../../AdminPageHeader";
 import { updateService } from "../../actions";
 
 export default async function EditServicePage({
@@ -21,8 +22,11 @@ export default async function EditServicePage({
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold">Modifier « {service.headline} »</h1>
-      <div className="mt-6">
+      <AdminPageHeader
+        title={<>Modifier « {service.headline} »</>}
+        back={{ href: "/setting/services", label: "Services" }}
+      />
+      <div>
         <ServiceForm
           action={boundUpdate}
           submitLabel="Enregistrer"

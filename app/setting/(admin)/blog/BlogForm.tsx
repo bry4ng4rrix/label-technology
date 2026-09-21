@@ -2,6 +2,7 @@
 
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -54,42 +55,42 @@ export default function BlogForm({
   const [state, formAction] = useActionState(action, { status: "idle" } as BlogFormState);
 
   return (
-    <form action={formAction} className="space-y-6 max-w-2xl">
+    <form action={formAction} className="max-w-3xl space-y-6 rounded-2xl border border-border/70 bg-card p-5 shadow-sm sm:p-8">
       {state.status === "error" && (
-        <div className="flex items-start gap-2 rounded-lg bg-destructive/10 p-3 text-sm text-destructive">
+        <div role="alert" className="flex items-start gap-3 rounded-xl border border-destructive/20 bg-destructive/6 p-4 text-sm text-destructive">
           <AlertCircle className="h-4 w-4 mt-0.5 shrink-0" />
           <span>{state.message}</span>
         </div>
       )}
 
-      <div className="grid grid-cols-2 gap-4">
-        <div className="space-y-1.5">
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div className="space-y-2">
           <Label htmlFor="slug">Slug (URL /blog/...) *</Label>
           <Input id="slug" name="slug" defaultValue={initialValues.slug} required />
         </div>
-        <div className="space-y-1.5">
+        <div className="space-y-2">
           <Label htmlFor="tag">Tag *</Label>
           <Input id="tag" name="tag" defaultValue={initialValues.tag} required />
         </div>
       </div>
 
-      <div className="space-y-1.5">
+      <div className="space-y-2">
         <Label htmlFor="title">Titre *</Label>
         <Input id="title" name="title" defaultValue={initialValues.title} required />
       </div>
 
-      <div className="space-y-1.5">
+      <div className="space-y-2">
         <Label htmlFor="excerpt">Extrait *</Label>
         <Textarea id="excerpt" name="excerpt" rows={3} defaultValue={initialValues.excerpt} required />
       </div>
 
-      <div className="space-y-1.5">
+      <div className="space-y-2">
         <Label htmlFor="body">Contenu de l&apos;article</Label>
         <Textarea id="body" name="body" rows={10} defaultValue={initialValues.body ?? ""} />
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
-        <div className="space-y-1.5">
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div className="space-y-2">
           <Label htmlFor="publishedAt">Date de publication</Label>
           <Input
             id="publishedAt"
@@ -98,7 +99,7 @@ export default function BlogForm({
             defaultValue={initialValues.publishedAt}
           />
         </div>
-        <div className="space-y-1.5">
+        <div className="space-y-2">
           <Label htmlFor="readtime">Temps de lecture *</Label>
           <Input id="readtime" name="readtime" defaultValue={initialValues.readtime} required />
         </div>
@@ -109,7 +110,12 @@ export default function BlogForm({
         <Label htmlFor="published">Publié</Label>
       </div>
 
-      <SubmitButton label={submitLabel} />
+      <div className="flex flex-col-reverse gap-3 border-t border-border/70 pt-6 sm:flex-row sm:items-center sm:justify-end">
+        <Button variant="ghost" asChild>
+          <Link href="/setting/blog">Annuler</Link>
+        </Button>
+        <SubmitButton label={submitLabel} />
+      </div>
     </form>
   );
 }

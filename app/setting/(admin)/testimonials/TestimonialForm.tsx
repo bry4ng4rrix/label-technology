@@ -2,6 +2,7 @@
 
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -70,47 +71,47 @@ export default function TestimonialForm({
   } as TestimonialFormState);
 
   return (
-    <form action={formAction} className="space-y-6 max-w-2xl">
+    <form action={formAction} className="max-w-3xl space-y-6 rounded-2xl border border-border/70 bg-card p-5 shadow-sm sm:p-8">
       {state.status === "error" && (
-        <div className="flex items-start gap-2 rounded-lg bg-destructive/10 p-3 text-sm text-destructive">
+        <div role="alert" className="flex items-start gap-3 rounded-xl border border-destructive/20 bg-destructive/6 p-4 text-sm text-destructive">
           <AlertCircle className="h-4 w-4 mt-0.5 shrink-0" />
           <span>{state.message}</span>
         </div>
       )}
 
-      <div className="space-y-1.5">
+      <div className="space-y-2">
         <Label htmlFor="quote">Citation *</Label>
         <Textarea id="quote" name="quote" rows={4} defaultValue={initialValues.quote} required />
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
-        <div className="space-y-1.5">
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div className="space-y-2">
           <Label htmlFor="author">Auteur *</Label>
           <Input id="author" name="author" defaultValue={initialValues.author} required />
         </div>
-        <div className="space-y-1.5">
+        <div className="space-y-2">
           <Label htmlFor="role">Fonction *</Label>
           <Input id="role" name="role" defaultValue={initialValues.role} required />
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
-        <div className="space-y-1.5">
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div className="space-y-2">
           <Label htmlFor="company">Entreprise *</Label>
           <Input id="company" name="company" defaultValue={initialValues.company} required />
         </div>
-        <div className="space-y-1.5">
+        <div className="space-y-2">
           <Label htmlFor="tag">Tag (optionnel)</Label>
           <Input id="tag" name="tag" defaultValue={initialValues.tag ?? ""} />
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
-        <div className="space-y-1.5">
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div className="space-y-2">
           <Label htmlFor="color">Couleur d&apos;accent (hex, optionnel)</Label>
           <Input id="color" name="color" defaultValue={initialValues.color ?? ""} />
         </div>
-        <div className="space-y-1.5">
+        <div className="space-y-2">
           <Label htmlFor="gradientColor">Dégradé (classes Tailwind, optionnel)</Label>
           <Input
             id="gradientColor"
@@ -121,11 +122,11 @@ export default function TestimonialForm({
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
-        <div className="space-y-1.5">
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div className="space-y-2">
           <Label htmlFor="context">Emplacement d&apos;affichage</Label>
           <Select name="context" defaultValue={initialValues.context}>
-            <SelectTrigger id="context">
+            <SelectTrigger className="w-full" id="context">
               <SelectValue placeholder="Choisir un emplacement" />
             </SelectTrigger>
             <SelectContent>
@@ -134,7 +135,7 @@ export default function TestimonialForm({
             </SelectContent>
           </Select>
         </div>
-        <div className="space-y-1.5">
+        <div className="space-y-2">
           <Label htmlFor="order">Ordre d&apos;affichage</Label>
           <Input id="order" name="order" type="number" defaultValue={initialValues.order} />
         </div>
@@ -145,7 +146,12 @@ export default function TestimonialForm({
         <Label htmlFor="published">Publié</Label>
       </div>
 
-      <SubmitButton label={submitLabel} />
+      <div className="flex flex-col-reverse gap-3 border-t border-border/70 pt-6 sm:flex-row sm:items-center sm:justify-end">
+        <Button variant="ghost" asChild>
+          <Link href="/setting/testimonials">Annuler</Link>
+        </Button>
+        <SubmitButton label={submitLabel} />
+      </div>
     </form>
   );
 }

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { supabase, type Service } from "@/lib/supabase";
 import { Button } from "@/components/ui/button";
+import AdminPageHeader from "../AdminPageHeader";
 import { Badge } from "@/components/ui/badge";
 import {
   Table,
@@ -23,22 +24,22 @@ export default async function ServicesAdminPage() {
 
   return (
     <div>
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-semibold">Services</h1>
-          <p className="mt-1 text-sm text-muted-foreground">
-            La grille &laquo;&nbsp;NOS EXPERTISES&nbsp;&raquo; affichée sur la page d&apos;accueil.
-          </p>
-        </div>
-        <Button asChild>
-          <Link href="/setting/services/new">
-            <Plus className="mr-2 h-4 w-4" />
-            Nouveau service
-          </Link>
-        </Button>
-      </div>
+      <AdminPageHeader
+        title={<>Services</>}
+        description={<>La grille &laquo;&nbsp;NOS EXPERTISES&nbsp;&raquo; affichée sur la page d&apos;accueil.</>}
+        actions={
+          <>
+            <Button asChild>
+              <Link href="/setting/services/new">
+                <Plus className="mr-2 h-4 w-4" />
+                Nouveau service
+              </Link>
+            </Button>
+          </>
+        }
+      />
 
-      <div className="mt-6 rounded-lg border bg-card">
+      <div className="overflow-hidden rounded-2xl border border-border/70 bg-card shadow-sm">
         <Table>
           <TableHeader>
             <TableRow>
@@ -80,7 +81,7 @@ export default async function ServicesAdminPage() {
             ))}
             {services.length === 0 && (
               <TableRow>
-                <TableCell colSpan={5} className="py-10 text-center text-muted-foreground">
+                <TableCell colSpan={5} className="h-32 text-center text-muted-foreground">
                   Aucun service pour le moment.
                 </TableCell>
               </TableRow>

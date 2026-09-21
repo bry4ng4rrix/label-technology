@@ -2,6 +2,7 @@
 
 import { useActionState, useState } from "react";
 import { useFormStatus } from "react-dom";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -73,31 +74,31 @@ export default function ServiceForm({
   );
 
   return (
-    <form action={formAction} className="space-y-6 max-w-2xl">
+    <form action={formAction} className="max-w-3xl space-y-6 rounded-2xl border border-border/70 bg-card p-5 shadow-sm sm:p-8">
       {state.status === "error" && (
-        <div className="flex items-start gap-2 rounded-lg bg-destructive/10 p-3 text-sm text-destructive">
+        <div role="alert" className="flex items-start gap-3 rounded-xl border border-destructive/20 bg-destructive/6 p-4 text-sm text-destructive">
           <AlertCircle className="h-4 w-4 mt-0.5 shrink-0" />
           <span>{state.message}</span>
         </div>
       )}
 
-      <div className="grid grid-cols-2 gap-4">
-        <div className="space-y-1.5">
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div className="space-y-2">
           <Label htmlFor="slug">Slug (URL /services/...) *</Label>
           <Input id="slug" name="slug" defaultValue={initialValues.slug} required />
         </div>
-        <div className="space-y-1.5">
+        <div className="space-y-2">
           <Label htmlFor="tag">Tag *</Label>
           <Input id="tag" name="tag" defaultValue={initialValues.tag} required />
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
-        <div className="space-y-1.5">
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div className="space-y-2">
           <Label htmlFor="headline">Titre (ligne 1) *</Label>
           <Input id="headline" name="headline" defaultValue={initialValues.headline} required />
         </div>
-        <div className="space-y-1.5">
+        <div className="space-y-2">
           <Label htmlFor="headlineAccent">Titre (ligne 2, accent)</Label>
           <Input
             id="headlineAccent"
@@ -107,12 +108,12 @@ export default function ServiceForm({
         </div>
       </div>
 
-      <div className="space-y-1.5">
+      <div className="space-y-2">
         <Label htmlFor="desc">Description *</Label>
         <Textarea id="desc" name="desc" rows={3} defaultValue={initialValues.desc} required />
       </div>
 
-      <div className="space-y-1.5">
+      <div className="space-y-2">
         <Label>Points clés</Label>
         {items.map((item, i) => (
           <div key={i} className="flex gap-2">
@@ -148,15 +149,15 @@ export default function ServiceForm({
         </Button>
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
-        <div className="space-y-1.5">
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div className="space-y-2">
           <Label htmlFor="color">Couleur (hex) *</Label>
           <Input id="color" name="color" defaultValue={initialValues.color} required />
         </div>
-        <div className="space-y-1.5">
+        <div className="space-y-2">
           <Label htmlFor="icon">Icône *</Label>
           <Select name="icon" defaultValue={initialValues.icon}>
-            <SelectTrigger id="icon">
+            <SelectTrigger className="w-full" id="icon">
               <SelectValue placeholder="Choisir une icône" />
             </SelectTrigger>
             <SelectContent>
@@ -170,12 +171,12 @@ export default function ServiceForm({
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
-        <div className="space-y-1.5">
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div className="space-y-2">
           <Label htmlFor="imageUrl">URL image *</Label>
           <Input id="imageUrl" name="imageUrl" defaultValue={initialValues.imageUrl} required />
         </div>
-        <div className="space-y-1.5">
+        <div className="space-y-2">
           <Label htmlFor="badge">Badge (optionnel)</Label>
           <Input id="badge" name="badge" defaultValue={initialValues.badge ?? ""} />
         </div>
@@ -192,7 +193,12 @@ export default function ServiceForm({
         </div>
       </div>
 
-      <SubmitButton label={submitLabel} />
+      <div className="flex flex-col-reverse gap-3 border-t border-border/70 pt-6 sm:flex-row sm:items-center sm:justify-end">
+        <Button variant="ghost" asChild>
+          <Link href="/setting/services">Annuler</Link>
+        </Button>
+        <SubmitButton label={submitLabel} />
+      </div>
     </form>
   );
 }

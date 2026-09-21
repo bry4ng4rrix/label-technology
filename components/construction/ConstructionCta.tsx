@@ -1,66 +1,53 @@
-"use client";
-
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import Reveal from "@/components/shared/Reveal";
 
 export default function ConstructionCta() {
   return (
-    <section className="relative py-28 px-6 overflow-hidden bg-[#080D1A]">
-      <div className="absolute inset-0 bg-linear-to-br from-[#080D1A] via-[#0f1f5c] to-[#080D1A]" />
-      <div className="absolute top-[-80px] left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-blue-600/25 rounded-full blur-[130px] pointer-events-none" />
+    <section className="surface-dark noise hairline-top relative overflow-hidden py-24 sm:py-28 lg:py-36">
+      <div aria-hidden className="grid-fade absolute inset-0 -z-10 opacity-70" />
+      <div
+        aria-hidden
+        className="halo -top-32 left-1/2 -z-10 h-[460px] w-[760px] -translate-x-1/2 bg-brand-lt/35"
+      />
 
-      <div className="relative z-10 max-w-3xl mx-auto text-center">
-        <Reveal>
-          <Badge
-            variant="secondary"
-            className="mb-6 bg-white/8 text-white/60 border border-white/15 text-[10px] tracking-widest px-4 py-1.5 rounded-full"
-          >
-            NOUVELLE ACTIVITÉ — CONSTRUCTION &amp; GÉNIE CIVIL
-          </Badge>
-        </Reveal>
-
-        <Reveal delay={0.1}>
-          <h2 className="h2-cta text-white mb-6">
-            Vous avez un projet
-            <br />
-            <span className="bg-linear-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
-              de construction ?
+      <div className="container-x">
+        <div className="mx-auto max-w-3xl text-center">
+          <Reveal>
+            <span className="glass-dark inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[11px] font-semibold tracking-[0.16em] text-white/70 uppercase">
+              <span className="size-1.5 rounded-full bg-gold" />
+              Nouvelle activité — Construction &amp; Génie Civil
             </span>
-          </h2>
-        </Reveal>
+          </Reveal>
 
-        <Reveal delay={0.2}>
-          <p className="text-white/50 font-light text-base max-w-lg mx-auto mb-12 leading-relaxed">
-            Notre nouvelle activité Construction est ouverte aux projets et
-            collaborations. Présentez-nous votre besoin afin d&apos;étudier
-            ensemble les possibilités d&apos;accompagnement.
-          </p>
-        </Reveal>
+          <Reveal delay={0.1}>
+            <h2 className="h2-cta mt-7 text-white">
+              Vous avez un projet{" "}
+              <span className="gradient-text-light">de construction ?</span>
+            </h2>
+          </Reveal>
 
-        <Reveal delay={0.3} className="flex flex-wrap items-center justify-center gap-4">
-          <Button
-            asChild
-            size="lg"
-            className="bg-white text-slate-900 hover:bg-white/92 active:scale-95 px-8 h-12 font-medium rounded-lg shadow-lg shadow-white/10 transition-all duration-200 hover:scale-105"
-          >
-            <Link href="/contact" className="flex items-center gap-2">
-              Présenter mon projet
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </Button>
+          <Reveal delay={0.2}>
+            <p className="mx-auto mt-6 max-w-lg text-base leading-relaxed text-white/55">
+              Notre nouvelle activité Construction est ouverte aux projets et
+              collaborations. Présentez-nous votre besoin afin d&apos;étudier
+              ensemble les possibilités d&apos;accompagnement.
+            </p>
+          </Reveal>
 
-          <Button
-            asChild
-            size="lg"
-            variant="outline"
-            className="border-white/15 text-white/80 bg-white/5 hover:bg-white/10 hover:text-white hover:border-white/25 px-8 h-12 rounded-lg transition-all duration-200 hover:scale-105"
-          >
-            <Link href="/contact">Nous contacter</Link>
-          </Button>
-        </Reveal>
+          <Reveal delay={0.3} className="mt-10 flex flex-wrap items-center justify-center gap-3">
+            <Button asChild size="xl" variant="inverse" className="rounded-full">
+              <Link href="/contact">
+                Présenter mon projet
+                <ArrowRight data-icon="inline-end" />
+              </Link>
+            </Button>
+            <Button asChild size="xl" variant="glass" className="rounded-full">
+              <Link href="/contact">Nous contacter</Link>
+            </Button>
+          </Reveal>
+        </div>
       </div>
     </section>
   );

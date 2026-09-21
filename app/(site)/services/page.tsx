@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
-import CtaSection from "@/components/home/CtaSection";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import CtaSection from "@/components/home/CtaSection";
+import MetricsBand from "@/components/shared/MetricsBand";
+import PageHero from "@/components/shared/PageHero";
 import Reveal from "@/components/shared/Reveal";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Nos Services — 6 Expertises Tech depuis Antananarivo",
@@ -126,57 +131,72 @@ export default function ServicesPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* Hero */}
-      <section className="relative min-h-[55vh] flex flex-col justify-center grid-bg px-6 pt-24 pb-16"
-        style={{ backgroundColor: "var(--ink)" }}>
-        <div className="absolute inset-0 opacity-10 pointer-events-none"
-          style={{ background: "radial-gradient(ellipse at 50% 50%, var(--brand) 0%, transparent 70%)" }} />
-        <Reveal className="relative max-w-7xl mx-auto w-full">
-          <p className="label-tag mb-5" style={{ color: "var(--brand-lt)" }}>NOS EXPERTISES</p>
-          <h1 className="h1-display text-white mb-6">
-            6 expertises.<br />
-            <span style={{ color: "var(--brand-lt)" }}>1 équipe.</span>
-          </h1>
-          <p className="text-white/60 text-lg font-light leading-relaxed max-w-2xl">
-            Développement, Marketing, Digitalisation, Données, Matériel, Comptabilité.
-            Une couverture complète depuis Antananarivo.
-          </p>
-        </Reveal>
-      </section>
+      <PageHero
+        eyebrow="Nos expertises"
+        title={
+          <>
+            6 expertises.
+            <br />
+            <span className="gradient-text-light">1 équipe.</span>
+          </>
+        }
+        description="Développement, Marketing, Digitalisation, Données, Matériel, Comptabilité. Une couverture complète depuis Antananarivo."
+        actions={
+          <>
+            <Button asChild size="lg" className="rounded-full">
+              <Link href="/contact">
+                Démarrer un projet
+                <ArrowRight data-icon="inline-end" />
+              </Link>
+            </Button>
+            <Button asChild size="lg" variant="glass" className="rounded-full">
+              <Link href="/projets">Voir nos réalisations</Link>
+            </Button>
+          </>
+        }
+      />
 
-      {/* Grid services */}
-      <section className="py-24 px-6" style={{ backgroundColor: "var(--paper)" }}>
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* Grille services */}
+      <section className="surface-light section relative">
+        <div className="container-x">
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {SERVICES.map((s, i) => (
-              <Reveal key={i} delay={(i % 3) * 0.1} className="h-full">
-                <Link href={s.href}
-                  className="group p-8 border rounded-sm flex flex-col h-full transition-all card-hover bg-card"
-                  style={{ borderColor: s.featured ? "var(--brand)" : "transparent" }}>
-                  <span className="label-tag text-[10px] mb-3"
-                    style={{ color: s.featured ? "var(--brand-lt)" : "var(--brand)" }}>
-                    {s.tag}
-                  </span>
-                  <h2 className="font-display text-2xl mb-2 text-foreground">
+              <Reveal key={i} delay={(i % 3) * 0.08} className="h-full">
+                <Link
+                  href={s.href}
+                  className={cn(
+                    "card-premium group flex h-full flex-col p-7 sm:p-8",
+                    s.featured && "ring-1 ring-brand/30",
+                  )}
+                >
+                  <div className="mb-5 flex items-center justify-between">
+                    <span className="label-tag text-brand">{s.tag}</span>
+                    {s.featured && (
+                      <span className="rounded-full bg-brand/10 px-2.5 py-1 text-[10px] font-semibold tracking-wide text-brand uppercase">
+                        Phare
+                      </span>
+                    )}
+                  </div>
+                  <h2 className="font-display text-2xl tracking-tight text-foreground">
                     {s.title}
                   </h2>
-                  <p className="text-sm font-light italic mb-5 text-muted-foreground">
-                    {s.accroche}
-                  </p>
-                  <p className="text-sm font-light leading-relaxed mb-6 flex-1 text-muted-foreground">
+                  <p className="mt-2 text-sm font-medium text-brand/80 italic">{s.accroche}</p>
+                  <p className="mt-4 flex-1 text-[15px] leading-relaxed text-muted-foreground">
                     {s.desc}
                   </p>
-                  <ul className="space-y-1.5 mb-6">
+                  <ul className="mt-6 flex flex-wrap gap-2">
                     {s.items.map((item, j) => (
-                      <li key={j} className="flex items-center gap-2 text-xs text-muted-foreground">
-                        <span style={{ color: "var(--gold)" }}>◆</span>
+                      <li
+                        key={j}
+                        className="rounded-full border border-border bg-muted/40 px-2.5 py-1 text-xs text-muted-foreground"
+                      >
                         {item}
                       </li>
                     ))}
                   </ul>
-                  <span className="text-sm font-medium group-hover:gap-3 transition-all flex items-center gap-2"
-                    style={{ color: s.featured ? "var(--brand-lt)" : "var(--brand)" }}>
-                    Découvrir →
+                  <span className="link-arrow mt-7 text-sm text-brand">
+                    Découvrir
+                    <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" />
                   </span>
                 </Link>
               </Reveal>
@@ -185,22 +205,14 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Bande chiffres */}
-      <section style={{ backgroundColor: "var(--brand)" }}>
-        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 divide-x divide-white/10">
-          {[
-            { v: "60+", l: "Collaborateurs" },
-            { v: "4 ans", l: "D'expérience" },
-            { v: "FR/EN", l: "Bilingue certifié" },
-            { v: "<72h", l: "Délai de réponse" },
-          ].map((m, i) => (
-            <Reveal key={i} delay={i * 0.1} className="text-center py-8">
-              <div className="font-display text-3xl text-white mb-1">{m.v}</div>
-              <div className="label-tag text-white/50 text-[10px]">{m.l}</div>
-            </Reveal>
-          ))}
-        </div>
-      </section>
+      <MetricsBand
+        items={[
+          { value: "60+", label: "Collaborateurs" },
+          { value: "4 ans", label: "D'expérience" },
+          { value: "FR/EN", label: "Bilingue certifié" },
+          { value: "<72h", label: "Délai de réponse" },
+        ]}
+      />
 
       <CtaSection />
     </main>

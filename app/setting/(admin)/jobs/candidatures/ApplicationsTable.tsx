@@ -416,7 +416,7 @@ export default function ApplicationsTable({ data }: { data: JobApplication[] }) 
             <button
               type="button"
               onClick={() => setSelected(a)}
-              className="group/job flex max-w-[240px] flex-col items-start gap-0.5 text-left"
+              className="group/job flex max-w-[220px] flex-col items-start gap-0.5 text-left whitespace-normal"
             >
               <span className="line-clamp-2 text-sm font-medium text-foreground underline-offset-4 group-hover/job:underline">
                 {a.job_title}
@@ -603,13 +603,13 @@ export default function ApplicationsTable({ data }: { data: JobApplication[] }) 
       </div>
 
       {/* Table */}
-      <div className="overflow-hidden rounded-lg border bg-card">
+      <div className="overflow-hidden rounded-2xl border border-border/70 bg-card shadow-sm">
         <Table>
           <TableHeader className="bg-muted/40">
             {table.getHeaderGroups().map((hg) => (
               <TableRow key={hg.id} className="hover:bg-transparent">
                 {hg.headers.map((h) => (
-                  <TableHead key={h.id} className="h-10 text-xs uppercase tracking-wide">
+                  <TableHead key={h.id}>
                     {h.isPlaceholder ? null : flexRender(h.column.columnDef.header, h.getContext())}
                   </TableHead>
                 ))}
@@ -624,7 +624,7 @@ export default function ApplicationsTable({ data }: { data: JobApplication[] }) 
                   className={cn(row.original.status === "nouveau" && "bg-primary/[0.03]")}
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id} className="py-3 align-middle">
+                    <TableCell key={cell.id} className="py-3 align-middle whitespace-normal">
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </TableCell>
                   ))}

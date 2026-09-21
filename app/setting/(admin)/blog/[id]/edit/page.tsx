@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { supabase, type BlogPost } from "@/lib/supabase";
 import BlogForm from "../../BlogForm";
+import AdminPageHeader from "../../../AdminPageHeader";
 import { updateBlogPost } from "../../actions";
 
 export default async function EditBlogPostPage({
@@ -21,8 +22,11 @@ export default async function EditBlogPostPage({
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold">Modifier « {post.title} »</h1>
-      <div className="mt-6">
+      <AdminPageHeader
+        title={<>Modifier « {post.title} »</>}
+        back={{ href: "/setting/blog", label: "Blog" }}
+      />
+      <div>
         <BlogForm
           action={boundUpdate}
           submitLabel="Enregistrer"

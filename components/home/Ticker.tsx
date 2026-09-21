@@ -13,23 +13,19 @@ const doubled = [...ITEMS, ...ITEMS];
 export default function Ticker() {
   return (
     <div
-      className="overflow-hidden py-3 border-y border-white/10 space-y-2 grid-bg"
-      style={{ backgroundColor: "var(--ink)" }}
+      aria-hidden
+      className="relative overflow-hidden border-y border-white/8 bg-ink py-4 [mask-image:linear-gradient(90deg,transparent,#000_12%,#000_88%,transparent)]"
     >
-      {/* Row 2 — scrolls right */}
       <div
-        className="flex whitespace-nowrap"
-        style={{ animation: "ticker 22s linear infinite reverse" }}
+        className="flex whitespace-nowrap will-change-transform"
+        style={{ animation: "ticker 32s linear infinite reverse" }}
       >
         {doubled.map((item, i) => (
-          <span key={i} className="inline-flex items-center gap-2 px-5">
-            <span
-              className="text-sm font-medium tracking-wide px-4 py-1.5 rounded-full border border-blue-400/20 text-blue-300/60"
-              style={{ backgroundColor: "rgba(59,130,246,0.06)" }}
-            >
+          <span key={i} className="inline-flex items-center gap-4 px-4">
+            <span className="glass-dark rounded-full px-4 py-1.5 text-[13px] font-medium tracking-wide text-white/70">
               {item}
             </span>
-            <span className="text-blue-400/20 text-xs ml-2 ">◆</span>
+            <span className="size-1 rounded-full bg-brand-glow/50" />
           </span>
         ))}
       </div>

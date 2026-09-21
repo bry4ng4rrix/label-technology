@@ -13,13 +13,15 @@ const PROJECT_TYPES = [
 
 export default function ProjectTypesGrid() {
   return (
-    <div className="max-w-7xl mx-auto">
-      <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
+    <div>
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {PROJECT_TYPES.map((p, i) => (
-          <Reveal key={i} delay={i * 0.05}>
-            <div className="p-6 border border-border rounded-sm bg-card h-full">
-              <span className="text-2xl mb-3 block">{p.icon}</span>
-              <h3 className="font-display text-base text-foreground">
+          <Reveal key={i} delay={i * 0.05} className="h-full">
+            <div className="card-premium flex h-full items-center gap-4 p-5">
+              <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-brand/8 text-xl leading-none">
+                {p.icon}
+              </span>
+              <h3 className="font-display text-base font-semibold text-foreground">
                 {p.title}
               </h3>
             </div>
@@ -28,7 +30,7 @@ export default function ProjectTypesGrid() {
       </div>
 
       <Reveal delay={0.3}>
-        <p className="text-sm font-light italic text-center mt-12 text-muted-foreground max-w-xl mx-auto">
+        <p className="meta mx-auto mt-12 max-w-xl text-center italic">
           Cette activité étant actuellement en développement, notre
           portefeuille de réalisations sera progressivement enrichi.
         </p>

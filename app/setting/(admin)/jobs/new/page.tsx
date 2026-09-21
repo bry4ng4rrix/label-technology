@@ -1,5 +1,6 @@
 import { supabase } from "@/lib/supabase";
 import JobOfferForm from "../JobOfferForm";
+import AdminPageHeader from "../../AdminPageHeader";
 import { createJobOffer } from "../actions";
 
 export default async function NewJobOfferPage() {
@@ -8,8 +9,11 @@ export default async function NewJobOfferPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold">Nouvelle offre d&apos;emploi</h1>
-      <div className="mt-6">
+      <AdminPageHeader
+        title={<>Nouvelle offre d&apos;emploi</>}
+        back={{ href: "/setting/jobs", label: "Offres d'emploi" }}
+      />
+      <div>
         <JobOfferForm action={createJobOffer} submitLabel="Créer l'offre" serviceTags={serviceTags} />
       </div>
     </div>

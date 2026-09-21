@@ -3,6 +3,7 @@ import { supabase, type JobApplication } from "@/lib/supabase";
 import { Button } from "@/components/ui/button";
 import { Briefcase, CheckCircle2, Inbox, Sparkles, Users } from "lucide-react";
 import ApplicationsTable from "./ApplicationsTable";
+import AdminPageHeader from "../../AdminPageHeader";
 
 export default async function CandidaturesAdminPage() {
   const { data } = await supabase
@@ -46,25 +47,23 @@ export default async function CandidaturesAdminPage() {
 
   return (
     <div>
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-semibold">Candidatures</h1>
-          <p className="mt-1 text-sm text-muted-foreground">
-            Toutes les réponses reçues via le formulaire de candidature du site public.
-          </p>
-        </div>
-        <Button variant="outline" asChild>
-          <Link href="/setting/jobs">
-            <Briefcase className="mr-2 h-4 w-4" />
-            Offres d&apos;emploi
-          </Link>
-        </Button>
-      </div>
+      <AdminPageHeader
+        title="Candidatures"
+        description="Toutes les réponses reçues via le formulaire de candidature du site public."
+        actions={
+          <Button variant="outline" asChild>
+            <Link href="/setting/jobs">
+              <Briefcase />
+              Offres d&apos;emploi
+            </Link>
+          </Button>
+        }
+      />
 
-      <div className="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
         {stats.map(({ label, value, hint, icon: Icon, accent }) => (
-          <div key={label} className="flex items-center gap-4 rounded-lg border bg-card p-4">
-            <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-muted">
+          <div key={label} className="flex items-center gap-4 rounded-2xl border border-border/70 bg-card p-4 shadow-sm">
+            <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-muted">
               <Icon className={`size-5 ${accent ?? "text-muted-foreground"}`} />
             </div>
             <div className="min-w-0">
@@ -72,7 +71,7 @@ export default async function CandidaturesAdminPage() {
                 {label}
               </div>
               <div className="flex items-baseline gap-2">
-                <span className="text-2xl font-semibold tabular-nums">{value}</span>
+                <span className="font-display text-2xl font-semibold tracking-tight tabular-nums">{value}</span>
                 <span className="truncate text-xs text-muted-foreground">{hint}</span>
               </div>
             </div>

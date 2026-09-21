@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 import { getSession } from "@/lib/auth";
-import AdminSidebar from "./AdminSidebar";
+import AdminSidebar, { AdminTopbar } from "./AdminSidebar";
 
 export default async function AdminLayout({
   children,
@@ -10,9 +10,14 @@ export default async function AdminLayout({
   }
 
   return (
-    <div className="flex min-h-screen bg-muted/20">
+    <div className="surface-light flex min-h-screen">
       <AdminSidebar />
-      <main className="flex-1 p-8">{children}</main>
+      <div className="flex min-w-0 flex-1 flex-col">
+        <AdminTopbar />
+        <main className="flex-1 px-4 py-6 sm:px-6 lg:px-10 lg:py-8">
+          <div className="mx-auto w-full max-w-7xl">{children}</div>
+        </main>
+      </div>
     </div>
   );
 }

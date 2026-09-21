@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { supabase, type Project } from "@/lib/supabase";
 import { Button } from "@/components/ui/button";
+import AdminPageHeader from "../AdminPageHeader";
 import { Badge } from "@/components/ui/badge";
 import {
   Table,
@@ -23,22 +24,22 @@ export default async function ProjectsAdminPage() {
 
   return (
     <div>
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-semibold">Projets</h1>
-          <p className="mt-1 text-sm text-muted-foreground">
-            Les réalisations affichées sur la page &laquo;&nbsp;Nos réalisations&nbsp;&raquo;.
-          </p>
-        </div>
-        <Button asChild>
-          <Link href="/setting/projects/new">
-            <Plus className="mr-2 h-4 w-4" />
-            Nouveau projet
-          </Link>
-        </Button>
-      </div>
+      <AdminPageHeader
+        title={<>Projets</>}
+        description={<>Les réalisations affichées sur la page &laquo;&nbsp;Nos réalisations&nbsp;&raquo;.</>}
+        actions={
+          <>
+            <Button asChild>
+              <Link href="/setting/projects/new">
+                <Plus className="mr-2 h-4 w-4" />
+                Nouveau projet
+              </Link>
+            </Button>
+          </>
+        }
+      />
 
-      <div className="mt-6 rounded-lg border bg-card">
+      <div className="overflow-hidden rounded-2xl border border-border/70 bg-card shadow-sm">
         <Table>
           <TableHeader>
             <TableRow>
@@ -70,7 +71,7 @@ export default async function ProjectsAdminPage() {
             ))}
             {projects.length === 0 && (
               <TableRow>
-                <TableCell colSpan={4} className="py-10 text-center text-muted-foreground">
+                <TableCell colSpan={4} className="h-32 text-center text-muted-foreground">
                   Aucun projet pour le moment.
                 </TableCell>
               </TableRow>

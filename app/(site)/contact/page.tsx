@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import ContactForm from "@/components/contact/ContactForm";
 import Reveal from "@/components/shared/Reveal";
 
@@ -41,53 +42,81 @@ export const metadata: Metadata = {
   },
 };
 
+const INFOS = [
+  {
+    icon: MapPin,
+    label: "Adresse",
+    content: "Akany Riandrano, Manajak Ilafy\nAntananarivo Avaradrano, Madagascar",
+  },
+  { icon: Phone, label: "Téléphone", href: "tel:+261340503129", linkText: "+261 34 05 031 29" },
+  {
+    icon: Mail,
+    label: "Email",
+    href: "mailto:contact@labeltechnology.mg",
+    linkText: "contact@labeltechnology.mg",
+  },
+  { icon: Clock, label: "Horaires", content: "Lun–Ven : 08h00 – 18h00 (UTC+3)" },
+];
+
 export default function ContactPage() {
   return (
     <main>
-      <section className="min-h-screen px-6 pt-28 pb-16" style={{ backgroundColor: "var(--paper)" }}>
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-16 items-start">
+      <section className="surface-light relative min-h-screen overflow-hidden pt-32 pb-20 sm:pt-36 lg:pt-40 lg:pb-28">
+        <div aria-hidden className="grid-fade absolute inset-0 -z-10 opacity-60" />
+        <div
+          aria-hidden
+          className="halo -top-32 right-0 -z-10 h-[420px] w-[560px] bg-brand-lt/15"
+        />
 
-            {/* Left */}
+        <div className="container-x">
+          <div className="grid items-start gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+            {/* Colonne gauche */}
             <div>
               <Reveal>
-                <p className="label-tag mb-4" style={{ color: "var(--brand)" }}>CONTACT</p>
-                <h1 className="font-display text-5xl md:text-6xl mb-6 leading-tight text-foreground">
-                  Parlons de<br />votre projet.
+                <p className="label-tag mb-5 inline-flex items-center gap-2.5 text-brand">
+                  <span className="h-px w-6 bg-brand/60" />
+                  Contact
+                </p>
+                <h1 className="h1-display text-foreground">
+                  Parlons de
+                  <br />
+                  <span className="gradient-text">votre projet.</span>
                 </h1>
-                <p className="text-base font-light leading-relaxed mb-12 text-muted-foreground">
+                <p className="lead mt-6 max-w-md text-muted-foreground">
                   Décrivez-nous votre besoin. Un expert vous répond sous 72h avec
                   une proposition concrète — pas un formulaire générique.
                 </p>
               </Reveal>
 
-              <div className="space-y-6">
-                {[
-                  { icon: "📍", label: "Adresse", content: "Akany Riandrano, Manajak Ilafy\nAntananarivo Avaradrano, Madagascar" },
-                  { icon: "📞", label: "Téléphone", href: "tel:+261340503129", linkText: "+261 34 05 031 29" },
-                  { icon: "✉️", label: "Email", href: "mailto:contact@labeltechnology.mg", linkText: "contact@labeltechnology.mg" },
-                  { icon: "🕐", label: "Horaires", content: "Lun–Ven : 08h00 – 18h00 (UTC+3)" },
-                ].map((item, i) => (
-                  <Reveal key={item.label} delay={0.15 + i * 0.08} className="flex items-start gap-4">
-                    <span className="text-xl mt-0.5">{item.icon}</span>
-                    <div>
-                      <p className="font-medium text-sm mb-1 text-foreground">{item.label}</p>
-                      {item.href ? (
-                        <a href={item.href} className="text-sm font-light hover:underline" style={{ color: "var(--brand)" }}>
-                          {item.linkText}
-                        </a>
-                      ) : (
-                        <p className="text-sm font-light text-muted-foreground whitespace-pre-line">
-                          {item.content}
-                        </p>
-                      )}
-                    </div>
+              <ul className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+                {INFOS.map((item, i) => (
+                  <Reveal key={item.label} delay={0.12 + i * 0.07}>
+                    <li className="card-premium flex items-start gap-4 p-4 hover:translate-y-0">
+                      <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-brand/8 text-brand">
+                        <item.icon className="size-4.5" strokeWidth={1.8} />
+                      </span>
+                      <div className="min-w-0">
+                        <p className="label-tag mb-1 text-muted-foreground">{item.label}</p>
+                        {item.href ? (
+                          <a
+                            href={item.href}
+                            className="text-sm font-medium text-foreground underline-offset-4 transition-colors hover:text-brand hover:underline"
+                          >
+                            {item.linkText}
+                          </a>
+                        ) : (
+                          <p className="text-sm whitespace-pre-line text-foreground/85">
+                            {item.content}
+                          </p>
+                        )}
+                      </div>
+                    </li>
                   </Reveal>
                 ))}
-              </div>
+              </ul>
             </div>
 
-            {/* Right — Form */}
+            {/* Formulaire */}
             <Reveal delay={0.1}>
               <ContactForm />
             </Reveal>

@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { supabase, type Project } from "@/lib/supabase";
 import ProjectForm from "../../ProjectForm";
+import AdminPageHeader from "../../../AdminPageHeader";
 import { updateProject } from "../../actions";
 
 export default async function EditProjectPage({
@@ -21,8 +22,11 @@ export default async function EditProjectPage({
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold">Modifier « {project.title} »</h1>
-      <div className="mt-6">
+      <AdminPageHeader
+        title={<>Modifier « {project.title} »</>}
+        back={{ href: "/setting/projects", label: "Projets" }}
+      />
+      <div>
         <ProjectForm
           action={boundUpdate}
           submitLabel="Enregistrer"

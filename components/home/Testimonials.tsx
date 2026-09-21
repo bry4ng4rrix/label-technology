@@ -1,5 +1,6 @@
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { Quote } from "lucide-react";
+import Reveal from "@/components/shared/Reveal";
+import SectionHeader from "@/components/shared/SectionHeader";
 import { supabase, type Testimonial } from "@/lib/supabase";
 
 export default async function Testimonials() {
@@ -18,135 +19,68 @@ export default async function Testimonials() {
     company: t.company,
     tag: t.tag ?? "",
     color: t.color ?? "var(--brand)",
-    gradientColor: t.gradient_color ?? "from-blue-500/20 to-blue-600/10",
   }));
 
+  if (TESTIMONIALS.length === 0) return null;
+
   return (
-    <section className="relative py-24 px-6 bg-background overflow-hidden">
-      <style>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
+    <section className="surface-light section relative overflow-hidden">
+      <div className="container-x">
+        <SectionHeader
+          eyebrow="Témoignages clients"
+          title={
+            <>
+              Des résultats, <span className="gradient-text">pas des promesses.</span>
+            </>
           }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
+        />
 
-        .testimonial-card {
-          animation: fadeInUp 0.6s ease-out forwards;
-          opacity: 0;
-          position: relative;
-        }
-
-        .testimonial-card:nth-child(1) { animation: fadeInUp 0.6s ease-out 0.1s forwards; }
-        .testimonial-card:nth-child(2) { animation: fadeInUp 0.6s ease-out 0.2s forwards; }
-        .testimonial-card:nth-child(3) { animation: fadeInUp 0.6s ease-out 0.3s forwards; }
-
-        .testimonial-card {
-          border-l: 4px solid;
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .testimonial-card:hover {
-          transform: translateY(-8px);
-          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
-        }
-
-        .testimonial-card::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.03) 50%, transparent 100%);
-          opacity: 0;
-          transition: opacity 0.3s ease;
-          pointer-events: none;
-        }
-
-        .testimonial-card:hover::before {
-          opacity: 1;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          .testimonial-card {
-            animation: none !important;
-            opacity: 1 !important;
-          }
-
-          .testimonial-card:hover {
-            transform: none;
-          }
-        }
-      `}</style>
-
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="mb-16">
-          <p className="label-tag mb-3" style={{ color: "#3B82F6" }}>
-            TÉMOIGNAGES CLIENTS
-          </p>
-          <h2 className="font-display text-4xl md:text-5xl text-foreground">
-            Des résultats,
-            <br />
-            <span className="bg-linear-to-r from-blue-500  to-emerald-500 bg-clip-text text-transparent">
-              pas des promesses.
-            </span>
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
           {TESTIMONIALS.map((t, i) => (
-            <div
-              key={i}
-              className="testimonial-card bg-card rounded-lg border-l hover:border hover:border-stone-200  transition-all duration-300  border-dashed  overflow-hidden"
-              style={{ borderLeftColor: t.color }}
-            >
-              <CardContent className="pt-8 pb-6 flex flex-col flex-1">
-                <Badge
-                  variant="secondary"
-                  className="text-[10px] rounded-full border-0 w-fit mb-4 font-semibold"
-                  style={{
-                    backgroundColor: `${t.color}20`,
-                    color: t.color,
-                  }}
-                >
-                  {t.tag}
-                </Badge>
-
-                <p className="text-base leading-relaxed text-foreground flex-1 mb-6">
-                  &ldquo;{t.quote}&rdquo;
-                </p>
-              </CardContent>
-
-              <CardFooter className="px-8 pb-8 border-t border-border/50 pt-6">
-                <div className="flex items-center gap-4 w-full">
-                  {/* <Image
-                    src={t.avatar}
-                    alt={t.author}
-                    width={44}
-                    height={44}
-                    className="rounded-full object-cover shrink-0"
-                  /> */}
-                  <div className="min-w-0 flex-1">
-                    <div
-                      className="font-semibold text-sm mb-1"
-                      style={{ color: t.color }}
+            <Reveal key={i} delay={i * 0.1} className="h-full">
+              <figure
+                className="card-premium group flex h-full flex-col p-7"
+                style={{ ["--accent" as string]: t.color }}
+              >
+                <div className="mb-6 flex items-center justify-between">
+                  {t.tag ? (
+                    <span
+                      className="rounded-full px-2.5 py-1 text-[10px] font-semibold tracking-[0.12em] uppercase"
+                      style={{ backgroundColor: `${t.color}1a`, color: t.color }}
                     >
-                      {t.author}
-                    </div>
-                    <div className="text-xs text-muted-foreground leading-snug">
-                      {t.role}
-                      <br />
-                      {t.company}
-                    </div>
-                  </div>
+                      {t.tag}
+                    </span>
+                  ) : (
+                    <span />
+                  )}
+                  <Quote
+                    className="size-5 opacity-30 transition-opacity duration-300 group-hover:opacity-70"
+                    style={{ color: t.color }}
+                  />
                 </div>
-              </CardFooter>
-            </div>
+
+                <blockquote className="flex-1 text-[15px] leading-relaxed text-foreground/85">
+                  &ldquo;{t.quote}&rdquo;
+                </blockquote>
+
+                <figcaption className="mt-7 flex items-center gap-3 border-t border-border/70 pt-5">
+                  <span
+                    className="flex size-10 shrink-0 items-center justify-center rounded-full text-sm font-bold text-white"
+                    style={{ backgroundColor: t.color }}
+                  >
+                    {t.author.trim().charAt(0).toUpperCase()}
+                  </span>
+                  <span className="min-w-0">
+                    <span className="block truncate text-sm font-semibold text-foreground">
+                      {t.author}
+                    </span>
+                    <span className="block text-xs leading-snug text-muted-foreground">
+                      {t.role} · {t.company}
+                    </span>
+                  </span>
+                </figcaption>
+              </figure>
+            </Reveal>
           ))}
         </div>
       </div>

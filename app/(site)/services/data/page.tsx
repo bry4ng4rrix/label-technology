@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 
+import { ArrowRight } from "lucide-react";
 import CtaSection from "@/components/home/CtaSection";
+import MetricsBand from "@/components/shared/MetricsBand";
+import PageHero from "@/components/shared/PageHero";
+import SectionHeader from "@/components/shared/SectionHeader";
+import { Button } from "@/components/ui/button";
 import FaqSection from "@/components/shared/FaqSection";
 import MiniTestimonials from "@/components/shared/MiniTestimonials";
 import Link from "next/link";
@@ -119,66 +123,45 @@ export default function DataPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* Hero split */}
-      <section className="relative overflow-hidden grid-bg" style={{ backgroundColor: "var(--ink)", minHeight: "70vh" }}>
-        <div className="relative max-w-7xl mx-auto px-6 grid lg:grid-cols-2 items-center" style={{ minHeight: "70vh" }}>
-          <div className="relative z-10 py-28 lg:pr-12">
-            <p className="animate-fadeup label-tag mb-5" style={{ color: "var(--brand-lt)" }}>TRAITEMENT DE DONNÉES</p>
-            <h1 className="animate-fadeup-d1 h1-display text-white mb-6">
-              Vos données sont un actif.<br />
-              <span className="bg-linear-to-r from-[var(--brand)] to-[var(--brand-lt)] bg-clip-text text-transparent">On les rend exploitables.</span>
-            </h1>
-            <p className="animate-fadeup-d2 text-white/70 text-lg leading-relaxed mb-10 max-w-xl" style={{ lineHeight: 1.8 }}>
-              Saisie, nettoyage, analyse, automatisation. Une équipe spécialisée
-              pour traiter des volumes importants avec une précision garantie à 99,5%.
-            </p>
-            <div className="animate-fadeup-d3 flex flex-wrap gap-4">
-              <Link href="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3 font-semibold text-sm rounded-sm transition-all hover:opacity-90 hover:scale-105 duration-300"
-                style={{ backgroundColor: "var(--brand)", color: "#fff" }}>
-                Parler de mon projet →
+      <PageHero
+        size="lg"
+        eyebrow="TRAITEMENT DE DONNÉES"
+        title={
+          <>
+            Vos données sont un actif.
+            <br />
+            <span className="gradient-text-light">On les rend exploitables.</span>
+          </>
+        }
+        description="Saisie, nettoyage, analyse, automatisation. Une équipe spécialisée pour traiter des volumes importants avec une précision garantie à 99,5%."
+        image={{ src: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&h=700&fit=crop&q=80", alt: "Traitement et analyse de données", priority: true }}
+        actions={
+          <>
+            <Button asChild size="lg" className="rounded-full">
+              <Link href="/contact">
+                Parler de mon projet
+                <ArrowRight data-icon="inline-end" />
               </Link>
-            </div>
-          </div>
-          <div className="absolute inset-0 z-0 lg:relative lg:inset-auto h-full" style={{ minHeight: "70vh" }}>
-            <Image
-              src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&h=700&fit=crop&q=80"
-              alt="Traitement et analyse de données"
-              fill
-              className="object-cover"
-              style={{ opacity: 10 }}
-            />
-            <div className="absolute inset-0 lg:hidden" style={{ background: "linear-gradient(180deg, var(--ink) 0%, rgba(10,14,26,0.7) 40%, var(--ink) 100%)" }} />
-            <div className="absolute inset-0 hidden lg:block" style={{ background: "linear-gradient(90deg, var(--ink) 0%, transparent 55%)" }} />
-          </div>
-        </div>
-      </section>
+            </Button>
+            <Button asChild size="lg" variant="glass" className="rounded-full">
+              <Link href="/projets">Voir nos réalisations</Link>
+            </Button>
+          </>
+        }
+      />
 
-      {/* Métriques */}
-      <section style={{ backgroundColor: "var(--brand)" }}>
-        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 divide-x divide-white/15">
-          {METRICS.map((m, i) => (
-            <div key={i} className="animate-fadeup text-center py-6 px-4" style={{ animationDelay: `${i * 0.1}s` }}>
-              <div className="font-display text-2xl text-white mb-1">{m.v}</div>
-              <div className="label-tag text-white/55 text-[10px]">{m.l}</div>
-            </div>
-          ))}
-        </div>
-      </section>
+      <MetricsBand items={METRICS.map((m) => ({ value: m.v, label: m.l }))} />
 
       {/* Services */}
-      <section className="py-24 px-6" style={{ backgroundColor: "var(--paper)" }}>
-        <div className="max-w-7xl mx-auto">
-          <p className="animate-fadeup label-tag mb-3" style={{ color: "var(--brand)" }}>NOS PRESTATIONS</p>
-          <h2 className="animate-fadeup-d1 font-display text-4xl md:text-5xl mb-16 bg-linear-to-r from-blue-500 to-indigo-600 bg-clip-text text-transparent">
-            De la donnée brute à la décision.
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
+      <section className="surface-light section relative">
+        <div className="container-x">
+          <SectionHeader eyebrow="NOS PRESTATIONS" title="De la donnée brute à la décision." />
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {SERVICES.map((s, i) => (
-              <div key={i} className="animate-fadeup p-7 border border-border rounded-sm card-hover bg-card" style={{ animationDelay: `${i * 0.08}s` }}>
-                <span className="svc-icon-float text-3xl mb-4 block">{s.icon}</span>
-                <h3 className="font-display text-xl mb-3 text-foreground">{s.title}</h3>
-                <p className="text-[15px] leading-relaxed text-muted-foreground" style={{ lineHeight: 1.7 }}>{s.desc}</p>
+              <div key={i} className="card-premium animate-fadeup flex h-full flex-col p-7" style={{ animationDelay: `${i * 0.08}s` }}>
+                <span className="mb-5 flex size-12 items-center justify-center rounded-xl bg-brand/8 text-2xl leading-none">{s.icon}</span>
+                <h3 className="h3-display mb-3 text-foreground">{s.title}</h3>
+                <p className="text-[15px] leading-relaxed text-muted-foreground">{s.desc}</p>
               </div>
             ))}
           </div>
@@ -186,30 +169,30 @@ export default function DataPage() {
       </section>
 
       {/* Chart */}
-      <section className="py-20 px-6" style={{ backgroundColor: "var(--ink)" }}>
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+      <section className="surface-dark noise hairline-top section-sm relative overflow-hidden">
+        <div className="container-x grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
           <div>
-            <p className="animate-fadeup label-tag mb-3" style={{ color: "var(--brand-lt)" }}>EN CHIFFRES</p>
-            <h2 className="animate-fadeup-d1 font-display text-3xl md:text-4xl text-white mb-6 leading-tight">
+            <p className="animate-fadeup label-tag mb-4 inline-flex items-center gap-2.5 text-brand-glow"><span className="h-px w-6 bg-brand-glow/70" />EN CHIFFRES</p>
+            <h2 className="animate-fadeup-d1 h2-display text-white mb-6">
               Volume, rigueur<br />et confidentialité.
             </h2>
-            <p className="animate-fadeup-d2 text-white/60 text-base leading-relaxed mb-8" style={{ lineHeight: 1.8 }}>
+            <p className="prose-body animate-fadeup-d2 mb-8 text-white/60">
               Nos équipes traitent des millions d'entrées chaque mois pour des clients
               en France, en Belgique et à Madagascar. Chaque mission est documentée,
               traçable et conforme aux exigences RGPD.
             </p>
-            <div className="space-y-4">
+            <div className="space-y-5">
               {[
                 { l: "Précision moyenne sur saisie", v: "99.7%" },
                 { l: "Missions livrées dans les délais", v: "98%" },
                 { l: "Clients avec contrat récurrent", v: "72%" },
               ].map((s, i) => (
                 <div key={i}>
-                  <div className="flex justify-between mb-1">
-                    <span className="text-white/50 text-sm">{s.l}</span>
-                    <span className="font-display text-sm" style={{ color: "var(--brand-lt)" }}>{s.v}</span>
+                  <div className="mb-1.5 flex justify-between">
+                    <span className="text-sm text-white/55">{s.l}</span>
+                    <span className="font-display text-sm text-brand-glow">{s.v}</span>
                   </div>
-                  <div className="h-1.5 rounded-full overflow-hidden" style={{ backgroundColor: "rgba(255,255,255,0.08)" }}>
+                  <div className="h-1.5 overflow-hidden rounded-full bg-white/8">
                     <div className="svc-bar h-full rounded-full" style={{ width: s.v, backgroundColor: "var(--brand-lt)", animationDelay: `${0.3 + i * 0.18}s` }} />
                   </div>
                 </div>
@@ -221,19 +204,16 @@ export default function DataPage() {
       </section>
 
       {/* Process */}
-      <section className="py-24 px-6 bg-background">
-        <div className="max-w-7xl mx-auto">
-          <p className="animate-fadeup label-tag mb-3" style={{ color: "var(--brand)" }}>NOTRE MÉTHODE</p>
-          <h2 className="animate-fadeup-d1 font-display text-4xl md:text-5xl mb-16 text-foreground">
-            Rigueur à chaque étape.
-          </h2>
-          <div className="grid md:grid-cols-4 gap-px bg-border/30">
+      <section className="section bg-background">
+        <div className="container-x">
+          <SectionHeader eyebrow="NOTRE MÉTHODE" title="Rigueur à chaque étape." />
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {PROCESS.map((p, i) => (
-              <div key={i} className="svc-step animate-fadeup p-8 bg-card" style={{ animationDelay: `${i * 0.1}s` }}>
-                <div className="svc-step-num font-display text-5xl mb-6" style={{ color: "var(--brand)", lineHeight: 1, opacity: 0.3 }}>{p.num}</div>
-                <div className="svc-step-line w-8 h-0.5 mb-5" style={{ backgroundColor: "var(--brand)" }} />
-                <h3 className="font-display text-lg mb-3 text-foreground">{p.title}</h3>
-                <p className="text-[15px] leading-relaxed text-muted-foreground" style={{ lineHeight: 1.7 }}>{p.desc}</p>
+              <div key={i} className="card-premium svc-step animate-fadeup flex h-full flex-col p-7" style={{ animationDelay: `${i * 0.1}s` }}>
+                <div className="svc-step-num font-display mb-6 text-5xl leading-none text-brand">{p.num}</div>
+                <div className="svc-step-line mb-5 h-0.5 w-8 origin-left rounded-full bg-brand" />
+                <h3 className="h3-display mb-3 text-foreground">{p.title}</h3>
+                <p className="text-[15px] leading-relaxed text-muted-foreground">{p.desc}</p>
               </div>
             ))}
           </div>

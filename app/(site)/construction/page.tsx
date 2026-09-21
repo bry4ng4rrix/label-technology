@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import PageHero from "@/components/shared/PageHero";
 import Reveal from "@/components/shared/Reveal";
+import SectionHeader from "@/components/shared/SectionHeader";
+import { Button } from "@/components/ui/button";
 import ProjectTypesGrid from "@/components/construction/ProjectTypesGrid";
 import ActivityNotice from "@/components/construction/ActivityNotice";
 import ConstructionCta from "@/components/construction/ConstructionCta";
@@ -127,55 +131,44 @@ export default function ConstructionPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* Hero */}
-      <section
-        className="relative min-h-[65vh] flex flex-col justify-center grid-bg px-6 pt-24 pb-16"
-        style={{ backgroundColor: "var(--ink)" }}
-      >
-        <div
-          className="absolute inset-0 opacity-10 pointer-events-none"
-          style={{ background: "radial-gradient(ellipse at 50% 50%, var(--brand) 0%, transparent 70%)" }}
-        />
-        <Reveal className="relative max-w-7xl mx-auto w-full">
-          <p className="label-tag mb-5" style={{ color: "var(--brand-lt)" }}>
-            NOUVELLE ACTIVITÉ — CONSTRUCTION &amp; GÉNIE CIVIL
-          </p>
-          <h1 className="h1-display text-white mb-6">
-            Construire<br />
-            <span style={{ color: "var(--brand-lt)" }}>les projets de demain.</span>
-          </h1>
-          <p className="text-white/60 text-lg font-light leading-relaxed max-w-2xl mb-10">
-            Label Technology développe une nouvelle expertise dédiée au génie
-            civil, à la construction et aux infrastructures, avec une approche
-            centrée sur la qualité, la précision et la maîtrise du projet.
-          </p>
-          <div className="flex flex-wrap gap-4">
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3 font-semibold text-sm rounded-sm transition-all hover:opacity-90 hover:scale-105 duration-300"
-              style={{ backgroundColor: "var(--brand)", color: "#fff" }}
-            >
-              Parler de votre projet →
-            </Link>
-            <Link
-              href="#domaines"
-              className="inline-flex items-center gap-2 px-6 py-3 font-semibold text-sm rounded-sm border border-white/20 text-white/80 hover:text-white hover:border-white/40 transition-all"
-            >
-              Découvrir nos expertises
-            </Link>
-          </div>
-        </Reveal>
-      </section>
+      <PageHero
+        size="lg"
+        eyebrow="Nouvelle activité — Construction & Génie Civil"
+        title={
+          <>
+            Construire
+            <br />
+            <span className="gradient-text-light">les projets de demain.</span>
+          </>
+        }
+        description="Label Technology développe une nouvelle expertise dédiée au génie civil, à la construction et aux infrastructures, avec une approche centrée sur la qualité, la précision et la maîtrise du projet."
+        actions={
+          <>
+            <Button asChild size="lg" className="rounded-full">
+              <Link href="/contact">
+                Parler de votre projet
+                <ArrowRight data-icon="inline-end" />
+              </Link>
+            </Button>
+            <Button asChild size="lg" variant="glass" className="rounded-full">
+              <Link href="#domaines">Découvrir nos expertises</Link>
+            </Button>
+          </>
+        }
+      />
 
       {/* Présentation */}
-      <section className="py-24 px-6" style={{ backgroundColor: "var(--paper)" }}>
-        <div className="max-w-4xl mx-auto">
-          <Reveal>
-            <p className="label-tag mb-3" style={{ color: "var(--brand)" }}>PRÉSENTATION</p>
-            <h2 className="font-display text-4xl md:text-5xl mb-8 text-foreground">
+      <section className="surface-light section relative">
+        <div className="container-x">
+          <Reveal className="mx-auto max-w-4xl">
+            <p className="label-tag mb-4 inline-flex items-center gap-2.5 text-brand">
+              <span className="h-px w-6 bg-brand/60" />
+              Présentation
+            </p>
+            <h2 className="h2-display text-foreground">
               Une nouvelle expertise pour accompagner vos projets.
             </h2>
-            <div className="space-y-5 text-[15px] md:text-lg font-light leading-relaxed text-muted-foreground" style={{ lineHeight: 1.8 }}>
+            <div className="prose-body mt-8 space-y-5 text-muted-foreground md:text-lg">
               <p>
                 Fort de son positionnement dans les services professionnels et
                 technologiques, Label Technology développe progressivement une
@@ -199,40 +192,38 @@ export default function ConstructionPage() {
       </section>
 
       {/* Domaines d'intervention */}
-      <section id="domaines" className="py-24 px-6 bg-background scroll-mt-20">
-        <div className="max-w-7xl mx-auto">
-          <Reveal>
-            <p className="label-tag mb-3" style={{ color: "var(--brand)" }}>NOS DOMAINES D&apos;INTERVENTION</p>
-            <h2 className="font-display text-4xl md:text-5xl mb-4 text-foreground">
-              Nos domaines d&apos;intervention.
-            </h2>
-            <p className="text-[15px] mb-16 max-w-xl text-muted-foreground">
-              Une offre en construction pensée pour répondre progressivement
-              aux différents besoins de nos futurs clients.
-            </p>
-          </Reveal>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-border/30">
+      <section id="domaines" className="section scroll-mt-24 bg-background">
+        <div className="container-x">
+          <SectionHeader
+            eyebrow="Nos domaines d'intervention"
+            title="Nos domaines d'intervention."
+            description="Une offre en construction pensée pour répondre progressivement aux différents besoins de nos futurs clients."
+          />
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {DOMAINES.map((d, i) => {
               const content = (
                 <>
-                  <div className="font-display text-3xl mb-4" style={{ color: "var(--brand)", opacity: 0.3 }}>{d.num}</div>
-                  <h3 className="font-display text-lg mb-2 text-foreground">{d.title}</h3>
-                  <p className="text-sm font-light leading-relaxed text-muted-foreground" style={{ lineHeight: 1.7 }}>{d.desc}</p>
+                  <div className="font-display mb-5 text-3xl leading-none text-brand/25 transition-colors duration-300 group-hover:text-brand">
+                    {d.num}
+                  </div>
+                  <h3 className="h3-display text-foreground">{d.title}</h3>
+                  <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{d.desc}</p>
                   {d.href && (
-                    <span className="inline-flex items-center gap-2 text-xs font-medium mt-4" style={{ color: "var(--brand)" }}>
-                      En savoir plus →
+                    <span className="link-arrow mt-5 text-xs text-brand">
+                      En savoir plus
+                      <ArrowRight className="size-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
                     </span>
                   )}
                 </>
               );
               return (
-                <Reveal key={i} delay={i * 0.05} className="bg-card">
+                <Reveal key={i} delay={i * 0.05} className="h-full">
                   {d.href ? (
-                    <Link href={d.href} className="group block p-7 h-full card-hover">
+                    <Link href={d.href} className="card-premium group flex h-full flex-col p-7">
                       {content}
                     </Link>
                   ) : (
-                    <div className="p-7 h-full">{content}</div>
+                    <div className="card-premium group flex h-full flex-col p-7">{content}</div>
                   )}
                 </Reveal>
               );
@@ -242,91 +233,106 @@ export default function ConstructionPage() {
       </section>
 
       {/* Notre approche */}
-      <section className="py-24 px-6" style={{ backgroundColor: "var(--paper)" }}>
-        <div className="max-w-7xl mx-auto">
-          <Reveal>
-            <p className="label-tag mb-3" style={{ color: "var(--brand)" }}>NOTRE MÉTHODE</p>
-            <h2 className="font-display text-4xl md:text-5xl mb-16 text-foreground">
-              Une approche structurée avant chaque projet.
-            </h2>
-          </Reveal>
-          <div className="grid md:grid-cols-5 gap-px bg-border/30">
+      <section className="surface-light section relative">
+        <div className="container-x">
+          <SectionHeader
+            eyebrow="Notre méthode"
+            title="Une approche structurée avant chaque projet."
+          />
+          <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {APPROCHE.map((p, i) => (
-              <Reveal key={i} delay={i * 0.08} className="p-7 bg-card h-full">
-                <div className="font-display text-4xl mb-5" style={{ color: "var(--brand)", opacity: 0.3 }}>{p.num}</div>
-                <h3 className="font-display text-base mb-2 text-foreground">{p.title}</h3>
-                <p className="text-sm font-light leading-relaxed text-muted-foreground" style={{ lineHeight: 1.7 }}>{p.desc}</p>
+              <Reveal key={i} delay={i * 0.06} className="h-full">
+                <li className="card-premium group flex h-full flex-col p-6">
+                  <div className="font-display mb-5 text-3xl leading-none text-brand/25 transition-colors duration-300 group-hover:text-brand">
+                    {p.num}
+                  </div>
+                  <h3 className="font-display text-base font-semibold text-foreground">{p.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.desc}</p>
+                </li>
               </Reveal>
             ))}
-          </div>
+          </ol>
         </div>
       </section>
 
       {/* Pourquoi cette activité */}
-      <section className="py-24 px-6" style={{ backgroundColor: "var(--ink)" }}>
-        <Reveal className="max-w-3xl mx-auto text-center">
-          <p className="label-tag mb-6" style={{ color: "var(--brand-lt)" }}>POURQUOI LA CONSTRUCTION ?</p>
-          <p className="text-white/70 text-lg md:text-xl font-light leading-relaxed mb-6" style={{ lineHeight: 1.8 }}>
-            Les projets de construction nécessitent aujourd&apos;hui plus
-            qu&apos;une simple exécution technique. Ils demandent de la
-            préparation, de la coordination, de la documentation et une
-            vision globale du projet.
-          </p>
-          <p className="text-white/50 text-base font-light leading-relaxed" style={{ lineHeight: 1.8 }}>
-            Label Technology souhaite progressivement mettre son savoir-faire
-            organisationnel et technologique au service de ce secteur afin de
-            contribuer à des projets plus structurés, mieux suivis et mieux
-            documentés.
-          </p>
+      <section className="surface-dark noise hairline-top relative overflow-hidden py-24 sm:py-28">
+        <div aria-hidden className="grid-fade absolute inset-0 -z-10 opacity-60" />
+        <div
+          aria-hidden
+          className="halo top-1/2 left-1/2 -z-10 h-[360px] w-[640px] -translate-x-1/2 -translate-y-1/2 bg-brand-lt/25"
+        />
+        <Reveal className="container-x">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="label-tag mb-8 inline-flex items-center gap-3 text-brand-glow">
+              <span className="h-px w-6 bg-brand-glow/70" />
+              Pourquoi la construction ?
+              <span className="h-px w-6 bg-brand-glow/70" />
+            </p>
+            <p className="font-display text-[clamp(1.125rem,1rem+1vw,1.5rem)] leading-[1.5] font-medium tracking-tight text-white">
+              Les projets de construction nécessitent aujourd&apos;hui plus
+              qu&apos;une simple exécution technique. Ils demandent de la
+              préparation, de la coordination, de la documentation et une
+              vision globale du projet.
+            </p>
+            <p className="prose-body mt-6 text-white/55">
+              Label Technology souhaite progressivement mettre son savoir-faire
+              organisationnel et technologique au service de ce secteur afin de
+              contribuer à des projets plus structurés, mieux suivis et mieux
+              documentés.
+            </p>
+          </div>
         </Reveal>
       </section>
 
       {/* Technologie + Construction */}
-      <section className="py-24 px-6 bg-background">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-16 items-start">
+      <section className="section bg-background">
+        <div className="container-x">
+          <div className="grid items-start gap-14 lg:grid-cols-2 lg:gap-20">
             <Reveal>
-              <p className="label-tag mb-3" style={{ color: "var(--brand)" }}>NOTRE DIFFÉRENCE</p>
-              <h2 className="font-display text-4xl md:text-5xl mb-6 text-foreground leading-tight">
-                Quand la technologie<br />rencontre la construction.
+              <p className="label-tag mb-4 inline-flex items-center gap-2.5 text-brand">
+                <span className="h-px w-6 bg-brand/60" />
+                Notre différence
+              </p>
+              <h2 className="h2-display text-foreground">
+                Quand la technologie
+                <br />
+                rencontre la construction.
               </h2>
-              <p className="text-[15px] font-light leading-relaxed text-muted-foreground mb-4" style={{ lineHeight: 1.8 }}>
+              <p className="prose-body mt-6 text-muted-foreground">
                 Notre différence&nbsp;: ne pas opposer technologie et
                 construction. Nous cherchons à rapprocher les deux pour
                 rendre les projets plus simples à suivre, plus transparents
                 et mieux structurés.
               </p>
-              <p className="font-display text-lg italic text-muted-foreground">
+              <p className="font-display mt-6 border-l-2 border-brand/40 pl-5 text-lg font-medium text-brand italic">
                 &laquo;&nbsp;Le chantier est physique. Son pilotage peut être
                 numérique.&nbsp;&raquo;
               </p>
             </Reveal>
             <Reveal delay={0.15}>
-              <div className="grid grid-cols-2 gap-3">
+              <ul className="grid gap-3 sm:grid-cols-2">
                 {TECH_ITEMS.map((item, i) => (
-                  <div
+                  <li
                     key={i}
-                    className="flex items-center gap-2 px-4 py-3 text-sm font-light border border-border rounded-sm bg-card text-foreground"
+                    className="card-premium flex items-center gap-3 px-4 py-3.5 text-sm text-foreground hover:translate-y-0"
                   >
-                    <span style={{ color: "var(--gold)" }}>◆</span>
+                    <span className="size-1.5 shrink-0 rounded-full bg-gold" />
                     {item}
-                  </div>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </Reveal>
           </div>
         </div>
       </section>
 
       {/* Types de projets ciblés */}
-      <section className="py-24 px-6" style={{ backgroundColor: "var(--paper)" }}>
-        <Reveal className="max-w-7xl mx-auto">
-          <p className="label-tag mb-3" style={{ color: "var(--brand)" }}>À VENIR</p>
-          <h2 className="font-display text-4xl md:text-5xl mb-16 text-foreground">
-            Les projets que nous souhaitons accompagner.
-          </h2>
-        </Reveal>
-        <ProjectTypesGrid />
+      <section className="surface-light section relative">
+        <div className="container-x">
+          <SectionHeader eyebrow="À venir" title="Les projets que nous souhaitons accompagner." />
+          <ProjectTypesGrid />
+        </div>
       </section>
 
       <ActivityNotice />

@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { supabase, type Testimonial } from "@/lib/supabase";
 import TestimonialForm from "../../TestimonialForm";
+import AdminPageHeader from "../../../AdminPageHeader";
 import { updateTestimonial } from "../../actions";
 
 export default async function EditTestimonialPage({
@@ -21,8 +22,11 @@ export default async function EditTestimonialPage({
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold">Modifier le témoignage de « {testimonial.author} »</h1>
-      <div className="mt-6">
+      <AdminPageHeader
+        title={<>Modifier le témoignage de « {testimonial.author} »</>}
+        back={{ href: "/setting/testimonials", label: "Témoignages" }}
+      />
+      <div>
         <TestimonialForm
           action={boundUpdate}
           submitLabel="Enregistrer"

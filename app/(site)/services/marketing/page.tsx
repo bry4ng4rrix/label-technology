@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 import CtaSection from "@/components/home/CtaSection";
 import FaqSection from "@/components/shared/FaqSection";
+import MetricsBand from "@/components/shared/MetricsBand";
 import MiniTestimonials from "@/components/shared/MiniTestimonials";
-import Link from "next/link";
-
+import PageHero from "@/components/shared/PageHero";
+import Reveal from "@/components/shared/Reveal";
+import SectionHeader from "@/components/shared/SectionHeader";
 import MarketingChart from "@/components/services/MarketingChartWrapper";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
-import Reveal from "@/components/shared/Reveal";
 
 export const metadata: Metadata = {
   title: "Marketing Digital — SEO, Google Ads, Social Media",
@@ -235,122 +236,49 @@ export default function MarketingPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* Hero split */}
-      <section
-        className="relative overflow-hidden grid-bg"
-        style={{ backgroundColor: "var(--ink)", minHeight: "70vh" }}
-      >
-        <div
-          className="relative max-w-7xl mx-auto px-6 grid lg:grid-cols-2 items-center"
-          style={{ minHeight: "70vh" }}
-        >
-          <div className="relative z-10 py-28 lg:pr-12">
-            <Reveal>
-              <p className="label-tag mb-5 bg-linear-to-r from-blue-500 to-emerald-500 bg-clip-text text-transparent">
-                MARKETING DIGITAL
-              </p>
-              <h1 className="h1-display text-white mb-6">
-                Votre audience existe.
-                <br />
-                <span className="bg-linear-to-r from-blue-500  to-emerald-500 bg-clip-text text-transparent">
-                  On va la trouver.
-                </span>
-              </h1>
-            </Reveal>
-            <Reveal delay={0.15}>
-              <p
-                className="text-white/70 text-lg leading-relaxed mb-10 max-w-xl"
-                style={{ lineHeight: 1.8 }}
-              >
-                SEO, publicité digitale, social media, email marketing. Des
-                stratégies mesurables, pas des promesses. On parle ROI dès le
-                premier brief.
-              </p>
-            </Reveal>
-            <Reveal delay={0.3} className="flex flex-wrap gap-4">
-              <Button
-                className="h-14 text-medium bg-blue-500 text-white hover:scale-105 transition-all duration-300 justify-center items-center gap-2"
-                size="lg"
-              >
-                <Link href="/contact">Obtenir un audit gratuit</Link>
-                <ArrowRight className="w-4 h-4" />
-              </Button>
-            </Reveal>
-          </div>
-          <div
-            className="absolute inset-0 z-0 lg:relative lg:inset-auto h-full"
-            style={{ minHeight: "70vh" }}
-          >
-            <Image
-              src="/images/services/mark.jpg"
-              alt="Marketing digital et analytics"
-              fill
-              className="object-cover"
-              style={{ opacity: 10 }}
-            />
-            <div
-              className="absolute inset-0 lg:hidden"
-              style={{
-                background:
-                  "linear-gradient(180deg, var(--ink) 0%, rgba(10,14,26,0.7) 40%, var(--ink) 100%)",
-              }}
-            />
-            <div
-              className="absolute inset-0 hidden lg:block"
-              style={{
-                background:
-                  "linear-gradient(90deg, var(--ink) 0%, transparent 55%)",
-              }}
-            />
-          </div>
-        </div>
-      </section>
+      <PageHero
+        size="lg"
+        eyebrow="Marketing digital"
+        title={
+          <>
+            Votre audience existe.
+            <br />
+            <span className="gradient-text-light">On va la trouver.</span>
+          </>
+        }
+        description="SEO, publicité digitale, social media, email marketing. Des stratégies mesurables, pas des promesses. On parle ROI dès le premier brief."
+        image={{ src: "/images/services/mark.jpg", alt: "Marketing digital et analytics", priority: true }}
+        actions={
+          <>
+            <Button asChild size="lg" className="rounded-full">
+              <Link href="/contact">
+                Obtenir un audit gratuit
+                <ArrowRight data-icon="inline-end" />
+              </Link>
+            </Button>
+            <Button asChild size="lg" variant="glass" className="rounded-full">
+              <Link href="/projets">Voir nos réalisations</Link>
+            </Button>
+          </>
+        }
+      />
 
-      {/* Métriques */}
-      <section style={{ backgroundColor: "var(--brand)" }}>
-        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 divide-x divide-white/15">
-          {METRICS.map((m, i) => (
-            <Reveal key={i} delay={i * 0.1} className="text-center py-6 px-4">
-              <div className="font-display text-2xl text-white mb-1">{m.v}</div>
-              <div className="label-tag text-white/55 text-[10px]">{m.l}</div>
-            </Reveal>
-          ))}
-        </div>
-      </section>
+      <MetricsBand items={METRICS.map((m) => ({ value: m.v, label: m.l }))} />
 
       {/* Services */}
-      <section
-        className="py-24 px-6"
-        style={{ backgroundColor: "var(--paper)" }}
-      >
-        <div className="max-w-7xl mx-auto">
-          <Reveal>
-            <p className="label-tag mb-3" style={{ color: "var(--brand)" }}>
-              NOS EXPERTISES
-            </p>
-            <h2 className="font-display text-4xl md:text-5xl mb-16 bg-linear-to-r from-blue-500 to-indigo-600 bg-clip-text text-transparent">
-              Du trafic à la conversion.
-            </h2>
-          </Reveal>
-          <div className="grid md:grid-cols-3 gap-8">
+      <section className="surface-light section relative">
+        <div className="container-x">
+          <SectionHeader eyebrow="Nos expertises" title="Du trafic à la conversion." />
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {SERVICES.map((s, i) => (
-              <Reveal
-                key={i}
-                delay={i * 0.08}
-                className="p-7 border border-border rounded-sm card-hover bg-card"
-              >
-                <span className="svc-icon-float text-3xl mb-4 block">
-                  {s.icon}
-                </span>
-                <h3 className="font-display text-xl mb-3 text-foreground">
-                  {s.title}
-                </h3>
-                <p
-                  className="text-[15px] leading-relaxed text-muted-foreground"
-                  style={{ lineHeight: 1.7 }}
-                >
-                  {s.desc}
-                </p>
+              <Reveal key={i} delay={(i % 3) * 0.08} className="h-full">
+                <div className="card-premium flex h-full flex-col p-7">
+                  <span className="mb-5 flex size-12 items-center justify-center rounded-xl bg-brand/8 text-2xl leading-none">
+                    {s.icon}
+                  </span>
+                  <h3 className="h3-display mb-3 text-foreground">{s.title}</h3>
+                  <p className="text-[15px] leading-relaxed text-muted-foreground">{s.desc}</p>
+                </div>
               </Reveal>
             ))}
           </div>
@@ -358,40 +286,30 @@ export default function MarketingPage() {
       </section>
 
       {/* Chart résultats */}
-      <section className="py-20 px-6" style={{ backgroundColor: "var(--ink)" }}>
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+      <section className="surface-dark noise hairline-top section-sm relative overflow-hidden">
+        <div className="container-x grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
           <Reveal>
-            <p className="label-tag mb-3" style={{ color: "var(--brand-lt)" }}>
-              RÉSULTATS PROUVÉS
+            <p className="label-tag mb-4 inline-flex items-center gap-2.5 text-brand-glow">
+              <span className="h-px w-6 bg-brand-glow/70" />
+              Résultats prouvés
             </p>
-            <h2 className="font-display text-3xl md:text-4xl text-white mb-6 leading-tight">
+            <h2 className="h2-display mb-6 text-white">
               Des chiffres,
               <br />
               pas des estimations.
             </h2>
-            <p
-              className="text-white/60 text-base leading-relaxed mb-6"
-              style={{ lineHeight: 1.8 }}
-            >
+            <p className="prose-body mb-8 text-white/60">
               Ces résultats sont des moyennes constatées sur nos clients après 6
               mois de collaboration. Chaque campagne est différente — mais notre
               méthode, elle, produit des résultats systématiquement mesurables.
             </p>
-            <div
-              className="p-5 rounded-sm"
-              style={{
-                backgroundColor: "rgba(46,85,212,0.12)",
-                borderLeft: "3px solid var(--brand-lt)",
-              }}
-            >
-              <p className="text-white/70 text-sm leading-relaxed">
-                "On s'engage sur des KPIs chiffrés dès le départ. Si on ne les
-                atteint pas au bout de 3 mois, on travaille gratuitement jusqu'à
-                ce que ce soit le cas."
+            <div className="glass-dark rounded-r-2xl rounded-l-md border-l-2 border-l-brand-glow p-5">
+              <p className="text-sm leading-relaxed text-white/75">
+                &ldquo;On s&apos;engage sur des KPIs chiffrés dès le départ. Si on ne les
+                atteint pas au bout de 3 mois, on travaille gratuitement jusqu&apos;à
+                ce que ce soit le cas.&rdquo;
               </p>
-              <p className="text-white/50 text-xs mt-2">
-                — Engagement Label Technology
-              </p>
+              <p className="mt-2 text-xs text-white/45">— Engagement Label Technology</p>
             </div>
           </Reveal>
           <Reveal delay={0.15}>
@@ -401,38 +319,20 @@ export default function MarketingPage() {
       </section>
 
       {/* Process */}
-      <section className="py-24 px-6 bg-background">
-        <div className="max-w-7xl mx-auto">
-          <Reveal>
-            <p className="label-tag mb-3" style={{ color: "var(--brand)" }}>
-              NOTRE APPROCHE
-            </p>
-            <h2 className="font-display text-4xl md:text-5xl mb-16 text-foreground">
-              De l'audit aux résultats.
-            </h2>
-          </Reveal>
-          <div className="grid md:grid-cols-4 gap-px bg-border/30">
+      <section className="section bg-background">
+        <div className="container-x">
+          <SectionHeader eyebrow="Notre approche" title="De l'audit aux résultats." />
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {PROCESS.map((p, i) => (
-              <Reveal key={i} delay={i * 0.1} className="svc-step p-8 bg-card">
-                <div
-                  className="svc-step-num font-display text-5xl mb-6"
-                  style={{ color: "var(--brand)", lineHeight: 1, opacity: 0.3 }}
-                >
-                  {p.num}
+              <Reveal key={i} delay={i * 0.08} className="h-full">
+                <div className="card-premium svc-step flex h-full flex-col p-7">
+                  <div className="svc-step-num font-display mb-6 text-5xl leading-none text-brand">
+                    {p.num}
+                  </div>
+                  <div className="svc-step-line mb-5 h-0.5 w-8 origin-left rounded-full bg-brand" />
+                  <h3 className="h3-display mb-3 text-foreground">{p.title}</h3>
+                  <p className="text-[15px] leading-relaxed text-muted-foreground">{p.desc}</p>
                 </div>
-                <div
-                  className="svc-step-line w-8 h-0.5 mb-5"
-                  style={{ backgroundColor: "var(--brand)" }}
-                />
-                <h3 className="font-display text-lg mb-3 text-foreground">
-                  {p.title}
-                </h3>
-                <p
-                  className="text-[15px] leading-relaxed text-muted-foreground"
-                  style={{ lineHeight: 1.7 }}
-                >
-                  {p.desc}
-                </p>
               </Reveal>
             ))}
           </div>

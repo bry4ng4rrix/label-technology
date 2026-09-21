@@ -2,9 +2,13 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
+import { ArrowRight } from "lucide-react";
 import CtaSection from "@/components/home/CtaSection";
+import MetricsBand from "@/components/shared/MetricsBand";
 import MiniTestimonials from "@/components/shared/MiniTestimonials";
+import PageHero from "@/components/shared/PageHero";
 import Reveal from "@/components/shared/Reveal";
+import SectionHeader from "@/components/shared/SectionHeader";
 
 import GrowthChart from "@/components/apropos/GrowthChartWrapper";
 import { supabase, type Testimonial } from "@/lib/supabase";
@@ -55,40 +59,6 @@ export const metadata: Metadata = {
     images: ["/og-image.png"],
   },
 };
-
-const EQUIPE = [
-  {
-    photo: "/images/team/handry.png",
-    nom: "Handry R.",
-    role: "Fondateur & CEO",
-    desc: "Vision stratégique, développement commercial international. 4 ans à construire Label Technology depuis Antananarivo.",
-  },
-  {
-    photo:
-      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=200&h=200&fit=crop&q=80",
-    nom: "Fafah O. ",
-    role: "Lead Développeur",
-    desc: "Architecte des projets sur , Java , Node.js, Python, PostgreSQL. Certifié AWS Solutions Architect.",
-  },
-  {
-    photo: "/images/team/dina.png",
-    nom: "Dina A.",
-    role: "Responsable Opérations",
-    desc: "Supervision des équipes opérationnelles. Standards qualité, formation continue, SLA clients.",
-  },
-  {
-    photo: "/images/team/sarah.png",
-    nom: "Sarah R .",
-    role: "Head of Digital",
-    desc: "SEO, Ads, social media. Ex-agence digitale à Bruxelles. Gère les stratégies digitales de nos clients FR/EU.",
-  },
-  {
-    photo: "/images/team/bryan.png",
-    nom: "Bryan F . ",
-    role: "Developpeur Full Stack",
-    desc: "Developpement web et mobile. Expert React, Next.js, Python , Flutter , VPS. Ancien développeur freelance pour des clients internationaux.",
-  },
-];
 
 const VALEURS = [
   {
@@ -152,93 +122,62 @@ export default async function AProposPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      {/* Hero */}
-      <section
-        className="relative min-h-[60vh] flex flex-col justify-center grid-bg px-6 pt-24 pb-16"
-        style={{ backgroundColor: "var(--ink)" }}
-      >
-        <div
-          className="absolute inset-0 opacity-10 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse at 50% 50%, var(--brand) 0%, transparent 70%)",
-          }}
-        />
-        <div className="relative max-w-7xl mx-auto w-full">
-          <Reveal>
-            <p className="label-tag mb-5" style={{ color: "var(--brand-lt)" }}>
-              À PROPOS
-            </p>
-            <h1 className="h1-display text-white mb-6">
-              Antananarivo.
-              <br />
-              <span className="bg-linear-to-r from-blue-500  to-emerald-500 bg-clip-text text-transparent ">
-                Standards européens.
-              </span>
-            </h1>
-          </Reveal>
-          <Reveal delay={0.15}>
-            <p
-              className="text-white/70 text-lg leading-relaxed max-w-2xl"
-              style={{ lineHeight: 1.8 }}
-            >
-              Fondée il y a 4 ans à Madagascar, Label Technology est aujourd'hui
-              un partenaire technologique de référence pour les entreprises
-              françaises, africaines et malgaches.
-            </p>
-          </Reveal>
-        </div>
-      </section>
 
-      {/* Chiffres */}
-      <section style={{ backgroundColor: "var(--brand)" }}>
-        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 divide-x divide-white/10">
-          {CHIFFRES.map((c, i) => (
-            <Reveal key={i} delay={i * 0.08} className="text-center py-7 px-4">
-              <div className="font-display text-3xl text-white mb-1">
-                {c.value}
+      <PageHero
+        eyebrow="À propos"
+        title={
+          <>
+            Antananarivo.
+            <br />
+            <span className="gradient-text-light">Standards européens.</span>
+          </>
+        }
+        description="Fondée il y a 4 ans à Madagascar, Label Technology est aujourd'hui un partenaire technologique de référence pour les entreprises françaises, africaines et malgaches."
+        aside={
+          <div className="relative mx-auto aspect-[4/5] w-full max-w-sm">
+            <div className="absolute inset-0 rounded-[2rem] bg-brand-lt/30 blur-3xl" />
+            <div className="relative h-full overflow-hidden rounded-[2rem] ring-1 ring-white/15 shadow-2xl">
+              <Image
+                src="/images/services/garrix.jpg"
+                alt="L'équipe Label Technology"
+                fill
+                sizes="(max-width: 1024px) 0px, 420px"
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-linear-to-t from-ink/70 via-transparent to-transparent" />
+              <div className="glass-dark absolute right-4 bottom-4 left-4 rounded-2xl p-4">
+                <p className="label-tag text-brand-glow">Depuis 2022</p>
+                <p className="mt-1 font-display text-lg text-white">60+ talents, 6 pôles, 1 exigence.</p>
               </div>
-              <div className="label-tag text-white/50 text-[10px]">
-                {c.label}
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </section>
+            </div>
+          </div>
+        }
+      />
+
+      <MetricsBand items={CHIFFRES} />
 
       {/* Notre histoire */}
-      <section
-        className="py-24 px-6"
-        style={{ backgroundColor: "var(--paper)" }}
-      >
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <section className="surface-light section relative overflow-hidden">
+        <div className="container-x">
+          <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
             <Reveal>
-              <p className="label-tag mb-4" style={{ color: "var(--brand)" }}>
-                NOTRE HISTOIRE
+              <p className="label-tag mb-4 inline-flex items-center gap-2.5 text-brand">
+                <span className="h-px w-6 bg-brand/60" />
+                Notre histoire
               </p>
-              <h2 className="font-display text-4xl md:text-5xl mb-4 leading-tight text-foreground">
+              <h2 className="h2-display text-foreground">
                 Né à Madagascar.
                 <br />
-                <span className="bg-linear-to-r from-blue-500  to-emerald-500 bg-clip-text text-transparent">
-                  Pensé pour le monde.
-                </span>
+                <span className="gradient-text">Pensé pour le monde.</span>
               </h2>
-              <p
-                className="font-display text-xl mb-6 leading-snug"
-                style={{ color: "var(--brand)" }}
-              >
-                "Notre plus belle réussite n'est pas ce que nous vendons,
-                <br />
-                c'est ce que vous devenez."
+              <p className="font-display mt-6 border-l-2 border-brand/40 pl-5 text-lg leading-snug font-medium text-brand">
+                &ldquo;Notre plus belle réussite n&apos;est pas ce que nous vendons,
+                c&apos;est ce que vous devenez.&rdquo;
               </p>
-              <div
-                className="space-y-4 text-[15px] leading-relaxed text-muted-foreground"
-                style={{ lineHeight: 1.8 }}
-              >
+              <div className="prose-body mt-8 space-y-4 text-muted-foreground">
                 <p>
                   Label Technology a été fondée avec une conviction simple :
-                  Madagascar dispose d'un vivier de talents extraordinaire —
+                  Madagascar dispose d&apos;un vivier de talents extraordinaire —
                   ingénieux, bilingues, réactifs — que les entreprises
                   européennes et africaines ignorent encore trop souvent.
                 </p>
@@ -251,71 +190,65 @@ export default async function AProposPage() {
                 </p>
                 <p>
                   Notre modèle : externalisation de qualité, à coût compétitif,
-                  avec la transparence et l'exigence d'un partenaire interne.
+                  avec la transparence et l&apos;exigence d&apos;un partenaire interne.
                 </p>
               </div>
             </Reveal>
             <Reveal delay={0.15}>
-              <GrowthChart />
+              <div className="card-premium p-4 hover:translate-y-0 sm:p-6">
+                <GrowthChart />
+              </div>
             </Reveal>
           </div>
         </div>
       </section>
 
       {/* Manifeste */}
-      <section className="py-24 px-6" style={{ backgroundColor: "var(--ink)" }}>
-        <Reveal className="max-w-3xl mx-auto text-center">
-          <p className="label-tag mb-8" style={{ color: "var(--brand-lt)" }}>
-            NOTRE ENGAGEMENT
-          </p>
-          <blockquote
-            className="font-display text-white mb-8 leading-relaxed"
-            style={{ fontSize: "clamp(18px, 2.5vw, 28px)", lineHeight: 1.6 }}
-          >
-            "Sur notre marché, tout le monde vend des produits. Nous avons
-            choisi une autre voie. Nous pensons qu'une solution n'a de valeur
-            que si elle est maîtrisée, alignée avec vos objectifs et génératrice
-            de valeur concrète. C'est pourquoi nous ne vendons rien : nous nous
-            associons à votre croissance."
-          </blockquote>
-          <p
-            className="label-tag text-[10px]"
-            style={{ color: "rgba(255,255,255,0.25)" }}
-          >
-            — Label Technology · Notre engagement depuis 2022
-          </p>
+      <section className="surface-dark noise hairline-top relative overflow-hidden py-24 sm:py-28">
+        <div aria-hidden className="grid-fade absolute inset-0 -z-10 opacity-60" />
+        <div
+          aria-hidden
+          className="halo top-1/2 left-1/2 -z-10 h-[360px] w-[640px] -translate-x-1/2 -translate-y-1/2 bg-brand-lt/25"
+        />
+        <Reveal className="container-x">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="label-tag mb-8 inline-flex items-center gap-3 text-brand-glow">
+              <span className="h-px w-6 bg-brand-glow/70" />
+              Notre engagement
+              <span className="h-px w-6 bg-brand-glow/70" />
+            </p>
+            <blockquote className="font-display text-[clamp(1.25rem,1rem+1.4vw,1.875rem)] leading-[1.45] font-medium tracking-tight text-white">
+              &ldquo;Sur notre marché, tout le monde vend des produits. Nous avons
+              choisi une autre voie. Nous pensons qu&apos;une solution n&apos;a de valeur
+              que si elle est maîtrisée, alignée avec vos objectifs et génératrice
+              de valeur concrète. C&apos;est pourquoi nous ne vendons rien : nous nous
+              associons à votre croissance.&rdquo;
+            </blockquote>
+            <p className="label-tag mt-8 text-white/35">
+              — Label Technology · Notre engagement depuis 2022
+            </p>
+          </div>
         </Reveal>
       </section>
 
       {/* Valeurs */}
-      <section className="py-24 px-6 bg-background">
-        <div className="max-w-7xl mx-auto">
-          <Reveal>
-            <p className="label-tag mb-3" style={{ color: "var(--brand)" }}>
-              NOS VALEURS
-            </p>
-            <h2 className="font-display text-4xl md:text-5xl mb-16 text-foreground">
-              Ce qui nous guide.
-            </h2>
-          </Reveal>
-          <div className="grid md:grid-cols-2 gap-px bg-black/5">
+      <section className="section bg-background">
+        <div className="container-x">
+          <SectionHeader eyebrow="Nos valeurs" title="Ce qui nous guide." />
+          <div className="grid gap-5 md:grid-cols-2">
             {VALEURS.map((v, i) => (
-              <Reveal key={i} delay={i * 0.1} className="p-8 bg-card">
-                <p
-                  className="font-display text-5xl mb-4"
-                  style={{ color: "rgba(30,63,171,0.12)" }}
-                >
-                  {v.num}
-                </p>
-                <h3 className="font-display text-2xl mb-3 text-foreground">
-                  {v.title}
-                </h3>
-                <p
-                  className="text-[15px] leading-relaxed text-muted-foreground"
-                  style={{ lineHeight: 1.7 }}
-                >
-                  {v.desc}
-                </p>
+              <Reveal key={i} delay={i * 0.08} className="h-full">
+                <div className="card-premium group flex h-full gap-6 p-7 sm:p-8">
+                  <span className="font-display text-4xl leading-none text-brand/15 transition-colors duration-300 group-hover:text-brand/60">
+                    {v.num}
+                  </span>
+                  <div>
+                    <h3 className="h3-display text-foreground">{v.title}</h3>
+                    <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground">
+                      {v.desc}
+                    </p>
+                  </div>
+                </div>
               </Reveal>
             ))}
           </div>
@@ -323,88 +256,31 @@ export default async function AProposPage() {
       </section>
 
       {/* Nouvelles orientations */}
-      <section className="py-24 px-6" style={{ backgroundColor: "var(--paper)" }}>
-        <Reveal className="max-w-3xl mx-auto text-center">
-          <p className="label-tag mb-4" style={{ color: "var(--brand)" }}>
-            NOUVELLES ORIENTATIONS
-          </p>
-          <h2 className="font-display text-3xl md:text-4xl mb-6 text-foreground">
-            Au-delà du numérique.
-          </h2>
-          <p
-            className="text-[15px] md:text-lg font-light leading-relaxed text-muted-foreground mb-4"
-            style={{ lineHeight: 1.8 }}
-          >
-            Label Technology développe progressivement de nouvelles
-            expertises afin d&apos;accompagner ses clients sur des
-            problématiques allant au-delà du numérique.
-          </p>
-          <p
-            className="text-[15px] md:text-lg font-light leading-relaxed text-muted-foreground mb-8"
-            style={{ lineHeight: 1.8 }}
-          >
-            Parmi ces nouvelles orientations figure le développement
-            d&apos;une activité dédiée à la Construction et au Génie Civil.
-          </p>
-          <Link
-            href="/construction"
-            className="inline-flex items-center gap-2 text-sm font-medium hover:gap-3 transition-all"
-            style={{ color: "var(--brand)" }}
-          >
-            Découvrir notre activité Construction →
-          </Link>
+      <section className="surface-light section relative overflow-hidden">
+        <div
+          aria-hidden
+          className="halo -right-20 -bottom-20 -z-10 h-[320px] w-[420px] bg-gold/10"
+        />
+        <Reveal className="container-x">
+          <div className="glass-strong mx-auto max-w-3xl rounded-3xl p-8 text-center sm:p-12">
+            <p className="label-tag mb-4 text-brand">Nouvelles orientations</p>
+            <h2 className="h2-display text-foreground">Au-delà du numérique.</h2>
+            <p className="prose-body mt-6 text-muted-foreground">
+              Label Technology développe progressivement de nouvelles
+              expertises afin d&apos;accompagner ses clients sur des
+              problématiques allant au-delà du numérique.
+            </p>
+            <p className="prose-body mt-4 text-muted-foreground">
+              Parmi ces nouvelles orientations figure le développement
+              d&apos;une activité dédiée à la Construction et au Génie Civil.
+            </p>
+            <Link href="/construction" className="link-arrow mt-8 text-sm text-brand">
+              Découvrir notre activité Construction
+              <ArrowRight className="size-4" />
+            </Link>
+          </div>
         </Reveal>
       </section>
-
-      {/* Équipe dirigeante */}
-      {/* <section
-        className="py-24 px-6"
-        style={{ backgroundColor: "var(--paper)" }}
-      >
-        <div className="max-w-7xl mx-auto">
-          <p className="label-tag mb-3" style={{ color: "var(--brand)" }}>
-            L'ÉQUIPE
-          </p>
-          <h2 className="font-display text-4xl md:text-5xl mb-4 bg-linear-to-r from-blue-500  to-emerald-500 bg-clip-text text-transparent">
-            Les gens derrière le travail.
-          </h2>
-          <p className="text-[15px] mb-16 max-w-xl text-muted-foreground">
-            7 pôles, 7 responsables, 60 collaborateurs. Une équipe construite
-            sur la durée.
-          </p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {EQUIPE.map((m, i) => (
-              <div
-                key={i}
-                className="p-7 border border-border rounded-sm card-hover bg-card"
-              >
-                <Image
-                  src={m.photo}
-                  alt={m.nom}
-                  width={56}
-                  height={56}
-                  className="rounded-full h-14 w-14 object-cover mb-5"
-                />
-                <h3 className="font-display text-lg mb-0.5 text-foreground">
-                  {m.nom}
-                </h3>
-                <p
-                  className="label-tag text-[10px] mb-3"
-                  style={{ color: "var(--brand)" }}
-                >
-                  {m.role}
-                </p>
-                <p
-                  className="text-[15px] leading-relaxed text-muted-foreground"
-                  style={{ lineHeight: 1.7 }}
-                >
-                  {m.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section> */}
 
       <MiniTestimonials items={testimonials ?? []} />
       <CtaSection />

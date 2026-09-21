@@ -15,7 +15,7 @@ const jakarta = Plus_Jakarta_Sans({
 const sora = Sora({
   subsets: ["latin"],
   weight: ["600", "700", "800"],
-  variable: "--font-display",
+  variable: "--font-sora",
   display: "swap",
 });
 

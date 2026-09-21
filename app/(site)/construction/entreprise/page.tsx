@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 import FaqSection from "@/components/shared/FaqSection";
+import PageHero from "@/components/shared/PageHero";
+import SectionHeader from "@/components/shared/SectionHeader";
+import { Button } from "@/components/ui/button";
 import ActivityNotice from "@/components/construction/ActivityNotice";
 import ConstructionCta from "@/components/construction/ConstructionCta";
 import Link from "next/link";
@@ -94,70 +97,66 @@ export default function EntrepriseConstructionPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* Hero split */}
-      <section className="relative overflow-hidden grid-bg" style={{ backgroundColor: "var(--ink)", minHeight: "70vh" }}>
-        <div className="relative max-w-7xl mx-auto px-6 grid lg:grid-cols-2 items-center" style={{ minHeight: "70vh" }}>
-          <div className="relative z-10 py-28 lg:pr-12">
-            <p className="animate-fadeup label-tag mb-3" style={{ color: "var(--brand-lt)" }}>BÂTIMENT ENTREPRISE</p>
-            <p className="animate-fadeup text-white/40 text-xs font-light tracking-wide mb-5">
+      <PageHero
+        size="lg"
+        eyebrow={
+          <>
+            BÂTIMENT ENTREPRISE
+            <span className="ml-2 rounded-full bg-white/8 px-2 py-0.5 text-[10px] font-medium tracking-normal text-white/50 normal-case">
               Nouvelle activité — Construction &amp; Génie Civil
-            </p>
-            <h1 className="animate-fadeup-d1 h1-display text-white mb-6">
-              Vos locaux,<br />
-              <span className="bg-linear-to-r from-[var(--brand)] to-[var(--brand-lt)] bg-clip-text text-transparent">construits pour durer.</span>
-            </h1>
-            <p className="animate-fadeup-d2 text-white/70 text-lg leading-relaxed mb-10 max-w-xl" style={{ lineHeight: 1.8 }}>
-              Gros œuvre, second œuvre, aménagement de locaux commerciaux et
-              industriels. Nous développons une offre pensée pour un
-              interlocuteur unique, du permis à la livraison.
-            </p>
-            <div className="animate-fadeup-d3 flex flex-wrap gap-4">
-              <Link href="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3 font-semibold text-sm rounded-sm transition-all hover:opacity-90 hover:scale-105 duration-300"
-                style={{ backgroundColor: "var(--brand)", color: "#fff" }}>
-                Demander un devis →
+            </span>
+          </>
+        }
+        title={
+          <>
+            Vos locaux,
+            <br />
+            <span className="gradient-text-light">construits pour durer.</span>
+          </>
+        }
+        description="Gros œuvre, second œuvre, aménagement de locaux commerciaux et industriels. Nous développons une offre pensée pour un interlocuteur unique, du permis à la livraison."
+        image={{ src: "https://images.unsplash.com/photo-1541976590-713941681591?w=900&h=700&fit=crop&q=80", alt: "Chantier de construction bâtiment entreprise", priority: true }}
+        actions={
+          <>
+            <Button asChild size="lg" className="rounded-full">
+              <Link href="/contact">
+                Demander un devis
+                <ArrowRight data-icon="inline-end" />
               </Link>
-            </div>
-          </div>
-          <div className="absolute inset-0 z-0 lg:relative lg:inset-auto h-full" style={{ minHeight: "70vh" }}>
-            <Image
-              src="https://images.unsplash.com/photo-1541976590-713941681591?w=900&h=700&fit=crop&q=80"
-              alt="Chantier de construction bâtiment entreprise"
-              fill
-              className="object-cover"
-              style={{ opacity: 10 }}
-            />
-            <div className="absolute inset-0 lg:hidden" style={{ background: "linear-gradient(180deg, var(--ink) 0%, rgba(10,14,26,0.7) 40%, var(--ink) 100%)" }} />
-            <div className="absolute inset-0 hidden lg:block" style={{ background: "linear-gradient(90deg, var(--ink) 0%, transparent 55%)" }} />
-          </div>
-        </div>
-      </section>
+            </Button>
+            <Button asChild size="lg" variant="glass" className="rounded-full">
+              <Link href="/construction">Découvrir l&apos;activité</Link>
+            </Button>
+          </>
+        }
+      />
 
-      {/* Qualités */}
-      <section style={{ backgroundColor: "var(--brand)" }}>
-        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 divide-x divide-white/15">
-          {QUALITES.map((q, i) => (
-            <div key={i} className="animate-fadeup flex items-center justify-center gap-2 text-center py-6 px-4" style={{ animationDelay: `${i * 0.1}s` }}>
-              <span className="text-lg">{q.icon}</span>
-              <span className="label-tag text-white text-[11px]">{q.l}</span>
-            </div>
-          ))}
+      <section className="surface-dark hairline-top relative">
+        <div className="container-x py-8 sm:py-10">
+          <ul className="glass-dark grid grid-cols-2 overflow-hidden rounded-2xl md:grid-cols-4">
+            {QUALITES.map((q, i) => (
+              <li
+                key={i}
+                className="relative flex items-center justify-center gap-3 px-4 py-5 text-center [&:not(:first-child)]:before:absolute [&:not(:first-child)]:before:inset-y-4 [&:not(:first-child)]:before:left-0 [&:not(:first-child)]:before:w-px [&:not(:first-child)]:before:bg-white/10"
+              >
+                <span className="text-lg leading-none">{q.icon}</span>
+                <span className="label-tag text-white/80">{q.l}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
       {/* Services */}
-      <section className="py-24 px-6" style={{ backgroundColor: "var(--paper)" }}>
-        <div className="max-w-7xl mx-auto">
-          <p className="animate-fadeup label-tag mb-3" style={{ color: "var(--brand)" }}>NOS PRESTATIONS</p>
-          <h2 className="animate-fadeup-d1 font-display text-4xl md:text-5xl mb-16 bg-linear-to-r from-blue-500 to-indigo-600 bg-clip-text text-transparent">
-            Du permis à la livraison.
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
+      <section className="surface-light section relative">
+        <div className="container-x">
+          <SectionHeader eyebrow="NOS PRESTATIONS" title="Du permis à la livraison." />
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {SERVICES.map((s, i) => (
-              <div key={i} className="animate-fadeup p-7 border border-border rounded-sm card-hover bg-card" style={{ animationDelay: `${i * 0.08}s` }}>
-                <span className="svc-icon-float text-3xl mb-4 block">{s.icon}</span>
-                <h3 className="font-display text-xl mb-3 text-foreground">{s.title}</h3>
-                <p className="text-[15px] leading-relaxed text-muted-foreground" style={{ lineHeight: 1.7 }}>{s.desc}</p>
+              <div key={i} className="card-premium animate-fadeup flex h-full flex-col p-7" style={{ animationDelay: `${i * 0.08}s` }}>
+                <span className="mb-5 flex size-12 items-center justify-center rounded-xl bg-brand/8 text-2xl leading-none">{s.icon}</span>
+                <h3 className="h3-display mb-3 text-foreground">{s.title}</h3>
+                <p className="text-[15px] leading-relaxed text-muted-foreground">{s.desc}</p>
               </div>
             ))}
           </div>
@@ -165,19 +164,16 @@ export default function EntrepriseConstructionPage() {
       </section>
 
       {/* Process */}
-      <section className="py-24 px-6 bg-background">
-        <div className="max-w-7xl mx-auto">
-          <p className="animate-fadeup label-tag mb-3" style={{ color: "var(--brand)" }}>NOTRE MÉTHODE</p>
-          <h2 className="animate-fadeup-d1 font-display text-4xl md:text-5xl mb-16 text-foreground">
-            Un projet, un interlocuteur.
-          </h2>
-          <div className="grid md:grid-cols-4 gap-px bg-border/30">
+      <section className="section bg-background">
+        <div className="container-x">
+          <SectionHeader eyebrow="NOTRE MÉTHODE" title="Un projet, un interlocuteur." />
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {PROCESS.map((p, i) => (
-              <div key={i} className="svc-step animate-fadeup p-8 bg-card" style={{ animationDelay: `${i * 0.1}s` }}>
-                <div className="svc-step-num font-display text-5xl mb-6" style={{ color: "var(--brand)", lineHeight: 1, opacity: 0.3 }}>{p.num}</div>
-                <div className="svc-step-line w-8 h-0.5 mb-5" style={{ backgroundColor: "var(--brand)" }} />
-                <h3 className="font-display text-lg mb-3 text-foreground">{p.title}</h3>
-                <p className="text-[15px] leading-relaxed text-muted-foreground" style={{ lineHeight: 1.7 }}>{p.desc}</p>
+              <div key={i} className="card-premium svc-step animate-fadeup flex h-full flex-col p-7" style={{ animationDelay: `${i * 0.1}s` }}>
+                <div className="svc-step-num font-display mb-6 text-5xl leading-none text-brand">{p.num}</div>
+                <div className="svc-step-line mb-5 h-0.5 w-8 origin-left rounded-full bg-brand" />
+                <h3 className="h3-display mb-3 text-foreground">{p.title}</h3>
+                <p className="text-[15px] leading-relaxed text-muted-foreground">{p.desc}</p>
               </div>
             ))}
           </div>

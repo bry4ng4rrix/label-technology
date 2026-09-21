@@ -1,12 +1,6 @@
 import Link from "next/link";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardFooter,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { ArrowRight, Clock, Newspaper } from "lucide-react";
+import PageHero from "@/components/shared/PageHero";
 import Reveal from "@/components/shared/Reveal";
 import { supabase, type BlogPost } from "@/lib/supabase";
 
@@ -32,88 +26,63 @@ export default async function BlogPage() {
 
   return (
     <main>
-      {/* Hero */}
-      <section
-        className="relative min-h-[40vh] flex flex-col justify-center grid-bg px-6 pt-24 pb-12"
-        style={{ backgroundColor: "var(--ink)" }}
-      >
-        <div
-          className="absolute inset-0 opacity-10 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse at 50% 50%, var(--brand) 0%, transparent 70%)",
-          }}
-        />
-        <Reveal className="relative max-w-7xl mx-auto w-full">
-          <p className="label-tag mb-5" style={{ color: "var(--brand-lt)" }}>
-            BLOG
-          </p>
-          <h1 className="h1-display text-white mb-4">
-            Insights &amp; expertise.
-          </h1>
-          <p className="text-white/60 text-base font-light max-w-xl">
-            Articles techniques, retours d&apos;expérience, analyses
-            sectorielles. Par l&apos;équipe Label Technology.
-          </p>
-        </Reveal>
-      </section>
+      <PageHero
+        eyebrow="Blog"
+        title={
+          <>
+            Insights &amp; <span className="gradient-text-light">expertise.</span>
+          </>
+        }
+        description="Articles techniques, retours d'expérience, analyses sectorielles. Par l'équipe Label Technology."
+        size="sm"
+      />
 
       {/* Articles */}
-      <section
-        className="py-24 px-6"
-        style={{ backgroundColor: "var(--paper)" }}
-      >
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {ARTICLES.map((a, i) => (
-              <Reveal key={a.slug} delay={(i % 3) * 0.1} className="h-full">
-                <Link href={`/blog/${a.slug}`} className="block h-full">
-                  <Card className="flex flex-col h-full bg-card border-border transition-shadow hover:shadow-md">
-                    <CardHeader className="pb-3">
-                      <div className="flex items-center justify-between mb-2">
-                        <Badge
-                          variant="secondary"
-                          className="text-[10px] px-2 py-0.5 rounded-sm"
-                          style={{
-                            backgroundColor: "rgba(30,63,171,0.08)",
-                            color: "var(--brand)",
-                          }}
-                        >
-                          {a.tag}
-                        </Badge>
-                        <span className="text-[11px] text-muted-foreground">
-                          {a.date} · {a.readtime}
-                        </span>
-                      </div>
-                      <CardTitle className="font-display text-lg leading-snug text-foreground">
-                        {a.title}
-                      </CardTitle>
-                    </CardHeader>
-
-                    <CardContent className="flex-1 pt-0">
-                      <p className="text-sm font-light leading-relaxed text-muted-foreground">
-                        {a.excerpt}
-                      </p>
-                    </CardContent>
-
-                    <CardFooter>
-                      <span
-                        className="text-sm font-medium"
-                        style={{ color: "var(--brand)" }}
-                      >
-                        Lire l&apos;article →
-                      </span>
-                    </CardFooter>
-                  </Card>
-                </Link>
-              </Reveal>
-            ))}
-            {ARTICLES.length === 0 && (
-              <p className="col-span-full py-10 text-center text-muted-foreground">
-                Aucun article pour le moment.
+      <section className="surface-light section">
+        <div className="container-x">
+          {ARTICLES.length === 0 ? (
+            <div className="card-premium mx-auto max-w-md p-10 text-center hover:translate-y-0">
+              <Newspaper className="mx-auto mb-4 size-8 text-brand/50" strokeWidth={1.5} />
+              <p className="font-display text-lg text-foreground">Aucun article pour le moment.</p>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Revenez bientôt — l&apos;équipe prépare de nouveaux contenus.
               </p>
-            )}
-          </div>
+            </div>
+          ) : (
+            <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+              {ARTICLES.map((a, i) => (
+                <Reveal key={a.slug} delay={(i % 3) * 0.08} className="h-full">
+                  <Link
+                    href={`/blog/${a.slug}`}
+                    className="card-premium group flex h-full flex-col p-7"
+                  >
+                    <div className="mb-5 flex items-center justify-between gap-3">
+                      <span className="rounded-full bg-brand/8 px-2.5 py-1 text-[10px] font-semibold tracking-[0.12em] text-brand uppercase">
+                        {a.tag}
+                      </span>
+                      <span className="meta flex items-center gap-1.5 whitespace-nowrap">
+                        <Clock className="size-3" />
+                        {a.readtime}
+                      </span>
+                    </div>
+                    <h2 className="font-display text-xl leading-snug tracking-tight text-foreground transition-colors group-hover:text-brand">
+                      {a.title}
+                    </h2>
+                    <p className="mt-3 line-clamp-3 flex-1 text-[15px] leading-relaxed text-muted-foreground">
+                      {a.excerpt}
+                    </p>
+                    <div className="mt-6 flex items-center justify-between border-t border-border/70 pt-4">
+                      <span className="meta">{a.date}</span>
+                      <span className="link-arrow text-sm text-brand">
+                        Lire
+                        <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+                      </span>
+                    </div>
+                  </Link>
+                </Reveal>
+              ))}
+            </div>
+          )}
         </div>
       </section>
     </main>

@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { supabase, type JobOffer } from "@/lib/supabase";
 import JobOfferForm from "../../JobOfferForm";
+import AdminPageHeader from "../../../AdminPageHeader";
 import { updateJobOffer } from "../../actions";
 
 export default async function EditJobOfferPage({
@@ -20,8 +21,11 @@ export default async function EditJobOfferPage({
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold">Modifier « {offer.title} »</h1>
-      <div className="mt-6">
+      <AdminPageHeader
+        title={<>Modifier « {offer.title} »</>}
+        back={{ href: "/setting/jobs", label: "Offres d'emploi" }}
+      />
+      <div>
         <JobOfferForm
           action={boundUpdate}
           submitLabel="Enregistrer"

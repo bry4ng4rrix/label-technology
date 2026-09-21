@@ -1,5 +1,9 @@
 import type { Config } from "tailwindcss";
 
+/*
+ * Les tokens (couleurs, rayons, ombres, polices) vivent dans app/globals.css
+ * via @theme. Ce fichier ne conserve que la compatibilité des alias existants.
+ */
 const config: Config = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -8,35 +12,17 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      colors: {
-        brand:   "var(--brand)",
-        "brand-lt": "var(--brand-lt)",
-        ink:     "var(--ink)",
-        paper:   "var(--paper)",
-        coral:   "var(--coral)",
-        gold:    "var(--gold)",
-        mid:     "var(--mid)",
-        border:  "var(--border)",
-        background: "var(--background)",
-        foreground: "var(--foreground)",
-      },
       fontFamily: {
-        display: ["var(--font-display)", "var(--font-jakarta)", "sans-serif"],
+        display: ["var(--font-sora)", "var(--font-jakarta)", "sans-serif"],
         sans: ["var(--font-jakarta)", "sans-serif"],
       },
       fontSize: {
         hero: "clamp(48px, 7vw, 96px)",
       },
-      borderRadius: {
-        DEFAULT: "2px",
-        sm: "2px",
-        md: "4px",
-      },
       animation: {
-        fadeup: "fadeUp 0.7s ease forwards",
+        fadeup: "fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards",
         ticker: "ticker 28s linear infinite",
       },
-      
     },
   },
   plugins: [],

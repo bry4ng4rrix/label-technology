@@ -43,59 +43,61 @@ export default async function PostulerPage({
 
   return (
     <main>
-      <section className="min-h-screen px-6 pt-28 pb-16" style={{ backgroundColor: "var(--paper)" }}>
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-16 items-start">
+      <section className="surface-light relative min-h-screen overflow-hidden pt-32 pb-20 sm:pt-36 lg:pt-40 lg:pb-28">
+        <div aria-hidden className="grid-fade absolute inset-0 -z-10 opacity-60" />
+        <div
+          aria-hidden
+          className="halo -top-32 right-0 -z-10 h-[420px] w-[560px] bg-brand-lt/15"
+        />
+
+        <div className="container-x">
+          <div className="grid items-start gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:gap-20">
             <div>
               <Reveal>
                 <Link
                   href="/recru"
-                  className="mb-6 inline-flex items-center gap-2 text-sm hover:underline"
-                  style={{ color: "var(--mid)" }}
+                  className="mb-8 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
                 >
-                  <ArrowLeft className="h-4 w-4" />
+                  <ArrowLeft className="size-4" />
                   Retour aux offres
                 </Link>
-                <p className="label-tag mb-4" style={{ color: "var(--brand)" }}>
+                <p className="label-tag mb-5 inline-flex items-center gap-2.5 text-brand">
+                  <span className="h-px w-6 bg-brand/60" />
                   {offer.tag}
                 </p>
-                <h1 className="font-display text-4xl md:text-5xl mb-6 leading-tight text-foreground">
-                  {offer.title}
-                </h1>
-                <div
-                  className="flex flex-wrap gap-x-6 gap-y-2 mb-8 text-sm"
-                  style={{ color: "var(--mid)" }}
-                >
-                  <span className="flex items-center gap-1.5">
-                    <MapPin size={14} strokeWidth={2} />
-                    {offer.lieu}
-                  </span>
-                  <span className="flex items-center gap-1.5">
-                    <Clock size={14} strokeWidth={2} />
-                    {offer.contrat}
-                  </span>
-                  <span className="flex items-center gap-1.5">
-                    <Briefcase size={14} strokeWidth={2} />
-                    {offer.niveau}
-                  </span>
-                </div>
-                <p className="text-base font-light leading-relaxed mb-8 text-muted-foreground">
-                  {offer.desc}
-                </p>
+                <h1 className="h2-display text-foreground">{offer.title}</h1>
+
+                <ul className="mt-6 flex flex-wrap gap-2">
+                  {[
+                    { icon: MapPin, label: offer.lieu },
+                    { icon: Clock, label: offer.contrat },
+                    { icon: Briefcase, label: offer.niveau },
+                  ].map(({ icon: Icon, label }) => (
+                    <li
+                      key={label}
+                      className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card/70 px-3 py-1.5 text-xs font-medium text-foreground/80 backdrop-blur-sm"
+                    >
+                      <Icon className="size-3.5 text-brand" strokeWidth={2} />
+                      {label}
+                    </li>
+                  ))}
+                </ul>
+
+                <p className="prose-body mt-8 text-muted-foreground">{offer.desc}</p>
+
                 {offer.missions.length > 0 && (
-                  <div>
-                    <p className="text-sm font-medium mb-3 text-foreground">Missions</p>
-                    <div className="flex flex-wrap gap-2">
+                  <div className="mt-8">
+                    <p className="label-tag mb-3 text-muted-foreground">Missions</p>
+                    <ul className="flex flex-wrap gap-2">
                       {offer.missions.map((m) => (
-                        <span
+                        <li
                           key={m}
-                          className="text-xs font-medium px-3 py-1.5 rounded-full"
-                          style={{ backgroundColor: "rgba(30,63,171,0.08)", color: "var(--brand)" }}
+                          className="rounded-full bg-brand/8 px-3 py-1.5 text-xs font-medium text-brand"
                         >
                           {m}
-                        </span>
+                        </li>
                       ))}
-                    </div>
+                    </ul>
                   </div>
                 )}
               </Reveal>

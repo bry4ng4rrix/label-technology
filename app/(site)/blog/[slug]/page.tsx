@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
+import { ArrowLeft, ArrowRight, Calendar, Clock } from "lucide-react";
+import PageHero from "@/components/shared/PageHero";
 import Reveal from "@/components/shared/Reveal";
 import { supabase, type BlogPost } from "@/lib/supabase";
 
@@ -48,74 +48,67 @@ export default async function BlogPostPage({
   const post = await getPost(slug);
   if (!post) notFound();
 
+  const date = new Date(post.published_at).toLocaleDateString("fr-FR", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+
   return (
     <main>
-      <section
-        className="relative min-h-[36vh] flex flex-col justify-center grid-bg px-6 pt-24 pb-12"
-        style={{ backgroundColor: "var(--ink)" }}
+      <PageHero
+        size="sm"
+        back={{ href: "/blog", label: "Retour au blog" }}
+        eyebrow={post.tag}
+        title={<span className="h2-display block">{post.title}</span>}
       >
-        <div
-          className="absolute inset-0 opacity-10 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse at 50% 50%, var(--brand) 0%, transparent 70%)",
-          }}
-        />
-        <Reveal className="relative max-w-3xl mx-auto w-full">
-          <Link
-            href="/blog"
-            className="mb-6 inline-flex items-center gap-2 text-sm text-white/50 hover:text-white/80 transition-colors"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Retour au blog
-          </Link>
-          <Badge
-            variant="secondary"
-            className="mb-4 text-[10px] px-2 py-0.5 rounded-sm"
-            style={{ backgroundColor: "rgba(46,85,212,0.15)", color: "#8FA8F5" }}
-          >
-            {post.tag}
-          </Badge>
-          <h1 className="h2-display text-white mb-4">
-            {post.title}
-          </h1>
-          <p className="text-white/50 text-sm font-light">
-            {new Date(post.published_at).toLocaleDateString("fr-FR", {
-              day: "numeric",
-              month: "long",
-              year: "numeric",
-            })}{" "}
-            · {post.readtime}
+        <Reveal delay={0.2}>
+          <p className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-white/50">
+            <span className="inline-flex items-center gap-1.5">
+              <Calendar className="size-3.5" />
+              {date}
+            </span>
+            <span className="inline-flex items-center gap-1.5">
+              <Clock className="size-3.5" />
+              {post.readtime}
+            </span>
           </p>
         </Reveal>
-      </section>
+      </PageHero>
 
-      <section className="py-20 px-6" style={{ backgroundColor: "var(--paper)" }}>
-        <Reveal className="max-w-3xl mx-auto">
-          <p
-            className="text-lg font-light leading-relaxed mb-8"
-            style={{ color: "var(--mid)" }}
-          >
-            {post.excerpt}
-          </p>
-          {post.body ? (
-            <div className="space-y-5">
-              {post.body.split("\n").filter(Boolean).map((paragraph, i) => (
-                <p
-                  key={i}
-                  className="text-base font-light leading-relaxed"
-                  style={{ color: "var(--ink)" }}
-                >
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-          ) : (
-            <p className="text-sm italic" style={{ color: "var(--mid)" }}>
-              Contenu complet à venir.
+      <section className="surface-light section">
+        <div className="container-x">
+          <Reveal className="mx-auto max-w-3xl">
+            <p className="lead border-l-2 border-brand/40 pl-5 text-foreground/80">
+              {post.excerpt}
             </p>
-          )}
-        </Reveal>
+            {post.body ? (
+              <div className="prose-body mt-10 space-y-6 text-foreground/85">
+                {post.body
+                  .split("\n")
+                  .filter(Boolean)
+                  .map((paragraph, i) => (
+                    <p key={i}>{paragraph}</p>
+                  ))}
+              </div>
+            ) : (
+              <p className="mt-10 text-sm text-muted-foreground italic">
+                Contenu complet à venir.
+              </p>
+            )}
+
+            <div className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t border-border/70 pt-8">
+              <Link href="/blog" className="link-arrow text-sm text-brand">
+                <ArrowLeft className="size-4" />
+                Tous les articles
+              </Link>
+              <Link href="/contact" className="link-arrow text-sm text-muted-foreground hover:text-foreground">
+                Discuter de ce sujet avec nous
+                <ArrowRight className="size-4" />
+              </Link>
+            </div>
+          </Reveal>
+        </div>
       </section>
     </main>
   );

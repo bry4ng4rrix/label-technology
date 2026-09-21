@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import Aurora from "@/components/Aurora";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Reveal from "@/components/shared/Reveal";
-import { Badge } from "@/components/ui/badge";
+import SectionHeader from "@/components/shared/SectionHeader";
+import TiltCard from "@/components/shared/TiltCard";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
 import { supabase, type Service } from "@/lib/supabase";
 import { getIcon } from "@/lib/icons";
 
@@ -17,121 +17,95 @@ export default async function ServicesGrid() {
     .returns<Service[]>();
 
   return (
-    <section className="relative py-10 px-6 grid-bg overflow-hidden bg-gray-100 sm:py-16 lg:py-20">
-      {/* Aurora background */}
-      <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
-        {/* <Aurora /> */}
-      </div>
+    <section className="surface-light section relative overflow-hidden">
+      <div aria-hidden className="grid-fade absolute inset-0 -z-10 opacity-70" />
 
-      <div className="relative z-10 p-2 mx-auto">
-        {/* Section header */}
-        <Reveal className="flex items-end justify-between mb-14 flex-wrap gap-4">
-          <div>
-            <h2 className="h2-display uppercase">
-              <span className="bg-linear-to-r from-brand to-brand-lt bg-clip-text text-transparent">
-                Nos expertises
-              </span>
-            </h2>
-          </div>
-          <Button
-            className="text-xs px-6 py-3 h-14 bg-brand hover:bg-brand-lt rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-brand/30 font-semibold"
-            asChild
-          >
-            <Link href="/contact" className="flex items-center gap-2">
-              DÉMARRER UN PROJET
-              <ArrowRight
-                size={16}
-                className="transition-transform group-hover:translate-x-1"
-              />
-            </Link>
-          </Button>
-        </Reveal>
+      <div className="container-x">
+        <SectionHeader
+          eyebrow="Nos expertises"
+          title={
+            <>
+              Six pôles, une seule équipe
+              <span className="gradient-text">.</span>
+            </>
+          }
+          description="Chaque expertise est portée par une équipe dédiée, avec les standards d'une ESN européenne et la réactivité d'une startup."
+          action={
+            <Button asChild size="lg" className="rounded-full">
+              <Link href="/contact">
+                Démarrer un projet
+                <ArrowRight data-icon="inline-end" />
+              </Link>
+            </Button>
+          }
+        />
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {(services ?? []).map((s, i) => {
             const IconComponent = getIcon(s.icon);
             return (
-              <Reveal key={s.id} delay={(i % 4) * 0.08} className="h-full">
-                <Link
+              <Reveal key={s.id} delay={(i % 3) * 0.07} className="h-full">
+                <TiltCard
                   href={`/services/${s.slug}`}
-                  className="group service-card relative block h-full rounded-xl overflow-hidden ring-1 ring-white/10 bg-slate-950 shadow-lg transition-all duration-300 ease-out hover:-translate-y-2 hover:ring-white/25
-                shadow-sky-200 hover:shadow-xl"
+                  maxTilt={5}
+                  className="group block min-h-[380px] overflow-hidden rounded-3xl bg-ink text-white shadow-lg ring-1 ring-white/10 transition-shadow duration-300 hover:shadow-xl hover:ring-white/20"
                 >
-                  {/* Photo de fond (comme l'arc du Hero) */}
+                  {/* Photo de fond */}
                   <Image
                     src={s.image_url}
-                    alt={s.tag}
+                    alt=""
                     fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 16vw"
-                    className="object-cover opacity-30 transition-transform duration-500 ease-out group-hover:scale-110"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    className="object-cover opacity-40 transition-transform duration-700 ease-out group-hover:scale-105"
                   />
-
-                  {/* Voile sombre pour la lisibilité du texte */}
-                  <div className="absolute inset-0 bg-linear-to-t from-slate-950 via-slate-950/85 to-slate-950/50" />
-
-                  {/* Dégradé couleur au survol */}
+                  <div className="absolute inset-0 bg-linear-to-t from-ink via-ink/85 to-ink/30" />
+                  {/* Teinte de la couleur du service au survol */}
                   <div
-                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
                     style={{
-                      background: `linear-gradient(180deg, transparent 40%, ${s.color}55 100%)`,
+                      background: `radial-gradient(80% 60% at 50% 100%, ${s.color}55 0%, transparent 70%)`,
                     }}
                   />
 
                   <div className="relative z-10 flex h-full flex-col p-6">
-                    {/* Icon section */}
-                    <div className="mb-4">
+                    <div className="mb-auto flex items-start justify-between">
                       <div
-                        className="inline-flex p-3 rounded-lg mb-4 animate-icon-float shadow-md transition-all duration-300"
-                        style={{
-                          backgroundColor: `${s.color}25`,
-                          color: s.color,
-                        }}
+                        className="tilt-layer flex size-12 items-center justify-center rounded-xl border border-white/10 shadow-md backdrop-blur-md transition-transform duration-300 group-hover:-translate-y-0.5"
+                        style={{ backgroundColor: `${s.color}26`, color: s.color }}
                       >
-                        <IconComponent size={24} strokeWidth={1.5} />
+                        <IconComponent size={22} strokeWidth={1.6} />
                       </div>
+                      {s.badge && (
+                        <span
+                          className="rounded-full border border-white/10 px-2.5 py-1 text-[10px] font-semibold tracking-wide backdrop-blur-md"
+                          style={{ backgroundColor: `${s.color}2e`, color: s.color }}
+                        >
+                          {s.badge}
+                        </span>
+                      )}
                     </div>
 
-                    {s.badge && (
-                      <Badge
-                        className="absolute top-6 right-6 text-[10px] px-2 py-1 rounded-full border-0 font-semibold shadow-md transition-all duration-300"
-                        style={{
-                          backgroundColor: `${s.color}30`,
-                          color: s.color,
-                        }}
-                      >
-                        {s.badge}
-                      </Badge>
-                    )}
-
-                    <p className="text-[11px] font-semibold tracking-widest mb-3 text-white/60 uppercase">
-                      {s.tag}
-                    </p>
-
-                    <h3 className="text-xl md:text-2xl font-bold leading-tight text-white">
-                      {s.headline} <span>{s.headline_accent}</span>
-                    </h3>
-
-                    <div className="flex-1 pt-4">
-                      <p className="text-sm leading-relaxed mb-6 text-white/70">
+                    <div className="pt-10">
+                      <p className="label-tag mb-3 text-white/50">{s.tag}</p>
+                      <h3 className="font-display text-[1.375rem] leading-tight tracking-tight text-white">
+                        {s.headline} {s.headline_accent}
+                      </h3>
+                      <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-white/60">
                         {s.desc}
                       </p>
-                    </div>
-
-                    <div className="pt-4">
                       <span
-                        className="text-xs font-semibold opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center gap-2"
-                        style={{ color: s.color }}
+                        className="link-arrow mt-5 text-sm text-white/80 group-hover:text-white"
                       >
                         En savoir plus
-                        <ArrowRight
-                          size={14}
-                          className="transition-transform group-hover:translate-x-1"
+                        <ArrowUpRight
+                          size={15}
+                          className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                          style={{ color: s.color }}
                         />
                       </span>
                     </div>
                   </div>
-                </Link>
+                </TiltCard>
               </Reveal>
             );
           })}

@@ -21,9 +21,9 @@ const DATA = [
 
 export default function GrowthChart() {
   return (
-    <div className="p-6 rounded-sm border" style={{ backgroundColor: "var(--white)", borderColor: "rgba(0,0,0,0.08)" }}>
-      <p className="label-tag text-[10px] mb-1" style={{ color: "var(--brand)" }}>CROISSANCE</p>
-      <h3 className="font-display text-xl mb-6" style={{ color: "var(--ink)" }}>
+    <div className="rounded-2xl p-2 sm:p-4">
+      <p className="label-tag mb-1 text-brand">CROISSANCE</p>
+      <h3 className="h3-display mb-6 text-foreground">
         4 ans de développement
       </h3>
 
