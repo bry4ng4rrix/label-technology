@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { MapPin, Clock, Briefcase, ArrowRight, Zap } from "lucide-react";
+import { MapPin, Clock, Briefcase, ArrowRight, Zap, Mail, BellRing } from "lucide-react";
 import FilterChips, { type ChipMeta } from "@/components/shared/FilterChips";
+import { Button } from "@/components/ui/button";
 
 type Offre = {
   id: string;
@@ -36,6 +37,48 @@ export default function JobsList({ offres }: { offres: Offre[] }) {
 
   const filtered = active === "TOUS" ? offres : offres.filter((o) => o.tag === active);
 
+  /* Aucune offre publiée : état vide dédié, sans filtres ni compteur */
+  if (offres.length === 0) {
+    return (
+      <section className="surface-light section relative">
+        <div className="container-x">
+          <div className="glass-strong mx-auto max-w-2xl rounded-3xl px-6 py-14 text-center sm:px-12 sm:py-16">
+            <div className="mx-auto mb-6 flex size-16 items-center justify-center rounded-2xl bg-brand/8 text-brand">
+              <Briefcase className="size-7" strokeWidth={1.5} />
+            </div>
+            <p className="label-tag mb-3 text-brand">Recrutement</p>
+            <h2 className="font-display text-2xl tracking-tight text-foreground sm:text-3xl">
+              Aucune offre disponible pour le moment.
+            </h2>
+            <p className="prose-body mx-auto mt-4 max-w-md text-muted-foreground">
+              Nos postes sont pourvus ou en préparation. On grandit vite et de
+              nouvelles offres sont publiées régulièrement — revenez bientôt, ou
+              envoyez-nous dès maintenant une candidature spontanée.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+              <Button asChild size="lg" className="rounded-full">
+                <a href="mailto:contact@labeltechnology.mg?subject=Candidature%20spontan%C3%A9e">
+                  <Mail data-icon="inline-start" />
+                  Candidature spontanée
+                </a>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="rounded-full">
+                <Link href="/contact">
+                  Nous contacter
+                  <ArrowRight data-icon="inline-end" />
+                </Link>
+              </Button>
+            </div>
+            <p className="mt-6 flex items-center justify-center gap-2 text-xs text-muted-foreground">
+              <BellRing className="size-3.5 text-brand/60" />
+              Réponse sous 72h · Postes à Antananarivo
+            </p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="surface-light section relative">
       <div className="container-x">
@@ -51,10 +94,15 @@ export default function JobsList({ offres }: { offres: Offre[] }) {
         {filtered.length === 0 ? (
           <div className="card-premium mx-auto max-w-md p-10 text-center hover:translate-y-0">
             <Briefcase className="mx-auto mb-4 size-8 text-brand/50" strokeWidth={1.5} />
-            <p className="font-display text-lg text-foreground">Aucune offre pour le moment.</p>
-            <p className="mt-2 text-sm text-muted-foreground">
-              Envoyez-nous une candidature spontanée, on grandit vite.
+            <p className="font-display text-lg text-foreground">
+              Aucune offre dans ce domaine pour le moment.
             </p>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Consultez les autres domaines ou envoyez-nous une candidature spontanée.
+            </p>
+            <Button variant="outline" size="sm" className="mt-5 rounded-full" onClick={() => setActive("TOUS")}>
+              Voir toutes les offres
+            </Button>
           </div>
         ) : (
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">

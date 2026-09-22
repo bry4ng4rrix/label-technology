@@ -63,7 +63,8 @@ export default async function RecruPage() {
 
       <JobsList offres={offres} />
 
-      {/* CTA candidature spontanée */}
+      {/* CTA candidature spontanée — inutile si l'état vide l'affiche déjà */}
+      {offres.length > 0 && (
       <section className="surface-dark noise hairline-top relative overflow-hidden py-24 sm:py-28 lg:py-32">
         <div aria-hidden className="grid-fade absolute inset-0 -z-10 opacity-70" />
         <div
@@ -104,6 +105,7 @@ export default async function RecruPage() {
           </div>
         </div>
       </section>
+      )}
     </main>
   );
 }
