@@ -10,12 +10,6 @@ export const metadata: Metadata = {
   title: "Recrutement — Offres d'emploi Label Technology",
   description:
     "Rejoignez Label Technology à Antananarivo : offres d'emploi en Développement, Marketing Digital, Digitalisation, Data, Comptabilité et Infrastructure IT.",
-  keywords: [
-    "recrutement Madagascar",
-    "offre d'emploi Antananarivo",
-    "emploi développeur Madagascar",
-    "recrutement Label Technology",
-  ],
   alternates: {
     canonical: "https://labeltechnology.mg/recru",
   },
@@ -90,9 +84,9 @@ export default async function RecruPage() {
 
             <div className="animate-fadeup-d3 mt-10 flex flex-wrap items-center justify-center gap-3">
               <Button asChild size="xl" variant="inverse" className="rounded-full">
-                <a href="mailto:contact@labeltechnology.mg?subject=Candidature%20spontan%C3%A9e">
+                <a href="mailto:recrutement@labeltechnology.mg?subject=Candidature%20spontan%C3%A9e">
                   <Mail data-icon="inline-start" />
-                  contact@labeltechnology.mg
+                  recrutement@labeltechnology.mg
                 </a>
               </Button>
               <Button asChild size="xl" variant="glass" className="rounded-full">

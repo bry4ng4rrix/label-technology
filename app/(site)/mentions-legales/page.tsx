@@ -1,4 +1,22 @@
+import type { Metadata } from "next";
 import Reveal from "@/components/shared/Reveal";
+
+export const metadata: Metadata = {
+  title: "Mentions légales",
+  description:
+    "Mentions légales de Label Technology : éditeur, hébergement, propriété intellectuelle et données personnelles.",
+  alternates: {
+    canonical: "https://labeltechnology.mg/mentions-legales",
+  },
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    url: "https://labeltechnology.mg/mentions-legales",
+    siteName: "Label Technology",
+    title: "Mentions légales | Label Technology",
+    description: "Éditeur, hébergement, propriété intellectuelle et données personnelles.",
+  },
+};
 
 export default function MentionsLegalesPage() {
   return (

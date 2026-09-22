@@ -12,22 +12,6 @@ export const metadata: Metadata = {
   title: "Nos Services — 6 Expertises Tech depuis Antananarivo",
   description:
     "Développement web & mobile, marketing digital, ERP, traitement de données, matériel informatique, comptabilité. Une couverture complète depuis Antananarivo.",
-  keywords: [
-    "services informatiques Madagascar",
-    "prestations externalisation Madagascar",
-    "agence complète Madagascar",
-    "6 expertises Madagascar",
-    "développement web Madagascar",
-    "marketing digital Madagascar",
-    "ERP Madagascar",
-    "traitement données Madagascar",
-    "matériel informatique Madagascar",
-    "comptabilité externalisée Madagascar",
-    "BPO Madagascar",
-    "outsourcing Madagascar",
-    "prestataire IT Antananarivo",
-    "services tech Antananarivo",
-  ],
   alternates: {
     canonical: "https://labeltechnology.mg/services",
   },

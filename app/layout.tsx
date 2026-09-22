@@ -27,45 +27,16 @@ export const metadata: Metadata = {
   },
   description:
     "Label Technology : développement web & mobile, marketing digital, digitalisation, traitement de données. Depuis Antananarivo, pour la France et l'Afrique.",
-  keywords: [
-    "Label Technology",
-    "développement web Madagascar",
-    "agence web Madagascar",
-    "marketing digital Madagascar",
-    "externalisation Madagascar",
-    "BPO Madagascar",
-    "outsourcing Madagascar",
-    "ERP Madagascar",
-    "Odoo Madagascar",
-    "traitement données Madagascar",
-    "Antananarivo tech",
-    "société informatique Antananarivo",
-    "prestataire informatique Madagascar",
-    "développement logiciel Madagascar",
-    "externalisation France Madagascar",
-    "partenaire technologique Madagascar",
-    "agence digitale Antananarivo",
-    "développeur web Antananarivo",
-    "comptabilité externalisée Madagascar",
-    "matériel informatique Antananarivo",
-    "SIRH Madagascar",
-    "digitalisation PME Madagascar",
-    "Milson fanoela Bryan",
-    "Bryan garrix",
-    "fanoela Bryan",
-    "garrix tech",
-  ],
   authors: [{ name: "Label Technology", url: "https://labeltechnology.mg" }],
   creator: "Label Technology",
   publisher: "Label Technology",
   metadataBase: new URL("https://labeltechnology.mg"),
-  alternates: {
-    canonical: "https://labeltechnology.mg",
-  },
+  /* Pas de `alternates.canonical` ni de `openGraph.url` ici : ces clés sont
+     héritées par toutes les pages filles et les feraient se déclarer comme
+     doublons de la page d'accueil. Chaque route définit les siennes. */
   openGraph: {
     type: "website",
     locale: "fr_FR",
-    url: "https://labeltechnology.mg",
     siteName: "Label Technology",
     title: "Label Technology — Partenaire Technologique Premium | Antananarivo",
     description:

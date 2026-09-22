@@ -12,17 +12,6 @@ export const metadata: Metadata = {
   title: "Travaux Routiers — Terrassement, Revêtement, Voirie",
   description:
     "Construction et réfection de routes à Madagascar : terrassement, chaussées, assainissement, signalisation. Suivi de chantier de bout en bout depuis Antananarivo.",
-  keywords: [
-    "travaux routiers Madagascar",
-    "construction route Antananarivo",
-    "terrassement Madagascar",
-    "réfection voirie Madagascar",
-    "entreprise travaux publics Madagascar",
-    "revêtement chaussée Madagascar",
-    "assainissement routier Madagascar",
-    "BTP route Madagascar",
-    "signalisation routière Madagascar",
-  ],
   alternates: {
     canonical: "https://labeltechnology.mg/construction/route",
   },

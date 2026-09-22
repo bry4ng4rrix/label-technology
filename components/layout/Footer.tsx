@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Briefcase, Mail, MapPin, Phone } from "lucide-react";
 
 const LINKS = {
   Services: [
@@ -73,6 +73,15 @@ export default function Footer() {
                   className="transition-colors hover:text-white"
                 >
                   contact@labeltechnology.mg
+                </a>
+              </li>
+              <li className="flex items-center gap-3">
+                <Briefcase className="size-4 shrink-0 text-brand-glow" />
+                <a
+                  href="mailto:recrutement@labeltechnology.mg"
+                  className="transition-colors hover:text-white"
+                >
+                  recrutement@labeltechnology.mg
                 </a>
               </li>
             </ul>

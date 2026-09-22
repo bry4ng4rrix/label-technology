@@ -7,19 +7,6 @@ export const metadata: Metadata = {
   title: "Contact — Démarrez votre projet avec Label Technology",
   description:
     "Contactez Label Technology pour démarrer votre projet. Développement web, marketing digital, ERP. Réponse sous 72h. Antananarivo, Madagascar.",
-  keywords: [
-    "contact Label Technology",
-    "devis Label Technology",
-    "devis développement web Madagascar",
-    "devis marketing digital Madagascar",
-    "devis ERP Madagascar",
-    "devis externalisation Madagascar",
-    "contacter agence web Madagascar",
-    "demande de projet Madagascar",
-    "devis gratuit informatique Madagascar",
-    "Label Technology Antananarivo",
-    "contact@labeltechnology.mg",
-  ],
   alternates: {
     canonical: "https://labeltechnology.mg/contact",
   },

@@ -107,7 +107,7 @@ export default function ContactForm() {
 
         <p className="flex items-center justify-center gap-2 text-xs text-muted-foreground">
           <ShieldCheck className="size-3.5 text-emerald-500" />
-          Réponse sous 24h · Données protégées
+          Réponse sous 72h · Données protégées
         </p>
       </form>
     </FormCard>

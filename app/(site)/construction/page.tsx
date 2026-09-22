@@ -13,17 +13,6 @@ export const metadata: Metadata = {
   title: "Construction & Génie Civil — Nouvelle activité | Label Technology",
   description:
     "Label Technology développe une nouvelle expertise dédiée à la construction, au génie civil et aux infrastructures à Madagascar. Découvrez notre approche et nos domaines d'intervention.",
-  keywords: [
-    "construction Madagascar",
-    "génie civil Madagascar",
-    "BTP Madagascar",
-    "construction Antananarivo",
-    "entreprise construction Madagascar",
-    "projets immobiliers Madagascar",
-    "infrastructure Madagascar",
-    "travaux publics Madagascar",
-    "étude construction Madagascar",
-  ],
   alternates: {
     canonical: "https://labeltechnology.mg/construction",
   },

@@ -1,8 +1,35 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Clock, Newspaper } from "lucide-react";
 import PageHero from "@/components/shared/PageHero";
 import Reveal from "@/components/shared/Reveal";
 import { supabase, type BlogPost } from "@/lib/supabase";
+
+export const metadata: Metadata = {
+  title: "Blog — Insights & expertise tech",
+  description:
+    "Articles techniques, retours d'expérience et analyses sectorielles par l'équipe Label Technology : développement web & mobile, digitalisation, données.",
+  alternates: {
+    canonical: "https://labeltechnology.mg/blog",
+  },
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    url: "https://labeltechnology.mg/blog",
+    siteName: "Label Technology",
+    title: "Blog — Insights & expertise tech",
+    description:
+      "Articles techniques, retours d'expérience et analyses sectorielles par l'équipe Label Technology.",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Blog Label Technology" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Blog | Label Technology",
+    description:
+      "Articles techniques, retours d'expérience et analyses sectorielles depuis Antananarivo.",
+    images: ["/og-image.png"],
+  },
+};
 
 export default async function BlogPage() {
   const { data } = await supabase

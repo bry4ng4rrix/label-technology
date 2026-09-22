@@ -12,16 +12,6 @@ export const metadata: Metadata = {
   title: "Bâtiment Entreprise — Construction Commerciale & Industrielle",
   description:
     "Construction et aménagement de bâtiments pour entreprises à Madagascar : gros œuvre, second œuvre, locaux commerciaux et industriels. Un interlocuteur unique du permis à la livraison.",
-  keywords: [
-    "construction entreprise Madagascar",
-    "bâtiment commercial Antananarivo",
-    "gros œuvre Madagascar",
-    "second œuvre Madagascar",
-    "construction industrielle Madagascar",
-    "aménagement bureaux Madagascar",
-    "entreprise de bâtiment Antananarivo",
-    "BTP entreprise Madagascar",
-  ],
   alternates: {
     canonical: "https://labeltechnology.mg/construction/entreprise",
   },

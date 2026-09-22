@@ -8,6 +8,26 @@ export const metadata: Metadata = {
   title: "Nos Réalisations — Projets web, marketing, ERP",
   description:
     "Découvrez les projets réalisés par Label Technology : développement web & mobile, marketing digital, digitalisation. Réalisations détaillées avec métriques.",
+  alternates: {
+    canonical: "https://labeltechnology.mg/projets",
+  },
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    url: "https://labeltechnology.mg/projets",
+    siteName: "Label Technology",
+    title: "Nos Réalisations — Projets web, marketing, ERP",
+    description:
+      "Les projets réalisés par Label Technology : développement web & mobile, marketing digital, digitalisation. Chaque chiffre est mesuré.",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Réalisations Label Technology" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Nos Réalisations | Label Technology",
+    description:
+      "Développement web & mobile, marketing digital, digitalisation. Réalisations détaillées avec métriques.",
+    images: ["/og-image.png"],
+  },
 };
 
 export default async function ProjetsPage() {

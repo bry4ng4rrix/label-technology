@@ -57,7 +57,7 @@ export default function JobsList({ offres }: { offres: Offre[] }) {
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <Button asChild size="lg" className="rounded-full">
-                <a href="mailto:contact@labeltechnology.mg?subject=Candidature%20spontan%C3%A9e">
+                <a href="mailto:recrutement@labeltechnology.mg?subject=Candidature%20spontan%C3%A9e">
                   <Mail data-icon="inline-start" />
                   Candidature spontanée
                 </a>
@@ -69,7 +69,16 @@ export default function JobsList({ offres }: { offres: Offre[] }) {
                 </Link>
               </Button>
             </div>
-            <p className="mt-6 flex items-center justify-center gap-2 text-xs text-muted-foreground">
+            <p className="mt-6 text-sm text-muted-foreground">
+              Votre CV est le bienvenu à{" "}
+              <a
+                href="mailto:recrutement@labeltechnology.mg?subject=Candidature%20spontan%C3%A9e"
+                className="font-medium text-brand underline-offset-4 hover:underline"
+              >
+                recrutement@labeltechnology.mg
+              </a>
+            </p>
+            <p className="mt-3 flex items-center justify-center gap-2 text-xs text-muted-foreground">
               <BellRing className="size-3.5 text-brand/60" />
               Réponse sous 72h · Postes à Antananarivo
             </p>
