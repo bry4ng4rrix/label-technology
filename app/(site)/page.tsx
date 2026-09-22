@@ -73,7 +73,7 @@ const jsonLd = {
     },
   ],
   sameAs: [],
-  numberOfEmployees: { "@type": "QuantitativeValue", value: 60 },
+  numberOfEmployees: { "@type": "QuantitativeValue", value: 16 },
   foundingDate: "2022",
   knowsAbout: [
     "Développement web",

@@ -191,7 +191,7 @@ export default function ServicesPage() {
 
       <MetricsBand
         items={[
-          { value: "60+", label: "Collaborateurs" },
+          { value: "16+", label: "Collaborateurs" },
           { value: "4 ans", label: "D'expérience" },
           { value: "FR/EN", label: "Bilingue certifié" },
           { value: "<72h", label: "Délai de réponse" },

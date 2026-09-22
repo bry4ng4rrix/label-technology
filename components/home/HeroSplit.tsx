@@ -10,7 +10,7 @@ import DotField from "@/components/DotField";
 import { Button } from "@/components/ui/button";
 
 const STATS = [
-  { value: "60+", label: "collaborateurs" },
+  { value: "16+", label: "collaborateurs" },
   { value: "6", label: "expertises" },
   { value: "FR/EN", label: "bilingue" },
   { value: "72h", label: "de réponse" },

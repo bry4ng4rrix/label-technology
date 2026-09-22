@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     siteName: "Label Technology",
     title: "Recrutement — Offres d'emploi Label Technology",
     description:
-      "Rejoignez une équipe de 60+ collaborateurs à Antananarivo. Développement, Marketing, Data, Comptabilité, Infrastructure.",
+      "Rejoignez une équipe de 16+ collaborateurs à Antananarivo. Développement, Marketing, Data, Comptabilité, Infrastructure.",
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Recrutement Label Technology" }],
   },
   twitter: {
@@ -52,7 +52,7 @@ export default async function RecruPage() {
             <span className="gradient-text-light">avec nous.</span>
           </>
         }
-        description="60+ collaborateurs, 6 expertises. Développement, Marketing, Digitalisation, Data, Comptabilité, Infrastructure — toutes nos offres, à Antananarivo."
+        description="16+ collaborateurs, 6 expertises. Développement, Marketing, Digitalisation, Data, Comptabilité, Infrastructure — toutes nos offres, à Antananarivo."
       />
 
       <JobsList offres={offres} />

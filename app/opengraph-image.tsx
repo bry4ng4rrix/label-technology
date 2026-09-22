@@ -84,7 +84,7 @@ export default function OgImage() {
         {/* Bottom metrics */}
         <div style={{ display: "flex", gap: 40, position: "relative" }}>
           {[
-            { v: "60+", l: "collaborateurs" },
+            { v: "16+", l: "collaborateurs" },
             { v: "6", l: "expertises" },
             { v: "FR/EN", l: "bilingue" },
             { v: "4 ans", l: "expérience" },
