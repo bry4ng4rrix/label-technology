@@ -32,18 +32,63 @@ const LINKS = [
 ];
 
 const SERVICES = [
-  { key: "dev", href: "/services/dev", labelFr: "Développement", labelEn: "Web & Mobile" },
-  { key: "marketing", href: "/services/marketing", labelFr: "Marketing Digital", labelEn: "SEO, Ads, Social" },
-  { key: "digital", href: "/services/digital", labelFr: "Digitalisation", labelEn: "ERP, SIRH, RPA" },
-  { key: "data", href: "/services/data", labelFr: "Traitement de données", labelEn: "Saisie, Nettoyage, Analyse" },
-  { key: "materiel", href: "/services/materiel", labelFr: "Matériel IT", labelEn: "Réseau, Postes, Serveurs" },
-  { key: "comptabilite", href: "/services/comptabilite", labelFr: "Comptabilité", labelEn: "Saisie, Reporting" },
+  {
+    key: "dev",
+    href: "/services/dev",
+    labelFr: "Développement",
+    labelEn: "Web & Mobile",
+  },
+  {
+    key: "marketing",
+    href: "/services/marketing",
+    labelFr: "Marketing Digital",
+    labelEn: "SEO, Ads, Social",
+  },
+  {
+    key: "digital",
+    href: "/services/digital",
+    labelFr: "Digitalisation",
+    labelEn: "ERP, SIRH, RPA",
+  },
+  {
+    key: "data",
+    href: "/services/data",
+    labelFr: "Traitement de données",
+    labelEn: "Saisie, Nettoyage, Analyse",
+  },
+  {
+    key: "materiel",
+    href: "/services/materiel",
+    labelFr: "Matériel IT",
+    labelEn: "Réseau, Postes, Serveurs",
+  },
+  {
+    key: "comptabilite",
+    href: "/services/comptabilite",
+    labelFr: "Comptabilité",
+    labelEn: "Saisie, Reporting",
+  },
 ];
 
 const CONSTRUCTION = [
-  { key: "route", href: "/construction/route", labelFr: "Route", labelEn: "Travaux routiers" },
-  { key: "entreprise", href: "/construction/entreprise", labelFr: "Bâtiment Entreprise", labelEn: "Construction commerciale & industrielle" },
-  { key: "projets", href: "/construction/projets", labelFr: "Nos futurs projets", labelEn: "Types de projets visés" },
+  {
+    key: "route",
+    href: "/construction/route",
+    labelFr: "Route",
+    labelEn: "Travaux routiers",
+  },
+  {
+    key: "entreprise",
+    href: "/construction/entreprise",
+    labelFr: "Bâtiment Entreprise",
+    labelEn: "Construction commerciale & industrielle",
+  },
+  {
+    key: "projets",
+    href: "/construction/projets",
+    labelFr: "Nos futurs projets",
+    labelEn: "Types de projets visés",
+  },
 ];
 
 /* Styles partagés des déclencheurs de menu (tous les états surchargent bg-muted) */
@@ -127,14 +172,18 @@ const Navbar = () => {
                     title="Services IT"
                     subtitle="Six expertises, une seule équipe."
                     items={SERVICES}
-                    footer={{ href: "/services", label: "Voir tous les services" }}
+                    footer={{
+                      href: "/services",
+                      label: "Voir tous les services",
+                    }}
                     pathname={pathname}
                   />
                 </NavigationMenuContent>
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
-
+          {/* genie civil  */}
+          {/* 
           <NavigationMenu viewport={false}>
             <NavigationMenuList>
               <NavigationMenuItem>
@@ -155,7 +204,7 @@ const Navbar = () => {
                 </NavigationMenuContent>
               </NavigationMenuItem>
             </NavigationMenuList>
-          </NavigationMenu>
+          </NavigationMenu> */}
 
           {LINKS.map((link) => {
             const active = isActive(pathname, link.href);
@@ -226,7 +275,11 @@ const Navbar = () => {
               </SheetHeader>
 
               <div className="flex-1 overflow-y-auto px-3 py-4">
-                <MobileGroup label="Services IT" items={SERVICES} pathname={pathname} />
+                <MobileGroup
+                  label="Services IT"
+                  items={SERVICES}
+                  pathname={pathname}
+                />
                 <Separator className="my-3 bg-white/8" />
                 <MobileGroup
                   label="Construction & Génie Civil"
@@ -294,7 +347,9 @@ function MegaMenu({
   compact?: boolean;
 }) {
   return (
-    <div className={cn("w-[440px] p-2", !compact && "md:w-[560px] lg:w-[640px]")}>
+    <div
+      className={cn("w-[440px] p-2", !compact && "md:w-[560px] lg:w-[640px]")}
+    >
       <div className="flex items-baseline justify-between px-3 pt-2 pb-1">
         <p className="label-tag text-brand-glow">{title}</p>
         <p className="text-xs text-white/40">{subtitle}</p>
@@ -347,12 +402,16 @@ function ListItem({
             <span
               className={cn(
                 "size-1.5 rounded-full transition-colors",
-                active ? "bg-brand-glow" : "bg-white/20 group-hover/item:bg-brand-glow",
+                active
+                  ? "bg-brand-glow"
+                  : "bg-white/20 group-hover/item:bg-brand-glow",
               )}
             />
             <span className="text-sm font-semibold text-white">{title}</span>
           </div>
-          <p className="pl-3.5 text-xs leading-snug text-white/50">{children}</p>
+          <p className="pl-3.5 text-xs leading-snug text-white/50">
+            {children}
+          </p>
         </Link>
       </NavigationMenuLink>
     </li>
@@ -393,7 +452,9 @@ function MobileGroup({
                 active ? "bg-white/10" : "hover:bg-white/8",
               )}
             >
-              <span className="text-[15px] font-medium text-white">{item.labelFr}</span>
+              <span className="text-[15px] font-medium text-white">
+                {item.labelFr}
+              </span>
               <span className="text-xs text-white/45">{item.labelEn}</span>
             </Link>
           );
