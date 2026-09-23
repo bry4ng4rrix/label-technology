@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Briefcase, Mail, MapPin, Phone } from "lucide-react";
+import { Briefcase, Mail, MapPin } from "lucide-react";
 
 const LINKS = {
   Services: [
@@ -59,12 +59,6 @@ export default function Footer() {
                   <br />
                   Antananarivo Avaradrano, Madagascar
                 </span>
-              </li>
-              <li className="flex items-center gap-3">
-                <Phone className="size-4 shrink-0 text-brand-glow" />
-                <a href="tel:+261340503129" className="transition-colors hover:text-white">
-                  +261 34 05 031 29
-                </a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="size-4 shrink-0 text-brand-glow" />

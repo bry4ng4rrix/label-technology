@@ -4,9 +4,9 @@ import { ArrowRight } from "lucide-react";
 import CtaSection from "@/components/home/CtaSection";
 import MetricsBand from "@/components/shared/MetricsBand";
 import PageHero from "@/components/shared/PageHero";
+import SectionHeader from "@/components/shared/SectionHeader";
 import Reveal from "@/components/shared/Reveal";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Nos Services — 6 Expertises Tech depuis Antananarivo",
@@ -50,62 +50,70 @@ const jsonLd = {
   ],
 };
 
+/* Hiérarchie éditoriale :
+   - "core"  : expertises cœur, mises en avant (grandes cartes détaillées)
+   - "other" : pôles complémentaires (cartes compactes)
+   - "quote" : proposés sur devis, sans carte au même niveau que le cœur */
 const SERVICES = [
   {
+    tier: "core",
     tag: "DÉVELOPPEMENT",
     href: "/services/dev",
     title: "Web & Mobile",
     accroche: "On ne livre pas du code. On livre de la croissance.",
     desc: "Sites, applications web, mobiles, APIs. Next.js, React Native, Node.js. Standards ESN européenne, réactivité startup.",
     items: ["Sites & Apps Web", "Applications Mobiles", "APIs & Back-end", "E-commerce", "Refonte & Migration"],
-    featured: true,
   },
   {
-    tag: "MARKETING",
-    href: "/services/marketing",
-    title: "Marketing Digital",
-    accroche: "Votre audience existe. On va la trouver.",
-    desc: "SEO, Google Ads, Meta Ads, social media, email marketing. Stratégies mesurables, ROI tracé dès le premier brief.",
-    items: ["SEO & Contenu", "Google & Meta Ads", "Social Media", "Email Marketing", "Analytics"],
-    featured: false,
-  },
-  {
+    tier: "core",
     tag: "DIGITALISATION",
     href: "/services/digital",
     title: "Logiciels de Gestion",
     accroche: "Vos processus méritent mieux.",
     desc: "ERP, SIRH, GED, logiciels métier sur mesure. Odoo, SAP, solutions custom. Formation et conduite du changement incluses.",
     items: ["ERP & Odoo", "SIRH & Paie", "Gestion documentaire", "Logiciels métier", "Intégrations APIs"],
-    featured: false,
   },
   {
+    tier: "other",
+    tag: "MARKETING",
+    href: "/services/marketing",
+    title: "Marketing Digital",
+    accroche: "Votre audience existe. On va la trouver.",
+    desc: "SEO, Google Ads, Meta Ads, social media, email marketing. Stratégies mesurables, ROI tracé dès le premier brief.",
+    items: ["SEO & Contenu", "Google & Meta Ads", "Social Media", "Email Marketing", "Analytics"],
+  },
+  {
+    tier: "other",
     tag: "DONNÉES",
     href: "/services/data",
     title: "Traitement de Données",
     accroche: "Vos données sont un actif. On les rend exploitables.",
     desc: "Saisie, nettoyage, enrichissement, analyse, automatisation. Précision garantie, volumes importants, délais respectés.",
     items: ["Saisie & Collecte", "Nettoyage & Normalisation", "Analyse & DataViz", "Automatisation ETL", "Archivage RGPD"],
-    featured: false,
   },
   {
+    tier: "quote",
     tag: "INFRASTRUCTURE",
     href: "/services/materiel",
     title: "Matériel Informatique",
     accroche: "Le bon matériel. Au juste prix.",
     desc: "Ordinateurs, réseau, serveurs, périphériques. Sélection professionnelle, installation et support sur Antananarivo.",
     items: ["PC & Workstations", "Réseau & WiFi", "Impression & Scan", "Onduleurs & Sauvegarde", "Maintenance IT"],
-    featured: false,
   },
   {
+    tier: "quote",
     tag: "COMPTABILITÉ",
     href: "/services/comptabilite",
     title: "Comptabilité & Reporting",
     accroche: "Vos chiffres, enfin lisibles.",
     desc: "Saisie comptable, rapprochements bancaires, reporting mensuel et tableaux de bord. Disponible avant le 5 du mois.",
     items: ["Saisie comptable", "Rapprochements bancaires", "Reporting mensuel", "Tableaux de bord dirigeants", "Archivage RGPD"],
-    featured: false,
   },
-];
+] as const;
+
+const CORE = SERVICES.filter((s) => s.tier === "core");
+const OTHER = SERVICES.filter((s) => s.tier === "other");
+const ON_QUOTE = SERVICES.filter((s) => s.tier === "quote");
 
 export default function ServicesPage() {
   return (
@@ -140,45 +148,79 @@ export default function ServicesPage() {
         }
       />
 
-      {/* Grille services */}
+      {/* ── Expertises cœur ── */}
       <section className="surface-light section relative">
         <div className="container-x">
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {SERVICES.map((s, i) => (
-              <Reveal key={i} delay={(i % 3) * 0.08} className="h-full">
+          <SectionHeader
+            eyebrow="Expertises cœur"
+            title={
+              <>
+                Là où nous sommes <span className="gradient-text">les plus forts.</span>
+              </>
+            }
+            description="Deux pôles concentrent l'essentiel de nos réalisations : le développement d'applications sur mesure et la digitalisation des processus de gestion."
+          />
+
+          <div className="grid gap-5 lg:grid-cols-2">
+            {CORE.map((s, i) => (
+              <Reveal key={s.tag} delay={i * 0.08} className="h-full">
                 <Link
                   href={s.href}
-                  className={cn(
-                    "card-premium group flex h-full flex-col p-7 sm:p-8",
-                    s.featured && "ring-1 ring-brand/30",
-                  )}
+                  className="card-premium group flex h-full flex-col p-7 ring-1 ring-brand/25 sm:p-9"
                 >
-                  <div className="mb-5 flex items-center justify-between">
+                  <div className="mb-5 flex items-center justify-between gap-3">
                     <span className="label-tag text-brand">{s.tag}</span>
-                    {s.featured && (
-                      <span className="rounded-full bg-brand/10 px-2.5 py-1 text-[10px] font-semibold tracking-wide text-brand uppercase">
-                        Phare
-                      </span>
-                    )}
+                    <span className="rounded-full bg-brand/10 px-2.5 py-1 text-[10px] font-semibold tracking-wide text-brand uppercase">
+                      Expertise cœur
+                    </span>
                   </div>
-                  <h2 className="font-display text-2xl tracking-tight text-foreground">
+                  <h2 className="font-display text-2xl tracking-tight text-foreground sm:text-3xl">
                     {s.title}
                   </h2>
-                  <p className="mt-2 text-sm font-medium text-brand/80 italic">{s.accroche}</p>
-                  <p className="mt-4 flex-1 text-[15px] leading-relaxed text-muted-foreground">
-                    {s.desc}
+                  <p className="font-display mt-3 text-lg font-medium text-brand italic">
+                    {s.accroche}
                   </p>
-                  <ul className="mt-6 flex flex-wrap gap-2">
-                    {s.items.map((item, j) => (
+                  <p className="prose-body mt-5 flex-1 text-muted-foreground">{s.desc}</p>
+                  <ul className="mt-7 flex flex-wrap gap-2">
+                    {s.items.map((item) => (
                       <li
-                        key={j}
-                        className="rounded-full border border-border bg-muted/40 px-2.5 py-1 text-xs text-muted-foreground"
+                        key={item}
+                        className="rounded-full border border-border bg-muted/40 px-3 py-1.5 text-xs text-muted-foreground"
                       >
                         {item}
                       </li>
                     ))}
                   </ul>
-                  <span className="link-arrow mt-7 text-sm text-brand">
+                  <span className="link-arrow mt-8 text-sm text-brand">
+                    Découvrir cette expertise
+                    <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+                  </span>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Pôles complémentaires ── */}
+      <section className="section bg-background">
+        <div className="container-x">
+          <SectionHeader
+            eyebrow="Pôles complémentaires"
+            title="Ce qui vient en appui de vos projets."
+            description="Mobilisés seuls ou en complément d'un projet de développement ou de digitalisation."
+          />
+
+          <div className="grid gap-5 md:grid-cols-2">
+            {OTHER.map((s, i) => (
+              <Reveal key={s.tag} delay={i * 0.08} className="h-full">
+                <Link href={s.href} className="card-premium group flex h-full flex-col p-7">
+                  <span className="label-tag mb-4 text-brand">{s.tag}</span>
+                  <h3 className="h3-display text-foreground">{s.title}</h3>
+                  <p className="mt-3 flex-1 text-[15px] leading-relaxed text-muted-foreground">
+                    {s.desc}
+                  </p>
+                  <span className="link-arrow mt-6 text-sm text-brand">
                     Découvrir
                     <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" />
                   </span>
@@ -186,6 +228,33 @@ export default function ServicesPage() {
               </Reveal>
             ))}
           </div>
+
+          {/* Sur devis — mention simple, sans carte au même niveau */}
+          <Reveal delay={0.16} className="mt-10">
+            <div className="rounded-2xl border border-dashed border-border bg-card/60 p-6 sm:p-8">
+              <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <p className="label-tag mb-2 text-muted-foreground">Également sur devis</p>
+                  <p className="text-sm text-muted-foreground">
+                    Deux pôles mobilisés à la demande, selon le besoin et le volume.
+                  </p>
+                </div>
+                <ul className="flex flex-wrap gap-2">
+                  {ON_QUOTE.map((s) => (
+                    <li key={s.tag}>
+                      <Link
+                        href={s.href}
+                        className="group inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-brand/40 hover:text-brand"
+                      >
+                        {s.title}
+                        <ArrowRight className="size-3.5 text-muted-foreground transition-transform duration-300 group-hover:translate-x-0.5 group-hover:text-brand" />
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 
