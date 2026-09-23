@@ -11,6 +11,7 @@ import MiniTestimonials from "@/components/shared/MiniTestimonials";
 import Link from "next/link";
 
 import DataChart from "@/components/services/DataChartWrapper";
+import { OG_IMAGE } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Traitement de Données — Saisie, Nettoyage, Analyse",
@@ -26,14 +27,13 @@ export const metadata: Metadata = {
     title: "Traitement de Données — Saisie, Nettoyage, Analyse | Label Technology",
     description:
       "Saisie de données, nettoyage, normalisation, analyse. Précision garantie à 99,5%. Depuis Antananarivo.",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Traitement de Données — Label Technology" }],
+    images: [OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
     title: "Traitement de Données | Label Technology",
     description:
       "Saisie, nettoyage, normalisation, analyse. Précision 99,5% garantie. Depuis Antananarivo.",
-    images: ["/og-image.png"],
   },
 };
 

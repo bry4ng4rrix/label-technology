@@ -12,6 +12,7 @@ import SectionHeader from "@/components/shared/SectionHeader";
 
 import GrowthChart from "@/components/apropos/GrowthChartWrapper";
 import { supabase, type Testimonial } from "@/lib/supabase";
+import { OG_IMAGE } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "À Propos — Label Technology, fondée en 2022 à Antananarivo",
@@ -28,14 +29,13 @@ export const metadata: Metadata = {
     title: "À Propos — Label Technology, fondée en 2022 à Antananarivo",
     description:
       "4 ans d'expérience, 16+ collaborateurs, 6 pôles de services. Label Technology : la tech malgache au niveau européen.",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Label Technology — À Propos" }],
+    images: [OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
     title: "À Propos — Label Technology",
     description:
       "4 ans d'expérience, 16+ collaborateurs, 6 pôles de services. Label Technology depuis Antananarivo.",
-    images: ["/og-image.png"],
   },
 };
 
@@ -203,7 +203,7 @@ export default async function AProposPage() {
               de valeur concrète. C&apos;est pourquoi nous ne vendons rien : nous nous
               associons à votre croissance.&rdquo;
             </blockquote>
-            <p className="label-tag mt-8 text-white/35">
+            <p className="label-tag mt-8 text-white/55">
               — Label Technology · Notre engagement depuis 2022
             </p>
           </div>

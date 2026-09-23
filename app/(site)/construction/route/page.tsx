@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import ActivityNotice from "@/components/construction/ActivityNotice";
 import ConstructionCta from "@/components/construction/ConstructionCta";
 import Link from "next/link";
+import { OG_IMAGE } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Travaux Routiers — Terrassement, Revêtement, Voirie",
@@ -23,13 +24,12 @@ export const metadata: Metadata = {
     title: "Travaux Routiers — Terrassement, Revêtement, Voirie | Label Technology",
     description:
       "Construction et réfection de routes à Madagascar : terrassement, chaussées, assainissement, signalisation.",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Travaux Routiers — Label Technology" }],
+    images: [OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
     title: "Travaux Routiers | Label Technology",
     description: "Terrassement, chaussées, assainissement, signalisation. Depuis Antananarivo.",
-    images: ["/og-image.png"],
   },
 };
 

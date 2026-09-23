@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { OG_IMAGE } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Développement Web & Mobile — Next.js, React Native, Node.js",
@@ -15,14 +16,13 @@ export const metadata: Metadata = {
     title: "Développement Web & Mobile — Next.js, React Native | Label Technology",
     description:
       "Développement web et mobile sur mesure depuis Antananarivo. Sites, applications web, mobiles, APIs. Standards ESN européenne, délais startup.",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Développement Web & Mobile — Label Technology" }],
+    images: [OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
     title: "Développement Web & Mobile | Label Technology",
     description:
       "Développement web, mobile, APIs. Next.js, React Native, Node.js. Depuis Antananarivo. Devis gratuit en 72h.",
-    images: ["/og-image.png"],
   },
 };
 

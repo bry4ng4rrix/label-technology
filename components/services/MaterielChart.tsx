@@ -16,7 +16,7 @@ export default function MaterielChart() {
   return (
     <div className="glass-dark rounded-3xl p-6">
       <p className="label-tag mb-1 text-brand-glow">ÉQUIPEMENTS DÉPLOYÉS PAR CATÉGORIE</p>
-      <p className="mb-4 text-xs text-white/40">Unités installées et maintenues (2022–2025)</p>
+      <p className="mb-4 text-xs text-white/55">Unités installées et maintenues (2022–2025)</p>
       <ResponsiveContainer width="100%" height={240}>
         <BarChart data={DATA} layout="vertical" margin={{ top: 0, right: 16, left: 16, bottom: 0 }} barSize={14}>
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" horizontal={false} />
@@ -33,7 +33,7 @@ export default function MaterielChart() {
           </Bar>
         </BarChart>
       </ResponsiveContainer>
-      <p className="mt-3 text-center text-xs text-white/40">
+      <p className="mt-3 text-center text-xs text-white/55">
         Total : <strong className="text-brand-glow">404 équipements</strong> déployés
       </p>
     </div>

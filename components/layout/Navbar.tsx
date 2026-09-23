@@ -352,7 +352,7 @@ function MegaMenu({
     >
       <div className="flex items-baseline justify-between px-3 pt-2 pb-1">
         <p className="label-tag text-brand-glow">{title}</p>
-        <p className="text-xs text-white/40">{subtitle}</p>
+        <p className="text-xs text-white/55">{subtitle}</p>
       </div>
       <ul className={cn("grid gap-1 p-1", !compact && "md:grid-cols-2")}>
         {items.map((item) => (
@@ -431,7 +431,7 @@ function MobileGroup({
 }) {
   return (
     <div>
-      <p className="label-tag mb-2 flex items-center gap-2 px-3 text-white/40">
+      <p className="label-tag mb-2 flex items-center gap-2 px-3 text-white/55">
         {label}
         {badge && (
           <span className="rounded-full bg-brand-lt/25 px-2 py-0.5 text-[10px] tracking-normal text-brand-glow normal-case">

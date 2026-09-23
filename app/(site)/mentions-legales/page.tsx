@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Reveal from "@/components/shared/Reveal";
+import { OG_IMAGE } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Mentions légales",
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
     siteName: "Label Technology",
     title: "Mentions légales | Label Technology",
     description: "Éditeur, hébergement, propriété intellectuelle et données personnelles.",
+    images: [OG_IMAGE],
   },
 };
 

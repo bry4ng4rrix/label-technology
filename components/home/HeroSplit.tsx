@@ -19,7 +19,7 @@ const STATS = [
 /* Composition photo : position + profondeur (parallaxe) */
 const PHOTOS = [
   {
-    src: "/images/services/fetra.png",
+    src: "/images/services/fetra.jpg",
     alt: "Équipe développement Label Technology",
     className: "left-0 bottom-0 h-[74%] w-[62%] rounded-[2rem]",
     depth: 10,

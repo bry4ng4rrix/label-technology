@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Sora } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import { OG_IMAGE } from "@/lib/seo";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -41,24 +42,13 @@ export const metadata: Metadata = {
     title: "Label Technology — Partenaire Technologique Premium | Antananarivo",
     description:
       "Développement web & mobile, marketing digital, ERP, traitement de données. Depuis Antananarivo, avec l'exigence d'un partenaire européen.",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Label Technology — Partenaire Technologique Premium",
-      },
-    ],
+    images: [OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
     title: "Label Technology — Partenaire Technologique Premium",
     description:
       "Développement web, marketing digital, ERP. Depuis Antananarivo, pour la France et l'Afrique.",
-    images: ["/og-image.png"],
-  },
-  icons: {
-    icon: "/logo.png",
   },
   robots: {
     index: true,

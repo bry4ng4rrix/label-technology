@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import ProjectTypesGrid from "@/components/construction/ProjectTypesGrid";
 import ActivityNotice from "@/components/construction/ActivityNotice";
 import ConstructionCta from "@/components/construction/ConstructionCta";
+import { OG_IMAGE } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Construction & Génie Civil — Nouvelle activité | Label Technology",
@@ -24,13 +25,12 @@ export const metadata: Metadata = {
     title: "Construction & Génie Civil — Nouvelle activité | Label Technology",
     description:
       "Label Technology développe une nouvelle expertise dédiée à la construction, au génie civil et aux infrastructures à Madagascar.",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Construction & Génie Civil — Label Technology" }],
+    images: [OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
     title: "Construction & Génie Civil | Label Technology",
     description: "Une nouvelle expertise dédiée à la construction et au génie civil, depuis Antananarivo.",
-    images: ["/og-image.png"],
   },
 };
 

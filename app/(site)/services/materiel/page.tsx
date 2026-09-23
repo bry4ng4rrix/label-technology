@@ -11,6 +11,7 @@ import MiniTestimonials from "@/components/shared/MiniTestimonials";
 import Link from "next/link";
 
 import MaterielChart from "@/components/services/MaterielChartWrapper";
+import { OG_IMAGE } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Vente Matériel Informatique — PC, Réseau, Infrastructure",
@@ -26,14 +27,13 @@ export const metadata: Metadata = {
     title: "Vente Matériel Informatique — PC, Réseau, Infrastructure | Label Technology",
     description:
       "Ordinateurs, réseau, périphériques, serveurs. Marques professionnelles, installation sur site, maintenance. Devis en 4h.",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Matériel Informatique — Label Technology" }],
+    images: [OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
     title: "Matériel Informatique — PC, Réseau | Label Technology",
     description:
       "Ordinateurs, réseau, périphériques. Marques pro, installation, maintenance. Devis en 4h Antananarivo.",
-    images: ["/og-image.png"],
   },
 };
 

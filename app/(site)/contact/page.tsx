@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import ContactForm from "@/components/contact/ContactForm";
 import Reveal from "@/components/shared/Reveal";
+import { OG_IMAGE } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Contact — Démarrez votre projet avec Label Technology",
@@ -18,14 +19,13 @@ export const metadata: Metadata = {
     title: "Contact — Démarrez votre projet avec Label Technology",
     description:
       "Contactez Label Technology pour démarrer votre projet. Réponse sous 72h. Antananarivo, Madagascar.",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Contact Label Technology" }],
+    images: [OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
     title: "Contact | Label Technology",
     description:
       "Contactez-nous pour votre projet tech. Réponse sous 72h. Antananarivo, Madagascar.",
-    images: ["/og-image.png"],
   },
 };
 

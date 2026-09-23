@@ -3,6 +3,7 @@ import CtaSection from "@/components/home/CtaSection";
 import ProjetsList from "@/components/projets/ProjetsList";
 import PageHero from "@/components/shared/PageHero";
 import { supabase, type Project } from "@/lib/supabase";
+import { OG_IMAGE } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Nos Réalisations — Projets web, marketing, ERP",
@@ -19,14 +20,13 @@ export const metadata: Metadata = {
     title: "Nos Réalisations — Projets web, marketing, ERP",
     description:
       "Les projets réalisés par Label Technology : développement web & mobile, marketing digital, digitalisation. Chaque chiffre est mesuré.",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Réalisations Label Technology" }],
+    images: [OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
     title: "Nos Réalisations | Label Technology",
     description:
       "Développement web & mobile, marketing digital, digitalisation. Réalisations détaillées avec métriques.",
-    images: ["/og-image.png"],
   },
 };
 

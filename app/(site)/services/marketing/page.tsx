@@ -11,6 +11,7 @@ import Reveal from "@/components/shared/Reveal";
 import SectionHeader from "@/components/shared/SectionHeader";
 import MarketingChart from "@/components/services/MarketingChartWrapper";
 import { Button } from "@/components/ui/button";
+import { OG_IMAGE } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Marketing Digital — SEO, Google Ads, Social Media",
@@ -28,21 +29,13 @@ export const metadata: Metadata = {
       "Marketing Digital — SEO, Google Ads, Social Media | Label Technology",
     description:
       "Stratégie digitale, SEO, publicité payante, social media, email marketing. Résultats mesurables depuis Antananarivo.",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Marketing Digital — Label Technology",
-      },
-    ],
+    images: [OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
     title: "Marketing Digital — SEO, Google Ads | Label Technology",
     description:
       "SEO, Google Ads, Meta Ads, social media, email marketing. Audit gratuit en 72h depuis Antananarivo.",
-    images: ["/og-image.png"],
   },
 };
 

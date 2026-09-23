@@ -144,9 +144,9 @@ export default function JobsList({ offres }: { offres: Offre[] }) {
                     )}
                   </div>
 
-                  <h3 className="font-display text-lg leading-snug tracking-tight text-foreground transition-colors group-hover:text-brand">
+                  <h2 className="font-display text-lg leading-snug tracking-tight text-foreground transition-colors group-hover:text-brand">
                     {o.title}
-                  </h3>
+                  </h2>
 
                   <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-muted-foreground">
                     <span className="flex items-center gap-1.5">

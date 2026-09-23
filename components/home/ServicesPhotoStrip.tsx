@@ -27,7 +27,7 @@ const PHOTOS = [
     href: "/services/digital",
     tag: "Digitalisation",
     color: "#10B981",
-    src: "/images/digitalisation.png",
+    src: "/images/digitalisation.jpg",
     alt: "Digitalisation & ERP — Label Technology",
   },
   {

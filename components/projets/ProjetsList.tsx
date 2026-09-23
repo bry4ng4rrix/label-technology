@@ -70,9 +70,9 @@ export default function ProjetsList({ projets }: { projets: Projet[] }) {
                     />
                   </div>
 
-                  <h3 className="font-display text-lg leading-snug tracking-tight text-foreground">
+                  <h2 className="font-display text-lg leading-snug tracking-tight text-foreground">
                     {p.title}
-                  </h3>
+                  </h2>
 
                   <p className="mt-3 flex-1 text-[15px] leading-relaxed text-muted-foreground">
                     {p.desc}

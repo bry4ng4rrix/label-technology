@@ -5,6 +5,7 @@ import JobsList from "@/components/recru/JobsList";
 import PageHero from "@/components/shared/PageHero";
 import { Button } from "@/components/ui/button";
 import { supabase, type JobOffer } from "@/lib/supabase";
+import { OG_IMAGE } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Recrutement — Offres d'emploi Label Technology",
@@ -21,14 +22,13 @@ export const metadata: Metadata = {
     title: "Recrutement — Offres d'emploi Label Technology",
     description:
       "Rejoignez une équipe de 16+ collaborateurs à Antananarivo. Développement, Marketing, Data, Comptabilité, Infrastructure.",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Recrutement Label Technology" }],
+    images: [OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
     title: "Recrutement | Label Technology",
     description:
       "Découvrez nos offres d'emploi à Antananarivo, tous domaines confondus.",
-    images: ["/og-image.png"],
   },
 };
 

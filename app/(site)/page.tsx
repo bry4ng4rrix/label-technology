@@ -5,6 +5,7 @@ import ServicesGrid from "@/components/home/ServicesGrid";
 import Process from "@/components/home/Process";
 import Testimonials from "@/components/home/Testimonials";
 import CtaSection from "@/components/home/CtaSection";
+import { OG_IMAGE } from "@/lib/seo";
 
 export const revalidate = 3600;
 
@@ -23,21 +24,13 @@ export const metadata: Metadata = {
     title: "Label Technology — Votre Partenaire Technologique Premium",
     description:
       "Développement web & mobile, marketing digital, ERP, traitement de données. Depuis Antananarivo, pour la France et l'Afrique.",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Label Technology",
-      },
-    ],
+    images: [OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
     title: "Label Technology — Votre Partenaire Technologique Premium",
     description:
       "Développement web, marketing digital, ERP. Depuis Antananarivo, pour la France et l'Afrique.",
-    images: ["/og-image.png"],
   },
 };
 

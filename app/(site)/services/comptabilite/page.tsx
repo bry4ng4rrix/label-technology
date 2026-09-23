@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import FaqSection from "@/components/shared/FaqSection";
 import MiniTestimonials from "@/components/shared/MiniTestimonials";
 import Link from "next/link";
+import { OG_IMAGE } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Comptabilité & Reporting — Saisie, Clôture, Tableaux de bord",
@@ -23,14 +24,13 @@ export const metadata: Metadata = {
     title: "Comptabilité & Reporting — Saisie, Clôture, Tableaux de bord | Label Technology",
     description:
       "Saisie comptable, rapprochements bancaires, reporting mensuel, tableaux de bord. Expertise comptable externalisée depuis Antananarivo.",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Comptabilité & Reporting — Label Technology" }],
+    images: [OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
     title: "Comptabilité & Reporting | Label Technology",
     description:
       "Saisie comptable, rapprochements bancaires, reporting mensuel. Externalisé depuis Antananarivo.",
-    images: ["/og-image.png"],
   },
 };
 

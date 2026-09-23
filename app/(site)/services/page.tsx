@@ -7,6 +7,7 @@ import PageHero from "@/components/shared/PageHero";
 import SectionHeader from "@/components/shared/SectionHeader";
 import Reveal from "@/components/shared/Reveal";
 import { Button } from "@/components/ui/button";
+import { OG_IMAGE } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Nos Services — 6 Expertises Tech depuis Antananarivo",
@@ -23,14 +24,13 @@ export const metadata: Metadata = {
     title: "Nos Services — 6 Expertises Tech depuis Antananarivo",
     description:
       "Développement web & mobile, marketing digital, ERP, traitement de données, matériel informatique, comptabilité.",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Services Label Technology" }],
+    images: [OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
     title: "Nos Services — 6 Expertises Tech | Label Technology",
     description:
       "Développement web, marketing digital, ERP, données, matériel, comptabilité. Depuis Antananarivo.",
-    images: ["/og-image.png"],
   },
 };
 

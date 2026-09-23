@@ -85,7 +85,7 @@ export default function Footer() {
           <div className="grid grid-cols-2 gap-8 md:col-span-7 md:grid-cols-2 lg:col-start-7 lg:col-span-6">
             {Object.entries(LINKS).map(([section, items]) => (
               <div key={section}>
-                <p className="label-tag mb-5 text-white/40">{section}</p>
+                <p className="label-tag mb-5 text-white/55">{section}</p>
                 <ul className="space-y-3">
                   {items.map((item) => (
                     <li key={item.href}>

@@ -4,6 +4,7 @@ import { ArrowRight, Clock, Newspaper } from "lucide-react";
 import PageHero from "@/components/shared/PageHero";
 import Reveal from "@/components/shared/Reveal";
 import { supabase, type BlogPost } from "@/lib/supabase";
+import { OG_IMAGE } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Blog — Insights & expertise tech",
@@ -20,14 +21,13 @@ export const metadata: Metadata = {
     title: "Blog — Insights & expertise tech",
     description:
       "Articles techniques, retours d'expérience et analyses sectorielles par l'équipe Label Technology.",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Blog Label Technology" }],
+    images: [OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
     title: "Blog | Label Technology",
     description:
       "Articles techniques, retours d'expérience et analyses sectorielles depuis Antananarivo.",
-    images: ["/og-image.png"],
   },
 };
 

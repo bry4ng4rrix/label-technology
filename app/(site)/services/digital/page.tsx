@@ -11,6 +11,7 @@ import MiniTestimonials from "@/components/shared/MiniTestimonials";
 import Link from "next/link";
 
 import DigitalChart from "@/components/services/DigitalChartWrapper";
+import { OG_IMAGE } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Digitalisation & ERP — Odoo, SIRH, Logiciels métier",
@@ -26,14 +27,13 @@ export const metadata: Metadata = {
     title: "Digitalisation & ERP — Odoo, SIRH, Logiciels métier | Label Technology",
     description:
       "ERP, SIRH, GED, logiciels métier sur mesure. Déploiement Odoo, automatisation des processus. Depuis Antananarivo.",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Digitalisation & ERP — Label Technology" }],
+    images: [OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
     title: "Digitalisation & ERP — Odoo, SIRH | Label Technology",
     description:
       "ERP, SIRH, GED, logiciels métier sur mesure. Déploiement Odoo, automatisation. Depuis Antananarivo.",
-    images: ["/og-image.png"],
   },
 };
 
@@ -111,7 +111,7 @@ export default function DigitalPage() {
           </>
         }
         description="ERP, SIRH, GED, logiciels métier sur mesure. On transforme vos processus manuels en flux automatisés — sans casser ce qui fonctionne déjà."
-        image={{ src: "/images/digitalisation.png", alt: "Digitalisation et ERP — Label Technology", priority: true }}
+        image={{ src: "/images/digitalisation.jpg", alt: "Digitalisation et ERP — Label Technology", priority: true }}
         actions={
           <>
             <Button asChild size="lg" className="rounded-full">

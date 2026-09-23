@@ -72,9 +72,24 @@ export default function OgImage() {
           <div style={{ color: "#2E55D4", fontSize: 14, fontWeight: 600, letterSpacing: 4, textTransform: "uppercase" }}>
             Antananarivo · Madagascar · International
           </div>
-          <div style={{ color: "white", fontWeight: 800, fontSize: 56, lineHeight: 1.1, letterSpacing: -1 }}>
-            Votre partenaire<br />
-            <span style={{ color: "#2E55D4" }}>technologique</span> premium
+          {/* Satori impose `display: flex` sur tout div à plusieurs enfants
+              et ne gère pas <br /> : on empile deux lignes explicites. */}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              color: "white",
+              fontWeight: 800,
+              fontSize: 56,
+              lineHeight: 1.1,
+              letterSpacing: -1,
+            }}
+          >
+            <span>Votre partenaire</span>
+            <div style={{ display: "flex" }}>
+              <span style={{ color: "#2E55D4" }}>technologique</span>
+              <span>&nbsp;premium</span>
+            </div>
           </div>
           <div style={{ color: "rgba(255,255,255,0.5)", fontSize: 20, fontWeight: 300, marginTop: 8 }}>
             Développement · Marketing · ERP · Data

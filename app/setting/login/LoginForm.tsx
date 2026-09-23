@@ -68,7 +68,7 @@ export default function LoginForm() {
             type="password"
             autoFocus
             placeholder="••••••••"
-            className="h-11 border-white/12 bg-white/5 text-white placeholder:text-white/30 hover:border-white/25 focus-visible:border-brand-glow focus-visible:bg-white/8 focus-visible:ring-brand-glow/25"
+            className="h-11 border-white/12 bg-white/5 text-white placeholder:text-white/45 hover:border-white/25 focus-visible:border-brand-glow focus-visible:bg-white/8 focus-visible:ring-brand-glow/25"
           />
         </div>
         <SubmitButton />
