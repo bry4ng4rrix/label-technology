@@ -117,8 +117,8 @@ export default async function AProposPage() {
             <div className="absolute inset-0 rounded-[2rem] bg-brand-lt/30 blur-3xl" />
             <div className="relative h-full overflow-hidden rounded-[2rem] ring-1 ring-white/15 shadow-2xl">
               <Image
-                src="/images/services/garrix.jpg"
-                alt="L'équipe Label Technology"
+                src="/images/services/digit.jpg"
+                alt="L'équipe Label Technology au travail dans ses locaux d'Antananarivo"
                 fill
                 sizes="(max-width: 1024px) 0px, 420px"
                 className="object-cover"
