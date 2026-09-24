@@ -539,6 +539,221 @@ img, video { max-width: 100%; height: auto; }
 .tilt-layer {
   transform: translateZ(var(--tz, 24px));
 }
+
+/* =============================================================================
+   PAGES SERVICES — système d'identité par service
+   Chaque page pose --svc / --svc-2 (voir lib/service-themes.ts) ; tous les
+   composants ci-dessous s'y accrochent, ce qui donne une identité propre à
+   chaque service tout en gardant un seul jeu de composants.
+   ============================================================================= */
+
+.svc-scope {
+  --svc: var(--brand-lt);
+  --svc-2: var(--brand);
+}
+
+/* --- Carte de verre premium ------------------------------------------------
+   Sur surface claire : verre laiteux. Sur surface encre : verre sombre.
+   Le halo d'accent n'apparaît qu'au survol, et reste discret. */
+.glass-card {
+  position: relative;
+  isolation: isolate;
+  border-radius: var(--radius-3xl);
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+  backdrop-filter: blur(var(--glass-blur)) saturate(160%);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-highlight), var(--elev-sm);
+  transition:
+    transform var(--dur-3) var(--motion-out),
+    border-color var(--dur-3) var(--motion-out),
+    box-shadow var(--dur-3) var(--motion-out);
+}
+/* Liseré lumineux qui suit le haut de la carte */
+.glass-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(140deg, color-mix(in srgb, var(--svc) 55%, transparent), transparent 45%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity var(--dur-3) var(--motion-out);
+  pointer-events: none;
+}
+.glass-card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    var(--glass-highlight),
+    var(--elev-lg),
+    0 0 0 1px color-mix(in srgb, var(--svc) 22%, transparent),
+    0 18px 50px -20px color-mix(in srgb, var(--svc) 45%, transparent);
+}
+.glass-card:hover::before { opacity: 1; }
+
+.dark .glass-card,
+.glass-card[data-tone="dark"] {
+  background: rgb(255 255 255 / 0.05);
+  border-color: rgb(255 255 255 / 0.10);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.08);
+}
+.glass-card[data-tone="dark"]:hover {
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.12),
+    var(--elev-lg),
+    0 0 0 1px color-mix(in srgb, var(--svc) 35%, transparent),
+    0 22px 60px -24px color-mix(in srgb, var(--svc) 60%, transparent);
+}
+
+/* --- Pastille d'icône ------------------------------------------------------ */
+.svc-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-xl);
+  color: var(--svc);
+  background: color-mix(in srgb, var(--svc) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--svc) 22%, transparent);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.12);
+  transition:
+    transform var(--dur-3) var(--motion-out),
+    background-color var(--dur-3) var(--motion-out),
+    box-shadow var(--dur-3) var(--motion-out);
+}
+.group:hover .svc-icon {
+  transform: translateY(-2px);
+  background: color-mix(in srgb, var(--svc) 20%, transparent);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.18),
+    0 10px 28px -12px color-mix(in srgb, var(--svc) 70%, transparent);
+}
+
+/* --- Badge de verre (hero) ------------------------------------------------- */
+.svc-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  border-radius: 9999px;
+  padding: 0.4rem 0.9rem 0.4rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgb(255 255 255 / 0.9);
+  background: rgb(255 255 255 / 0.07);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  backdrop-filter: blur(14px) saturate(160%);
+  border: 1px solid rgb(255 255 255 / 0.14);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.12);
+}
+
+/* --- Fonds immersifs ------------------------------------------------------- */
+/* Mesh de base : deux nappes radiales teintées par le service */
+.svc-mesh {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(60% 55% at 12% 8%, color-mix(in srgb, var(--svc) 28%, transparent) 0%, transparent 62%),
+    radial-gradient(50% 50% at 92% 22%, color-mix(in srgb, var(--svc-2) 22%, transparent) 0%, transparent 60%),
+    radial-gradient(70% 60% at 50% 110%, color-mix(in srgb, var(--svc) 14%, transparent) 0%, transparent 70%);
+}
+
+/* Motifs techniques — un seul gradient répété, coût nul */
+.svc-pattern { position: absolute; inset: 0; pointer-events: none; opacity: 0.5; }
+
+.svc-pattern[data-pattern="grid"] {
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--svc) 16%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--svc) 16%, transparent) 1px, transparent 1px);
+  background-size: 52px 52px;
+  -webkit-mask-image: radial-gradient(ellipse 75% 65% at 50% 0%, #000 25%, transparent 100%);
+  mask-image: radial-gradient(ellipse 75% 65% at 50% 0%, #000 25%, transparent 100%);
+}
+.svc-pattern[data-pattern="dots"] {
+  background-image: radial-gradient(color-mix(in srgb, var(--svc) 30%, transparent) 1px, transparent 1px);
+  background-size: 26px 26px;
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 10%, #000 20%, transparent 100%);
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 10%, #000 20%, transparent 100%);
+}
+.svc-pattern[data-pattern="lines"] {
+  background-image: repeating-linear-gradient(
+    115deg,
+    color-mix(in srgb, var(--svc) 14%, transparent) 0 1px,
+    transparent 1px 22px
+  );
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 70% 0%, #000 20%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 70% at 70% 0%, #000 20%, transparent 100%);
+}
+.svc-pattern[data-pattern="rings"] {
+  background-image: repeating-radial-gradient(
+    circle at 85% 12%,
+    color-mix(in srgb, var(--svc) 15%, transparent) 0 1px,
+    transparent 1px 46px
+  );
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 80% 5%, #000 10%, transparent 90%);
+  mask-image: radial-gradient(ellipse 80% 70% at 80% 5%, #000 10%, transparent 90%);
+}
+.svc-pattern[data-pattern="waves"] {
+  background-image: repeating-linear-gradient(
+    0deg,
+    color-mix(in srgb, var(--svc) 12%, transparent) 0 1px,
+    transparent 1px 30px
+  );
+  -webkit-mask-image: radial-gradient(ellipse 85% 60% at 40% 0%, #000 15%, transparent 95%);
+  mask-image: radial-gradient(ellipse 85% 60% at 40% 0%, #000 15%, transparent 95%);
+}
+.svc-pattern[data-pattern="ledger"] {
+  background-image:
+    repeating-linear-gradient(0deg, color-mix(in srgb, var(--svc) 13%, transparent) 0 1px, transparent 1px 34px),
+    linear-gradient(90deg, color-mix(in srgb, var(--svc) 18%, transparent) 1px, transparent 1px);
+  background-size: auto, 120px 100%;
+  -webkit-mask-image: radial-gradient(ellipse 80% 65% at 45% 0%, #000 18%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 65% at 45% 0%, #000 18%, transparent 100%);
+}
+
+/* Blobs flottants — animation lente, désactivée en reduced-motion */
+.svc-blob {
+  position: absolute;
+  border-radius: 9999px;
+  pointer-events: none;
+  filter: blur(70px);
+  opacity: 0.4;
+  animation: svcFloat 18s var(--motion-in-out) infinite;
+  will-change: transform;
+}
+.svc-blob:nth-of-type(2) { animation-duration: 24s; animation-delay: -6s; }
+@keyframes svcFloat {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50%      { transform: translate3d(0, -26px, 0) scale(1.06); }
+}
+
+/* --- Puce de statistique (hero) -------------------------------------------- */
+.svc-stat {
+  position: relative;
+  padding: 0.85rem 1rem;
+  text-align: center;
+}
+.svc-stat:not(:first-child)::before {
+  content: "";
+  position: absolute;
+  inset-block: 0.75rem;
+  left: 0;
+  width: 1px;
+  background: rgb(255 255 255 / 0.12);
+}
+
+/* --- Liseré supérieur d'accent --------------------------------------------- */
+.svc-rule {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--svc) 60%, transparent), transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .svc-blob { animation: none !important; }
+}
 }
 
 /* =============================================================================

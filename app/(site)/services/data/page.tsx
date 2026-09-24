@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
 
-import { ArrowRight } from "lucide-react";
-import CtaSection from "@/components/home/CtaSection";
-import MetricsBand from "@/components/shared/MetricsBand";
-import PageHero from "@/components/shared/PageHero";
-import SectionHeader from "@/components/shared/SectionHeader";
-import { Button } from "@/components/ui/button";
 import FaqSection from "@/components/shared/FaqSection";
 import MiniTestimonials from "@/components/shared/MiniTestimonials";
-import Link from "next/link";
-
+import Reveal from "@/components/shared/Reveal";
+import ServiceCard from "@/components/services/ServiceCard";
+import ServiceCta from "@/components/services/ServiceCta";
+import ServiceHero from "@/components/services/ServiceHero";
+import ServiceMetrics from "@/components/services/ServiceMetrics";
+import ServiceScope from "@/components/services/ServiceScope";
+import ServiceSection from "@/components/services/ServiceSection";
+import ServiceStatBars from "@/components/services/ServiceStatBars";
+import ServiceSteps from "@/components/services/ServiceSteps";
 import DataChart from "@/components/services/DataChartWrapper";
 import { OG_IMAGE } from "@/lib/seo";
 
@@ -95,15 +96,15 @@ const jsonLd = {
 
 export default function DataPage() {
   return (
-    <main>
+    <ServiceScope slug="data" as="main">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <PageHero
-        size="lg"
-        eyebrow="TRAITEMENT DE DONNÉES"
+      <ServiceHero
+        slug="data"
+        eyebrow="Traitement de données"
         title={
           <>
             Vos données sont un actif.
@@ -111,96 +112,87 @@ export default function DataPage() {
             <span className="gradient-text-light">On les rend exploitables.</span>
           </>
         }
-        description="Saisie, nettoyage, analyse, automatisation. Une équipe spécialisée pour traiter des volumes importants avec une précision garantie à 99,5%."
-        image={{ src: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&h=700&fit=crop&q=80", alt: "Traitement et analyse de données", priority: true }}
-        actions={
-          <>
-            <Button asChild size="lg" className="rounded-full">
-              <Link href="/contact">
-                Parler de mon projet
-                <ArrowRight data-icon="inline-end" />
-              </Link>
-            </Button>
-            <Button asChild size="lg" variant="glass" className="rounded-full">
-              <Link href="/projets">Voir nos réalisations</Link>
-            </Button>
-          </>
-        }
+        description="Saisie, nettoyage, analyse, automatisation. Une équipe spécialisée pour traiter des volumes importants avec une précision garantie à 99,5 %."
+        primary={{ href: "/contact", label: "Parler de mon projet" }}
+        stats={METRICS.map((m) => ({ value: m.v, label: m.l }))}
       />
 
-      <MetricsBand items={METRICS.map((m) => ({ value: m.v, label: m.l }))} />
+      <ServiceMetrics slug="data" items={METRICS.map((m) => ({ value: m.v, label: m.l }))} />
 
-      {/* Services */}
-      <section className="surface-light section relative">
-        <div className="container-x">
-          <SectionHeader eyebrow="NOS PRESTATIONS" title="De la donnée brute à la décision." />
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {SERVICES.map((s, i) => (
-              <div key={i} className="card-premium animate-fadeup flex h-full flex-col p-7" style={{ animationDelay: `${i * 0.08}s` }}>
-                <span className="mb-5 flex size-12 items-center justify-center rounded-xl bg-brand/8 text-2xl leading-none">{s.icon}</span>
-                <h3 className="h3-display mb-3 text-foreground">{s.title}</h3>
-                <p className="text-[15px] leading-relaxed text-muted-foreground">{s.desc}</p>
-              </div>
-            ))}
-          </div>
+      {/* Prestations */}
+      <ServiceSection
+        slug="data"
+        eyebrow="Nos prestations"
+        title={
+          <>
+            De la donnée brute <span className="gradient-text">à la décision.</span>
+          </>
+        }
+        description="Six prestations qui couvrent tout le cycle de vie de vos données, de la collecte à l'archivage conforme."
+      >
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {SERVICES.map((s, i) => (
+            <Reveal key={s.title} delay={(i % 3) * 0.08} className="h-full">
+              <ServiceCard icon={<span className="text-2xl leading-none">{s.icon}</span>} title={s.title}>
+                {s.desc}
+              </ServiceCard>
+            </Reveal>
+          ))}
         </div>
-      </section>
+      </ServiceSection>
 
-      {/* Chart */}
-      <section className="surface-dark noise hairline-top section-sm relative overflow-hidden">
-        <div className="container-x grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
-          <div>
-            <p className="animate-fadeup label-tag mb-4 inline-flex items-center gap-2.5 text-brand-glow"><span className="h-px w-6 bg-brand-glow/70" />EN CHIFFRES</p>
-            <h2 className="animate-fadeup-d1 h2-display text-white mb-6">
-              Volume, rigueur<br />et confidentialité.
-            </h2>
-            <p className="prose-body animate-fadeup-d2 mb-8 text-white/60">
-              Nos équipes traitent des millions d'entrées chaque mois pour des clients
-              en France, en Belgique et à Madagascar. Chaque mission est documentée,
-              traçable et conforme aux exigences RGPD.
-            </p>
-            <div className="space-y-5">
-              {[
-                { l: "Précision moyenne sur saisie", v: "99.7%" },
-                { l: "Missions livrées dans les délais", v: "98%" },
-                { l: "Clients avec contrat récurrent", v: "72%" },
-              ].map((s, i) => (
-                <div key={i}>
-                  <div className="mb-1.5 flex justify-between">
-                    <span className="text-sm text-white/55">{s.l}</span>
-                    <span className="font-display text-sm text-brand-glow">{s.v}</span>
-                  </div>
-                  <div className="h-1.5 overflow-hidden rounded-full bg-white/8">
-                    <div className="svc-bar h-full rounded-full" style={{ width: s.v, backgroundColor: "var(--brand-lt)", animationDelay: `${0.3 + i * 0.18}s` }} />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-          <DataChart />
+      {/* En chiffres — composition asymétrique */}
+      <ServiceSection
+        slug="data"
+        tone="dark"
+        eyebrow="En chiffres"
+        title={
+          <>
+            Volume, rigueur
+            <br />
+            et confidentialité.
+          </>
+        }
+        description="Nos équipes traitent des millions d'entrées chaque mois pour des clients en France, en Belgique et à Madagascar. Chaque mission est documentée, traçable et conforme au RGPD."
+      >
+        <div className="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+          <ServiceStatBars
+            items={[
+              { label: "Précision moyenne sur saisie", value: "99.7%" },
+              { label: "Missions livrées dans les délais", value: "98%" },
+              { label: "Clients avec contrat récurrent", value: "72%" },
+            ]}
+          />
+          <Reveal delay={0.15}>
+            <DataChart />
+          </Reveal>
         </div>
-      </section>
+      </ServiceSection>
 
-      {/* Process */}
-      <section className="section bg-background">
-        <div className="container-x">
-          <SectionHeader eyebrow="NOTRE MÉTHODE" title="Rigueur à chaque étape." />
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {PROCESS.map((p, i) => (
-              <div key={i} className="card-premium svc-step animate-fadeup flex h-full flex-col p-7" style={{ animationDelay: `${i * 0.1}s` }}>
-                <div className="svc-step-num font-display mb-6 text-5xl leading-none text-brand">{p.num}</div>
-                <div className="svc-step-line mb-5 h-0.5 w-8 origin-left rounded-full bg-brand" />
-                <h3 className="h3-display mb-3 text-foreground">{p.title}</h3>
-                <p className="text-[15px] leading-relaxed text-muted-foreground">{p.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Méthode */}
+      <ServiceSection
+        slug="data"
+        tone="plain"
+        eyebrow="Notre méthode"
+        title="Rigueur à chaque étape."
+        description="Quatre étapes, un format de sortie défini avant de commencer, et une validation finale de votre côté."
+      >
+        <ServiceSteps steps={PROCESS.map((p) => ({ num: p.num, title: p.title, desc: p.desc }))} />
+      </ServiceSection>
 
       <MiniTestimonials items={TESTIMONIALS} />
       <FaqSection items={FAQ} />
-      <CtaSection />
-    </main>
+
+      <ServiceCta
+        slug="data"
+        title={
+          <>
+            Vos données dorment quelque part.{" "}
+            <span className="gradient-text-light">On les réveille.</span>
+          </>
+        }
+        description="Envoyez-nous un échantillon : on vous dit sous 72h ce qu'on peut en tirer, avec un devis chiffré."
+      />
+    </ServiceScope>
   );
 }
