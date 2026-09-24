@@ -4,6 +4,8 @@ import BigStats from "@/components/services/BigStats";
 import EditorialHero from "@/components/services/EditorialHero";
 import EditorialRow from "@/components/services/EditorialRow";
 import FeatureGrid from "@/components/services/FeatureGrid";
+import PhotoBand from "@/components/services/PhotoBand";
+import PhotoMosaic from "@/components/services/PhotoMosaic";
 import SectionIntro from "@/components/services/SectionIntro";
 import ServiceCta from "@/components/services/ServiceCta";
 import ServiceScope from "@/components/services/ServiceScope";
@@ -173,6 +175,47 @@ export default function DataPage() {
         </EditorialRow>
       </ServiceSection>
 
+
+      {/* Deuxième rangée éditoriale — photo à gauche */}
+      <ServiceSection slug="data">
+        <EditorialRow
+          reverse
+          eyebrow="Automatisation"
+          title={
+            <>
+              Ce qui est répétitif
+              <br />
+              doit être automatisé.
+            </>
+          }
+          points={[
+            "Pipelines ETL en Python, documentés et versionnés",
+            "Traitements planifiés, avec alerte en cas d'anomalie",
+            "Reprise manuelle possible à tout moment",
+          ]}
+          image={{ src: "/images/services/data/row2.jpg", alt: "Visualisation de flux de données à l'échelle mondiale" }}
+          stat={{ value: "−80 %", label: "temps de traitement après automatisation" }}
+          ratio="4/3"
+        >
+          Une tâche faite chaque semaine à la main finit par coûter plus cher que son automatisation. On identifie ces tâches, on les scripte, on vous rend le temps.
+        </EditorialRow>
+      </ServiceSection>
+
+      {/* Bandeau photographique — temps fort éditorial */}
+      <PhotoBand
+        slug="data"
+        image={{ src: "/images/services/data/band.jpg", alt: "Plan de travail avec ordinateurs et documents" }}
+        eyebrow="Confidentialité"
+        title={<>Vos données ne sortent pas<br />de nos environnements.</>}
+        stats={[
+          { value: "RGPD", label: "conformité totale" },
+          { value: "99,7 %", label: "précision moyenne" },
+          { value: "48h", label: "délai standard" },
+        ]}
+      >
+        Accès nominatifs, traçabilité complète des traitements, suppression sur demande. Conformité RGPD sur l'ensemble de la chaîne.
+      </PhotoBand>
+
       {/* Chiffres en très grande typo */}
       <BigStats
         slug="data"
@@ -207,6 +250,27 @@ export default function DataPage() {
             </p>
           </Reveal>
         </div>
+      </ServiceSection>
+
+
+      {/* Mosaïque asymétrique */}
+      <ServiceSection slug="data" tone="plain">
+        <PhotoMosaic
+          eyebrow="Analyse & restitution"
+          title={
+            <>
+              Une donnée qu'on ne lit pas
+              <br />
+              ne sert à rien.
+            </>
+          }
+          images={[
+            { src: "/images/services/data/mosaic-a.jpg", alt: "Tableau de bord de suivi d'activité" },
+            { src: "/images/services/data/mosaic-b.jpg", alt: "Consultation de données sur ordinateur" },
+          ]}
+        >
+          Tableaux de bord sur mesure, rapports automatisés, visualisations pensées pour vos équipes métier — pas pour des analystes.
+        </PhotoMosaic>
       </ServiceSection>
 
       {/* Méthode */}

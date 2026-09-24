@@ -4,6 +4,8 @@ import BigStats from "@/components/services/BigStats";
 import EditorialHero from "@/components/services/EditorialHero";
 import EditorialRow from "@/components/services/EditorialRow";
 import FeatureGrid from "@/components/services/FeatureGrid";
+import PhotoBand from "@/components/services/PhotoBand";
+import PhotoMosaic from "@/components/services/PhotoMosaic";
 import SectionIntro from "@/components/services/SectionIntro";
 import ServiceCta from "@/components/services/ServiceCta";
 import ServiceScope from "@/components/services/ServiceScope";
@@ -275,6 +277,47 @@ export default function MarketingPage() {
         </EditorialRow>
       </ServiceSection>
 
+
+      {/* Deuxième rangée éditoriale — photo à gauche */}
+      <ServiceSection slug="marketing">
+        <EditorialRow
+          reverse
+          eyebrow="Pilotage"
+          title={
+            <>
+              Ce qui se mesure
+              <br />
+              se pilote.
+            </>
+          }
+          points={[
+            "Tableau de bord partagé, mis à jour en continu",
+            "Arbitrage budgétaire mensuel entre les canaux",
+            "Attribution claire de chaque euro dépensé",
+          ]}
+          image={{ src: "/images/services/marketing/row2.jpg", alt: "Tableau de bord d'analyse d'audience" }}
+          stat={{ value: "+180 %", label: "trafic organique sur douze mois" }}
+          ratio="4/3"
+        >
+          On ne vous envoie pas un rapport PDF en fin de mois. Vous avez accès au tableau de bord en permanence, avec les mêmes chiffres que nous.
+        </EditorialRow>
+      </ServiceSection>
+
+      {/* Bandeau photographique — temps fort éditorial */}
+      <PhotoBand
+        slug="marketing"
+        image={{ src: "/images/services/marketing/band.jpg", alt: "Équipe en session de travail collaboratif" }}
+        eyebrow="Notre engagement"
+        title={<>Des KPIs chiffrés<br />dès le premier brief.</>}
+        stats={[
+          { value: "×2,4", label: "coût par acquisition" },
+          { value: "6 mois", label: "résultats durables" },
+          { value: "MG/AF/EU", label: "marchés couverts" },
+        ]}
+      >
+        Si les objectifs ne sont pas atteints au bout de trois mois, on continue sans facturer jusqu'à ce qu'ils le soient.
+      </PhotoBand>
+
       {/* Chiffres en très grande typo */}
       <BigStats
         slug="marketing"
@@ -309,6 +352,27 @@ export default function MarketingPage() {
         </div>
       </ServiceSection>
 
+
+
+      {/* Mosaïque asymétrique */}
+      <ServiceSection slug="marketing" tone="plain">
+        <PhotoMosaic
+          eyebrow="Stratégie & contenu"
+          title={
+            <>
+              Une audience ne s'achète pas,
+              <br />
+              elle se construit.
+            </>
+          }
+          images={[
+            { src: "/images/services/marketing/mosaic-a.jpg", alt: "Atelier de stratégie sur tableau" },
+            { src: "/images/services/marketing/mosaic-b.jpg", alt: "Réunion d'équipe marketing" },
+          ]}
+        >
+          Contenu éditorial, référencement naturel, campagnes payantes et réseaux sociaux travaillent ensemble. Le payant amorce, l'organique installe.
+        </PhotoMosaic>
+      </ServiceSection>
 
       {/* Méthode */}
       <ServiceSection slug="marketing" tone="plain">

@@ -11,6 +11,8 @@ import BigStats from "@/components/services/BigStats";
 import EditorialHero from "@/components/services/EditorialHero";
 import EditorialRow from "@/components/services/EditorialRow";
 import FeatureGrid from "@/components/services/FeatureGrid";
+import PhotoBand from "@/components/services/PhotoBand";
+import PhotoMosaic from "@/components/services/PhotoMosaic";
 import SectionIntro from "@/components/services/SectionIntro";
 import ServiceBackground from "@/components/services/ServiceBackground";
 import ServiceCta from "@/components/services/ServiceCta";
@@ -276,6 +278,47 @@ export default function DevPage() {
         </div>
       </section>
 
+
+      {/* Deuxième rangée éditoriale — photo à gauche */}
+      <ServiceSection slug="dev">
+        <EditorialRow
+          reverse
+          eyebrow="Qualité de code"
+          title={
+            <>
+              Le code qu'on écrit,
+              <br />
+              quelqu'un devra le relire.
+            </>
+          }
+          points={[
+            "Revue de code systématique avant chaque fusion",
+            "Tests automatisés sur les parcours critiques",
+            "Documentation technique livrée avec le projet",
+          ]}
+          image={{ src: "/images/services/dev/row2.jpg", alt: "Éditeur de code avec coloration syntaxique" }}
+          stat={{ value: "100 %", label: "du code livré vous appartient" }}
+          ratio="4/3"
+        >
+          Un projet ne s'arrête pas à la mise en ligne. On écrit pour la personne qui reprendra le code dans deux ans — y compris si ce n'est pas nous.
+        </EditorialRow>
+      </ServiceSection>
+
+      {/* Bandeau photographique — temps fort éditorial */}
+      <PhotoBand
+        slug="dev"
+        image={{ src: "/images/services/dev/band.jpg", alt: "Espace de travail lumineux d'une équipe technique" }}
+        eyebrow="Notre façon de travailler"
+        title={<>Une équipe senior,<br />pas un plateau de juniors.</>}
+        stats={[
+          { value: "3–6 sem.", label: "site vitrine" },
+          { value: "2–6 mois", label: "application métier" },
+          { value: "72h", label: "devis détaillé" },
+        ]}
+      >
+        Les personnes qui cadrent votre projet sont celles qui le développent. Pas d'intermédiaire, pas de transfert de dossier en cours de route.
+      </PhotoBand>
+
       {/* Chiffres en très grande typo */}
       <BigStats
         slug="dev"
@@ -310,6 +353,27 @@ export default function DevPage() {
             </div>
           </Reveal>
         </div>
+      </ServiceSection>
+
+
+      {/* Mosaïque asymétrique */}
+      <ServiceSection slug="dev" tone="plain">
+        <PhotoMosaic
+          eyebrow="Du design au déploiement"
+          title={
+            <>
+              On couvre toute
+              <br />
+              la chaîne.
+            </>
+          }
+          images={[
+            { src: "/images/services/dev/mosaic-a.jpg", alt: "Développeur concentré devant son écran" },
+            { src: "/images/services/dev/mosaic-b.jpg", alt: "Interface applicative en cours de test" },
+          ]}
+        >
+          Maquettes Figma, développement, intégration continue, mise en production, supervision. Un seul interlocuteur du premier atelier jusqu'au premier utilisateur.
+        </PhotoMosaic>
       </ServiceSection>
 
       {/* Méthode */}

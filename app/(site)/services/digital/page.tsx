@@ -4,6 +4,8 @@ import BigStats from "@/components/services/BigStats";
 import EditorialHero from "@/components/services/EditorialHero";
 import EditorialRow from "@/components/services/EditorialRow";
 import FeatureGrid from "@/components/services/FeatureGrid";
+import PhotoBand from "@/components/services/PhotoBand";
+import PhotoMosaic from "@/components/services/PhotoMosaic";
 import SectionIntro from "@/components/services/SectionIntro";
 import ServiceCta from "@/components/services/ServiceCta";
 import ServiceScope from "@/components/services/ServiceScope";
@@ -168,6 +170,47 @@ export default function DigitalPage() {
         </EditorialRow>
       </ServiceSection>
 
+
+      {/* Deuxième rangée éditoriale — photo à gauche */}
+      <ServiceSection slug="digital">
+        <EditorialRow
+          reverse
+          eyebrow="Intégration"
+          title={
+            <>
+              Votre ERP doit parler
+              <br />
+              à vos autres outils.
+            </>
+          }
+          points={[
+            "Connecteurs vers votre comptabilité et votre banque",
+            "Synchronisation des données sans double saisie",
+            "APIs documentées pour vos évolutions futures",
+          ]}
+          image={{ src: "/images/services/digital/row2.jpg", alt: "Équipe travaillant sur un outil de gestion" }}
+          stat={{ value: "−94 %", label: "erreurs de saisie après intégration" }}
+          ratio="4/3"
+        >
+          Un ERP isolé recrée les silos qu'il devait supprimer. On branche vos outils entre eux pour qu'une information saisie une fois circule partout.
+        </EditorialRow>
+      </ServiceSection>
+
+      {/* Bandeau photographique — temps fort éditorial */}
+      <PhotoBand
+        slug="digital"
+        image={{ src: "/images/services/digital/band.jpg", alt: "Open space d'une équipe en activité" }}
+        eyebrow="Conduite du changement"
+        title={<>La technique, c'est<br />la moitié du travail.</>}
+        stats={[
+          { value: "4–8 sem.", label: "déploiement Odoo" },
+          { value: "0", label: "interruption de service" },
+          { value: "3 mois", label: "support inclus" },
+        ]}
+      >
+        Formation sur vos cas réels, accompagnement au démarrage et support pendant trois mois. L'adoption se joue là, pas dans le paramétrage.
+      </PhotoBand>
+
       {/* Chiffres en très grande typo */}
       <BigStats
         slug="digital"
@@ -202,6 +245,27 @@ export default function DigitalPage() {
         </div>
       </ServiceSection>
 
+
+
+      {/* Mosaïque asymétrique */}
+      <ServiceSection slug="digital" tone="plain">
+        <PhotoMosaic
+          eyebrow="ERP, SIRH, GED"
+          title={
+            <>
+              Un outil par besoin,
+              <br />
+              pas un besoin par outil.
+            </>
+          }
+          images={[
+            { src: "/images/services/digital/mosaic-a.jpg", alt: "Utilisatrice sur un logiciel de gestion" },
+            { src: "/images/services/digital/mosaic-b.jpg", alt: "Postes de travail connectés" },
+          ]}
+        >
+          Odoo, SAP ou développement sur mesure : on choisit après avoir compris vos processus, jamais avant. Le bon outil est celui que vos équipes utilisent vraiment.
+        </PhotoMosaic>
+      </ServiceSection>
 
       {/* Méthode */}
       <ServiceSection slug="digital" tone="plain">
