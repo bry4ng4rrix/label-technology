@@ -4,6 +4,10 @@ import Link from "next/link";
 
 import { ArrowRight } from "lucide-react";
 import CtaSection from "@/components/home/CtaSection";
+import EditorialRow from "@/components/services/EditorialRow";
+import PhotoBand from "@/components/services/PhotoBand";
+import PhotoMosaic from "@/components/services/PhotoMosaic";
+import ServiceScope from "@/components/services/ServiceScope";
 import MetricsBand from "@/components/shared/MetricsBand";
 import MiniTestimonials from "@/components/shared/MiniTestimonials";
 import PageHero from "@/components/shared/PageHero";
@@ -96,7 +100,7 @@ export default async function AProposPage() {
     .order("order", { ascending: true })
     .returns<Testimonial[]>();
   return (
-    <main>
+    <ServiceScope slug="index" as="main">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -134,6 +138,31 @@ export default async function AProposPage() {
       />
 
       <MetricsBand items={CHIFFRES} />
+
+      {/* Bandeau photographique — nos locaux */}
+      <PhotoBand
+        tint="normal"
+        image={{
+          src: "/images/pages/about-band.jpg",
+          alt: "Espace de travail de Label Technology",
+        }}
+        eyebrow="Depuis Antananarivo"
+        title={
+          <>
+            Le talent malgache,
+            <br />
+            aux standards européens.
+          </>
+        }
+        stats={[
+          { value: "2022", label: "année de création" },
+          { value: "16+", label: "collaborateurs" },
+          { value: "FR/EN", label: "équipe bilingue" },
+        ]}
+      >
+        Une équipe formée sur place, qui travaille aux heures de bureau
+        européennes et livre avec les exigences d&apos;une ESN.
+      </PhotoBand>
 
       {/* Notre histoire */}
       <section className="surface-light section relative overflow-hidden">
@@ -210,6 +239,63 @@ export default async function AProposPage() {
         </Reveal>
       </section>
 
+      {/* Rangée éditoriale — la manière de travailler */}
+      <section className="section bg-background">
+        <div className="container-x">
+          <EditorialRow
+            eyebrow="Notre façon de travailler"
+            title={
+              <>
+                Un partenaire,
+                <br />
+                pas un prestataire de plus.
+              </>
+            }
+            points={[
+              "Un interlocuteur unique du premier échange à la livraison",
+              "Des points d'étape réguliers, sans jargon inutile",
+              "Un support qui continue après la mise en production",
+            ]}
+            image={{
+              src: "/images/services/mark.jpg",
+              alt: "Session de travail entre collaborateurs",
+            }}
+            stat={{ value: "72h", label: "délai de réponse garanti" }}
+            cta={{ href: "/contact", label: "Nous parler de votre projet" }}
+            ratio="5/4"
+          >
+            On ne vend pas des journées-hommes. On s&apos;engage sur un
+            résultat, on explique les arbitrages, et on reste joignable quand
+            le projet est livré.
+          </EditorialRow>
+        </div>
+      </section>
+
+      {/* Mosaïque — le quotidien */}
+      <section className="surface-light section relative overflow-hidden">
+        <div className="container-x">
+          <PhotoMosaic
+            eyebrow="Le quotidien"
+            title={
+              <>
+                Six métiers,
+                <br />
+                un seul plateau.
+              </>
+            }
+            images={[
+              { src: "/images/services/fetra.jpg", alt: "Le plateau de production à Antananarivo" },
+              { src: "/images/services/digit.jpg", alt: "Collaborateurs en session de travail" },
+            ]}
+          >
+            Développement, marketing, digitalisation, données, matériel et
+            comptabilité partagent les mêmes bureaux. C&apos;est ce qui nous
+            permet de mobiliser plusieurs expertises sur un même projet sans
+            multiplier les interlocuteurs.
+          </PhotoMosaic>
+        </div>
+      </section>
+
       {/* Valeurs */}
       <section className="section bg-background">
         <div className="container-x">
@@ -263,6 +349,6 @@ export default async function AProposPage() {
 
       <MiniTestimonials items={testimonials ?? []} />
       <CtaSection />
-    </main>
+    </ServiceScope>
   );
 }

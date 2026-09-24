@@ -1,3 +1,4 @@
+import PhotoPanel from "@/components/services/PhotoPanel";
 import Reveal from "@/components/shared/Reveal";
 import SectionHeader from "@/components/shared/SectionHeader";
 
@@ -7,24 +8,28 @@ const STEPS = [
     title: "Écoute",
     desc: "Cadrage précis de vos enjeux avant toute proposition. On comprend votre métier, vos contraintes et vos objectifs avant de suggérer quoi que ce soit.",
     color: "#3B82F6",
+    image: "/images/services/digital/mosaic-b.jpg",
   },
   {
     num: "02",
     title: "Conception",
     desc: "Pas de boîte noire. Chaque étape est validée avec vous. La solution vous appartient avant même d'être développée — vous ne découvrez pas le résultat à la livraison.",
     color: "#D4AF37",
+    image: "/images/services/marketing/mosaic-a.jpg",
   },
   {
     num: "03",
     title: "Exécution",
     desc: "Délais tenus, budget respecté, livrables concrets et mesurables. Notre réputation se construit livraison après livraison — pas sur des promesses en avant-vente.",
     color: "#FF6B6B",
+    image: "/images/services/dev/mosaic-a.jpg",
   },
   {
     num: "04",
     title: "Suivi",
     desc: "La livraison n'est pas la fin de l'histoire — c'est le premier jour de votre accélération. Support continu, itérations, évolutions. Votre interlocuteur reste le même, votre ambition grandit.",
     color: "#10B981",
+    image: "/images/services/comptabilite/mosaic-a.jpg",
   },
 ];
 
@@ -48,18 +53,23 @@ export default function Process() {
         />
 
         <ol className="relative grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
-          {/* Ligne de progression (desktop) */}
-          <div
-            aria-hidden
-            className="absolute top-[3.25rem] right-8 left-8 hidden h-px bg-linear-to-r from-transparent via-border to-transparent lg:block"
-          />
           {STEPS.map((step, i) => (
             <Reveal key={step.num} delay={i * 0.08} className="h-full">
               <li
-                className="card-premium group flex h-full flex-col p-7"
-                style={{ ["--accent" as string]: step.color }}
+                className="group flex h-full flex-col"
+                style={{ ["--accent" as string]: step.color, ["--svc" as string]: step.color }}
               >
-                <div className="mb-8 flex items-center justify-between">
+                <PhotoPanel
+                  src={step.image}
+                  alt=""
+                  ratio="4/3"
+                  tone="light"
+                  tint="soft"
+                  quality={60}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  className="mb-7 rounded-2xl"
+                />
+                <div className="mb-5 flex items-center justify-between">
                   <span
                     className="font-display text-4xl tracking-tight text-foreground/15 transition-colors duration-300 group-hover:text-[var(--accent)]"
                   >

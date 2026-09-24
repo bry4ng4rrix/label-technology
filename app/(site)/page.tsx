@@ -3,6 +3,7 @@ import HeroSplit from "@/components/home/HeroSplit";
 import Ticker from "@/components/home/Ticker";
 import ServicesGrid from "@/components/home/ServicesGrid";
 import Process from "@/components/home/Process";
+import TeamBand from "@/components/home/TeamBand";
 import Testimonials from "@/components/home/Testimonials";
 import CtaSection from "@/components/home/CtaSection";
 import { OG_IMAGE } from "@/lib/seo";
@@ -153,6 +154,7 @@ export default function Home() {
       <HeroSplit />
       <Ticker />
       <ServicesGrid />
+      <TeamBand />
       <Process />
       <Testimonials />
       <CtaSection />

@@ -29,3 +29,35 @@ URL d'origine : `https://images.unsplash.com/<identifiant>`
 
 Les photos de l'équipe et des locaux (`fetra.jpg`, `digit.jpg`, `it.jpg`,
 `mark.jpg`, `dev.jpg`) sont des prises de vue propres à Label Technology.
+
+## Remplacements — filigranes iStock
+
+`services/mark.jpg` et `services/it.jpg` contenaient des **aperçus iStock
+filigranés** (« Credit: Lyndon Stratford », « Credit: andresr »), utilisés
+publiquement sans licence. Ils ont été remplacés par des photos Unsplash, à
+noms de fichiers identiques :
+
+| Fichier | Nouvel identifiant Unsplash |
+|---|---|
+| `services/mark.jpg` | `photo-1552664730-d307ca884978` |
+| `services/it.jpg` | `photo-1558494949-ef010cbdcc31` |
+
+`services/fetra.jpg` et `digitalisation.jpg` sont des prises de vue propres à
+Label Technology (plateau d'Antananarivo) et sont conservées.
+
+## Autres pages
+
+| Fichier | Identifiant Unsplash |
+|---|---|
+| `blog/hero.jpg` | `photo-1486312338219-ce68d2c6f44d` |
+| `blog/developpement.jpg` | `photo-1555949963-aa79dcee981c` |
+| `blog/digitalisation.jpg` | `photo-1454165804606-c3d57bc86b40` |
+| `blog/marketing.jpg` | `photo-1560472354-b33ff0c44a43` |
+| `blog/donnees.jpg` | `photo-1551288049-bebda4e38f71` |
+| `blog/strategie.jpg` | `photo-1486406146926-c627a92ad1ab` |
+| `blog/default.jpg` | `photo-1497366754035-f200968a6e72` |
+| `pages/about-band.jpg` | `photo-1531973576160-7125cd663d86` |
+| `pages/home-band.jpg` | `photo-1522202176988-66273c2fd55f` |
+
+Les photos de prestations (`<service>/feature-1..6.jpg`) et de composition
+(`row2`, `band`, `mosaic-a`, `mosaic-b`) proviennent du même pool Unsplash.

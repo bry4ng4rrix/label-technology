@@ -12,12 +12,15 @@ export default function PhotoBand({
   title,
   children,
   stats,
+  tint = "strong",
 }: {
   image: { src: string; alt: string };
   eyebrow?: string;
   title: React.ReactNode;
   children?: React.ReactNode;
   stats?: { value: string; label: string }[];
+  /** `normal` sur les photos réelles de l'équipe, pour rester reconnaissables. */
+  tint?: "soft" | "normal" | "strong";
 }) {
   return (
     <section className="relative isolate overflow-hidden bg-ink py-20 text-white sm:py-24">
@@ -29,7 +32,7 @@ export default function PhotoBand({
             alt={image.alt}
             ratio="16/9"
             sizes="(max-width: 1280px) 100vw, 1280px"
-            tint="strong"
+            tint={tint}
             quality={80}
             className="rounded-[2.5rem]"
             overlay={
