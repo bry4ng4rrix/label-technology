@@ -3,52 +3,42 @@
  *
  * Utilisé par le blog, les réalisations et les offres d'emploi : aucune de ces
  * tables n'a de champ image, et plutôt qu'une migration de schéma chaque tag
- * pointe vers une illustration locale. Un tag inconnu retombe proprement sur
- * `default.jpg`.
+ * pointe vers une illustration locale.
+ *
+ * Deux jeux distincts, pour qu'une couverture d'article ne réapparaisse jamais
+ * sur une fiche projet : `COVERS` pour le blog, `CARD_COVERS` pour les listes.
  */
-const COVERS: Record<string, string[]> = {
-  "DÉVELOPPEMENT": [
-    "/images/blog/developpement.jpg",
-    "/images/services/dev/row.jpg",
-    "/images/services/dev/feature-2.jpg",
-  ],
-  "DIGITALISATION": [
-    "/images/blog/digitalisation.jpg",
-    "/images/services/digital/row2.jpg",
-    "/images/services/digital/mosaic-a.jpg",
-  ],
-  "MARKETING": [
-    "/images/blog/marketing.jpg",
-    "/images/services/marketing/mosaic-a.jpg",
-    "/images/services/marketing/row2.jpg",
-  ],
-  "DONNÉES": [
-    "/images/blog/donnees.jpg",
-    "/images/services/data/row2.jpg",
-    "/images/services/data/feature-4.jpg",
-  ],
-  "STRATÉGIE": [
-    "/images/blog/strategie.jpg",
-    "/images/services/index/hero.jpg",
-    "/images/pages/testimonials.jpg",
-  ],
-  "INFRASTRUCTURE": [
-    "/images/blog/infrastructure.jpg",
-    "/images/services/materiel/row.jpg",
-    "/images/services/materiel/band.jpg",
-  ],
-  "COMPTABILITÉ": [
-    "/images/blog/comptabilite.jpg",
-    "/images/services/comptabilite/row2.jpg",
-    "/images/services/comptabilite/mosaic-a.jpg",
-  ],
+const COVERS: Record<string, string> = {
+  "DÉVELOPPEMENT": "/images/blog/developpement.jpg",
+  "DIGITALISATION": "/images/blog/digitalisation.jpg",
+  "MARKETING": "/images/blog/marketing.jpg",
+  "DONNÉES": "/images/blog/donnees.jpg",
+  "STRATÉGIE": "/images/blog/strategie.jpg",
+  "INFRASTRUCTURE": "/images/blog/infrastructure.jpg",
+  "COMPTABILITÉ": "/images/blog/comptabilite.jpg",
 };
 
-const DEFAULTS = [
-  "/images/blog/default.jpg",
-  "/images/pages/home-band.jpg",
-  "/images/pages/projets-hero.jpg",
-];
+/**
+ * Photothèque propre aux fiches projets et offres. Chaque domaine dispose de
+ * plusieurs visuels : deux fiches du même domaine, affichées côte à côte, ne
+ * partagent jamais la même photo.
+ */
+const CARD_COVERS: Record<string, string[]> = {
+  "DÉVELOPPEMENT": Array.from({ length: 10 }, (_, i) => `/images/covers/developpement/${i + 1}.jpg`),
+  "MARKETING": Array.from({ length: 4 }, (_, i) => `/images/covers/marketing/${i + 1}.jpg`),
+  "DIGITALISATION": Array.from({ length: 4 }, (_, i) => `/images/covers/digitalisation/${i + 1}.jpg`),
+  "DONNÉES": Array.from({ length: 4 }, (_, i) => `/images/covers/donnees/${i + 1}.jpg`),
+  "INFRASTRUCTURE": Array.from({ length: 3 }, (_, i) => `/images/covers/infrastructure/${i + 1}.jpg`),
+  "COMPTABILITÉ": Array.from({ length: 3 }, (_, i) => `/images/covers/comptabilite/${i + 1}.jpg`),
+  "STRATÉGIE": Array.from({ length: 3 }, (_, i) => `/images/covers/strategie/${i + 1}.jpg`),
+};
+
+/**
+ * Décalage de départ dans la photothèque, par écran. Les réalisations puisent
+ * au début du jeu, les offres d'emploi après — les deux pages ne se recoupent
+ * donc pas sur le domaine le plus fourni.
+ */
+export const CARD_OFFSET = { projets: 0, recrutement: 3 } as const;
 
 /** Accent repris de l'identité des pages services, pour teinter la couverture. */
 const ACCENTS: Record<string, string> = {
@@ -61,12 +51,14 @@ const ACCENTS: Record<string, string> = {
   "COMPTABILITÉ": "#FBBF24",
 };
 
-/**
- * `index` fait tourner les visuels d'un même tag : deux réalisations du même
- * domaine, affichées côte à côte, ne partagent donc pas la même photo.
- */
-export function coverFor(tag: string, index = 0): string {
-  const pool = COVERS[tag?.toUpperCase()] ?? DEFAULTS;
+/** Couverture d'article de blog — un visuel par domaine. */
+export function coverFor(tag: string): string {
+  return COVERS[tag?.toUpperCase()] ?? "/images/blog/default.jpg";
+}
+
+/** Visuel d'une fiche projet ou offre, `index` étant son rang dans la liste. */
+export function cardCoverFor(tag: string, index = 0): string {
+  const pool = CARD_COVERS[tag?.toUpperCase()] ?? CARD_COVERS["STRATÉGIE"];
   return pool[index % pool.length];
 }
 

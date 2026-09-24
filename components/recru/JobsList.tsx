@@ -5,7 +5,7 @@ import Link from "next/link";
 import { MapPin, Clock, Briefcase, ArrowRight, Zap, Mail, BellRing } from "lucide-react";
 import FilterChips, { type ChipMeta } from "@/components/shared/FilterChips";
 import PhotoPanel from "@/components/services/PhotoPanel";
-import { coverFor } from "@/lib/tag-covers";
+import { CARD_OFFSET, cardCoverFor } from "@/lib/tag-covers";
 import { Button } from "@/components/ui/button";
 
 type Offre = {
@@ -133,7 +133,7 @@ export default function JobsList({ offres }: { offres: Offre[] }) {
 
                   <div className="relative">
                     <PhotoPanel
-                      src={coverFor(o.tag, i)}
+                      src={cardCoverFor(o.tag, CARD_OFFSET.recrutement + i)}
                       alt=""
                       ratio="16/9"
                       tone="light"

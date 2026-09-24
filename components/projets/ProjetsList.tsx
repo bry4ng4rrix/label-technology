@@ -4,7 +4,7 @@ import { useState } from "react";
 import { CheckCircle2 } from "lucide-react";
 import FilterChips, { type ChipMeta } from "@/components/shared/FilterChips";
 import PhotoPanel from "@/components/services/PhotoPanel";
-import { coverFor } from "@/lib/tag-covers";
+import { CARD_OFFSET, cardCoverFor } from "@/lib/tag-covers";
 
 type Projet = {
   tag: string;
@@ -57,7 +57,7 @@ export default function ProjetsList({ projets }: { projets: Projet[] }) {
                   style={{ ["--svc" as string]: meta.color }}
                 >
                   <PhotoPanel
-                    src={coverFor(p.tag, i)}
+                    src={cardCoverFor(p.tag, CARD_OFFSET.projets + i)}
                     alt=""
                     ratio="16/9"
                     tone="light"
