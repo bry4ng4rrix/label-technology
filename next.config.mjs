@@ -6,9 +6,6 @@ const nextConfig = {
        gèrent pas. Les pages services affichent jusqu'à 12 photos, le gain est
        significatif. */
     formats: ["image/avif", "image/webp"],
-    /* Qualités autorisées : 70 pour les vignettes et visuels secondaires,
-       80 pour les heros et bandeaux. */
-    qualities: [70, 80],
     remotePatterns: [
       {
         protocol: "https",
