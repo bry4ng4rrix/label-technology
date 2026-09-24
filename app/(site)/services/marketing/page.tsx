@@ -106,6 +106,15 @@ const PROCESS = [
   },
 ];
 
+/** Une photographie par étape du processus. */
+const STEP_SHOTS = [
+  { src: "/images/services/marketing/step-1.jpg", alt: "Audit de présence en ligne devant un ordinateur portable" },
+  { src: "/images/services/marketing/step-2.jpg", alt: "Plan d'action construit sur un mur de post-it" },
+  { src: "/images/services/marketing/step-3.jpg", alt: "Réseaux sociaux ouverts sur une tablette" },
+  { src: "/images/services/marketing/step-4.jpg", alt: "Tableau de bord de performance affiché sur un grand écran" },
+];
+
+
 const TESTIMONIALS = [
   {
     quote:
@@ -384,7 +393,7 @@ export default function MarketingPage() {
           title="De l'audit aux résultats."
           description="Quatre étapes, des indicateurs posés dès le cadrage, et un reporting qui ne cache rien."
         />
-        <ServiceSteps steps={PROCESS.map((p) => ({ num: p.num, title: p.title, desc: p.desc }))} />
+        <ServiceSteps steps={PROCESS.map((p, i) => ({ num: p.num, title: p.title, desc: p.desc, image: STEP_SHOTS[i] }))} />
       </ServiceSection>
 
       <MiniTestimonials items={TESTIMONIALS} />

@@ -63,6 +63,15 @@ const PROCESS = [
   { num: "04", title: "Revue & transmission", desc: "Rapport mensuel transmis à votre expert-comptable ou directement à la direction. Disponibilité pour répondre à toute question sur les chiffres produits." },
 ];
 
+/** Une photographie par étape du processus. */
+const STEP_SHOTS = [
+  { src: "/images/services/comptabilite/step-1.jpg", alt: "Pièces comptables et calculatrice sur un bureau" },
+  { src: "/images/services/comptabilite/step-2.jpg", alt: "Saisie des écritures sur un ordinateur portable" },
+  { src: "/images/services/comptabilite/step-3.jpg", alt: "Clôture mensuelle et arrêté des comptes" },
+  { src: "/images/services/comptabilite/step-4.jpg", alt: "Revue des chiffres présentée en salle de réunion" },
+];
+
+
 const TESTIMONIALS = [
   { quote: "On externalisait notre saisie comptable en interne à un employé à mi-temps. Depuis qu'on travaille avec Label Technology, le reporting est disponible le 4 du mois, sans relance, sans erreur. On a réaffecté cet employé à un poste à valeur ajoutée.", author: "Lanto R.", role: "Directrice Financière", company: "Groupe retail, Antananarivo" },
   { quote: "Notre clôture mensuelle prenait 8 jours. Elle prend maintenant 2 jours. L'équipe comprend les spécificités SYSCOHADA et peut aussi gérer la présentation selon les normes françaises pour nos actionnaires européens.", author: "Jean-Marc V.", role: "DAF", company: "Filiale industrielle, Madagascar" },
@@ -309,7 +318,7 @@ export default function ComptabilitePage() {
           title="Simple, régulier, sans surprise."
           description="Un rythme mensuel cadré, les mêmes livrables chaque mois, aux mêmes dates."
         />
-        <ServiceSteps steps={PROCESS.map((p) => ({ num: p.num, title: p.title, desc: p.desc }))} />
+        <ServiceSteps steps={PROCESS.map((p, i) => ({ num: p.num, title: p.title, desc: p.desc, image: STEP_SHOTS[i] }))} />
       </ServiceSection>
 
       <MiniTestimonials items={TESTIMONIALS} />

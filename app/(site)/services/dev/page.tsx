@@ -116,6 +116,15 @@ const PROCESS = [
   },
 ];
 
+/** Une photographie par étape du processus. */
+const STEP_SHOTS = [
+  { src: "/images/services/dev/step-1.jpg", alt: "Atelier de cadrage : parcours utilisateurs affichés au mur" },
+  { src: "/images/services/dev/step-2.jpg", alt: "Maquette d'interface dessinée au stylet sur tablette" },
+  { src: "/images/services/dev/step-3.jpg", alt: "Équipe de développeurs au travail sur leurs postes" },
+  { src: "/images/services/dev/step-4.jpg", alt: "Poignée de main à la livraison du projet" },
+];
+
+
 const STATS = [
   { label: "Livraisons dans les délais", value: "96%", width: "96%" },
   { label: "Clients satisfaits ou remboursés", value: "100%", width: "100%" },
@@ -392,7 +401,7 @@ export default function DevPage() {
           }
           description="Quatre étapes, un interlocuteur unique, et une application que vous voyez prendre forme au lieu de la découvrir à la livraison."
         />
-        <ServiceSteps steps={PROCESS.map((p) => ({ num: p.step, title: p.title, desc: p.desc }))} />
+        <ServiceSteps steps={PROCESS.map((p, i) => ({ num: p.step, title: p.title, desc: p.desc, image: STEP_SHOTS[i] }))} />
       </ServiceSection>
 
       <MiniTestimonials items={TESTIMONIALS} />

@@ -133,7 +133,7 @@ export default function JobsList({ offres }: { offres: Offre[] }) {
 
                   <div className="relative">
                     <PhotoPanel
-                      src={coverFor(o.tag)}
+                      src={coverFor(o.tag, i)}
                       alt=""
                       ratio="16/9"
                       tone="light"

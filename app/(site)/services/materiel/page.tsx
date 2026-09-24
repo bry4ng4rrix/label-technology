@@ -64,6 +64,15 @@ const PROCESS = [
   { num: "04", title: "Support continu", desc: "Hotline technique dédiée, interventions préventives planifiées, garantie de remplacement rapide en cas de panne. Un interlocuteur unique pour tout votre parc informatique." },
 ];
 
+/** Une photographie par étape du processus. */
+const STEP_SHOTS = [
+  { src: "/images/services/materiel/step-1.jpg", alt: "Parc informatique d'un plateau de bureaux" },
+  { src: "/images/services/materiel/step-2.jpg", alt: "Composants informatiques comparés en gros plan" },
+  { src: "/images/services/materiel/step-3.jpg", alt: "Installation et câblage d'une baie réseau" },
+  { src: "/images/services/materiel/step-4.jpg", alt: "Support technique assuré depuis les bureaux" },
+];
+
+
 const TESTIMONIALS = [
   { quote: "Ils ont équipé nos 25 postes en 2 semaines, configuration réseau incluse. Tout fonctionnait parfaitement dès le premier jour. Service irréprochable.", author: "Ravo M.", role: "Directeur Général", company: "Cabinet expertise comptable, Antananarivo" },
   { quote: "Notre infrastructure réseau datait de 2015. Ils l'ont modernisée sans interruption pendant que nos équipes travaillaient. Zéro downtime pendant les 3 jours de travaux.", author: "Jean-Luc T.", role: "Responsable IT", company: "ONG internationale, Madagascar" },
@@ -282,7 +291,7 @@ export default function MaterielPage() {
           title="Du devis à l'installation."
           description="Un interlocuteur unique, de l'audit du besoin jusqu'au support après installation."
         />
-        <ServiceSteps steps={PROCESS.map((p) => ({ num: p.num, title: p.title, desc: p.desc }))} />
+        <ServiceSteps steps={PROCESS.map((p, i) => ({ num: p.num, title: p.title, desc: p.desc, image: STEP_SHOTS[i] }))} />
       </ServiceSection>
 
       <MiniTestimonials items={TESTIMONIALS} />

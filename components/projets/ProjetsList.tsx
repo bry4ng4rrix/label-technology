@@ -57,7 +57,7 @@ export default function ProjetsList({ projets }: { projets: Projet[] }) {
                   style={{ ["--svc" as string]: meta.color }}
                 >
                   <PhotoPanel
-                    src={coverFor(p.tag)}
+                    src={coverFor(p.tag, i)}
                     alt=""
                     ratio="16/9"
                     tone="light"

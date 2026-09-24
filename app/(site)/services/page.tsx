@@ -43,14 +43,45 @@ const jsonLd = {
   "@type": "ItemList",
   name: "Services Label Technology",
   url: "https://labeltechnology.mg/services",
-  description: "6 pôles d'expertise technologique depuis Antananarivo, Madagascar.",
+  description:
+    "6 pôles d'expertise technologique depuis Antananarivo, Madagascar.",
   itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Développement Web & Mobile", url: "https://labeltechnology.mg/services/dev" },
-    { "@type": "ListItem", position: 2, name: "Marketing Digital", url: "https://labeltechnology.mg/services/marketing" },
-    { "@type": "ListItem", position: 3, name: "Digitalisation & ERP", url: "https://labeltechnology.mg/services/digital" },
-    { "@type": "ListItem", position: 4, name: "Traitement de Données", url: "https://labeltechnology.mg/services/data" },
-    { "@type": "ListItem", position: 5, name: "Matériel Informatique", url: "https://labeltechnology.mg/services/materiel" },
-    { "@type": "ListItem", position: 6, name: "Comptabilité & Reporting", url: "https://labeltechnology.mg/services/comptabilite" },
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Développement Web & Mobile",
+      url: "https://labeltechnology.mg/services/dev",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Marketing Digital",
+      url: "https://labeltechnology.mg/services/marketing",
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: "Digitalisation & ERP",
+      url: "https://labeltechnology.mg/services/digital",
+    },
+    {
+      "@type": "ListItem",
+      position: 4,
+      name: "Traitement de Données",
+      url: "https://labeltechnology.mg/services/data",
+    },
+    {
+      "@type": "ListItem",
+      position: 5,
+      name: "Matériel Informatique",
+      url: "https://labeltechnology.mg/services/materiel",
+    },
+    {
+      "@type": "ListItem",
+      position: 6,
+      name: "Comptabilité & Reporting",
+      url: "https://labeltechnology.mg/services/comptabilite",
+    },
   ],
 };
 
@@ -66,7 +97,13 @@ const SERVICES = [
     title: "Web & Mobile",
     accroche: "On ne livre pas du code. On livre de la croissance.",
     desc: "Sites, applications web, mobiles, APIs. Next.js, React Native, Node.js. Standards ESN européenne, réactivité startup.",
-    items: ["Sites & Apps Web", "Applications Mobiles", "APIs & Back-end", "E-commerce", "Refonte & Migration"],
+    items: [
+      "Sites & Apps Web",
+      "Applications Mobiles",
+      "APIs & Back-end",
+      "E-commerce",
+      "Refonte & Migration",
+    ],
   },
   {
     tier: "core",
@@ -75,7 +112,13 @@ const SERVICES = [
     title: "Logiciels de Gestion",
     accroche: "Vos processus méritent mieux.",
     desc: "ERP, SIRH, GED, logiciels métier sur mesure. Odoo, SAP, solutions custom. Formation et conduite du changement incluses.",
-    items: ["ERP & Odoo", "SIRH & Paie", "Gestion documentaire", "Logiciels métier", "Intégrations APIs"],
+    items: [
+      "ERP & Odoo",
+      "SIRH & Paie",
+      "Gestion documentaire",
+      "Logiciels métier",
+      "Intégrations APIs",
+    ],
   },
   {
     tier: "other",
@@ -84,7 +127,13 @@ const SERVICES = [
     title: "Marketing Digital",
     accroche: "Votre audience existe. On va la trouver.",
     desc: "SEO, Google Ads, Meta Ads, social media, email marketing. Stratégies mesurables, ROI tracé dès le premier brief.",
-    items: ["SEO & Contenu", "Google & Meta Ads", "Social Media", "Email Marketing", "Analytics"],
+    items: [
+      "SEO & Contenu",
+      "Google & Meta Ads",
+      "Social Media",
+      "Email Marketing",
+      "Analytics",
+    ],
   },
   {
     tier: "other",
@@ -93,7 +142,13 @@ const SERVICES = [
     title: "Traitement de Données",
     accroche: "Vos données sont un actif. On les rend exploitables.",
     desc: "Saisie, nettoyage, enrichissement, analyse, automatisation. Précision garantie, volumes importants, délais respectés.",
-    items: ["Saisie & Collecte", "Nettoyage & Normalisation", "Analyse & DataViz", "Automatisation ETL", "Archivage RGPD"],
+    items: [
+      "Saisie & Collecte",
+      "Nettoyage & Normalisation",
+      "Analyse & DataViz",
+      "Automatisation ETL",
+      "Archivage RGPD",
+    ],
   },
   {
     tier: "quote",
@@ -102,7 +157,13 @@ const SERVICES = [
     title: "Matériel Informatique",
     accroche: "Le bon matériel. Au juste prix.",
     desc: "Ordinateurs, réseau, serveurs, périphériques. Sélection professionnelle, installation et support sur Antananarivo.",
-    items: ["PC & Workstations", "Réseau & WiFi", "Impression & Scan", "Onduleurs & Sauvegarde", "Maintenance IT"],
+    items: [
+      "PC & Workstations",
+      "Réseau & WiFi",
+      "Impression & Scan",
+      "Onduleurs & Sauvegarde",
+      "Maintenance IT",
+    ],
   },
   {
     tier: "quote",
@@ -111,7 +172,13 @@ const SERVICES = [
     title: "Comptabilité & Reporting",
     accroche: "Vos chiffres, enfin lisibles.",
     desc: "Saisie comptable, rapprochements bancaires, reporting mensuel et tableaux de bord. Disponible avant le 5 du mois.",
-    items: ["Saisie comptable", "Rapprochements bancaires", "Reporting mensuel", "Tableaux de bord dirigeants", "Archivage RGPD"],
+    items: [
+      "Saisie comptable",
+      "Rapprochements bancaires",
+      "Reporting mensuel",
+      "Tableaux de bord dirigeants",
+      "Archivage RGPD",
+    ],
   },
 ] as const;
 
@@ -143,7 +210,10 @@ export default function ServicesPage() {
           </>
         }
         description="Développement, Marketing, Digitalisation, Données, Matériel, Comptabilité. Une couverture complète depuis Antananarivo — deux pôles cœur, quatre en appui."
-        image={{ src: "/images/services/index/hero.jpg", alt: "Espace de travail de l'équipe Label Technology" }}
+        image={{
+          src: "/images/services/index/hero.jpg",
+          alt: "Espace de travail de l'équipe Label Technology",
+        }}
         stats={[
           { value: "16+", label: "collaborateurs" },
           { value: "6", label: "expertises" },
@@ -175,11 +245,16 @@ export default function ServicesPage() {
               <div key={s.tag} style={scopeStyle(slug)}>
                 <div
                   className={`grid items-center gap-10 lg:gap-16 ${
-                    reverse ? "lg:grid-cols-[1fr_0.9fr]" : "lg:grid-cols-[0.9fr_1fr]"
+                    reverse
+                      ? "lg:grid-cols-[1fr_0.9fr]"
+                      : "lg:grid-cols-[0.9fr_1fr]"
                   }`}
                 >
                   <Reveal className={reverse ? "lg:order-2" : "lg:order-1"}>
-                    <p className="label-tag mb-4" style={{ color: "var(--svc)" }}>
+                    <p
+                      className="label-tag mb-4"
+                      style={{ color: "var(--svc)" }}
+                    >
                       {s.tag}
                     </p>
                     <h3 className="font-display text-[clamp(1.75rem,1.25rem+1.9vw,2.75rem)] leading-[1.05] font-bold tracking-[-0.03em] text-foreground">
@@ -218,7 +293,10 @@ export default function ServicesPage() {
                     </Link>
                   </Reveal>
 
-                  <Reveal delay={0.1} className={reverse ? "lg:order-1" : "lg:order-2"}>
+                  <Reveal
+                    delay={0.1}
+                    className={reverse ? "lg:order-1" : "lg:order-2"}
+                  >
                     <PhotoPanel
                       src={`/images/services/${slug}/hero.jpg`}
                       alt={`Illustration — ${s.title}`}
@@ -247,22 +325,37 @@ export default function ServicesPage() {
             <Reveal key={s.tag} delay={i * 0.08}>
               <Link
                 href={s.href}
-                className="group block border-t border-border pt-7 transition-colors hover:border-[var(--svc)]"
+                className="group block"
                 style={scopeStyle(slugOf(s.href))}
               >
-                <p className="label-tag mb-3" style={{ color: "var(--svc)" }}>
-                  {s.tag}
-                </p>
-                <h3 className="font-display text-xl leading-snug font-semibold tracking-tight text-foreground sm:text-2xl">
-                  {s.title}
-                </h3>
-                <p className="mt-3 max-w-md text-[15px] leading-relaxed text-muted-foreground">
-                  {s.desc}
-                </p>
-                <span className="link-arrow mt-5 text-sm font-semibold" style={{ color: "var(--svc)" }}>
-                  Découvrir
-                  <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-                </span>
+                <PhotoPanel
+                  src={`/images/services/index/pole-${slugOf(s.href)}.jpg`}
+                  alt={`Illustration — ${s.title}`}
+                  ratio="16/9"
+                  tone="light"
+                  tint="soft"
+                  quality={65}
+                  sizes="(max-width: 768px) 100vw, 45vw"
+                  className="mb-7 rounded-2xl"
+                />
+                <div className="border-t border-border pt-7 transition-colors group-hover:border-[var(--svc)]">
+                  <p className="label-tag mb-3" style={{ color: "var(--svc)" }}>
+                    {s.tag}
+                  </p>
+                  <h3 className="font-display text-xl leading-snug font-semibold tracking-tight text-foreground sm:text-2xl">
+                    {s.title}
+                  </h3>
+                  <p className="mt-3 max-w-md text-[15px] leading-relaxed text-muted-foreground">
+                    {s.desc}
+                  </p>
+                  <span
+                    className="link-arrow mt-5 text-sm font-semibold"
+                    style={{ color: "var(--svc)" }}
+                  >
+                    Découvrir
+                    <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+                  </span>
+                </div>
               </Link>
             </Reveal>
           ))}
@@ -273,9 +366,12 @@ export default function ServicesPage() {
           <div className="glass-card p-6 sm:p-8">
             <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
               <div>
-                <p className="label-tag mb-2 text-muted-foreground">Également sur devis</p>
+                <p className="label-tag mb-2 text-muted-foreground">
+                  Également sur devis
+                </p>
                 <p className="text-sm text-muted-foreground">
-                  Deux pôles mobilisés à la demande, selon le besoin et le volume.
+                  Deux pôles mobilisés à la demande, selon le besoin et le
+                  volume.
                 </p>
               </div>
               <ul className="flex flex-wrap gap-2">
@@ -313,7 +409,9 @@ export default function ServicesPage() {
         title={
           <>
             Un besoin, plusieurs pôles.{" "}
-            <span className="gradient-text-svc-light">Un seul interlocuteur.</span>
+            <span className="gradient-text-svc-light">
+              Un seul interlocuteur.
+            </span>
           </>
         }
         description="Décrivez votre besoin : on vous dit sous 72h quelles expertises mobiliser, et ce que ça coûte."

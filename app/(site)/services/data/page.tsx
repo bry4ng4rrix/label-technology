@@ -64,6 +64,15 @@ const PROCESS = [
   { num: "04", title: "Validation & ajustements", desc: "Revue avec vous, corrections si nécessaire, documentation finale de livraison. On ne considère la mission terminée qu'à votre validation complète." },
 ];
 
+/** Une photographie par étape du processus. */
+const STEP_SHOTS = [
+  { src: "/images/services/data/step-1.jpg", alt: "Cadrage du besoin, notes prises à la main" },
+  { src: "/images/services/data/step-2.jpg", alt: "Flux de données en cours de traitement à l'écran" },
+  { src: "/images/services/data/step-3.jpg", alt: "Jeu de données structuré affiché dans un éditeur" },
+  { src: "/images/services/data/step-4.jpg", alt: "Revue des livrables à deux devant un ordinateur" },
+];
+
+
 const TESTIMONIALS = [
   { quote: "50 000 contacts nettoyés et enrichis en 3 semaines. Le taux de délivrabilité de nos campagnes email est passé de 67% à 94%. Retour sur investissement immédiat.", author: "Julien P.", role: "Head of Growth", company: "Marketing direct, France" },
   { quote: "Ils ont numérisé 12 ans d'archives papier en 2 mois. Chaque document est indexé, recherchable, conforme RGPD. On a enfin une base documentaire exploitable.", author: "Isabelle C.", role: "Directrice Administrative", company: "Cabinet notarial, Lyon" },
@@ -283,7 +292,7 @@ export default function DataPage() {
           title="Rigueur à chaque étape."
           description="Le format de sortie est défini avant de commencer, pas après. On ne considère la mission terminée qu'à votre validation complète."
         />
-        <ServiceSteps steps={PROCESS.map((p) => ({ num: p.num, title: p.title, desc: p.desc }))} />
+        <ServiceSteps steps={PROCESS.map((p, i) => ({ num: p.num, title: p.title, desc: p.desc, image: STEP_SHOTS[i] }))} />
       </ServiceSection>
 
       <MiniTestimonials items={TESTIMONIALS} />

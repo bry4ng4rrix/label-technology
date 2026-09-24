@@ -64,6 +64,15 @@ const PROCESS = [
   { num: "04", title: "Formation & support", desc: "Formation de vos équipes sur site ou en visio, documentation utilisateur rédigée pour des non-techniciens, support réactif pendant 3 mois minimum après la mise en production." },
 ];
 
+/** Une photographie par étape du processus. */
+const STEP_SHOTS = [
+  { src: "/images/services/digital/step-1.jpg", alt: "Atelier de cartographie des processus autour d'une table" },
+  { src: "/images/services/digital/step-2.jpg", alt: "Paramétrage d'un outil métier sur un ordinateur portable" },
+  { src: "/images/services/digital/step-3.jpg", alt: "Déploiement supervisé dans une salle serveurs" },
+  { src: "/images/services/digital/step-4.jpg", alt: "Session de formation devant les équipes" },
+];
+
+
 const TESTIMONIALS = [
   { quote: "On gérait notre PME avec 7 fichiers Excel différents. Après le déploiement Odoo avec Label Technology, tout est centralisé. On a gagné 15h de travail par semaine dès le premier mois.", author: "Pierre F.", role: "Gérant", company: "Distribution B2B, Madagascar" },
   { quote: "La migration de notre système de paie a été parfaitement gérée. Zéro erreur sur les 45 bulletins du premier mois, et nos RH sont autonomes en deux semaines.", author: "Hanta R.", role: "DRH", company: "Réseau d'écoles, Antananarivo" },
@@ -277,7 +286,7 @@ export default function DigitalPage() {
           title="Une transition sans turbulences."
           description="On avance par paliers, en gardant vos équipes opérationnelles à chaque étape."
         />
-        <ServiceSteps steps={PROCESS.map((p) => ({ num: p.num, title: p.title, desc: p.desc }))} />
+        <ServiceSteps steps={PROCESS.map((p, i) => ({ num: p.num, title: p.title, desc: p.desc, image: STEP_SHOTS[i] }))} />
       </ServiceSection>
 
       <MiniTestimonials items={TESTIMONIALS} />
