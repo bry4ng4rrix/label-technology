@@ -32,8 +32,8 @@ export default function PhotoPanel({
   tint?: "soft" | "normal" | "strong";
   /** `light` : la photo est posée sur une surface papier — on assombrit peu. */
   tone?: "light" | "dark";
-  /** 70 par défaut (vignettes) ; 80 pour les heros et bandeaux. */
-  quality?: 70 | 80;
+  /** 70 par défaut ; 60 pour les vignettes, 80 pour les visuels pleine largeur. */
+  quality?: number;
 }) {
   const ratios = {
     "4/3": "aspect-[4/3]",

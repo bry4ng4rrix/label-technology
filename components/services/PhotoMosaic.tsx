@@ -57,6 +57,7 @@ export default function PhotoMosaic({
             alt={images[0].alt}
             ratio="3/4"
             tone={tone}
+            quality={60}
             sizes="(max-width: 1024px) 45vw, 26vw"
           />
         </Reveal>
@@ -66,6 +67,7 @@ export default function PhotoMosaic({
             alt={images[1].alt}
             ratio="4/3"
             tone={tone}
+            quality={60}
             sizes="(max-width: 1024px) 45vw, 26vw"
           />
         </Reveal>

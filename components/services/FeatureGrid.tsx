@@ -52,6 +52,7 @@ export default function FeatureGrid({
                   ratio="4/3"
                   tone={tone}
                   tint="soft"
+                  quality={60}
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="rounded-2xl"
                 />
