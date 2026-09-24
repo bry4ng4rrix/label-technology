@@ -21,7 +21,7 @@ function Frame({ children, label }: { children: React.ReactNode; label: string }
         <span className="size-2.5 rounded-full bg-white/20" />
         <span className="size-2.5 rounded-full bg-white/15" />
         <span className="size-2.5 rounded-full bg-white/10" />
-        <span className="ml-2 text-[11px] font-medium tracking-wide text-white/40">{label}</span>
+        <span className="ml-2 text-[11px] font-medium tracking-wide text-white/55">{label}</span>
       </div>
       {children}
     </div>
@@ -102,7 +102,7 @@ function MarketingVisual() {
         ].map((m) => (
           <div key={m.l} className="rounded-xl border border-white/10 bg-white/5 px-3 py-2.5">
             <div className="font-display text-sm" style={{ color: A }}>{m.v}</div>
-            <div className="text-[10px] tracking-wide text-white/45 uppercase">{m.l}</div>
+            <div className="text-[10px] tracking-wide text-white/55 uppercase">{m.l}</div>
           </div>
         ))}
       </div>
@@ -239,7 +239,7 @@ function MaterielVisual() {
         ].map((m) => (
           <div key={m.l} className="rounded-xl border border-white/10 bg-white/5 px-3 py-2.5">
             <div className="font-display text-sm" style={{ color: A }}>{m.v}</div>
-            <div className="text-[10px] tracking-wide text-white/45 uppercase">{m.l}</div>
+            <div className="text-[10px] tracking-wide text-white/55 uppercase">{m.l}</div>
           </div>
         ))}
       </div>
@@ -308,7 +308,7 @@ function IndexVisual() {
           </div>
         ))}
       </div>
-      <p className="mt-5 text-center text-[11px] text-white/40">
+      <p className="mt-5 text-center text-[11px] text-white/55">
         Deux expertises cœur, quatre pôles en appui
       </p>
     </Frame>
