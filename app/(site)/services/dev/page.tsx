@@ -6,18 +6,21 @@ import {
   Wrench,
   Zap,
 } from "lucide-react";
+
+import BigStats from "@/components/services/BigStats";
+import EditorialHero from "@/components/services/EditorialHero";
+import EditorialRow from "@/components/services/EditorialRow";
+import FeatureGrid from "@/components/services/FeatureGrid";
+import SectionIntro from "@/components/services/SectionIntro";
+import ServiceBackground from "@/components/services/ServiceBackground";
+import ServiceCta from "@/components/services/ServiceCta";
+import ServiceScope from "@/components/services/ServiceScope";
+import ServiceSection from "@/components/services/ServiceSection";
+import ServiceSteps from "@/components/services/ServiceSteps";
+import DevChart from "@/components/services/DevChartWrapper";
 import FaqSection from "@/components/shared/FaqSection";
 import MiniTestimonials from "@/components/shared/MiniTestimonials";
 import Reveal from "@/components/shared/Reveal";
-import ServiceCard from "@/components/services/ServiceCard";
-import ServiceCta from "@/components/services/ServiceCta";
-import ServiceHero from "@/components/services/ServiceHero";
-import ServiceBackground from "@/components/services/ServiceBackground";
-import ServiceScope from "@/components/services/ServiceScope";
-import ServiceSection from "@/components/services/ServiceSection";
-import ServiceStatBars from "@/components/services/ServiceStatBars";
-import ServiceSteps from "@/components/services/ServiceSteps";
-import DevChart from "@/components/services/DevChartWrapper";
 
 const METRICS = [
   { value: "800€", label: "projet à partir de" },
@@ -166,47 +169,77 @@ const FAQ = [
 export default function DevPage() {
   return (
     <ServiceScope slug="dev" as="main">
-      <ServiceHero
+      <EditorialHero
         slug="dev"
         eyebrow="Développement web & mobile"
         title={
           <>
-            On ne livre pas du code.
+            On ne livre
+            <br />
+            pas du code.
             <br />
             <span className="gradient-text-svc-light">On livre de la croissance.</span>
           </>
         }
         description="Web, mobile, API, e-commerce. Depuis Antananarivo, avec les standards d'une ESN européenne et les délais d'une startup. Devis gratuit en 72h."
-        stats={METRICS}
+        image={{ src: "/images/services/dev/hero.jpg", alt: "Code source affiché sur un écran de développement" }}
+        stats={METRICS.map((m) => ({ value: m.value, label: m.label }))}
       />
 
       {/* Ce qu'on fait */}
-      <ServiceSection
-        slug="dev"
-        eyebrow="Ce qu'on fait"
-        title={
-          <>
-            Du code qui <span className="gradient-text-svc">travaille pour vous.</span>
-          </>
-        }
-        description="Six familles de projets, une seule équipe senior — pas de sous-traitance, pas de juniors sur vos projets critiques."
-      >
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {SERVICES.map((s, i) => {
+      <ServiceSection slug="dev">
+        <SectionIntro
+          eyebrow="Ce qu'on fait"
+          title={
+            <>
+              Du code qui
+              <br />
+              <span className="gradient-text-svc">travaille pour vous.</span>
+            </>
+          }
+          description="Six familles de projets, une seule équipe senior. Pas de sous-traitance, pas de juniors sur vos projets critiques — les personnes qui cadrent sont celles qui développent."
+        />
+        <FeatureGrid
+          items={SERVICES.map((s) => {
             const Icon = s.icon;
-            return (
-              <Reveal key={s.title} delay={(i % 3) * 0.08} className="h-full">
-                <ServiceCard
-                  icon={<Icon strokeWidth={1.6} />}
-                  title={s.title}
-                  style={{ ["--svc" as string]: s.color }}
-                >
-                  {s.desc}
-                </ServiceCard>
-              </Reveal>
-            );
+            return {
+              icon: <Icon strokeWidth={1.6} />,
+              title: s.title,
+              desc: s.desc,
+            };
           })}
-        </div>
+        />
+      </ServiceSection>
+
+      {/* Rangée éditoriale */}
+      <ServiceSection slug="dev" tone="plain">
+        <EditorialRow
+          eyebrow="Méthode de travail"
+          title={
+            <>
+              Vous ne découvrez pas
+              <br />
+              le résultat à la livraison.
+            </>
+          }
+          points={[
+            "Sprints de deux semaines avec démo à chaque fin de cycle",
+            "Maquettes validées avant la première ligne de code",
+            "Documentation et formation des équipes à la livraison",
+          ]}
+          image={{
+            src: "/images/services/dev/row.jpg",
+            alt: "Développeurs au travail sur un projet",
+          }}
+          stat={{ value: "96 %", label: "livraisons dans les délais annoncés" }}
+          cta={{ href: "/projets", label: "Voir nos réalisations" }}
+          ratio="5/4"
+          reverse
+        >
+          Un projet qui dérape se repère dans les deux premières semaines, pas au
+          bout de trois mois. Les démos régulières vous laissent ajuster le tir
+          pendant qu&apos;il est encore temps — et sans surcoût.
+        </EditorialRow>
       </ServiceSection>
 
       {/* Stack technique — bandeau défilant */}
@@ -243,55 +276,56 @@ export default function DevPage() {
         </div>
       </section>
 
-      {/* Méthode */}
-      <ServiceSection
+      {/* Chiffres en très grande typo */}
+      <BigStats
         slug="dev"
-        tone="plain"
-        eyebrow="Notre méthode"
-        title={
-          <>
-            De l&apos;idée <span className="gradient-text-svc">à la mise en ligne.</span>
-          </>
-        }
-        description="Sprints de deux semaines, démos régulières, et une application que vous voyez prendre forme au lieu de la découvrir à la livraison."
-      >
-        <ServiceSteps steps={PROCESS.map((p) => ({ num: p.step, title: p.title, desc: p.desc }))} />
-      </ServiceSection>
+        items={STATS.map((s) => ({ value: s.value, label: s.label }))}
+        caption="Pas de sous-traitance, pas de développeurs juniors sur vos projets critiques. Notre équipe maîtrise chaque couche — du design à l'infrastructure."
+      />
 
-      {/* Expertise — composition asymétrique */}
-      <ServiceSection
-        slug="dev"
-        tone="dark"
-        eyebrow="Notre expertise"
-        title={
-          <>
-            Une stack maîtrisée
-            <br />
-            de bout en bout.
-          </>
-        }
-        description="Pas de sous-traitance, pas de développeurs juniors sur vos projets critiques. Notre équipe maîtrise chaque couche — du design à l'infrastructure."
-      >
-        <div className="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
-          <div>
-            <ServiceStatBars items={STATS.map((s) => ({ label: s.label, value: s.value }))} />
-            <Reveal delay={0.3}>
-              <div
-                className="glass-card mt-8 rounded-l-md p-5"
-                data-tone="dark"
-                style={{ borderLeft: "2px solid var(--svc)" }}
-              >
-                <p className="font-display text-base leading-relaxed font-medium text-white/85 italic">
-                  &ldquo;Parce qu&apos;une technologie sans accompagnement n&apos;est
-                  qu&apos;un coût. Nous en faisons un levier.&rdquo;
-                </p>
-              </div>
-            </Reveal>
-          </div>
-          <Reveal delay={0.15}>
+      {/* Expertise */}
+      <ServiceSection slug="dev" tone="dark">
+        <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+          <Reveal>
             <DevChart />
           </Reveal>
+          <Reveal delay={0.1}>
+            <p className="label-tag mb-4" style={{ color: "var(--svc)" }}>
+              Notre expertise
+            </p>
+            <h2 className="font-display text-[clamp(1.5rem,1.15rem+1.5vw,2.25rem)] leading-[1.08] font-bold tracking-[-0.025em] text-white">
+              Une stack maîtrisée
+              <br />
+              de bout en bout.
+            </h2>
+            <p className="mt-5 max-w-md text-[15px] leading-relaxed text-white/60">
+              Niveau de maîtrise par domaine, mesuré sur nos projets livrés.
+              Là où nous ne sommes pas les meilleurs, nous le disons.
+            </p>
+            <div className="glass-card mt-8 rounded-l-md p-5" data-tone="dark" style={{ borderLeft: "2px solid var(--svc)" }}>
+              <p className="font-display text-base leading-relaxed font-medium text-white/85 italic">
+                &ldquo;Parce qu&apos;une technologie sans accompagnement n&apos;est
+                qu&apos;un coût. Nous en faisons un levier.&rdquo;
+              </p>
+            </div>
+          </Reveal>
         </div>
+      </ServiceSection>
+
+      {/* Méthode */}
+      <ServiceSection slug="dev" tone="plain">
+        <SectionIntro
+          eyebrow="Notre méthode"
+          title={
+            <>
+              De l&apos;idée
+              <br />
+              <span className="gradient-text-svc">à la mise en ligne.</span>
+            </>
+          }
+          description="Quatre étapes, un interlocuteur unique, et une application que vous voyez prendre forme au lieu de la découvrir à la livraison."
+        />
+        <ServiceSteps steps={PROCESS.map((p) => ({ num: p.step, title: p.title, desc: p.desc }))} />
       </ServiceSection>
 
       <MiniTestimonials items={TESTIMONIALS} />

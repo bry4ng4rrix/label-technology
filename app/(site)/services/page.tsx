@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
-import Reveal from "@/components/shared/Reveal";
-import ServiceCard from "@/components/services/ServiceCard";
+import BigStats from "@/components/services/BigStats";
+import EditorialHero from "@/components/services/EditorialHero";
+import PhotoPanel from "@/components/services/PhotoPanel";
+import SectionIntro from "@/components/services/SectionIntro";
 import ServiceCta from "@/components/services/ServiceCta";
-import ServiceHero from "@/components/services/ServiceHero";
-import ServiceMetrics from "@/components/services/ServiceMetrics";
-import ServiceScope from "@/components/services/ServiceScope";
+import ServiceScope, { scopeStyle } from "@/components/services/ServiceScope";
 import ServiceSection from "@/components/services/ServiceSection";
-import { scopeStyle } from "@/components/services/ServiceScope";
+import Reveal from "@/components/shared/Reveal";
 import { getTheme, type ServiceSlug } from "@/lib/service-themes";
 import { OG_IMAGE } from "@/lib/seo";
 
@@ -119,7 +119,7 @@ const CORE = SERVICES.filter((s) => s.tier === "core");
 const OTHER = SERVICES.filter((s) => s.tier === "other");
 const ON_QUOTE = SERVICES.filter((s) => s.tier === "quote");
 
-/** Chaque carte adopte la couleur du service qu'elle présente. */
+/** Chaque bloc adopte la couleur du service qu'il présente. */
 function slugOf(href: string): ServiceSlug {
   return href.replace("/services/", "") as ServiceSlug;
 }
@@ -132,17 +132,18 @@ export default function ServicesPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <ServiceHero
+      <EditorialHero
         slug="index"
         eyebrow="Nos expertises"
         title={
           <>
-            6 expertises.
+            Six expertises.
             <br />
-            <span className="gradient-text-svc-light">1 équipe.</span>
+            <span className="gradient-text-svc-light">Une seule équipe.</span>
           </>
         }
-        description="Développement, Marketing, Digitalisation, Données, Matériel, Comptabilité. Une couverture complète depuis Antananarivo, avec deux pôles cœur et quatre en appui."
+        description="Développement, Marketing, Digitalisation, Données, Matériel, Comptabilité. Une couverture complète depuis Antananarivo — deux pôles cœur, quatre en appui."
+        image={{ src: "/images/services/index/hero.jpg", alt: "Espace de travail de l'équipe Label Technology" }}
         stats={[
           { value: "16+", label: "collaborateurs" },
           { value: "6", label: "expertises" },
@@ -151,36 +152,55 @@ export default function ServicesPage() {
         ]}
       />
 
-      {/* Expertises cœur */}
-      <ServiceSection
-        slug="index"
-        eyebrow="Expertises cœur"
-        title={
-          <>
-            Là où nous sommes <span className="gradient-text-svc">les plus forts.</span>
-          </>
-        }
-        description="Deux pôles concentrent l'essentiel de nos réalisations : le développement d'applications sur mesure et la digitalisation des processus de gestion."
-      >
-        <div className="grid gap-5 lg:grid-cols-2">
+      {/* Expertises cœur — deux grands blocs éditoriaux alternés */}
+      <ServiceSection slug="index">
+        <SectionIntro
+          eyebrow="Expertises cœur"
+          title={
+            <>
+              Là où nous sommes
+              <br />
+              <span className="gradient-text-svc">les plus forts.</span>
+            </>
+          }
+          description="Deux pôles concentrent l'essentiel de nos réalisations : le développement d'applications sur mesure et la digitalisation des processus de gestion. C'est là que notre équipe senior est la plus profonde."
+        />
+
+        <div className="space-y-20 sm:space-y-28">
           {CORE.map((s, i) => {
-            const theme = getTheme(slugOf(s.href));
+            const slug = slugOf(s.href);
+            const theme = getTheme(slug);
+            const reverse = i % 2 === 1;
             return (
-              <Reveal key={s.tag} delay={i * 0.08} className="h-full">
-                <ServiceCard
-                  href={s.href}
-                  eyebrow={s.tag}
-                  title={s.title}
-                  className="sm:p-9"
-                  style={scopeStyle(slugOf(s.href))}
-                  footer={
+              <div key={s.tag} style={scopeStyle(slug)}>
+                <div
+                  className={`grid items-center gap-10 lg:gap-16 ${
+                    reverse ? "lg:grid-cols-[1fr_0.9fr]" : "lg:grid-cols-[0.9fr_1fr]"
+                  }`}
+                >
+                  <Reveal className={reverse ? "lg:order-2" : "lg:order-1"}>
+                    <p className="label-tag mb-4" style={{ color: "var(--svc)" }}>
+                      {s.tag}
+                    </p>
+                    <h3 className="font-display text-[clamp(1.75rem,1.25rem+1.9vw,2.75rem)] leading-[1.05] font-bold tracking-[-0.03em] text-foreground">
+                      {s.title}
+                    </h3>
+                    <p
+                      className="font-display mt-4 text-lg font-medium italic"
+                      style={{ color: "var(--svc)" }}
+                    >
+                      {s.accroche}
+                    </p>
+                    <p className="mt-5 max-w-lg text-[15px] leading-relaxed text-muted-foreground">
+                      {s.desc}
+                    </p>
                     <ul className="mt-7 flex flex-wrap gap-2">
                       {s.items.map((item) => (
                         <li
                           key={item}
                           className="rounded-full border px-3 py-1.5 text-xs text-muted-foreground"
                           style={{
-                            borderColor: `color-mix(in srgb, ${theme.accent} 25%, transparent)`,
+                            borderColor: `color-mix(in srgb, ${theme.accent} 28%, transparent)`,
                             background: `color-mix(in srgb, ${theme.accent} 7%, transparent)`,
                           }}
                         >
@@ -188,44 +208,68 @@ export default function ServicesPage() {
                         </li>
                       ))}
                     </ul>
-                  }
-                >
-                  <span className="font-display mb-4 block text-lg font-medium italic" style={{ color: "var(--svc)" }}>
-                    {s.accroche}
-                  </span>
-                  {s.desc}
-                </ServiceCard>
-              </Reveal>
+                    <Link
+                      href={s.href}
+                      className="link-arrow mt-8 text-sm font-semibold"
+                      style={{ color: "var(--svc)" }}
+                    >
+                      Découvrir cette expertise
+                      <ArrowRight className="size-4" />
+                    </Link>
+                  </Reveal>
+
+                  <Reveal delay={0.1} className={reverse ? "lg:order-1" : "lg:order-2"}>
+                    <PhotoPanel
+                      src={`/images/services/${slug}/hero.jpg`}
+                      alt={`Illustration — ${s.title}`}
+                      ratio="4/3"
+                      tone="light"
+                      sizes="(max-width: 1024px) 100vw, 55vw"
+                    />
+                  </Reveal>
+                </div>
+              </div>
             );
           })}
         </div>
       </ServiceSection>
 
-      {/* Pôles complémentaires */}
-      <ServiceSection
-        slug="index"
-        tone="plain"
-        eyebrow="Pôles complémentaires"
-        title="Ce qui vient en appui de vos projets."
-        description="Mobilisés seuls ou en complément d'un projet de développement ou de digitalisation."
-      >
-        <div className="grid gap-5 md:grid-cols-2">
+      {/* Pôles complémentaires — liste éditoriale filetée */}
+      <ServiceSection slug="index" tone="plain">
+        <SectionIntro
+          eyebrow="Pôles complémentaires"
+          title="Ce qui vient en appui de vos projets."
+          description="Mobilisés seuls ou en complément d'un projet de développement ou de digitalisation."
+        />
+
+        <div className="grid gap-x-12 gap-y-10 md:grid-cols-2">
           {OTHER.map((s, i) => (
-            <Reveal key={s.tag} delay={i * 0.08} className="h-full">
-              <ServiceCard
+            <Reveal key={s.tag} delay={i * 0.08}>
+              <Link
                 href={s.href}
-                eyebrow={s.tag}
-                title={s.title}
+                className="group block border-t border-border pt-7 transition-colors hover:border-[var(--svc)]"
                 style={scopeStyle(slugOf(s.href))}
               >
-                {s.desc}
-              </ServiceCard>
+                <p className="label-tag mb-3" style={{ color: "var(--svc)" }}>
+                  {s.tag}
+                </p>
+                <h3 className="font-display text-xl leading-snug font-semibold tracking-tight text-foreground sm:text-2xl">
+                  {s.title}
+                </h3>
+                <p className="mt-3 max-w-md text-[15px] leading-relaxed text-muted-foreground">
+                  {s.desc}
+                </p>
+                <span className="link-arrow mt-5 text-sm font-semibold" style={{ color: "var(--svc)" }}>
+                  Découvrir
+                  <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+                </span>
+              </Link>
             </Reveal>
           ))}
         </div>
 
-        {/* Sur devis — mention simple, sans carte au même niveau */}
-        <Reveal delay={0.16} className="mt-10">
+        {/* Sur devis — mention discrète */}
+        <Reveal delay={0.16} className="mt-16">
           <div className="glass-card p-6 sm:p-8">
             <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
               <div>
@@ -253,14 +297,15 @@ export default function ServicesPage() {
         </Reveal>
       </ServiceSection>
 
-      <ServiceMetrics
+      <BigStats
         slug="index"
         items={[
-          { value: "16+", label: "Collaborateurs" },
-          { value: "4 ans", label: "D'expérience" },
-          { value: "FR/EN", label: "Bilingue certifié" },
-          { value: "<72h", label: "Délai de réponse" },
+          { value: "16+", label: "Collaborateurs à Antananarivo" },
+          { value: "4 ans", label: "D'expérience depuis 2022" },
+          { value: "FR/EN", label: "Équipe bilingue certifiée" },
+          { value: "<72h", label: "Délai de réponse garanti" },
         ]}
+        caption="Une seule équipe, un seul interlocuteur, quel que soit le nombre de pôles mobilisés sur votre projet."
       />
 
       <ServiceCta

@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
 
+import BigStats from "@/components/services/BigStats";
+import EditorialHero from "@/components/services/EditorialHero";
+import EditorialRow from "@/components/services/EditorialRow";
+import FeatureGrid from "@/components/services/FeatureGrid";
+import SectionIntro from "@/components/services/SectionIntro";
+import ServiceCta from "@/components/services/ServiceCta";
+import ServiceScope from "@/components/services/ServiceScope";
+import ServiceSection from "@/components/services/ServiceSection";
+import ServiceSteps from "@/components/services/ServiceSteps";
 import FaqSection from "@/components/shared/FaqSection";
 import MiniTestimonials from "@/components/shared/MiniTestimonials";
 import Reveal from "@/components/shared/Reveal";
-import ServiceCard from "@/components/services/ServiceCard";
-import ServiceCta from "@/components/services/ServiceCta";
-import ServiceHero from "@/components/services/ServiceHero";
-import ServiceScope from "@/components/services/ServiceScope";
-import ServiceSection from "@/components/services/ServiceSection";
-import ServiceStatBars from "@/components/services/ServiceStatBars";
-import ServiceSteps from "@/components/services/ServiceSteps";
 import { OG_IMAGE } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -107,7 +109,7 @@ export default function ComptabilitePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <ServiceHero
+      <EditorialHero
         slug="comptabilite"
         eyebrow="Comptabilité & reporting"
         title={
@@ -118,91 +120,128 @@ export default function ComptabilitePage() {
           </>
         }
         description="Saisie comptable, rapprochements bancaires, reporting mensuel et tableaux de bord dirigeants. Des décisions fondées sur des données fiables, disponibles avant le 5 du mois."
+        image={{ src: "/images/services/comptabilite/hero.jpg", alt: "Documents comptables et calculatrice sur un bureau" }}
         primary={{ href: "/contact", label: "Demander un devis" }}
         stats={METRICS.map((m) => ({ value: m.v, label: m.l }))}
       />
 
-      {/* Prestations */}
-      <ServiceSection
-        slug="comptabilite"
-        eyebrow="Nos prestations"
-        title={
-          <>
-            La comptabilité <span className="gradient-text-svc">qui libère du temps.</span>
-          </>
-        }
-        description="Externalisez la saisie et le contrôle, gardez la décision — avec un reporting mensuel qui arrive avant le 5."
-      >
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {SERVICES.map((s, i) => (
-            <Reveal key={s.title} delay={(i % 3) * 0.08} className="h-full">
-              <ServiceCard icon={<span className="text-2xl leading-none">{s.icon}</span>} title={s.title}>
-                {s.desc}
-              </ServiceCard>
-            </Reveal>
-          ))}
-        </div>
+      {/* Prestations — en-tête asymétrique + colonnes filetées */}
+      <ServiceSection slug="comptabilite">
+        <SectionIntro
+          eyebrow="Nos prestations"
+          title={
+            <>
+              La comptabilité
+              <br />
+              <span className="gradient-text-svc">qui libère du temps.</span>
+            </>
+          }
+          description="Externalisez la saisie et le contrôle, gardez la décision. Le reporting mensuel arrive avant le 5, toujours au même format, toujours à la même date."
+        />
+        <FeatureGrid
+          items={SERVICES.map((s) => ({
+            icon: <span className="text-2xl leading-none">{s.icon}</span>,
+            title: s.title,
+            desc: s.desc,
+          }))}
+        />
       </ServiceSection>
 
-      {/* En chiffres */}
-      <ServiceSection
-        slug="comptabilite"
-        tone="dark"
-        eyebrow="Impact concret"
-        title={
-          <>
-            Moins de temps sur les chiffres,
-            <br />
-            plus de temps pour décider.
-          </>
-        }
-        description="L'externalisation comptable réduit vos coûts fixes, élimine les risques d'erreur et vous donne accès à un reporting mensuel structuré — sans recruter ni former un comptable en interne."
-      >
+      {/* Rangée éditoriale : texte ↔ photo */}
+      <ServiceSection slug="comptabilite" tone="plain">
+        <EditorialRow
+          eyebrow="Interne vs externalisé"
+          title={
+            <>
+              Un comptable en interne
+              <br />
+              coûte plus qu'il n'y paraît.
+            </>
+          }
+          points={[
+            "Coût mensuel de 250 à 600 € contre 800 à 1 500 € en interne",
+            "Double contrôle systématique au lieu d'une saisie unique",
+            "Continuité garantie — ni congés, ni turnover à gérer",
+          ]}
+          image={{
+            src: "/images/services/comptabilite/row.jpg",
+            alt: "Saisie et contrôle de documents comptables",
+          }}
+          stat={{ value: "J+5", label: "reporting disponible chaque mois" }}
+          cta={{ href: "/contact", label: "Comparer avec ma situation" }}
+          ratio="5/4"
+        >
+          Le calcul ne se limite pas au salaire : recrutement, formation, logiciel, congés, remplacement. L'externalisation transforme un coût fixe incertain en forfait mensuel prévisible.
+        </EditorialRow>
+      </ServiceSection>
+
+      {/* Comparatif interne / externalisé */}
+      <ServiceSection slug="comptabilite" tone="dark">
         <div className="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
-          <ServiceStatBars
-            items={[
-              { label: "Réduction du délai de clôture mensuelle", value: "60%" },
-              { label: "Conformité fiscale garantie", value: "100%" },
-              { label: "Disponibilité du reporting avant J+5", value: "98%" },
-            ]}
-          />
-          <Reveal delay={0.15}>
-            {/* Comparatif interne / externalisé — carte de verre, pas de graphique ici */}
+          <Reveal>
+            <p className="label-tag mb-4" style={{ color: "var(--svc)" }}>
+              Comparatif
+            </p>
+            <h2 className="font-display text-[clamp(1.5rem,1.15rem+1.5vw,2.25rem)] leading-[1.08] font-bold tracking-[-0.025em] text-white">
+              Ce que vous payez
+              <br />
+              vraiment, des deux côtés.
+            </h2>
+            <p className="mt-5 max-w-md text-[15px] leading-relaxed text-white/60">
+              Les postes de coût ne se limitent pas au salaire. Voici la
+              comparaison poste par poste, sur les quatre critères qui
+              reviennent le plus souvent dans nos échanges.
+            </p>
+          </Reveal>
+
+          <Reveal delay={0.1}>
             <div className="glass-card p-6 sm:p-8" data-tone="dark">
-              <p className="label-tag mb-6" style={{ color: "var(--svc)" }}>
-                Comparatif — interne vs externalisé
-              </p>
+              <div className="label-tag mb-5 grid grid-cols-3 gap-2 text-white/40">
+                <span />
+                <span className="text-center">En interne</span>
+                <span className="text-center" style={{ color: "var(--svc)" }}>
+                  Externalisé
+                </span>
+              </div>
               <div className="space-y-5">
                 {COMPARATIF.map((r) => (
-                  <div key={r.label} className="grid grid-cols-3 gap-2 border-b border-white/8 pb-4 text-sm">
-                    <span className="text-white/55">{r.label}</span>
+                  <div
+                    key={r.label}
+                    className="grid grid-cols-3 gap-2 border-b border-white/8 pb-4 text-sm last:border-0 last:pb-0"
+                  >
+                    <span className="text-white/60">{r.label}</span>
                     <span className="text-center text-white/45">{r.interne}</span>
                     <span className="text-center font-medium" style={{ color: "var(--svc)" }}>
                       {r.externe}
                     </span>
                   </div>
                 ))}
-                <div className="label-tag grid grid-cols-3 gap-2 text-white/35">
-                  <span />
-                  <span className="text-center">En interne</span>
-                  <span className="text-center" style={{ color: "var(--svc)" }}>
-                    Externalisé
-                  </span>
-                </div>
               </div>
             </div>
           </Reveal>
         </div>
       </ServiceSection>
 
-      {/* Méthode */}
-      <ServiceSection
+      {/* Chiffres en très grande typo */}
+      <BigStats
         slug="comptabilite"
-        tone="plain"
-        eyebrow="Notre méthode"
-        title="Simple, régulier, sans surprise."
-        description="Un rythme mensuel cadré, les mêmes livrables chaque mois, aux mêmes dates."
-      >
+        items={[
+          { value: "−60 %", label: "Réduction du délai de clôture mensuelle" },
+          { value: "100 %", label: "Conformité fiscale garantie" },
+          { value: "98 %", label: "Reporting disponible avant J+5" },
+          { value: "3 ans", label: "Archivage conforme RGPD" },
+        ]}
+        caption="L'externalisation comptable réduit vos coûts fixes, élimine les risques d'erreur et vous donne accès à un reporting structuré — sans recruter ni former un comptable en interne."
+      />
+
+
+      {/* Méthode */}
+      <ServiceSection slug="comptabilite" tone="plain">
+        <SectionIntro
+          eyebrow="Notre méthode"
+          title="Simple, régulier, sans surprise."
+          description="Un rythme mensuel cadré, les mêmes livrables chaque mois, aux mêmes dates."
+        />
         <ServiceSteps steps={PROCESS.map((p) => ({ num: p.num, title: p.title, desc: p.desc }))} />
       </ServiceSection>
 

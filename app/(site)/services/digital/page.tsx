@@ -1,16 +1,18 @@
 import type { Metadata } from "next";
 
+import BigStats from "@/components/services/BigStats";
+import EditorialHero from "@/components/services/EditorialHero";
+import EditorialRow from "@/components/services/EditorialRow";
+import FeatureGrid from "@/components/services/FeatureGrid";
+import SectionIntro from "@/components/services/SectionIntro";
+import ServiceCta from "@/components/services/ServiceCta";
+import ServiceScope from "@/components/services/ServiceScope";
+import ServiceSection from "@/components/services/ServiceSection";
+import ServiceSteps from "@/components/services/ServiceSteps";
+import DigitalChart from "@/components/services/DigitalChartWrapper";
 import FaqSection from "@/components/shared/FaqSection";
 import MiniTestimonials from "@/components/shared/MiniTestimonials";
 import Reveal from "@/components/shared/Reveal";
-import ServiceCard from "@/components/services/ServiceCard";
-import ServiceCta from "@/components/services/ServiceCta";
-import ServiceHero from "@/components/services/ServiceHero";
-import ServiceScope from "@/components/services/ServiceScope";
-import ServiceSection from "@/components/services/ServiceSection";
-import ServiceStatBars from "@/components/services/ServiceStatBars";
-import ServiceSteps from "@/components/services/ServiceSteps";
-import DigitalChart from "@/components/services/DigitalChartWrapper";
 import { OG_IMAGE } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -100,79 +102,114 @@ export default function DigitalPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <ServiceHero
+      <EditorialHero
         slug="digital"
         eyebrow="Digitalisation & logiciels de gestion"
         title={
           <>
-            Vos processus méritent
+            Vos processus<br />méritent
             <br />
             <span className="gradient-text-svc-light">mieux.</span>
           </>
         }
         description="ERP, SIRH, GED, logiciels métier sur mesure. On transforme vos processus manuels en flux automatisés — sans casser ce qui fonctionne déjà."
+        image={{ src: "/images/services/digital/hero.jpg", alt: "Équipe en réunion autour d'un outil de gestion" }}
         primary={{ href: "/contact", label: "Analyser mes processus" }}
         stats={METRICS.map((m) => ({ value: m.v, label: m.l }))}
       />
 
-      {/* Prestations */}
-      <ServiceSection
-        slug="digital"
-        eyebrow="Nos solutions"
-        title={
-          <>
-            Automatiser <span className="gradient-text-svc">pour mieux travailler.</span>
-          </>
-        }
-        description="Des outils qui épousent votre façon de travailler, pas l'inverse — avec la formation et la conduite du changement incluses."
-      >
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {SERVICES.map((s, i) => (
-            <Reveal key={s.title} delay={(i % 3) * 0.08} className="h-full">
-              <ServiceCard icon={<span className="text-2xl leading-none">{s.icon}</span>} title={s.title}>
-                {s.desc}
-              </ServiceCard>
-            </Reveal>
-          ))}
-        </div>
+      {/* Prestations — en-tête asymétrique + colonnes filetées */}
+      <ServiceSection slug="digital">
+        <SectionIntro
+          eyebrow="Nos solutions"
+          title={
+            <>
+              Automatiser
+              <br />
+              <span className="gradient-text-svc">pour mieux travailler.</span>
+            </>
+          }
+          description="Des outils qui épousent votre façon de travailler, pas l'inverse. Paramétrage, reprise de données, formation et conduite du changement sont inclus."
+        />
+        <FeatureGrid
+          items={SERVICES.map((s) => ({
+            icon: <span className="text-2xl leading-none">{s.icon}</span>,
+            title: s.title,
+            desc: s.desc,
+          }))}
+        />
       </ServiceSection>
 
-      {/* En chiffres */}
-      <ServiceSection
+      {/* Rangée éditoriale : texte ↔ photo */}
+      <ServiceSection slug="digital" tone="plain">
+        <EditorialRow
+          eyebrow="Conduite du changement"
+          title={
+            <>
+              Un outil que personne n'utilise
+              <br />
+              ne sert à rien.
+            </>
+          }
+          points={[
+            "Reprise des données existantes, sans ressaisie",
+            "Formation des équipes sur leurs cas réels",
+            "Support post-déploiement pendant trois mois",
+          ]}
+          image={{
+            src: "/images/services/digital/row.jpg",
+            alt: "Collaboration autour d'ordinateurs portables",
+          }}
+          stat={{ value: "0", label: "interruption de service au déploiement" }}
+          cta={{ href: "/contact", label: "Faire auditer mes processus" }}
+          ratio="5/4"
+        >
+          La technique n'est que la moitié du travail. On déploie par paliers, en gardant vos équipes opérationnelles, et on reste disponible après la mise en production — c'est là que se joue l'adoption.
+        </EditorialRow>
+      </ServiceSection>
+
+      {/* Chiffres en très grande typo */}
+      <BigStats
         slug="digital"
-        tone="dark"
-        eyebrow="Avant / après"
-        title={
-          <>
-            Ce que la digitalisation
-            <br />
-            change concrètement.
-          </>
-        }
-        description="Mesures relevées auprès de nos clients PME après trois mois d'utilisation. La digitalisation ne réduit pas seulement le temps de travail — elle réduit les erreurs et améliore la traçabilité."
-      >
-        <div className="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
-          <ServiceStatBars
-            items={[
-              { label: "Réduction des erreurs de saisie", value: "94%" },
-              { label: "Gain sur le délai de clôture", value: "70%" },
-              { label: "Satisfaction des équipes RH", value: "85%" },
-            ]}
-          />
-          <Reveal delay={0.15}>
+        items={[
+          { value: "−94 %", label: "Réduction des erreurs de saisie" },
+          { value: "−70 %", label: "Gain sur le délai de clôture" },
+          { value: "+85 %", label: "Satisfaction des équipes RH" },
+          { value: "4–8 sem.", label: "Déploiement Odoo moyen" },
+        ]}
+        caption="Mesures relevées auprès de nos clients PME après trois mois d'utilisation. La digitalisation ne réduit pas seulement le temps de travail — elle réduit les erreurs et améliore la traçabilité."
+      />
+
+      {/* Analyse — photo à gauche cette fois */}
+      <ServiceSection slug="digital" tone="dark">
+        <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+          <Reveal>
             <DigitalChart />
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p className="label-tag mb-4" style={{ color: "var(--svc)" }}>
+              Avant / après
+            </p>
+            <h2 className="font-display text-[clamp(1.5rem,1.15rem+1.5vw,2.25rem)] leading-[1.08] font-bold tracking-[-0.025em] text-white">
+              Ce que ça change
+              <br />
+              concrètement.
+            </h2>
+            <p className="mt-5 max-w-md text-[15px] leading-relaxed text-white/60">
+              Heures passées chaque semaine sur les tâches administratives, avant et après digitalisation. Le temps récupéré retourne au métier.
+            </p>
           </Reveal>
         </div>
       </ServiceSection>
 
+
       {/* Méthode */}
-      <ServiceSection
-        slug="digital"
-        tone="plain"
-        eyebrow="Notre méthode"
-        title="Une transition sans turbulences."
-        description="On avance par paliers, en gardant vos équipes opérationnelles à chaque étape."
-      >
+      <ServiceSection slug="digital" tone="plain">
+        <SectionIntro
+          eyebrow="Notre méthode"
+          title="Une transition sans turbulences."
+          description="On avance par paliers, en gardant vos équipes opérationnelles à chaque étape."
+        />
         <ServiceSteps steps={PROCESS.map((p) => ({ num: p.num, title: p.title, desc: p.desc }))} />
       </ServiceSection>
 

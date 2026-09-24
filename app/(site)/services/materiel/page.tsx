@@ -1,16 +1,18 @@
 import type { Metadata } from "next";
 
+import BigStats from "@/components/services/BigStats";
+import EditorialHero from "@/components/services/EditorialHero";
+import EditorialRow from "@/components/services/EditorialRow";
+import FeatureGrid from "@/components/services/FeatureGrid";
+import SectionIntro from "@/components/services/SectionIntro";
+import ServiceCta from "@/components/services/ServiceCta";
+import ServiceScope from "@/components/services/ServiceScope";
+import ServiceSection from "@/components/services/ServiceSection";
+import ServiceSteps from "@/components/services/ServiceSteps";
+import MaterielChart from "@/components/services/MaterielChartWrapper";
 import FaqSection from "@/components/shared/FaqSection";
 import MiniTestimonials from "@/components/shared/MiniTestimonials";
 import Reveal from "@/components/shared/Reveal";
-import ServiceCard from "@/components/services/ServiceCard";
-import ServiceCta from "@/components/services/ServiceCta";
-import ServiceHero from "@/components/services/ServiceHero";
-import ServiceScope from "@/components/services/ServiceScope";
-import ServiceSection from "@/components/services/ServiceSection";
-import ServiceStatBars from "@/components/services/ServiceStatBars";
-import ServiceSteps from "@/components/services/ServiceSteps";
-import MaterielChart from "@/components/services/MaterielChartWrapper";
 import { OG_IMAGE } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -105,7 +107,7 @@ export default function MaterielPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <ServiceHero
+      <EditorialHero
         slug="materiel"
         eyebrow="Vente de matériel informatique"
         title={
@@ -116,68 +118,103 @@ export default function MaterielPage() {
           </>
         }
         description="Ordinateurs, réseau, périphériques, infrastructure serveur. Sélection professionnelle, conseil personnalisé, installation et support inclus sur Antananarivo."
+        image={{ src: "/images/services/materiel/hero.jpg", alt: "Carte électronique et composants informatiques" }}
         primary={{ href: "/contact", label: "Demander un devis" }}
         stats={METRICS.map((m) => ({ value: m.v, label: m.l }))}
       />
 
-      {/* Prestations */}
-      <ServiceSection
-        slug="materiel"
-        eyebrow="Nos gammes"
-        title={
-          <>
-            Équipement <span className="gradient-text-svc">& support IT.</span>
-          </>
-        }
-        description="Du poste de travail au serveur, avec l'installation, la configuration réseau et la maintenance derrière."
-      >
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {CATEGORIES.map((s, i) => (
-            <Reveal key={s.title} delay={(i % 3) * 0.08} className="h-full">
-              <ServiceCard icon={<span className="text-2xl leading-none">{s.icon}</span>} title={s.title}>
-                {s.desc}
-              </ServiceCard>
-            </Reveal>
-          ))}
-        </div>
+      {/* Prestations — en-tête asymétrique + colonnes filetées */}
+      <ServiceSection slug="materiel">
+        <SectionIntro
+          eyebrow="Nos gammes"
+          title={
+            <>
+              Équipement
+              <br />
+              <span className="gradient-text-svc">& support IT.</span>
+            </>
+          }
+          description="Du poste de travail au serveur, avec l'installation, la configuration réseau et la maintenance derrière. Multi-marques : on conseille ce qui est utile, pas ce qui coûte le plus cher."
+        />
+        <FeatureGrid
+          items={CATEGORIES.map((s) => ({
+            icon: <span className="text-2xl leading-none">{s.icon}</span>,
+            title: s.title,
+            desc: s.desc,
+          }))}
+        />
       </ServiceSection>
 
-      {/* En chiffres */}
-      <ServiceSection
+      {/* Rangée éditoriale : texte ↔ photo */}
+      <ServiceSection slug="materiel" tone="plain">
+        <EditorialRow
+          eyebrow="Infrastructure & réseau"
+          title={
+            <>
+              Un parc bien installé
+              <br />
+              se fait oublier.
+            </>
+          }
+          points={[
+            "Câblage structuré et configuration réseau documentés",
+            "Onduleurs et sauvegardes dimensionnés au besoin réel",
+            "Contrat de maintenance avec intervention sous 4h",
+          ]}
+          image={{
+            src: "/images/services/materiel/row.jpg",
+            alt: "Baie de serveurs et câblage réseau",
+          }}
+          stat={{ value: "404", label: "équipements déployés depuis 2022" }}
+          cta={{ href: "/contact", label: "Faire auditer mon parc" }}
+          ratio="5/4"
+        >
+          On ne livre pas des cartons. On audite l'existant, on dimensionne, on installe, on configure — et on documente pour que votre équipe puisse reprendre la main à tout moment.
+        </EditorialRow>
+      </ServiceSection>
+
+      {/* Chiffres en très grande typo */}
+      <BigStats
         slug="materiel"
-        tone="dark"
-        eyebrow="Notre parc client"
-        title={
-          <>
-            Infrastructure IT
-            <br />
-            déployée et maintenue.
-          </>
-        }
-        description="Plus de 400 équipements déployés depuis 2022 pour des PME, ONG, établissements scolaires et administrations. Chaque installation est documentée et couverte par un contrat de suivi."
-      >
-        <div className="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
-          <ServiceStatBars
-            items={[
-              { label: "Équipements opérationnels sous contrat", value: "98%" },
-              { label: "Pannes résolues en moins de 4h", value: "91%" },
-              { label: "Clients avec contrat de maintenance actif", value: "76%" },
-            ]}
-          />
-          <Reveal delay={0.15}>
+        items={[
+          { value: "404", label: "Équipements déployés et maintenus" },
+          { value: "98 %", label: "Équipements opérationnels sous contrat" },
+          { value: "91 %", label: "Pannes résolues en moins de 4 heures" },
+          { value: "76 %", label: "Clients avec un contrat de maintenance" },
+        ]}
+        caption="Plus de 400 équipements déployés depuis 2022 pour des PME, ONG, établissements scolaires et administrations. Chaque installation est documentée et couverte par un contrat de suivi."
+      />
+
+      {/* Analyse — photo à gauche cette fois */}
+      <ServiceSection slug="materiel" tone="dark">
+        <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+          <Reveal>
             <MaterielChart />
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p className="label-tag mb-4" style={{ color: "var(--svc)" }}>
+              Notre parc client
+            </p>
+            <h2 className="font-display text-[clamp(1.5rem,1.15rem+1.5vw,2.25rem)] leading-[1.08] font-bold tracking-[-0.025em] text-white">
+              Infrastructure déployée
+              <br />
+              et maintenue.
+            </h2>
+            <p className="mt-5 max-w-md text-[15px] leading-relaxed text-white/60">
+              Unités installées et maintenues depuis 2022, tous clients confondus. La maintenance représente aujourd'hui la majorité de notre activité.
+            </p>
           </Reveal>
         </div>
       </ServiceSection>
 
+
       {/* Méthode */}
-      <ServiceSection
-        slug="materiel"
-        tone="plain"
-        eyebrow="Comment ça marche"
-        title="Du devis à l'installation."
-        description="Un interlocuteur unique, de l'audit du besoin jusqu'au support après installation."
-      >
+      <ServiceSection slug="materiel" tone="plain">
+        <SectionIntro
+          eyebrow="Comment ça marche"
+          title="Du devis à l'installation."
+          description="Un interlocuteur unique, de l'audit du besoin jusqu'au support après installation."
+        />
         <ServiceSteps steps={PROCESS.map((p) => ({ num: p.num, title: p.title, desc: p.desc }))} />
       </ServiceSection>
 
