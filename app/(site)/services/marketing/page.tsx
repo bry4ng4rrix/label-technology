@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 
-import CtaSection from "@/components/home/CtaSection";
 import FaqSection from "@/components/shared/FaqSection";
-import MetricsBand from "@/components/shared/MetricsBand";
 import MiniTestimonials from "@/components/shared/MiniTestimonials";
-import PageHero from "@/components/shared/PageHero";
 import Reveal from "@/components/shared/Reveal";
-import SectionHeader from "@/components/shared/SectionHeader";
+import ServiceCard from "@/components/services/ServiceCard";
+import ServiceCta from "@/components/services/ServiceCta";
+import ServiceHero from "@/components/services/ServiceHero";
+import ServiceScope from "@/components/services/ServiceScope";
+import ServiceSection from "@/components/services/ServiceSection";
+import ServiceSteps from "@/components/services/ServiceSteps";
 import MarketingChart from "@/components/services/MarketingChartWrapper";
-import { Button } from "@/components/ui/button";
 import { OG_IMAGE } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -201,118 +200,109 @@ const jsonLd = {
 
 export default function MarketingPage() {
   return (
-    <main>
+    <ServiceScope slug="marketing" as="main">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <PageHero
-        size="lg"
+      <ServiceHero
+        slug="marketing"
         eyebrow="Marketing digital"
         title={
           <>
             Votre audience existe.
             <br />
-            <span className="gradient-text-light">On va la trouver.</span>
+            <span className="gradient-text-svc-light">On va la trouver.</span>
           </>
         }
         description="SEO, publicité digitale, social media, email marketing. Des stratégies mesurables, pas des promesses. On parle ROI dès le premier brief."
-        image={{ src: "/images/services/mark.jpg", alt: "Marketing digital et analytics", priority: true }}
-        actions={
-          <>
-            <Button asChild size="lg" className="rounded-full">
-              <Link href="/contact">
-                Obtenir un audit gratuit
-                <ArrowRight data-icon="inline-end" />
-              </Link>
-            </Button>
-            <Button asChild size="lg" variant="glass" className="rounded-full">
-              <Link href="/projets">Voir nos réalisations</Link>
-            </Button>
-          </>
-        }
+        primary={{ href: "/contact", label: "Obtenir un audit gratuit" }}
+        stats={METRICS.map((m) => ({ value: m.v, label: m.l }))}
       />
 
-      <MetricsBand items={METRICS.map((m) => ({ value: m.v, label: m.l }))} />
-
-      {/* Services */}
-      <section className="surface-light section relative">
-        <div className="container-x">
-          <SectionHeader eyebrow="Nos expertises" title="Du trafic à la conversion." />
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {SERVICES.map((s, i) => (
-              <Reveal key={i} delay={(i % 3) * 0.08} className="h-full">
-                <div className="card-premium flex h-full flex-col p-7">
-                  <span className="mb-5 flex size-12 items-center justify-center rounded-xl bg-brand/8 text-2xl leading-none">
-                    {s.icon}
-                  </span>
-                  <h3 className="h3-display mb-3 text-foreground">{s.title}</h3>
-                  <p className="text-[15px] leading-relaxed text-muted-foreground">{s.desc}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+      {/* Expertises */}
+      <ServiceSection
+        slug="marketing"
+        eyebrow="Nos expertises"
+        title={
+          <>
+            Du trafic <span className="gradient-text-svc">à la conversion.</span>
+          </>
+        }
+        description="Cinq leviers activés ensemble ou séparément, toujours pilotés par la même équipe et les mêmes indicateurs."
+      >
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {SERVICES.map((s, i) => (
+            <Reveal key={s.title} delay={(i % 3) * 0.08} className="h-full">
+              <ServiceCard icon={<span className="text-2xl leading-none">{s.icon}</span>} title={s.title}>
+                {s.desc}
+              </ServiceCard>
+            </Reveal>
+          ))}
         </div>
-      </section>
+      </ServiceSection>
 
-      {/* Chart résultats */}
-      <section className="surface-dark noise hairline-top section-sm relative overflow-hidden">
-        <div className="container-x grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
+      {/* Résultats — composition asymétrique */}
+      <ServiceSection
+        slug="marketing"
+        tone="dark"
+        eyebrow="Résultats prouvés"
+        title={
+          <>
+            Des chiffres,
+            <br />
+            pas des estimations.
+          </>
+        }
+        description="Moyennes constatées chez nos clients après six mois de collaboration. Chaque campagne est différente — la méthode, elle, produit des résultats systématiquement mesurables."
+      >
+        <div className="grid items-center gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
           <Reveal>
-            <p className="label-tag mb-4 inline-flex items-center gap-2.5 text-brand-glow">
-              <span className="h-px w-6 bg-brand-glow/70" />
-              Résultats prouvés
-            </p>
-            <h2 className="h2-display mb-6 text-white">
-              Des chiffres,
-              <br />
-              pas des estimations.
-            </h2>
-            <p className="prose-body mb-8 text-white/60">
-              Ces résultats sont des moyennes constatées sur nos clients après 6
-              mois de collaboration. Chaque campagne est différente — mais notre
-              méthode, elle, produit des résultats systématiquement mesurables.
-            </p>
-            <div className="glass-dark rounded-r-2xl rounded-l-md border-l-2 border-l-brand-glow p-5">
-              <p className="text-sm leading-relaxed text-white/75">
+            <div
+              className="glass-card rounded-l-md p-6"
+              data-tone="dark"
+              style={{ borderLeft: "2px solid var(--svc)" }}
+            >
+              <p className="text-[15px] leading-relaxed text-white/75">
                 &ldquo;On s&apos;engage sur des KPIs chiffrés dès le départ. Si on ne les
                 atteint pas au bout de 3 mois, on travaille gratuitement jusqu&apos;à
                 ce que ce soit le cas.&rdquo;
               </p>
-              <p className="mt-2 text-xs text-white/45">— Engagement Label Technology</p>
+              <p className="mt-3 text-xs text-white/45">— Engagement Label Technology</p>
             </div>
           </Reveal>
           <Reveal delay={0.15}>
             <MarketingChart />
           </Reveal>
         </div>
-      </section>
+      </ServiceSection>
 
-      {/* Process */}
-      <section className="section bg-background">
-        <div className="container-x">
-          <SectionHeader eyebrow="Notre approche" title="De l'audit aux résultats." />
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {PROCESS.map((p, i) => (
-              <Reveal key={i} delay={i * 0.08} className="h-full">
-                <div className="card-premium svc-step flex h-full flex-col p-7">
-                  <div className="svc-step-num font-display mb-6 text-5xl leading-none text-brand">
-                    {p.num}
-                  </div>
-                  <div className="svc-step-line mb-5 h-0.5 w-8 origin-left rounded-full bg-brand" />
-                  <h3 className="h3-display mb-3 text-foreground">{p.title}</h3>
-                  <p className="text-[15px] leading-relaxed text-muted-foreground">{p.desc}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Approche */}
+      <ServiceSection
+        slug="marketing"
+        tone="plain"
+        eyebrow="Notre approche"
+        title="De l'audit aux résultats."
+        description="Quatre étapes, des indicateurs posés dès le cadrage, et un reporting qui ne cache rien."
+      >
+        <ServiceSteps steps={PROCESS.map((p) => ({ num: p.num, title: p.title, desc: p.desc }))} />
+      </ServiceSection>
 
       <MiniTestimonials items={TESTIMONIALS} />
       <FaqSection items={FAQ} />
-      <CtaSection />
-    </main>
+
+      <ServiceCta
+        slug="marketing"
+        title={
+          <>
+            Votre audience vous cherche.{" "}
+            <span className="gradient-text-svc-light">Soyez trouvable.</span>
+          </>
+        }
+        description="Audit gratuit de votre présence digitale sous 72h : ce qui fonctionne, ce qui fuit, et par quoi commencer."
+        primary={{ href: "/contact", label: "Obtenir mon audit gratuit" }}
+      />
+    </ServiceScope>
   );
 }

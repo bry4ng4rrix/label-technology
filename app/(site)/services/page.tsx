@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import CtaSection from "@/components/home/CtaSection";
-import MetricsBand from "@/components/shared/MetricsBand";
-import PageHero from "@/components/shared/PageHero";
-import SectionHeader from "@/components/shared/SectionHeader";
+
 import Reveal from "@/components/shared/Reveal";
-import { Button } from "@/components/ui/button";
+import ServiceCard from "@/components/services/ServiceCard";
+import ServiceCta from "@/components/services/ServiceCta";
+import ServiceHero from "@/components/services/ServiceHero";
+import ServiceMetrics from "@/components/services/ServiceMetrics";
+import ServiceScope from "@/components/services/ServiceScope";
+import ServiceSection from "@/components/services/ServiceSection";
+import { scopeStyle } from "@/components/services/ServiceScope";
+import { getTheme, type ServiceSlug } from "@/lib/service-themes";
 import { OG_IMAGE } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -115,150 +119,142 @@ const CORE = SERVICES.filter((s) => s.tier === "core");
 const OTHER = SERVICES.filter((s) => s.tier === "other");
 const ON_QUOTE = SERVICES.filter((s) => s.tier === "quote");
 
+/** Chaque carte adopte la couleur du service qu'elle présente. */
+function slugOf(href: string): ServiceSlug {
+  return href.replace("/services/", "") as ServiceSlug;
+}
+
 export default function ServicesPage() {
   return (
-    <main>
+    <ServiceScope slug="index" as="main">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <PageHero
+      <ServiceHero
+        slug="index"
         eyebrow="Nos expertises"
         title={
           <>
             6 expertises.
             <br />
-            <span className="gradient-text-light">1 équipe.</span>
+            <span className="gradient-text-svc-light">1 équipe.</span>
           </>
         }
-        description="Développement, Marketing, Digitalisation, Données, Matériel, Comptabilité. Une couverture complète depuis Antananarivo."
-        actions={
-          <>
-            <Button asChild size="lg" className="rounded-full">
-              <Link href="/contact">
-                Démarrer un projet
-                <ArrowRight data-icon="inline-end" />
-              </Link>
-            </Button>
-            <Button asChild size="lg" variant="glass" className="rounded-full">
-              <Link href="/projets">Voir nos réalisations</Link>
-            </Button>
-          </>
-        }
+        description="Développement, Marketing, Digitalisation, Données, Matériel, Comptabilité. Une couverture complète depuis Antananarivo, avec deux pôles cœur et quatre en appui."
+        stats={[
+          { value: "16+", label: "collaborateurs" },
+          { value: "6", label: "expertises" },
+          { value: "FR/EN", label: "bilingue" },
+          { value: "72h", label: "de réponse" },
+        ]}
       />
 
-      {/* ── Expertises cœur ── */}
-      <section className="surface-light section relative">
-        <div className="container-x">
-          <SectionHeader
-            eyebrow="Expertises cœur"
-            title={
-              <>
-                Là où nous sommes <span className="gradient-text">les plus forts.</span>
-              </>
-            }
-            description="Deux pôles concentrent l'essentiel de nos réalisations : le développement d'applications sur mesure et la digitalisation des processus de gestion."
-          />
-
-          <div className="grid gap-5 lg:grid-cols-2">
-            {CORE.map((s, i) => (
+      {/* Expertises cœur */}
+      <ServiceSection
+        slug="index"
+        eyebrow="Expertises cœur"
+        title={
+          <>
+            Là où nous sommes <span className="gradient-text-svc">les plus forts.</span>
+          </>
+        }
+        description="Deux pôles concentrent l'essentiel de nos réalisations : le développement d'applications sur mesure et la digitalisation des processus de gestion."
+      >
+        <div className="grid gap-5 lg:grid-cols-2">
+          {CORE.map((s, i) => {
+            const theme = getTheme(slugOf(s.href));
+            return (
               <Reveal key={s.tag} delay={i * 0.08} className="h-full">
-                <Link
+                <ServiceCard
                   href={s.href}
-                  className="card-premium group flex h-full flex-col p-7 ring-1 ring-brand/25 sm:p-9"
+                  eyebrow={s.tag}
+                  title={s.title}
+                  className="sm:p-9"
+                  style={scopeStyle(slugOf(s.href))}
+                  footer={
+                    <ul className="mt-7 flex flex-wrap gap-2">
+                      {s.items.map((item) => (
+                        <li
+                          key={item}
+                          className="rounded-full border px-3 py-1.5 text-xs text-muted-foreground"
+                          style={{
+                            borderColor: `color-mix(in srgb, ${theme.accent} 25%, transparent)`,
+                            background: `color-mix(in srgb, ${theme.accent} 7%, transparent)`,
+                          }}
+                        >
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  }
                 >
-                  <div className="mb-5 flex items-center justify-between gap-3">
-                    <span className="label-tag text-brand">{s.tag}</span>
-                    <span className="rounded-full bg-brand/10 px-2.5 py-1 text-[10px] font-semibold tracking-wide text-brand uppercase">
-                      Expertise cœur
-                    </span>
-                  </div>
-                  <h2 className="font-display text-2xl tracking-tight text-foreground sm:text-3xl">
-                    {s.title}
-                  </h2>
-                  <p className="font-display mt-3 text-lg font-medium text-brand italic">
+                  <span className="font-display mb-4 block text-lg font-medium italic" style={{ color: "var(--svc)" }}>
                     {s.accroche}
-                  </p>
-                  <p className="prose-body mt-5 flex-1 text-muted-foreground">{s.desc}</p>
-                  <ul className="mt-7 flex flex-wrap gap-2">
-                    {s.items.map((item) => (
-                      <li
-                        key={item}
-                        className="rounded-full border border-border bg-muted/40 px-3 py-1.5 text-xs text-muted-foreground"
-                      >
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                  <span className="link-arrow mt-8 text-sm text-brand">
-                    Découvrir cette expertise
-                    <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" />
                   </span>
-                </Link>
+                  {s.desc}
+                </ServiceCard>
               </Reveal>
-            ))}
-          </div>
+            );
+          })}
         </div>
-      </section>
+      </ServiceSection>
 
-      {/* ── Pôles complémentaires ── */}
-      <section className="section bg-background">
-        <div className="container-x">
-          <SectionHeader
-            eyebrow="Pôles complémentaires"
-            title="Ce qui vient en appui de vos projets."
-            description="Mobilisés seuls ou en complément d'un projet de développement ou de digitalisation."
-          />
+      {/* Pôles complémentaires */}
+      <ServiceSection
+        slug="index"
+        tone="plain"
+        eyebrow="Pôles complémentaires"
+        title="Ce qui vient en appui de vos projets."
+        description="Mobilisés seuls ou en complément d'un projet de développement ou de digitalisation."
+      >
+        <div className="grid gap-5 md:grid-cols-2">
+          {OTHER.map((s, i) => (
+            <Reveal key={s.tag} delay={i * 0.08} className="h-full">
+              <ServiceCard
+                href={s.href}
+                eyebrow={s.tag}
+                title={s.title}
+                style={scopeStyle(slugOf(s.href))}
+              >
+                {s.desc}
+              </ServiceCard>
+            </Reveal>
+          ))}
+        </div>
 
-          <div className="grid gap-5 md:grid-cols-2">
-            {OTHER.map((s, i) => (
-              <Reveal key={s.tag} delay={i * 0.08} className="h-full">
-                <Link href={s.href} className="card-premium group flex h-full flex-col p-7">
-                  <span className="label-tag mb-4 text-brand">{s.tag}</span>
-                  <h3 className="h3-display text-foreground">{s.title}</h3>
-                  <p className="mt-3 flex-1 text-[15px] leading-relaxed text-muted-foreground">
-                    {s.desc}
-                  </p>
-                  <span className="link-arrow mt-6 text-sm text-brand">
-                    Découvrir
-                    <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-                  </span>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
-
-          {/* Sur devis — mention simple, sans carte au même niveau */}
-          <Reveal delay={0.16} className="mt-10">
-            <div className="rounded-2xl border border-dashed border-border bg-card/60 p-6 sm:p-8">
-              <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-                <div>
-                  <p className="label-tag mb-2 text-muted-foreground">Également sur devis</p>
-                  <p className="text-sm text-muted-foreground">
-                    Deux pôles mobilisés à la demande, selon le besoin et le volume.
-                  </p>
-                </div>
-                <ul className="flex flex-wrap gap-2">
-                  {ON_QUOTE.map((s) => (
-                    <li key={s.tag}>
-                      <Link
-                        href={s.href}
-                        className="group inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-brand/40 hover:text-brand"
-                      >
-                        {s.title}
-                        <ArrowRight className="size-3.5 text-muted-foreground transition-transform duration-300 group-hover:translate-x-0.5 group-hover:text-brand" />
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
+        {/* Sur devis — mention simple, sans carte au même niveau */}
+        <Reveal delay={0.16} className="mt-10">
+          <div className="glass-card p-6 sm:p-8">
+            <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <p className="label-tag mb-2 text-muted-foreground">Également sur devis</p>
+                <p className="text-sm text-muted-foreground">
+                  Deux pôles mobilisés à la demande, selon le besoin et le volume.
+                </p>
               </div>
+              <ul className="flex flex-wrap gap-2">
+                {ON_QUOTE.map((s) => (
+                  <li key={s.tag}>
+                    <Link
+                      href={s.href}
+                      className="group inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:text-[var(--svc)]"
+                      style={scopeStyle(slugOf(s.href))}
+                    >
+                      {s.title}
+                      <ArrowRight className="size-3.5 text-muted-foreground transition-transform duration-300 group-hover:translate-x-0.5 group-hover:text-[var(--svc)]" />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
-          </Reveal>
-        </div>
-      </section>
+          </div>
+        </Reveal>
+      </ServiceSection>
 
-      <MetricsBand
+      <ServiceMetrics
+        slug="index"
         items={[
           { value: "16+", label: "Collaborateurs" },
           { value: "4 ans", label: "D'expérience" },
@@ -267,7 +263,17 @@ export default function ServicesPage() {
         ]}
       />
 
-      <CtaSection />
-    </main>
+      <ServiceCta
+        slug="index"
+        title={
+          <>
+            Un besoin, plusieurs pôles.{" "}
+            <span className="gradient-text-svc-light">Un seul interlocuteur.</span>
+          </>
+        }
+        description="Décrivez votre besoin : on vous dit sous 72h quelles expertises mobiliser, et ce que ça coûte."
+        secondary={{ href: "/projets", label: "Voir nos réalisations" }}
+      />
+    </ServiceScope>
   );
 }

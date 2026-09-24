@@ -745,6 +745,24 @@ img, video { max-width: 100%; height: auto; }
   background: rgb(255 255 255 / 0.12);
 }
 
+/* --- Dégradés de titre aux couleurs du service ----------------------------- */
+.gradient-text-svc {
+  background: linear-gradient(92deg, var(--svc-2) 0%, var(--svc) 60%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.gradient-text-svc-light {
+  background: linear-gradient(
+    92deg,
+    color-mix(in srgb, var(--svc) 75%, white) 0%,
+    color-mix(in srgb, var(--svc) 35%, white) 70%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
 /* --- Liseré supérieur d'accent --------------------------------------------- */
 .svc-rule {
   height: 1px;

@@ -31,7 +31,10 @@ export default function ServiceMetrics({
           {items.map((m, i) => (
             <Reveal key={m.label} delay={i * 0.06} className="svc-stat py-7 sm:py-8">
               <dd
-                className="font-display text-3xl tracking-tight sm:text-4xl"
+                className={cn(
+                  "font-display tracking-tight text-balance",
+                  m.value.length > 8 ? "text-xl sm:text-2xl" : "text-3xl sm:text-4xl",
+                )}
                 style={{ color: "var(--svc)" }}
               >
                 {m.value}

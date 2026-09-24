@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
-import { ArrowRight } from "lucide-react";
-import CtaSection from "@/components/home/CtaSection";
-import MetricsBand from "@/components/shared/MetricsBand";
-import PageHero from "@/components/shared/PageHero";
-import SectionHeader from "@/components/shared/SectionHeader";
-import { Button } from "@/components/ui/button";
+
 import FaqSection from "@/components/shared/FaqSection";
 import MiniTestimonials from "@/components/shared/MiniTestimonials";
-import Link from "next/link";
+import Reveal from "@/components/shared/Reveal";
+import ServiceCard from "@/components/services/ServiceCard";
+import ServiceCta from "@/components/services/ServiceCta";
+import ServiceHero from "@/components/services/ServiceHero";
+import ServiceScope from "@/components/services/ServiceScope";
+import ServiceSection from "@/components/services/ServiceSection";
+import ServiceStatBars from "@/components/services/ServiceStatBars";
+import ServiceSteps from "@/components/services/ServiceSteps";
 import { OG_IMAGE } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -70,6 +72,13 @@ const FAQ = [
   { q: "La comptabilité externalisée remplace-t-elle un expert-comptable ?", a: "Non — on est complémentaires. On prend en charge la saisie quotidienne et le reporting de gestion, ce qui allège considérablement le travail de votre expert-comptable et réduit vos honoraires annuels." },
 ];
 
+const COMPARATIF = [
+  { label: "Coût mensuel estimé", interne: "800–1 500 €", externe: "250–600 €" },
+  { label: "Délai de reporting", interne: "10–15 jours", externe: "Avant J+5" },
+  { label: "Risque d'erreur", interne: "Dépend du profil", externe: "Double contrôle systématique" },
+  { label: "Disponibilité", interne: "Congés, turnover", externe: "Continuité garantie" },
+];
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Service",
@@ -92,129 +101,123 @@ const jsonLd = {
 
 export default function ComptabilitePage() {
   return (
-    <main>
+    <ServiceScope slug="comptabilite" as="main">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <PageHero
-        size="lg"
-        eyebrow="COMPTABILITÉ & REPORTING"
+      <ServiceHero
+        slug="comptabilite"
+        eyebrow="Comptabilité & reporting"
         title={
           <>
             Vos chiffres,
             <br />
-            <span className="gradient-text-light">enfin lisibles.</span>
+            <span className="gradient-text-svc-light">enfin lisibles.</span>
           </>
         }
         description="Saisie comptable, rapprochements bancaires, reporting mensuel et tableaux de bord dirigeants. Des décisions fondées sur des données fiables, disponibles avant le 5 du mois."
-        image={{ src: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=900&h=700&fit=crop&q=80", alt: "Comptabilité et reporting financier", priority: true }}
-        actions={
-          <>
-            <Button asChild size="lg" className="rounded-full">
-              <Link href="/contact">
-                Demander un devis
-                <ArrowRight data-icon="inline-end" />
-              </Link>
-            </Button>
-            <Button asChild size="lg" variant="glass" className="rounded-full">
-              <Link href="/projets">Voir nos réalisations</Link>
-            </Button>
-          </>
-        }
+        primary={{ href: "/contact", label: "Demander un devis" }}
+        stats={METRICS.map((m) => ({ value: m.v, label: m.l }))}
       />
 
-      <MetricsBand items={METRICS.map((m) => ({ value: m.v, label: m.l }))} />
-
-      {/* Services */}
-      <section className="surface-light section relative">
-        <div className="container-x">
-          <SectionHeader eyebrow="NOS PRESTATIONS" title="La comptabilité qui libère du temps." />
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {SERVICES.map((s, i) => (
-              <div key={i} className="card-premium animate-fadeup flex h-full flex-col p-7" style={{ animationDelay: `${i * 0.08}s` }}>
-                <span className="mb-5 flex size-12 items-center justify-center rounded-xl bg-brand/8 text-2xl leading-none">{s.icon}</span>
-                <h3 className="h3-display mb-3 text-foreground">{s.title}</h3>
-                <p className="text-[15px] leading-relaxed text-muted-foreground">{s.desc}</p>
-              </div>
-            ))}
-          </div>
+      {/* Prestations */}
+      <ServiceSection
+        slug="comptabilite"
+        eyebrow="Nos prestations"
+        title={
+          <>
+            La comptabilité <span className="gradient-text-svc">qui libère du temps.</span>
+          </>
+        }
+        description="Externalisez la saisie et le contrôle, gardez la décision — avec un reporting mensuel qui arrive avant le 5."
+      >
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {SERVICES.map((s, i) => (
+            <Reveal key={s.title} delay={(i % 3) * 0.08} className="h-full">
+              <ServiceCard icon={<span className="text-2xl leading-none">{s.icon}</span>} title={s.title}>
+                {s.desc}
+              </ServiceCard>
+            </Reveal>
+          ))}
         </div>
-      </section>
+      </ServiceSection>
 
-      {/* Stats section */}
-      <section className="surface-dark noise hairline-top section-sm relative overflow-hidden">
-        <div className="container-x grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
-          <div>
-            <p className="animate-fadeup label-tag mb-4 inline-flex items-center gap-2.5 text-brand-glow"><span className="h-px w-6 bg-brand-glow/70" />IMPACT CONCRET</p>
-            <h2 className="animate-fadeup-d1 h2-display text-white mb-6">
-              Moins de temps sur les chiffres,<br />plus de temps pour décider.
-            </h2>
-            <p className="prose-body animate-fadeup-d2 mb-8 text-white/60">
-              L'externalisation comptable réduit vos coûts fixes, élimine les
-              risques d'erreur et vous donne accès à un reporting mensuel
-              structuré — sans recruter ni former un comptable en interne.
-            </p>
-            <div className="space-y-5">
-              {[
-                { l: "Réduction du délai de clôture mensuelle", v: "−60%" },
-                { l: "Conformité fiscale garantie", v: "100%" },
-                { l: "Disponibilité du reporting avant J+5", v: "98%" },
-              ].map((s, i) => (
-                <div key={i} className="glass-dark animate-fadeup flex items-center justify-between rounded-xl p-4 transition-colors hover:bg-white/8"
-                  style={{ animationDelay: `${0.3 + i * 0.1}s` }}>
-                  <span className="text-sm text-white/55">{s.l}</span>
-                  <span className="font-display text-lg font-bold text-brand-glow">{s.v}</span>
+      {/* En chiffres */}
+      <ServiceSection
+        slug="comptabilite"
+        tone="dark"
+        eyebrow="Impact concret"
+        title={
+          <>
+            Moins de temps sur les chiffres,
+            <br />
+            plus de temps pour décider.
+          </>
+        }
+        description="L'externalisation comptable réduit vos coûts fixes, élimine les risques d'erreur et vous donne accès à un reporting mensuel structuré — sans recruter ni former un comptable en interne."
+      >
+        <div className="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+          <ServiceStatBars
+            items={[
+              { label: "Réduction du délai de clôture mensuelle", value: "60%" },
+              { label: "Conformité fiscale garantie", value: "100%" },
+              { label: "Disponibilité du reporting avant J+5", value: "98%" },
+            ]}
+          />
+          <Reveal delay={0.15}>
+            {/* Comparatif interne / externalisé — carte de verre, pas de graphique ici */}
+            <div className="glass-card p-6 sm:p-8" data-tone="dark">
+              <p className="label-tag mb-6" style={{ color: "var(--svc)" }}>
+                Comparatif — interne vs externalisé
+              </p>
+              <div className="space-y-5">
+                {COMPARATIF.map((r) => (
+                  <div key={r.label} className="grid grid-cols-3 gap-2 border-b border-white/8 pb-4 text-sm">
+                    <span className="text-white/55">{r.label}</span>
+                    <span className="text-center text-white/45">{r.interne}</span>
+                    <span className="text-center font-medium" style={{ color: "var(--svc)" }}>
+                      {r.externe}
+                    </span>
+                  </div>
+                ))}
+                <div className="label-tag grid grid-cols-3 gap-2 text-white/35">
+                  <span />
+                  <span className="text-center">En interne</span>
+                  <span className="text-center" style={{ color: "var(--svc)" }}>
+                    Externalisé
+                  </span>
                 </div>
-              ))}
-            </div>
-          </div>
-          <div className="glass-dark animate-fadeup-d2 rounded-3xl p-6 sm:p-8">
-            <p className="label-tag mb-6 text-brand-glow">COMPARATIF — INTERNE VS EXTERNALISÉ</p>
-            <div className="space-y-5">
-              {[
-                { label: "Coût mensuel estimé", interne: "800–1 500€", externe: "250–600€" },
-                { label: "Délai de reporting", interne: "10–15 jours", externe: "Avant J+5" },
-                { label: "Risque d'erreur", interne: "Dépend du profil", externe: "Double contrôle systématique" },
-                { label: "Disponibilité", interne: "Congés, turnover", externe: "Continuité garantie" },
-              ].map((r, i) => (
-                <div key={i} className="grid grid-cols-3 gap-2 border-b border-white/6 pb-4 text-sm">
-                  <span className="text-white/50">{r.label}</span>
-                  <span className="text-center text-white/50">{r.interne}</span>
-                  <span className="text-center font-medium text-brand-glow">{r.externe}</span>
-                </div>
-              ))}
-              <div className="label-tag grid grid-cols-3 gap-2 text-white/25">
-                <span></span>
-                <span className="text-center">EN INTERNE</span>
-                <span className="text-center text-brand-glow">EXTERNALISÉ</span>
               </div>
             </div>
-          </div>
+          </Reveal>
         </div>
-      </section>
+      </ServiceSection>
 
-      {/* Process */}
-      <section className="section bg-background">
-        <div className="container-x">
-          <SectionHeader eyebrow="NOTRE MÉTHODE" title="Simple, régulier, sans surprise." />
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {PROCESS.map((p, i) => (
-              <div key={i} className="card-premium svc-step animate-fadeup flex h-full flex-col p-7" style={{ animationDelay: `${i * 0.1}s` }}>
-                <div className="svc-step-num font-display mb-6 text-5xl leading-none text-brand">{p.num}</div>
-                <div className="svc-step-line mb-5 h-0.5 w-8 origin-left rounded-full bg-brand" />
-                <h3 className="h3-display mb-3 text-foreground">{p.title}</h3>
-                <p className="text-[15px] leading-relaxed text-muted-foreground">{p.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Méthode */}
+      <ServiceSection
+        slug="comptabilite"
+        tone="plain"
+        eyebrow="Notre méthode"
+        title="Simple, régulier, sans surprise."
+        description="Un rythme mensuel cadré, les mêmes livrables chaque mois, aux mêmes dates."
+      >
+        <ServiceSteps steps={PROCESS.map((p) => ({ num: p.num, title: p.title, desc: p.desc }))} />
+      </ServiceSection>
 
       <MiniTestimonials items={TESTIMONIALS} />
       <FaqSection items={FAQ} />
-      <CtaSection />
-    </main>
+
+      <ServiceCta
+        slug="comptabilite"
+        title={
+          <>
+            Reprenez la main <span className="gradient-text-svc-light">sur vos chiffres.</span>
+          </>
+        }
+        description="Parlons de votre volume et de vos échéances : on vous propose un forfait mensuel clair sous 72h."
+      />
+    </ServiceScope>
   );
 }

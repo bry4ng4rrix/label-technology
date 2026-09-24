@@ -1,9 +1,5 @@
-import Link from "next/link";
 import {
-  ArrowRight,
-  CheckCircle2,
   Code2,
-  Phone,
   Shield,
   ShoppingCart,
   Smartphone,
@@ -11,13 +7,17 @@ import {
   Zap,
 } from "lucide-react";
 import FaqSection from "@/components/shared/FaqSection";
-import MetricsBand from "@/components/shared/MetricsBand";
 import MiniTestimonials from "@/components/shared/MiniTestimonials";
-import PageHero from "@/components/shared/PageHero";
 import Reveal from "@/components/shared/Reveal";
-import SectionHeader from "@/components/shared/SectionHeader";
+import ServiceCard from "@/components/services/ServiceCard";
+import ServiceCta from "@/components/services/ServiceCta";
+import ServiceHero from "@/components/services/ServiceHero";
+import ServiceBackground from "@/components/services/ServiceBackground";
+import ServiceScope from "@/components/services/ServiceScope";
+import ServiceSection from "@/components/services/ServiceSection";
+import ServiceStatBars from "@/components/services/ServiceStatBars";
+import ServiceSteps from "@/components/services/ServiceSteps";
 import DevChart from "@/components/services/DevChartWrapper";
-import { Button } from "@/components/ui/button";
 
 const METRICS = [
   { value: "800€", label: "projet à partir de" },
@@ -165,80 +165,60 @@ const FAQ = [
 
 export default function DevPage() {
   return (
-    <main>
-      <PageHero
-        size="lg"
+    <ServiceScope slug="dev" as="main">
+      <ServiceHero
+        slug="dev"
         eyebrow="Développement web & mobile"
         title={
           <>
             On ne livre pas du code.
             <br />
-            <span className="gradient-text-light">On livre de la croissance.</span>
+            <span className="gradient-text-svc-light">On livre de la croissance.</span>
           </>
         }
         description="Web, mobile, API, e-commerce. Depuis Antananarivo, avec les standards d'une ESN européenne et les délais d'une startup. Devis gratuit en 72h."
-        image={{ src: "/images/services/dev.jpg", alt: "Développement web & mobile — Label Technology", priority: true }}
-        actions={
-          <>
-            <Button asChild size="lg" className="rounded-full">
-              <Link href="/contact">
-                Démarrer un projet
-                <ArrowRight data-icon="inline-end" />
-              </Link>
-            </Button>
-            <Button asChild size="lg" variant="glass" className="rounded-full">
-              <Link href="/projets">Voir nos réalisations</Link>
-            </Button>
-          </>
-        }
+        stats={METRICS}
       />
 
-      <MetricsBand items={METRICS} />
-
-      {/* ── Services ── */}
-      <section className="surface-light section relative">
-        <div className="container-x">
-          <SectionHeader
-            eyebrow="Ce qu'on fait"
-            title={
-              <>
-                Du code qui <span className="gradient-text">travaille pour vous.</span>
-              </>
-            }
-          />
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {SERVICES.map((s, i) => {
-              const Icon = s.icon;
-              return (
-                <Reveal key={i} delay={(i % 3) * 0.08} className="h-full">
-                  <div
-                    className="card-premium group flex h-full flex-col p-7"
-                    style={{ ["--accent" as string]: s.color }}
-                  >
-                    <div
-                      className="mb-5 flex size-12 items-center justify-center rounded-xl transition-transform duration-300 group-hover:-translate-y-0.5"
-                      style={{ backgroundColor: `${s.color}14`, color: s.color }}
-                    >
-                      <Icon size={22} strokeWidth={1.6} />
-                    </div>
-                    <h3 className="h3-display text-foreground">{s.title}</h3>
-                    <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground">{s.desc}</p>
-                  </div>
-                </Reveal>
-              );
-            })}
-          </div>
+      {/* Ce qu'on fait */}
+      <ServiceSection
+        slug="dev"
+        eyebrow="Ce qu'on fait"
+        title={
+          <>
+            Du code qui <span className="gradient-text-svc">travaille pour vous.</span>
+          </>
+        }
+        description="Six familles de projets, une seule équipe senior — pas de sous-traitance, pas de juniors sur vos projets critiques."
+      >
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {SERVICES.map((s, i) => {
+            const Icon = s.icon;
+            return (
+              <Reveal key={s.title} delay={(i % 3) * 0.08} className="h-full">
+                <ServiceCard
+                  icon={<Icon strokeWidth={1.6} />}
+                  title={s.title}
+                  style={{ ["--svc" as string]: s.color }}
+                >
+                  {s.desc}
+                </ServiceCard>
+              </Reveal>
+            );
+          })}
         </div>
-      </section>
+      </ServiceSection>
 
-      {/* ── Tech Stack ── */}
-      <section className="surface-dark noise hairline-top relative overflow-hidden py-16 sm:py-20">
-        <div aria-hidden className="grid-fade absolute inset-0 -z-10 opacity-60" />
+      {/* Stack technique — bandeau défilant */}
+      <section className="relative overflow-hidden py-16 text-white sm:py-20">
+        <ServiceBackground slug="dev" tone="dark" intensity="soft" />
+        <div aria-hidden className="svc-rule absolute inset-x-0 top-0" />
+
         <div className="container-x mb-8 text-center">
-          <p className="label-tag inline-flex items-center gap-3 text-brand-glow">
-            <span className="h-px w-6 bg-brand-glow/70" />
+          <p className="label-tag inline-flex items-center gap-3" style={{ color: "var(--svc)" }}>
+            <span className="h-px w-6" style={{ background: "color-mix(in srgb, var(--svc) 70%, transparent)" }} />
             Notre stack technique
-            <span className="h-px w-6 bg-brand-glow/70" />
+            <span className="h-px w-6" style={{ background: "color-mix(in srgb, var(--svc) 70%, transparent)" }} />
           </p>
         </div>
 
@@ -252,10 +232,10 @@ export default function DevPage() {
             >
               {[...TECH_STACK, ...TECH_STACK].map((tech, i) => (
                 <span key={i} className="inline-flex items-center gap-4 px-4">
-                  <span className="glass-dark rounded-full px-4 py-1.5 text-[13px] font-medium tracking-wide text-white/75">
+                  <span className="glass-card rounded-full px-4 py-1.5 text-[13px] font-medium tracking-wide text-white/80" data-tone="dark">
                     {tech}
                   </span>
-                  <span className="size-1 rounded-full bg-brand-glow/50" />
+                  <span className="size-1 rounded-full" style={{ background: "color-mix(in srgb, var(--svc) 60%, transparent)" }} />
                 </span>
               ))}
             </div>
@@ -263,151 +243,72 @@ export default function DevPage() {
         </div>
       </section>
 
-      {/* ── Processus ── */}
-      <section className="section bg-background">
-        <div className="container-x">
-          <SectionHeader
-            eyebrow="Notre méthode"
-            title={
-              <>
-                De l&apos;idée <span className="gradient-text">à la mise en ligne.</span>
-              </>
-            }
-          />
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {PROCESS.map((p, i) => (
-              <Reveal key={i} delay={i * 0.08} className="h-full">
-                <div className="card-premium group flex h-full flex-col p-7">
-                  <div className="mb-6 flex items-center justify-between">
-                    <span
-                      className="font-display text-4xl leading-none text-foreground/15 transition-colors duration-300 group-hover:text-[var(--accent)]"
-                      style={{ ["--accent" as string]: p.color }}
-                    >
-                      {p.step}
-                    </span>
-                    <span
-                      className="size-2.5 rounded-full ring-4 ring-background"
-                      style={{ backgroundColor: p.color }}
-                    />
-                  </div>
-                  <div className="mb-5 h-0.5 w-8 rounded-full" style={{ backgroundColor: p.color }} />
-                  <h3 className="h3-display text-foreground">{p.title}</h3>
-                  <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground">{p.desc}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Méthode */}
+      <ServiceSection
+        slug="dev"
+        tone="plain"
+        eyebrow="Notre méthode"
+        title={
+          <>
+            De l&apos;idée <span className="gradient-text-svc">à la mise en ligne.</span>
+          </>
+        }
+        description="Sprints de deux semaines, démos régulières, et une application que vous voyez prendre forme au lieu de la découvrir à la livraison."
+      >
+        <ServiceSteps steps={PROCESS.map((p) => ({ num: p.step, title: p.title, desc: p.desc }))} />
+      </ServiceSection>
 
-      {/* ── Expertise ── */}
-      <section className="surface-light section relative overflow-hidden">
-        <div className="container-x">
-          <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
-            <Reveal>
-              <p className="label-tag mb-4 inline-flex items-center gap-2.5 text-brand">
-                <span className="h-px w-6 bg-brand/60" />
-                Notre expertise
-              </p>
-              <h2 className="h2-display text-foreground">
-                Une stack technique maîtrisée{" "}
-                <span className="gradient-text">de bout en bout.</span>
-              </h2>
-              <p className="prose-body mt-6 text-muted-foreground">
-                Pas de sous-traitance, pas de développeurs juniors sur vos
-                projets critiques. Notre équipe maîtrise chaque couche de la
-                stack — du design à l&apos;infrastructure.
-              </p>
-
-              <div className="mt-8 space-y-5">
-                {STATS.map((s, i) => (
-                  <div key={i}>
-                    <div className="mb-1.5 flex justify-between text-sm">
-                      <span className="text-muted-foreground">{s.label}</span>
-                      <span className="font-display font-bold text-brand">{s.value}</span>
-                    </div>
-                    <div className="h-1.5 w-full overflow-hidden rounded-full bg-foreground/8">
-                      <div
-                        className="svc-bar h-full rounded-full bg-linear-to-r from-brand to-brand-lt"
-                        style={{ width: s.width, animationDelay: `${0.3 + i * 0.18}s` }}
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-8 rounded-r-2xl border-l-2 border-brand bg-brand/5 p-5">
-                <p className="font-display text-base leading-relaxed font-medium text-foreground italic">
-                  &ldquo;Parce qu&apos;une technologie sans accompagnement
-                  n&apos;est qu&apos;un coût. Nous en faisons un levier.&rdquo;
+      {/* Expertise — composition asymétrique */}
+      <ServiceSection
+        slug="dev"
+        tone="dark"
+        eyebrow="Notre expertise"
+        title={
+          <>
+            Une stack maîtrisée
+            <br />
+            de bout en bout.
+          </>
+        }
+        description="Pas de sous-traitance, pas de développeurs juniors sur vos projets critiques. Notre équipe maîtrise chaque couche — du design à l'infrastructure."
+      >
+        <div className="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+          <div>
+            <ServiceStatBars items={STATS.map((s) => ({ label: s.label, value: s.value }))} />
+            <Reveal delay={0.3}>
+              <div
+                className="glass-card mt-8 rounded-l-md p-5"
+                data-tone="dark"
+                style={{ borderLeft: "2px solid var(--svc)" }}
+              >
+                <p className="font-display text-base leading-relaxed font-medium text-white/85 italic">
+                  &ldquo;Parce qu&apos;une technologie sans accompagnement n&apos;est
+                  qu&apos;un coût. Nous en faisons un levier.&rdquo;
                 </p>
               </div>
             </Reveal>
-
-            <Reveal delay={0.15}>
-              <div className="surface-dark noise relative overflow-hidden rounded-3xl p-3 sm:p-4">
-                <div aria-hidden className="grid-fade absolute inset-0 -z-10 opacity-70" />
-                <DevChart />
-              </div>
-            </Reveal>
           </div>
+          <Reveal delay={0.15}>
+            <DevChart />
+          </Reveal>
         </div>
-      </section>
+      </ServiceSection>
 
       <MiniTestimonials items={TESTIMONIALS} />
       <FaqSection items={FAQ} />
 
-      {/* ── CTA Final ── */}
-      <section className="surface-dark noise hairline-top relative overflow-hidden py-24 sm:py-28 lg:py-36">
-        <div aria-hidden className="grid-fade absolute inset-0 -z-10 opacity-70" />
-        <div
-          aria-hidden
-          className="halo -top-32 left-1/2 -z-10 h-[460px] w-[760px] -translate-x-1/2 bg-brand-lt/35"
-        />
-        <div className="container-x">
-          <div className="mx-auto max-w-3xl text-center">
-            <Reveal>
-              <span className="glass-dark inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[11px] font-semibold tracking-[0.16em] text-white/70 uppercase">
-                <span className="pulse-dot size-1.5 rounded-full bg-emerald-400" />
-                Prêt à démarrer ?
-              </span>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <h2 className="h2-cta mt-7 text-white">
-                Prêt à transformer{" "}
-                <span className="gradient-text-light">votre idée en réalité ?</span>
-              </h2>
-            </Reveal>
-            <Reveal delay={0.2}>
-              <p className="mx-auto mt-6 max-w-md text-base leading-relaxed text-white/55">
-                Discutons de votre projet. Premier devis gratuit en 72h — sans engagement.
-              </p>
-            </Reveal>
-            <Reveal delay={0.3} className="mt-10 flex flex-wrap items-center justify-center gap-3">
-              <Button asChild size="xl" variant="inverse" className="rounded-full">
-                <Link href="/contact">
-                  Demander un devis
-                  <CheckCircle2 data-icon="inline-end" />
-                </Link>
-              </Button>
-              <Button asChild size="xl" variant="glass" className="rounded-full">
-                <a href="tel:+261340503129">
-                  <Phone data-icon="inline-start" />
-                  Appeler maintenant
-                </a>
-              </Button>
-            </Reveal>
-            <Reveal delay={0.4} className="mt-14 flex flex-wrap justify-center gap-x-8 gap-y-3">
-              {["Pas d'engagement", "Devis gratuit", "Réponse sous 72h"].map((item) => (
-                <span key={item} className="flex items-center gap-2 text-xs text-white/50">
-                  <CheckCircle2 className="size-3.5 shrink-0 text-emerald-400/80" />
-                  {item}
-                </span>
-              ))}
-            </Reveal>
-          </div>
-        </div>
-      </section>
-    </main>
+      <ServiceCta
+        slug="dev"
+        title={
+          <>
+            Prêt à transformer{" "}
+            <span className="gradient-text-svc-light">votre idée en réalité ?</span>
+          </>
+        }
+        description="Décrivez votre projet : premier devis gratuit en 72h, sans engagement."
+        primary={{ href: "/contact", label: "Demander un devis" }}
+        points={["Pas d'engagement", "Devis gratuit", "Réponse sous 72h"]}
+      />
+    </ServiceScope>
   );
 }

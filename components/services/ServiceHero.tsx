@@ -96,10 +96,18 @@ export default function ServiceHero({
                   <div key={s.label} className="svc-stat">
                     <dt className="sr-only">{s.label}</dt>
                     <dd>
-                      <span className="font-display block text-lg tracking-tight text-white sm:text-xl">
+                      {/* `text-balance` + taille auto : certaines valeurs sont
+                          longues (« Antananarivo », « MG/AF/EU ») et ne doivent
+                          pas déborder de leur colonne. */}
+                      <span
+                        className={cn(
+                          "font-display block tracking-tight text-balance text-white",
+                          s.value.length > 8 ? "text-sm sm:text-base" : "text-lg sm:text-xl",
+                        )}
+                      >
                         {s.value}
                       </span>
-                      <span className="mt-0.5 block text-[10px] font-medium text-white/50 sm:text-[11px]">
+                      <span className="mt-0.5 block text-[10px] font-medium text-balance text-white/50 sm:text-[11px]">
                         {s.label}
                       </span>
                     </dd>

@@ -6,7 +6,6 @@ import Reveal from "@/components/shared/Reveal";
 import ServiceCard from "@/components/services/ServiceCard";
 import ServiceCta from "@/components/services/ServiceCta";
 import ServiceHero from "@/components/services/ServiceHero";
-import ServiceMetrics from "@/components/services/ServiceMetrics";
 import ServiceScope from "@/components/services/ServiceScope";
 import ServiceSection from "@/components/services/ServiceSection";
 import ServiceStatBars from "@/components/services/ServiceStatBars";
@@ -109,7 +108,7 @@ export default function DataPage() {
           <>
             Vos données sont un actif.
             <br />
-            <span className="gradient-text-light">On les rend exploitables.</span>
+            <span className="gradient-text-svc-light">On les rend exploitables.</span>
           </>
         }
         description="Saisie, nettoyage, analyse, automatisation. Une équipe spécialisée pour traiter des volumes importants avec une précision garantie à 99,5 %."
@@ -117,15 +116,13 @@ export default function DataPage() {
         stats={METRICS.map((m) => ({ value: m.v, label: m.l }))}
       />
 
-      <ServiceMetrics slug="data" items={METRICS.map((m) => ({ value: m.v, label: m.l }))} />
-
       {/* Prestations */}
       <ServiceSection
         slug="data"
         eyebrow="Nos prestations"
         title={
           <>
-            De la donnée brute <span className="gradient-text">à la décision.</span>
+            De la donnée brute <span className="gradient-text-svc">à la décision.</span>
           </>
         }
         description="Six prestations qui couvrent tout le cycle de vie de vos données, de la collecte à l'archivage conforme."
@@ -188,7 +185,7 @@ export default function DataPage() {
         title={
           <>
             Vos données dorment quelque part.{" "}
-            <span className="gradient-text-light">On les réveille.</span>
+            <span className="gradient-text-svc-light">On les réveille.</span>
           </>
         }
         description="Envoyez-nous un échantillon : on vous dit sous 72h ce qu'on peut en tirer, avec un devis chiffré."

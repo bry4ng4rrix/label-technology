@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
 
-import { ArrowRight } from "lucide-react";
-import CtaSection from "@/components/home/CtaSection";
-import MetricsBand from "@/components/shared/MetricsBand";
-import PageHero from "@/components/shared/PageHero";
-import SectionHeader from "@/components/shared/SectionHeader";
-import { Button } from "@/components/ui/button";
 import FaqSection from "@/components/shared/FaqSection";
 import MiniTestimonials from "@/components/shared/MiniTestimonials";
-import Link from "next/link";
-
+import Reveal from "@/components/shared/Reveal";
+import ServiceCard from "@/components/services/ServiceCard";
+import ServiceCta from "@/components/services/ServiceCta";
+import ServiceHero from "@/components/services/ServiceHero";
+import ServiceScope from "@/components/services/ServiceScope";
+import ServiceSection from "@/components/services/ServiceSection";
+import ServiceStatBars from "@/components/services/ServiceStatBars";
+import ServiceSteps from "@/components/services/ServiceSteps";
 import MaterielChart from "@/components/services/MaterielChartWrapper";
 import { OG_IMAGE } from "@/lib/seo";
 
@@ -99,112 +99,100 @@ const jsonLd = {
 
 export default function MaterielPage() {
   return (
-    <main>
+    <ServiceScope slug="materiel" as="main">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <PageHero
-        size="lg"
-        eyebrow="VENTE DE MATÉRIEL INFORMATIQUE"
+      <ServiceHero
+        slug="materiel"
+        eyebrow="Vente de matériel informatique"
         title={
           <>
             Le bon matériel.
             <br />
-            <span className="gradient-text-light">Au juste prix.</span>
+            <span className="gradient-text-svc-light">Au juste prix.</span>
           </>
         }
         description="Ordinateurs, réseau, périphériques, infrastructure serveur. Sélection professionnelle, conseil personnalisé, installation et support inclus sur Antananarivo."
-        image={{ src: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=900&h=700&fit=crop&q=80", alt: "Matériel informatique professionnel", priority: true }}
-        actions={
-          <>
-            <Button asChild size="lg" className="rounded-full">
-              <Link href="/contact">
-                Demander un devis
-                <ArrowRight data-icon="inline-end" />
-              </Link>
-            </Button>
-            <Button asChild size="lg" variant="glass" className="rounded-full">
-              <Link href="/projets">Voir nos réalisations</Link>
-            </Button>
-          </>
-        }
+        primary={{ href: "/contact", label: "Demander un devis" }}
+        stats={METRICS.map((m) => ({ value: m.v, label: m.l }))}
       />
 
-      <MetricsBand items={METRICS.map((m) => ({ value: m.v, label: m.l }))} />
-
-      {/* Catégories */}
-      <section className="surface-light section relative">
-        <div className="container-x">
-          <SectionHeader eyebrow="NOS GAMMES" title="Équipement & Support IT." />
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {CATEGORIES.map((c, i) => (
-              <div key={i} className="card-premium animate-fadeup flex h-full flex-col p-7" style={{ animationDelay: `${i * 0.08}s` }}>
-                <span className="mb-5 flex size-12 items-center justify-center rounded-xl bg-brand/8 text-2xl leading-none">{c.icon}</span>
-                <h3 className="h3-display mb-3 text-foreground">{c.title}</h3>
-                <p className="text-[15px] leading-relaxed text-muted-foreground">{c.desc}</p>
-              </div>
-            ))}
-          </div>
+      {/* Prestations */}
+      <ServiceSection
+        slug="materiel"
+        eyebrow="Nos gammes"
+        title={
+          <>
+            Équipement <span className="gradient-text-svc">& support IT.</span>
+          </>
+        }
+        description="Du poste de travail au serveur, avec l'installation, la configuration réseau et la maintenance derrière."
+      >
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {CATEGORIES.map((s, i) => (
+            <Reveal key={s.title} delay={(i % 3) * 0.08} className="h-full">
+              <ServiceCard icon={<span className="text-2xl leading-none">{s.icon}</span>} title={s.title}>
+                {s.desc}
+              </ServiceCard>
+            </Reveal>
+          ))}
         </div>
-      </section>
+      </ServiceSection>
 
-      {/* Stats + Chart */}
-      <section className="surface-dark noise hairline-top section-sm relative overflow-hidden">
-        <div className="container-x grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
-          <div>
-            <p className="animate-fadeup label-tag mb-4 inline-flex items-center gap-2.5 text-brand-glow"><span className="h-px w-6 bg-brand-glow/70" />NOTRE PARC CLIENT</p>
-            <h2 className="animate-fadeup-d1 h2-display text-white mb-6">
-              Infrastructure IT<br />déployée et maintenue.
-            </h2>
-            <p className="prose-body animate-fadeup-d2 mb-8 text-white/60">
-              Plus de 400 équipements déployés depuis 2022, pour des PME,
-              ONG, établissements scolaires et administrations à Madagascar.
-              Chaque installation est documentée et couverte par un contrat de suivi.
-            </p>
-            <div className="space-y-5">
-              {[
-                { l: "Équipements opérationnels sous contrat", v: "98%" },
-                { l: "Pannes résolues en moins de 4h", v: "91%" },
-                { l: "Clients avec contrat de maintenance actif", v: "76%" },
-              ].map((s, i) => (
-                <div key={i}>
-                  <div className="mb-1.5 flex justify-between">
-                    <span className="text-sm text-white/55">{s.l}</span>
-                    <span className="font-display text-sm text-brand-glow">{s.v}</span>
-                  </div>
-                  <div className="h-1.5 overflow-hidden rounded-full bg-white/8">
-                    <div className="svc-bar h-full rounded-full" style={{ width: s.v, backgroundColor: "var(--brand-lt)", animationDelay: `${0.3 + i * 0.18}s` }} />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-          <MaterielChart />
+      {/* En chiffres */}
+      <ServiceSection
+        slug="materiel"
+        tone="dark"
+        eyebrow="Notre parc client"
+        title={
+          <>
+            Infrastructure IT
+            <br />
+            déployée et maintenue.
+          </>
+        }
+        description="Plus de 400 équipements déployés depuis 2022 pour des PME, ONG, établissements scolaires et administrations. Chaque installation est documentée et couverte par un contrat de suivi."
+      >
+        <div className="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+          <ServiceStatBars
+            items={[
+              { label: "Équipements opérationnels sous contrat", value: "98%" },
+              { label: "Pannes résolues en moins de 4h", value: "91%" },
+              { label: "Clients avec contrat de maintenance actif", value: "76%" },
+            ]}
+          />
+          <Reveal delay={0.15}>
+            <MaterielChart />
+          </Reveal>
         </div>
-      </section>
+      </ServiceSection>
 
-      {/* Process */}
-      <section className="section bg-background">
-        <div className="container-x">
-          <SectionHeader eyebrow="COMMENT CA MARCHE" title="Du devis à l'installation." />
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {PROCESS.map((p, i) => (
-              <div key={i} className="card-premium svc-step animate-fadeup flex h-full flex-col p-7" style={{ animationDelay: `${i * 0.1}s` }}>
-                <div className="svc-step-num font-display mb-6 text-5xl leading-none text-brand">{p.num}</div>
-                <div className="svc-step-line mb-5 h-0.5 w-8 origin-left rounded-full bg-brand" />
-                <h3 className="h3-display mb-3 text-foreground">{p.title}</h3>
-                <p className="text-[15px] leading-relaxed text-muted-foreground">{p.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Méthode */}
+      <ServiceSection
+        slug="materiel"
+        tone="plain"
+        eyebrow="Comment ça marche"
+        title="Du devis à l'installation."
+        description="Un interlocuteur unique, de l'audit du besoin jusqu'au support après installation."
+      >
+        <ServiceSteps steps={PROCESS.map((p) => ({ num: p.num, title: p.title, desc: p.desc }))} />
+      </ServiceSection>
 
       <MiniTestimonials items={TESTIMONIALS} />
       <FaqSection items={FAQ} />
-      <CtaSection />
-    </main>
+
+      <ServiceCta
+        slug="materiel"
+        title={
+          <>
+            Un parc à équiper <span className="gradient-text-svc-light">ou à moderniser ?</span>
+          </>
+        }
+        description="Envoyez-nous votre besoin : devis détaillé sous 4h, avec les alternatives comparées et les garanties constructeur."
+      />
+    </ServiceScope>
   );
 }
