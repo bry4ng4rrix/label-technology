@@ -241,10 +241,14 @@ export default function MarketingPage() {
           description="Cinq leviers activés ensemble ou séparément, toujours pilotés par la même équipe et les mêmes indicateurs — pas de silo entre acquisition et conversion."
         />
         <FeatureGrid
-          items={SERVICES.map((s) => ({
+          items={SERVICES.map((s, i) => ({
             icon: <span className="text-2xl leading-none">{s.icon}</span>,
             title: s.title,
             desc: s.desc,
+            image: {
+              src: `/images/services/marketing/feature-${i + 1}.jpg`,
+              alt: s.title,
+            },
           }))}
         />
       </ServiceSection>
@@ -305,7 +309,6 @@ export default function MarketingPage() {
 
       {/* Bandeau photographique — temps fort éditorial */}
       <PhotoBand
-        slug="marketing"
         image={{ src: "/images/services/marketing/band.jpg", alt: "Équipe en session de travail collaboratif" }}
         eyebrow="Notre engagement"
         title={<>Des KPIs chiffrés<br />dès le premier brief.</>}

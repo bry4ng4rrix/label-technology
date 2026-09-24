@@ -1,6 +1,5 @@
 import PhotoPanel from "@/components/services/PhotoPanel";
 import Reveal from "@/components/shared/Reveal";
-import type { ServiceSlug } from "@/lib/service-themes";
 
 /**
  * Bandeau photographique pleine largeur, avec un panneau de verre posé
@@ -8,14 +7,12 @@ import type { ServiceSlug } from "@/lib/service-themes";
  * fort éditorial — c'est la composition la plus « magazine » de la page.
  */
 export default function PhotoBand({
-  slug,
   image,
   eyebrow,
   title,
   children,
   stats,
 }: {
-  slug: ServiceSlug;
   image: { src: string; alt: string };
   eyebrow?: string;
   title: React.ReactNode;
@@ -33,6 +30,7 @@ export default function PhotoBand({
             ratio="16/9"
             sizes="(max-width: 1280px) 100vw, 1280px"
             tint="strong"
+            quality={80}
             className="rounded-[2.5rem]"
             overlay={
               <div className="flex h-full items-end p-6 sm:p-10 lg:p-14">

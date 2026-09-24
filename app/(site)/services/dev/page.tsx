@@ -202,12 +202,16 @@ export default function DevPage() {
           description="Six familles de projets, une seule équipe senior. Pas de sous-traitance, pas de juniors sur vos projets critiques — les personnes qui cadrent sont celles qui développent."
         />
         <FeatureGrid
-          items={SERVICES.map((s) => {
+          items={SERVICES.map((s, i) => {
             const Icon = s.icon;
             return {
               icon: <Icon strokeWidth={1.6} />,
               title: s.title,
               desc: s.desc,
+              image: {
+                src: `/images/services/dev/feature-${i + 1}.jpg`,
+                alt: s.title,
+              },
             };
           })}
         />
@@ -306,7 +310,6 @@ export default function DevPage() {
 
       {/* Bandeau photographique — temps fort éditorial */}
       <PhotoBand
-        slug="dev"
         image={{ src: "/images/services/dev/band.jpg", alt: "Espace de travail lumineux d'une équipe technique" }}
         eyebrow="Notre façon de travailler"
         title={<>Une équipe senior,<br />pas un plateau de juniors.</>}

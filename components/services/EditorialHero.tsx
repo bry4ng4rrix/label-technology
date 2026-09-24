@@ -45,6 +45,7 @@ export default function EditorialHero({
           alt=""
           fill
           priority
+          quality={80}
           sizes="100vw"
           className="object-cover object-center"
         />

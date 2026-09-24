@@ -4,6 +4,8 @@ import BigStats from "@/components/services/BigStats";
 import EditorialHero from "@/components/services/EditorialHero";
 import EditorialRow from "@/components/services/EditorialRow";
 import FeatureGrid from "@/components/services/FeatureGrid";
+import PhotoBand from "@/components/services/PhotoBand";
+import PhotoMosaic from "@/components/services/PhotoMosaic";
 import SectionIntro from "@/components/services/SectionIntro";
 import ServiceCta from "@/components/services/ServiceCta";
 import ServiceScope from "@/components/services/ServiceScope";
@@ -137,10 +139,14 @@ export default function MaterielPage() {
           description="Du poste de travail au serveur, avec l'installation, la configuration réseau et la maintenance derrière. Multi-marques : on conseille ce qui est utile, pas ce qui coûte le plus cher."
         />
         <FeatureGrid
-          items={CATEGORIES.map((s) => ({
+          items={CATEGORIES.map((s, i) => ({
             icon: <span className="text-2xl leading-none">{s.icon}</span>,
             title: s.title,
             desc: s.desc,
+            image: {
+              src: `/images/services/materiel/feature-${i + 1}.jpg`,
+              alt: s.title,
+            },
           }))}
         />
       </ServiceSection>
@@ -172,6 +178,46 @@ export default function MaterielPage() {
           On ne livre pas des cartons. On audite l'existant, on dimensionne, on installe, on configure — et on documente pour que votre équipe puisse reprendre la main à tout moment.
         </EditorialRow>
       </ServiceSection>
+
+
+      {/* Deuxième rangée éditoriale — photo à gauche */}
+      <ServiceSection slug="materiel">
+        <EditorialRow
+          reverse
+          eyebrow="Maintenance"
+          title={
+            <>
+              Un contrat de maintenance
+              <br />
+              coûte moins qu'une panne.
+            </>
+          }
+          points={[
+            "Intervention sur site garantie sous 4 heures",
+            "Visites préventives planifiées à l'avance",
+            "Remplacement rapide en cas de matériel hors service",
+          ]}
+          image={{ src: "/images/services/materiel/row2.jpg", alt: "Baie de serveurs et équipements réseau" }}
+          stat={{ value: "91 %", label: "pannes résolues en moins de 4h" }}
+          ratio="4/3"
+        >
+          Une journée d'arrêt coûte plus cher qu'une année de maintenance préventive. On documente chaque installation pour intervenir vite et bien.
+        </EditorialRow>
+      </ServiceSection>
+
+      {/* Bandeau photographique — temps fort éditorial */}
+      <PhotoBand
+        image={{ src: "/images/services/materiel/band.jpg", alt: "Technicienne au travail sur du matériel" }}
+        eyebrow="Notre approche"
+        title={<>On conseille ce qui est utile,<br />pas ce qui coûte le plus cher.</>}
+        stats={[
+          { value: "25+", label: "marques partenaires" },
+          { value: "4h", label: "délai de devis" },
+          { value: "3 ans", label: "garantie constructeur" },
+        ]}
+      >
+        Multi-marques par choix : Lenovo, HP, Dell, Cisco, Ubiquiti. On dimensionne selon votre usage réel, avec les alternatives comparées dans le devis.
+      </PhotoBand>
 
       {/* Chiffres en très grande typo */}
       <BigStats
@@ -207,6 +253,27 @@ export default function MaterielPage() {
         </div>
       </ServiceSection>
 
+
+
+      {/* Mosaïque asymétrique */}
+      <ServiceSection slug="materiel" tone="plain">
+        <PhotoMosaic
+          eyebrow="Du poste au serveur"
+          title={
+            <>
+              Tout le parc,
+              <br />
+              un seul interlocuteur.
+            </>
+          }
+          images={[
+            { src: "/images/services/materiel/mosaic-a.jpg", alt: "Couloir d'un espace de bureaux équipé" },
+            { src: "/images/services/materiel/mosaic-b.jpg", alt: "Open space avec postes de travail" },
+          ]}
+        >
+          Postes de travail, écrans, réseau, impression, onduleurs, sauvegarde. On livre, on installe, on configure — et on reste joignable après.
+        </PhotoMosaic>
+      </ServiceSection>
 
       {/* Méthode */}
       <ServiceSection slug="materiel" tone="plain">

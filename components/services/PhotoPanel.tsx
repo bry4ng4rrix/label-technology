@@ -20,6 +20,7 @@ export default function PhotoPanel({
   className,
   tint = "normal",
   tone = "dark",
+  quality = 70,
 }: {
   src: string;
   alt: string;
@@ -31,6 +32,8 @@ export default function PhotoPanel({
   tint?: "soft" | "normal" | "strong";
   /** `light` : la photo est posée sur une surface papier — on assombrit peu. */
   tone?: "light" | "dark";
+  /** 70 par défaut (vignettes) ; 80 pour les heros et bandeaux. */
+  quality?: 70 | 80;
 }) {
   const ratios = {
     "4/3": "aspect-[4/3]",
@@ -56,6 +59,7 @@ export default function PhotoPanel({
         fill
         sizes={sizes}
         priority={priority}
+        quality={quality}
         className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]"
       />
 

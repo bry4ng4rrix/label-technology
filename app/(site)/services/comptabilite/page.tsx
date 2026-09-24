@@ -4,6 +4,8 @@ import BigStats from "@/components/services/BigStats";
 import EditorialHero from "@/components/services/EditorialHero";
 import EditorialRow from "@/components/services/EditorialRow";
 import FeatureGrid from "@/components/services/FeatureGrid";
+import PhotoBand from "@/components/services/PhotoBand";
+import PhotoMosaic from "@/components/services/PhotoMosaic";
 import SectionIntro from "@/components/services/SectionIntro";
 import ServiceCta from "@/components/services/ServiceCta";
 import ServiceScope from "@/components/services/ServiceScope";
@@ -139,10 +141,14 @@ export default function ComptabilitePage() {
           description="Externalisez la saisie et le contrôle, gardez la décision. Le reporting mensuel arrive avant le 5, toujours au même format, toujours à la même date."
         />
         <FeatureGrid
-          items={SERVICES.map((s) => ({
+          items={SERVICES.map((s, i) => ({
             icon: <span className="text-2xl leading-none">{s.icon}</span>,
             title: s.title,
             desc: s.desc,
+            image: {
+              src: `/images/services/comptabilite/feature-${i + 1}.jpg`,
+              alt: s.title,
+            },
           }))}
         />
       </ServiceSection>
@@ -222,6 +228,46 @@ export default function ComptabilitePage() {
         </div>
       </ServiceSection>
 
+
+      {/* Deuxième rangée éditoriale — photo à gauche */}
+      <ServiceSection slug="comptabilite">
+        <EditorialRow
+          reverse
+          eyebrow="Reporting dirigeant"
+          title={
+            <>
+              Un chiffre livré en retard
+              <br />
+              ne sert plus à décider.
+            </>
+          }
+          points={[
+            "Reporting mensuel disponible avant le 5",
+            "Tableaux de bord adaptés à vos indicateurs",
+            "Commentaire d'analyse joint à chaque envoi",
+          ]}
+          image={{ src: "/images/services/comptabilite/row2.jpg", alt: "Tableau de bord financier sur écran" }}
+          stat={{ value: "98 %", label: "reportings livrés avant J+5" }}
+          ratio="4/3"
+        >
+          La comptabilité n'est pas qu'une obligation légale. Livrée à temps et bien présentée, elle devient l'outil de pilotage le plus fiable dont vous disposez.
+        </EditorialRow>
+      </ServiceSection>
+
+      {/* Bandeau photographique — temps fort éditorial */}
+      <PhotoBand
+        image={{ src: "/images/services/comptabilite/band.jpg", alt: "Équipe dirigeante en réunion de travail" }}
+        eyebrow="Continuité"
+        title={<>Ni congés, ni turnover,<br />ni période creuse.</>}
+        stats={[
+          { value: "100 %", label: "conformité fiscale" },
+          { value: "J+5", label: "reporting mensuel" },
+          { value: "3 ans", label: "archivage conforme" },
+        ]}
+      >
+        Une équipe prend le relais d'une autre sans rupture. Vos échéances fiscales et sociales sont tenues, quoi qu'il arrive de notre côté.
+      </PhotoBand>
+
       {/* Chiffres en très grande typo */}
       <BigStats
         slug="comptabilite"
@@ -234,6 +280,27 @@ export default function ComptabilitePage() {
         caption="L'externalisation comptable réduit vos coûts fixes, élimine les risques d'erreur et vous donne accès à un reporting structuré — sans recruter ni former un comptable en interne."
       />
 
+
+
+      {/* Mosaïque asymétrique */}
+      <ServiceSection slug="comptabilite" tone="plain">
+        <PhotoMosaic
+          eyebrow="Saisie & contrôle"
+          title={
+            <>
+              Deux regards valent mieux
+              <br />
+              qu'une double saisie.
+            </>
+          }
+          images={[
+            { src: "/images/services/comptabilite/mosaic-a.jpg", alt: "Travail collaboratif sur des documents" },
+            { src: "/images/services/comptabilite/mosaic-b.jpg", alt: "Analyse de données financières" },
+          ]}
+        >
+          Chaque écriture passe par un contrôle indépendant. Les rapprochements bancaires sont faits mensuellement, pas en urgence à la clôture annuelle.
+        </PhotoMosaic>
+      </ServiceSection>
 
       {/* Méthode */}
       <ServiceSection slug="comptabilite" tone="plain">

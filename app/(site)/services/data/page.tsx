@@ -137,10 +137,14 @@ export default function DataPage() {
           description="Six prestations qui couvrent tout le cycle de vie de vos données, de la collecte jusqu'à l'archivage conforme. Mobilisables séparément ou en chaîne complète."
         />
         <FeatureGrid
-          items={SERVICES.map((s) => ({
+          items={SERVICES.map((s, i) => ({
             icon: <span className="text-2xl leading-none">{s.icon}</span>,
             title: s.title,
             desc: s.desc,
+            image: {
+              src: `/images/services/data/feature-${i + 1}.jpg`,
+              alt: s.title,
+            },
           }))}
         />
       </ServiceSection>
@@ -203,7 +207,6 @@ export default function DataPage() {
 
       {/* Bandeau photographique — temps fort éditorial */}
       <PhotoBand
-        slug="data"
         image={{ src: "/images/services/data/band.jpg", alt: "Plan de travail avec ordinateurs et documents" }}
         eyebrow="Confidentialité"
         title={<>Vos données ne sortent pas<br />de nos environnements.</>}

@@ -134,10 +134,14 @@ export default function DigitalPage() {
           description="Des outils qui épousent votre façon de travailler, pas l'inverse. Paramétrage, reprise de données, formation et conduite du changement sont inclus."
         />
         <FeatureGrid
-          items={SERVICES.map((s) => ({
+          items={SERVICES.map((s, i) => ({
             icon: <span className="text-2xl leading-none">{s.icon}</span>,
             title: s.title,
             desc: s.desc,
+            image: {
+              src: `/images/services/digital/feature-${i + 1}.jpg`,
+              alt: s.title,
+            },
           }))}
         />
       </ServiceSection>
@@ -198,7 +202,6 @@ export default function DigitalPage() {
 
       {/* Bandeau photographique — temps fort éditorial */}
       <PhotoBand
-        slug="digital"
         image={{ src: "/images/services/digital/band.jpg", alt: "Open space d'une équipe en activité" }}
         eyebrow="Conduite du changement"
         title={<>La technique, c'est<br />la moitié du travail.</>}
