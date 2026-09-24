@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import ContactForm from "@/components/contact/ContactForm";
+import PhotoPanel from "@/components/services/PhotoPanel";
+import ServiceScope from "@/components/services/ServiceScope";
 import Reveal from "@/components/shared/Reveal";
 import { OG_IMAGE } from "@/lib/seo";
 
@@ -47,7 +49,7 @@ const INFOS = [
 
 export default function ContactPage() {
   return (
-    <main>
+    <ServiceScope slug="index" as="main">
       <section className="surface-light relative min-h-screen overflow-hidden pt-32 pb-20 sm:pt-36 lg:pt-40 lg:pb-28">
         <div aria-hidden className="grid-fade absolute inset-0 -z-10 opacity-60" />
         <div
@@ -101,6 +103,29 @@ export default function ContactPage() {
                   </Reveal>
                 ))}
               </ul>
+
+              {/* Repère visuel : nos bureaux */}
+              <Reveal delay={0.4} className="mt-10 hidden lg:block">
+                <PhotoPanel
+                  src="/images/pages/contact.jpg"
+                  alt="Les bureaux de Label Technology"
+                  ratio="16/9"
+                  tone="light"
+                  tint="soft"
+                  quality={60}
+                  sizes="(max-width: 1024px) 0px, 40vw"
+                  className="rounded-2xl"
+                  overlay={
+                    <div className="flex h-full items-end p-5">
+                      <div className="glass-card px-4 py-3" data-tone="dark">
+                        <p className="text-[11px] font-medium text-white/80">
+                          Akany Riandrano, Manjaka Ilafy · Antananarivo
+                        </p>
+                      </div>
+                    </div>
+                  }
+                />
+              </Reveal>
             </div>
 
             {/* Formulaire */}
@@ -110,6 +135,6 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-    </main>
+    </ServiceScope>
   );
 }

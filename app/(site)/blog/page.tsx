@@ -6,7 +6,7 @@ import PhotoPanel from "@/components/services/PhotoPanel";
 import ServiceScope from "@/components/services/ServiceScope";
 import Reveal from "@/components/shared/Reveal";
 import { supabase, type BlogPost } from "@/lib/supabase";
-import { accentFor, coverFor } from "@/lib/blog-covers";
+import { accentFor, coverFor } from "@/lib/tag-covers";
 import { OG_IMAGE } from "@/lib/seo";
 
 export const metadata: Metadata = {

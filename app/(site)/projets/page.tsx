@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import CtaSection from "@/components/home/CtaSection";
 import ProjetsList from "@/components/projets/ProjetsList";
-import PageHero from "@/components/shared/PageHero";
+import EditorialHero from "@/components/services/EditorialHero";
+import ServiceScope from "@/components/services/ServiceScope";
 import { supabase, type Project } from "@/lib/supabase";
 import { OG_IMAGE } from "@/lib/seo";
 
@@ -40,21 +41,25 @@ export default async function ProjetsPage() {
   const projets = data ?? [];
 
   return (
-    <main>
-      <PageHero
+    <ServiceScope slug="index" as="main">
+      <EditorialHero
+        slug="index"
         eyebrow="Réalisations"
         title={
           <>
             Ce qu&apos;on a
             <br />
-            <span className="gradient-text-light">déjà construit.</span>
+            <span className="gradient-text-svc-light">déjà construit.</span>
           </>
         }
         description={`${projets.length} projets sélectionnés. Filtrez par domaine. Chaque chiffre est mesuré, pas estimé.`}
+        image={{ src: "/images/pages/projets-hero.jpg", alt: "Équipe au travail sur des projets clients" }}
+        primary={{ href: "/contact", label: "Démarrer un projet" }}
+        secondary={{ href: "/services", label: "Voir nos services" }}
       />
 
       <ProjetsList projets={projets} />
       <CtaSection />
-    </main>
+    </ServiceScope>
   );
 }

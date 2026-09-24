@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
-import { ArrowRight } from "lucide-react";
 import FaqSection from "@/components/shared/FaqSection";
-import PageHero from "@/components/shared/PageHero";
+import EditorialHero from "@/components/services/EditorialHero";
+import PhotoBand from "@/components/services/PhotoBand";
+import ServiceScope from "@/components/services/ServiceScope";
 import SectionHeader from "@/components/shared/SectionHeader";
-import { Button } from "@/components/ui/button";
 import ActivityNotice from "@/components/construction/ActivityNotice";
 import ConstructionCta from "@/components/construction/ConstructionCta";
-import Link from "next/link";
 import { OG_IMAGE } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -81,14 +80,14 @@ const jsonLd = {
 
 export default function EntrepriseConstructionPage() {
   return (
-    <main>
+    <ServiceScope slug="index" as="main">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <PageHero
-        size="lg"
+      <EditorialHero
+        slug="index"
         eyebrow={
           <>
             BÂTIMENT ENTREPRISE
@@ -101,24 +100,13 @@ export default function EntrepriseConstructionPage() {
           <>
             Vos locaux,
             <br />
-            <span className="gradient-text-light">construits pour durer.</span>
+            <span className="gradient-text-svc-light">construits pour durer.</span>
           </>
         }
         description="Gros œuvre, second œuvre, aménagement de locaux commerciaux et industriels. Nous développons une offre pensée pour un interlocuteur unique, du permis à la livraison."
-        image={{ src: "https://images.unsplash.com/photo-1541976590-713941681591?w=900&h=700&fit=crop&q=80", alt: "Chantier de construction bâtiment entreprise", priority: true }}
-        actions={
-          <>
-            <Button asChild size="lg" className="rounded-full">
-              <Link href="/contact">
-                Demander un devis
-                <ArrowRight data-icon="inline-end" />
-              </Link>
-            </Button>
-            <Button asChild size="lg" variant="glass" className="rounded-full">
-              <Link href="/construction">Découvrir l&apos;activité</Link>
-            </Button>
-          </>
-        }
+        image={{ src: "/images/construction/entreprise-hero.jpg", alt: "Bâtiment professionnel en construction" }}
+        primary={{ href: "/contact", label: "Parler de votre projet" }}
+        secondary={{ href: "/construction", label: "Découvrir l'activité" }}
       />
 
       <section className="surface-dark hairline-top relative">
@@ -153,6 +141,21 @@ export default function EntrepriseConstructionPage() {
         </div>
       </section>
 
+      {/* Bandeau photographique */}
+      <PhotoBand
+        tint="normal"
+        image={{ src: "/images/construction/entreprise-band.jpg", alt: "Structure de bâtiment commercial" }}
+        eyebrow="Bâtiment professionnel"
+        title={<>Du permis de construire<br />à la remise des clés.</>}
+        stats={[
+          { value: "1", label: "interlocuteur unique" },
+          { value: "4", label: "étapes de suivi" },
+          { value: "72h", label: "délai de réponse" },
+        ]}
+      >
+        Locaux commerciaux, bureaux, entrepôts : un interlocuteur unique pour le suivi administratif, technique et financier de votre projet.
+      </PhotoBand>
+
       {/* Process */}
       <section className="section bg-background">
         <div className="container-x">
@@ -173,6 +176,6 @@ export default function EntrepriseConstructionPage() {
       <ActivityNotice />
       <FaqSection items={FAQ} />
       <ConstructionCta />
-    </main>
+    </ServiceScope>
   );
 }

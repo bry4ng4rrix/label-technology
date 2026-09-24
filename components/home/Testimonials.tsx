@@ -1,4 +1,5 @@
 import { Quote } from "lucide-react";
+import PhotoPanel from "@/components/services/PhotoPanel";
 import Reveal from "@/components/shared/Reveal";
 import SectionHeader from "@/components/shared/SectionHeader";
 import { supabase, type Testimonial } from "@/lib/supabase";
@@ -34,6 +35,33 @@ export default async function Testimonials() {
             </>
           }
         />
+
+        {/* Visuel d'ouverture, avant les témoignages */}
+        <Reveal className="mb-14">
+          <PhotoPanel
+            src="/images/pages/testimonials.jpg"
+            alt="Réunion de travail avec un client"
+            ratio="16/9"
+            tone="light"
+            tint="soft"
+            quality={60}
+            sizes="(max-width: 1280px) 100vw, 1280px"
+            className="rounded-[2rem] sm:aspect-[21/9]"
+            overlay={
+              <div className="flex h-full items-end p-6 sm:p-10">
+                <div className="glass-card max-w-md p-6" data-tone="dark">
+                  <p className="font-display text-lg leading-snug font-semibold text-white sm:text-xl">
+                    Ce que nos clients retiennent, ce n&apos;est pas la technologie.
+                  </p>
+                  <p className="mt-3 text-sm leading-relaxed text-white/65">
+                    C&apos;est d&apos;avoir eu un interlocuteur qui comprenait leur
+                    métier et qui a tenu ses délais.
+                  </p>
+                </div>
+              </div>
+            }
+          />
+        </Reveal>
 
         <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
           {TESTIMONIALS.map((t, i) => (

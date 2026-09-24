@@ -5,7 +5,7 @@ import { ArrowLeft, ArrowRight, Calendar, Clock } from "lucide-react";
 import EditorialHero from "@/components/services/EditorialHero";
 import Reveal from "@/components/shared/Reveal";
 import { supabase, type BlogPost } from "@/lib/supabase";
-import { accentFor, coverFor } from "@/lib/blog-covers";
+import { accentFor, coverFor } from "@/lib/tag-covers";
 
 async function getPost(slug: string) {
   const { data } = await supabase

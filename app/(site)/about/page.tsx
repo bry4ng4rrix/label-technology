@@ -6,6 +6,7 @@ import { ArrowRight } from "lucide-react";
 import CtaSection from "@/components/home/CtaSection";
 import EditorialRow from "@/components/services/EditorialRow";
 import PhotoBand from "@/components/services/PhotoBand";
+import PhotoPanel from "@/components/services/PhotoPanel";
 import PhotoMosaic from "@/components/services/PhotoMosaic";
 import ServiceScope from "@/components/services/ServiceScope";
 import MetricsBand from "@/components/shared/MetricsBand";
@@ -46,21 +47,25 @@ export const metadata: Metadata = {
 const VALEURS = [
   {
     num: "01",
+    image: "/images/pages/valeur-1.jpg",
     title: "Exigence",
     desc: "On ne livre pas ce qui est acceptable. On livre ce qui est excellent. Chaque projet sort avec la même attention, qu'il s'agisse d'une PME ou d'un grand compte.",
   },
   {
     num: "02",
+    image: "/images/pages/valeur-2.jpg",
     title: "Transparence",
     desc: "Pas de boîte noire. Vous voyez ce qui se passe, quand ça se passe. Reportings réguliers, communication directe, zéro surprise.",
   },
   {
     num: "03",
+    image: "/images/pages/valeur-3.jpg",
     title: "Réactivité",
     desc: "Madagascar = UTC+3. On travaille pendant vos heures de bureau. Délais tenus. Réponses rapides. Parce que votre temps a de la valeur.",
   },
   {
     num: "04",
+    image: "/images/pages/valeur-4.jpg",
     title: "Partenariat",
     desc: "On ne fait pas de la prestation. On construit des partenariats durables. Vos succès sont nos succès.",
   },
@@ -303,17 +308,28 @@ export default async function AProposPage() {
           <div className="grid gap-5 md:grid-cols-2">
             {VALEURS.map((v, i) => (
               <Reveal key={i} delay={i * 0.08} className="h-full">
-                <div className="card-premium group flex h-full gap-6 p-7 sm:p-8">
-                  <span className="font-display text-4xl leading-none text-brand/15 transition-colors duration-300 group-hover:text-brand/60">
-                    {v.num}
-                  </span>
-                  <div>
-                    <h3 className="h3-display text-foreground">{v.title}</h3>
-                    <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground">
-                      {v.desc}
-                    </p>
+                <article className="group flex h-full flex-col">
+                  <div className="relative">
+                    <PhotoPanel
+                      src={v.image}
+                      alt=""
+                      ratio="16/9"
+                      tone="light"
+                      tint="soft"
+                      quality={60}
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="rounded-2xl"
+                    />
+                    {/* Numéro de valeur, en pastille de verre sur la photo */}
+                    <span className="glass-card absolute -bottom-6 left-6 flex size-14 items-center justify-center" data-tone="dark">
+                      <span className="font-display text-xl leading-none text-white">{v.num}</span>
+                    </span>
                   </div>
-                </div>
+                  <h3 className="h3-display mt-11 text-foreground">{v.title}</h3>
+                  <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground">
+                    {v.desc}
+                  </p>
+                </article>
               </Reveal>
             ))}
           </div>
@@ -327,7 +343,8 @@ export default async function AProposPage() {
           className="halo -right-20 -bottom-20 -z-10 h-[320px] w-[420px] bg-gold/10"
         />
         <Reveal className="container-x">
-          <div className="glass-strong mx-auto max-w-3xl rounded-3xl p-8 text-center sm:p-12">
+          <div className="glass-strong mx-auto grid max-w-5xl items-center gap-8 overflow-hidden rounded-3xl p-6 sm:p-8 lg:grid-cols-[1fr_0.85fr] lg:gap-12 lg:p-10">
+            <div className="text-center lg:text-left">
             <p className="label-tag mb-4 text-brand">Nouvelles orientations</p>
             <h2 className="h2-display text-foreground">Au-delà du numérique.</h2>
             <p className="prose-body mt-6 text-muted-foreground">
@@ -339,10 +356,20 @@ export default async function AProposPage() {
               Parmi ces nouvelles orientations figure le développement
               d&apos;une activité dédiée à la Construction et au Génie Civil.
             </p>
-            <Link href="/construction" className="link-arrow mt-8 text-sm text-brand">
-              Découvrir notre activité Construction
-              <ArrowRight className="size-4" />
-            </Link>
+              <Link href="/construction" className="link-arrow mt-8 text-sm text-brand">
+                Découvrir notre activité Construction
+                <ArrowRight className="size-4" />
+              </Link>
+            </div>
+            <PhotoPanel
+              src="/images/construction/hero.jpg"
+              alt="Chantier de construction"
+              ratio="4/3"
+              tone="light"
+              quality={60}
+              sizes="(max-width: 1024px) 100vw, 40vw"
+              className="rounded-2xl"
+            />
           </div>
         </Reveal>
       </section>

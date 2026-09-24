@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import PageHero from "@/components/shared/PageHero";
+import EditorialHero from "@/components/services/EditorialHero";
+import PhotoBand from "@/components/services/PhotoBand";
+import ServiceScope from "@/components/services/ServiceScope";
 import Reveal from "@/components/shared/Reveal";
 import SectionHeader from "@/components/shared/SectionHeader";
-import { Button } from "@/components/ui/button";
 import ProjectTypesGrid from "@/components/construction/ProjectTypesGrid";
 import ActivityNotice from "@/components/construction/ActivityNotice";
 import ConstructionCta from "@/components/construction/ConstructionCta";
@@ -114,36 +115,26 @@ const TECH_ITEMS = [
 
 export default function ConstructionPage() {
   return (
-    <main>
+    <ServiceScope slug="index" as="main">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <PageHero
-        size="lg"
+      <EditorialHero
+        slug="index"
         eyebrow="Nouvelle activité — Construction & Génie Civil"
         title={
           <>
             Construire
             <br />
-            <span className="gradient-text-light">les projets de demain.</span>
+            <span className="gradient-text-svc-light">les projets de demain.</span>
           </>
         }
         description="Label Technology développe une nouvelle expertise dédiée au génie civil, à la construction et aux infrastructures, avec une approche centrée sur la qualité, la précision et la maîtrise du projet."
-        actions={
-          <>
-            <Button asChild size="lg" className="rounded-full">
-              <Link href="/contact">
-                Parler de votre projet
-                <ArrowRight data-icon="inline-end" />
-              </Link>
-            </Button>
-            <Button asChild size="lg" variant="glass" className="rounded-full">
-              <Link href="#domaines">Découvrir nos expertises</Link>
-            </Button>
-          </>
-        }
+        image={{ src: "/images/construction/hero.jpg", alt: "Chantier de construction en cours" }}
+        primary={{ href: "/contact", label: "Parler de votre projet" }}
+        secondary={{ href: "/construction", label: "Découvrir l'activité" }}
       />
 
       {/* Présentation */}
@@ -220,6 +211,21 @@ export default function ConstructionPage() {
           </div>
         </div>
       </section>
+
+      {/* Bandeau photographique */}
+      <PhotoBand
+        tint="normal"
+        image={{ src: "/images/construction/band.jpg", alt: "Travaux d'infrastructure routière" }}
+        eyebrow="Une activité en construction"
+        title={<>Le chantier est physique.<br />Son pilotage peut être numérique.</>}
+        stats={[
+          { value: "2026", label: "lancement de l'activité" },
+          { value: "8", label: "types de projets visés" },
+          { value: "72h", label: "réponse à votre demande" },
+        ]}
+      >
+        Nous mettons notre savoir-faire organisationnel et technologique au service du génie civil : préparation, coordination, documentation et suivi.
+      </PhotoBand>
 
       {/* Notre approche */}
       <section className="surface-light section relative">
@@ -326,6 +332,6 @@ export default function ConstructionPage() {
 
       <ActivityNotice />
       <ConstructionCta />
-    </main>
+    </ServiceScope>
   );
 }

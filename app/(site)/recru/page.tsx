@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Mail } from "lucide-react";
 import JobsList from "@/components/recru/JobsList";
-import PageHero from "@/components/shared/PageHero";
+import EditorialHero from "@/components/services/EditorialHero";
+import ServiceScope from "@/components/services/ServiceScope";
 import { Button } from "@/components/ui/button";
 import { supabase, type JobOffer } from "@/lib/supabase";
 import { OG_IMAGE } from "@/lib/seo";
@@ -42,17 +43,21 @@ export default async function RecruPage() {
   const offres = data ?? [];
 
   return (
-    <main>
-      <PageHero
+    <ServiceScope slug="index" as="main">
+      <EditorialHero
+        slug="index"
         eyebrow="Recrutement"
         title={
           <>
             Construisez la suite
             <br />
-            <span className="gradient-text-light">avec nous.</span>
+            <span className="gradient-text-svc-light">avec nous.</span>
           </>
         }
         description="16+ collaborateurs, 6 expertises. Développement, Marketing, Digitalisation, Data, Comptabilité, Infrastructure — toutes nos offres, à Antananarivo."
+        image={{ src: "/images/pages/recru-hero.jpg", alt: "Équipe Label Technology en session de travail" }}
+        primary={{ href: "#offres", label: "Voir les offres" }}
+        secondary={{ href: "/about", label: "Découvrir l'entreprise" }}
       />
 
       <JobsList offres={offres} />
@@ -100,6 +105,6 @@ export default async function RecruPage() {
         </div>
       </section>
       )}
-    </main>
+    </ServiceScope>
   );
 }

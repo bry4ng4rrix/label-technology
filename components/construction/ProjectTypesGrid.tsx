@@ -1,14 +1,15 @@
+import PhotoPanel from "@/components/services/PhotoPanel";
 import Reveal from "@/components/shared/Reveal";
 
 const PROJECT_TYPES = [
-  { icon: "🏠", title: "Construction résidentielle" },
-  { icon: "🏢", title: "Bâtiments professionnels" },
-  { icon: "🏬", title: "Bâtiments commerciaux" },
-  { icon: "🌉", title: "Infrastructures" },
-  { icon: "🗺", title: "Aménagements" },
-  { icon: "🔧", title: "Rénovation" },
-  { icon: "🏭", title: "Projets industriels" },
-  { icon: "🏛", title: "Projets publics" },
+  { icon: "🏠", title: "Construction résidentielle", image: "/images/construction/entreprise-hero.jpg" },
+  { icon: "🏢", title: "Bâtiments professionnels", image: "/images/construction/entreprise-band.jpg" },
+  { icon: "🏬", title: "Bâtiments commerciaux", image: "/images/construction/projets-hero.jpg" },
+  { icon: "🌉", title: "Infrastructures", image: "/images/construction/route-hero.jpg" },
+  { icon: "🗺", title: "Aménagements", image: "/images/construction/route-band.jpg" },
+  { icon: "🔧", title: "Rénovation", image: "/images/construction/band.jpg" },
+  { icon: "🏭", title: "Projets industriels", image: "/images/construction/projets-band.jpg" },
+  { icon: "🏛", title: "Projets publics", image: "/images/construction/hero.jpg" },
 ];
 
 export default function ProjectTypesGrid() {
@@ -17,14 +18,26 @@ export default function ProjectTypesGrid() {
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {PROJECT_TYPES.map((p, i) => (
           <Reveal key={i} delay={i * 0.05} className="h-full">
-            <div className="card-premium flex h-full items-center gap-4 p-5">
-              <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-brand/8 text-xl leading-none">
-                {p.icon}
-              </span>
-              <h3 className="font-display text-base font-semibold text-foreground">
+            <article className="group flex h-full flex-col">
+              <div className="relative">
+                <PhotoPanel
+                  src={p.image}
+                  alt=""
+                  ratio="4/3"
+                  tone="light"
+                  tint="soft"
+                  quality={60}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  className="rounded-2xl"
+                />
+                <span className="glass-card absolute -bottom-4 left-4 flex size-10 items-center justify-center text-lg leading-none" data-tone="dark">
+                  {p.icon}
+                </span>
+              </div>
+              <h3 className="font-display mt-9 text-base leading-snug font-semibold text-foreground">
                 {p.title}
               </h3>
-            </div>
+            </article>
           </Reveal>
         ))}
       </div>

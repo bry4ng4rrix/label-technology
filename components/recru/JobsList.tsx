@@ -4,6 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import { MapPin, Clock, Briefcase, ArrowRight, Zap, Mail, BellRing } from "lucide-react";
 import FilterChips, { type ChipMeta } from "@/components/shared/FilterChips";
+import PhotoPanel from "@/components/services/PhotoPanel";
+import { coverFor } from "@/lib/tag-covers";
 import { Button } from "@/components/ui/button";
 
 type Offre = {
@@ -40,7 +42,7 @@ export default function JobsList({ offres }: { offres: Offre[] }) {
   /* Aucune offre publiée : état vide dédié, sans filtres ni compteur */
   if (offres.length === 0) {
     return (
-      <section className="surface-light section relative">
+      <section id="offres" className="surface-light section relative scroll-mt-24">
         <div className="container-x">
           <div className="glass-strong mx-auto max-w-2xl rounded-3xl px-6 py-14 text-center sm:px-12 sm:py-16">
             <div className="mx-auto mb-6 flex size-16 items-center justify-center rounded-2xl bg-brand/8 text-brand">
@@ -89,7 +91,7 @@ export default function JobsList({ offres }: { offres: Offre[] }) {
   }
 
   return (
-    <section className="surface-light section relative">
+    <section id="offres" className="surface-light section relative scroll-mt-24">
       <div className="container-x">
         <FilterChips
           tags={TAGS}
@@ -120,8 +122,8 @@ export default function JobsList({ offres }: { offres: Offre[] }) {
               return (
                 <article
                   key={o.id}
-                  className="card-premium group animate-fadeup relative flex h-full flex-col p-7"
-                  style={{ animationDelay: `${Math.min(i, 8) * 0.05}s` }}
+                  className="group animate-fadeup relative flex h-full flex-col"
+                  style={{ animationDelay: `${Math.min(i, 8) * 0.05}s`, ["--svc" as string]: meta.color }}
                 >
                   <Link
                     href={`/recru/postuler/${o.id}`}
@@ -129,65 +131,61 @@ export default function JobsList({ offres }: { offres: Offre[] }) {
                     aria-label={`Postuler — ${o.title}`}
                   />
 
-                  <div className="mb-5 flex items-center justify-between gap-2">
-                    <span
-                      className="rounded-full px-2.5 py-1 text-[10px] font-semibold tracking-[0.12em] uppercase"
-                      style={{ backgroundColor: meta.bg, color: meta.color }}
-                    >
-                      {o.tag}
-                    </span>
+                  <div className="relative">
+                    <PhotoPanel
+                      src={coverFor(o.tag)}
+                      alt=""
+                      ratio="16/9"
+                      tone="light"
+                      tint="soft"
+                      quality={60}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="rounded-2xl"
+                    />
                     {o.urgent && (
-                      <span className="inline-flex items-center gap-1 rounded-full bg-gold/12 px-2.5 py-1 text-[10px] font-semibold tracking-[0.12em] text-gold uppercase">
+                      <span className="glass-card absolute top-4 right-4 inline-flex items-center gap-1 px-2.5 py-1.5 text-[10px] font-semibold tracking-[0.12em] text-white uppercase" data-tone="dark">
                         <Zap className="size-3" strokeWidth={2.5} />
                         Urgent
                       </span>
                     )}
                   </div>
 
-                  <h2 className="font-display text-lg leading-snug tracking-tight text-foreground transition-colors group-hover:text-brand">
-                    {o.title}
-                  </h2>
+                  <div className="mt-6 flex flex-1 flex-col">
+                    <span
+                      className="mb-4 w-fit rounded-full px-2.5 py-1 text-[10px] font-semibold tracking-[0.12em] uppercase"
+                      style={{ backgroundColor: meta.bg, color: meta.color }}
+                    >
+                      {o.tag}
+                    </span>
 
-                  <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-muted-foreground">
-                    <span className="flex items-center gap-1.5">
-                      <MapPin size={12} strokeWidth={2} />
-                      {o.lieu}
-                    </span>
-                    <span className="flex items-center gap-1.5">
-                      <Clock size={12} strokeWidth={2} />
-                      {o.contrat}
-                    </span>
-                    <span className="flex items-center gap-1.5">
-                      <Briefcase size={12} strokeWidth={2} />
-                      {o.niveau}
+                    <h2 className="font-display text-lg leading-snug tracking-tight text-foreground transition-colors group-hover:text-[var(--svc)]">
+                      {o.title}
+                    </h2>
+
+                    <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-muted-foreground">
+                      <span className="flex items-center gap-1.5">
+                        <MapPin size={12} strokeWidth={2} />
+                        {o.lieu}
+                      </span>
+                      <span className="flex items-center gap-1.5">
+                        <Clock size={12} strokeWidth={2} />
+                        {o.contrat}
+                      </span>
+                      <span className="flex items-center gap-1.5">
+                        <Briefcase size={12} strokeWidth={2} />
+                        {o.niveau}
+                      </span>
+                    </div>
+
+                    <p className="mt-4 line-clamp-4 flex-1 text-[15px] leading-relaxed text-muted-foreground">
+                      {o.desc}
+                    </p>
+
+                    <span className="link-arrow mt-6 text-sm" style={{ color: meta.color }}>
+                      Postuler
+                      <ArrowRight size={15} strokeWidth={2.5} className="transition-transform duration-300 group-hover:translate-x-0.5" />
                     </span>
                   </div>
-
-                  <p className="mt-4 line-clamp-4 flex-1 text-[15px] leading-relaxed text-muted-foreground">
-                    {o.desc}
-                  </p>
-
-                  {o.missions.length > 0 && (
-                    <ul className="mt-5 flex flex-wrap gap-2 border-t border-border/70 pt-4">
-                      {o.missions.map((m, j) => (
-                        <li
-                          key={j}
-                          className="rounded-full px-2.5 py-1 text-[11px] font-medium"
-                          style={{ backgroundColor: meta.bg, color: meta.color }}
-                        >
-                          {m}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-
-                  <span
-                    className="link-arrow mt-6 text-sm"
-                    style={{ color: meta.color }}
-                  >
-                    Postuler
-                    <ArrowRight size={15} strokeWidth={2.5} className="transition-transform duration-300 group-hover:translate-x-0.5" />
-                  </span>
                 </article>
               );
             })}

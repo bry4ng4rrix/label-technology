@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { CheckCircle2 } from "lucide-react";
 import FilterChips, { type ChipMeta } from "@/components/shared/FilterChips";
-import TiltCard from "@/components/shared/TiltCard";
+import PhotoPanel from "@/components/services/PhotoPanel";
+import { coverFor } from "@/lib/tag-covers";
 
 type Projet = {
   tag: string;
@@ -51,48 +52,54 @@ export default function ProjetsList({ projets }: { projets: Projet[] }) {
                 className="animate-fadeup h-full"
                 style={{ animationDelay: `${Math.min(i, 8) * 0.05}s` }}
               >
-                <TiltCard
-                  as="article"
-                  maxTilt={4}
-                  className="card-premium flex h-full flex-col p-7 hover:translate-y-0"
-                  style={{ ["--accent" as string]: meta.color }}
+                <article
+                  className="group flex h-full flex-col"
+                  style={{ ["--svc" as string]: meta.color }}
                 >
-                  <div className="mb-5 flex items-center justify-between">
-                    <span
-                      className="rounded-full px-2.5 py-1 text-[10px] font-semibold tracking-[0.12em] uppercase"
-                      style={{ backgroundColor: meta.bg, color: meta.color }}
-                    >
-                      {p.tag}
-                    </span>
-                    <span
-                      className="size-2 rounded-full opacity-60"
-                      style={{ backgroundColor: meta.color }}
-                    />
+                  <PhotoPanel
+                    src={coverFor(p.tag)}
+                    alt=""
+                    ratio="16/9"
+                    tone="light"
+                    tint="soft"
+                    quality={60}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="rounded-2xl"
+                  />
+                  <div className="mt-6 flex flex-1 flex-col">
+                    <div className="mb-4 flex items-center justify-between">
+                      <span
+                        className="rounded-full px-2.5 py-1 text-[10px] font-semibold tracking-[0.12em] uppercase"
+                        style={{ backgroundColor: meta.bg, color: meta.color }}
+                      >
+                        {p.tag}
+                      </span>
+                    </div>
+
+                    <h2 className="font-display text-lg leading-snug tracking-tight text-foreground">
+                      {p.title}
+                    </h2>
+
+                    <p className="mt-3 flex-1 text-[15px] leading-relaxed text-muted-foreground">
+                      {p.desc}
+                    </p>
+
+                    {p.metrics.length > 0 && (
+                      <ul className="mt-6 flex flex-wrap gap-2 border-t border-border/70 pt-5">
+                        {p.metrics.map((m, j) => (
+                          <li
+                            key={j}
+                            className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold"
+                            style={{ backgroundColor: meta.bg, color: meta.color }}
+                          >
+                            <CheckCircle2 size={11} strokeWidth={2.5} />
+                            {m}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
-
-                  <h2 className="font-display text-lg leading-snug tracking-tight text-foreground">
-                    {p.title}
-                  </h2>
-
-                  <p className="mt-3 flex-1 text-[15px] leading-relaxed text-muted-foreground">
-                    {p.desc}
-                  </p>
-
-                  {p.metrics.length > 0 && (
-                    <ul className="mt-6 flex flex-wrap gap-2 border-t border-border/70 pt-5">
-                      {p.metrics.map((m, j) => (
-                        <li
-                          key={j}
-                          className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold"
-                          style={{ backgroundColor: meta.bg, color: meta.color }}
-                        >
-                          <CheckCircle2 size={11} strokeWidth={2.5} />
-                          {m}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </TiltCard>
+                </article>
               </div>
             );
           })}

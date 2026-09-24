@@ -26,7 +26,7 @@ export default function EditorialHero({
   secondary = { href: "/projets", label: "Voir nos réalisations" },
 }: {
   slug: ServiceSlug;
-  eyebrow: string;
+  eyebrow: ReactNode;
   title: ReactNode;
   description: string;
   stats?: HeroStat[];

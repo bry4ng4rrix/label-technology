@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
-import { ArrowRight } from "lucide-react";
 import FaqSection from "@/components/shared/FaqSection";
-import PageHero from "@/components/shared/PageHero";
+import EditorialHero from "@/components/services/EditorialHero";
+import PhotoBand from "@/components/services/PhotoBand";
+import ServiceScope from "@/components/services/ServiceScope";
 import SectionHeader from "@/components/shared/SectionHeader";
-import { Button } from "@/components/ui/button";
 import ActivityNotice from "@/components/construction/ActivityNotice";
 import ConstructionCta from "@/components/construction/ConstructionCta";
-import Link from "next/link";
 import { OG_IMAGE } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -81,14 +80,14 @@ const jsonLd = {
 
 export default function RouteConstructionPage() {
   return (
-    <main>
+    <ServiceScope slug="index" as="main">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <PageHero
-        size="lg"
+      <EditorialHero
+        slug="index"
         eyebrow={
           <>
             TRAVAUX ROUTIERS
@@ -101,24 +100,13 @@ export default function RouteConstructionPage() {
           <>
             Des routes qui
             <br />
-            <span className="gradient-text-light">tiennent la distance.</span>
+            <span className="gradient-text-svc-light">tiennent la distance.</span>
           </>
         }
         description="Terrassement, revêtement, assainissement, signalisation. Nous développons une offre autour d&apos;un suivi de chantier rigoureux, du relevé topographique à la réception des travaux."
-        image={{ src: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=900&h=700&fit=crop&q=80", alt: "Travaux routiers — chantier de voirie", priority: true }}
-        actions={
-          <>
-            <Button asChild size="lg" className="rounded-full">
-              <Link href="/contact">
-                Demander un devis
-                <ArrowRight data-icon="inline-end" />
-              </Link>
-            </Button>
-            <Button asChild size="lg" variant="glass" className="rounded-full">
-              <Link href="/construction">Découvrir l&apos;activité</Link>
-            </Button>
-          </>
-        }
+        image={{ src: "/images/construction/route-hero.jpg", alt: "Chantier de voirie et travaux routiers" }}
+        primary={{ href: "/contact", label: "Parler de votre projet" }}
+        secondary={{ href: "/construction", label: "Découvrir l'activité" }}
       />
 
       <section className="surface-dark hairline-top relative">
@@ -153,6 +141,21 @@ export default function RouteConstructionPage() {
         </div>
       </section>
 
+      {/* Bandeau photographique */}
+      <PhotoBand
+        tint="normal"
+        image={{ src: "/images/construction/route-band.jpg", alt: "Engin de chantier sur une route en construction" }}
+        eyebrow="Suivi de chantier"
+        title={<>Du relevé topographique<br />à la réception des travaux.</>}
+        stats={[
+          { value: "4", label: "étapes cadrées" },
+          { value: "100 %", label: "chantiers documentés" },
+          { value: "72h", label: "délai de réponse" },
+        ]}
+      >
+        Terrassement, revêtement, assainissement, signalisation : chaque étape est documentée et validée avec vous avant de passer à la suivante.
+      </PhotoBand>
+
       {/* Process */}
       <section className="section bg-background">
         <div className="container-x">
@@ -173,6 +176,6 @@ export default function RouteConstructionPage() {
       <ActivityNotice />
       <FaqSection items={FAQ} />
       <ConstructionCta />
-    </main>
+    </ServiceScope>
   );
 }
