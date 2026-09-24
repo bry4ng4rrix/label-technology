@@ -56,7 +56,7 @@ export default function ApplyForm({
           </div>
           <div className="space-y-2">
             <FieldLabel htmlFor="phone" optional>Téléphone</FieldLabel>
-            <Input id="phone" type="tel" name="phone" placeholder="+261 34 05 031 29" autoComplete="tel" />
+            <Input id="phone" type="tel" name="phone" placeholder="+261 3X XX XXX XX" autoComplete="tel" />
           </div>
         </div>
 

@@ -42,7 +42,6 @@ export default function MentionsLegalesPage() {
                 <strong className="text-foreground">Label Technology</strong><br />
                 Akany Riandrano, Manajak Ilafy<br />
                 Antananarivo Avaradrano, Madagascar<br />
-                Tél. : +261 34 05 031 29<br />
                 Email : contact@labeltechnology.mg
               </p>
             </section>

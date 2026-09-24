@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import { Clock, Mail, MapPin } from "lucide-react";
 import ContactForm from "@/components/contact/ContactForm";
 import PhotoPanel from "@/components/services/PhotoPanel";
 import ServiceScope from "@/components/services/ServiceScope";
@@ -37,7 +37,6 @@ const INFOS = [
     label: "Adresse",
     content: "Akany Riandrano, Manajak Ilafy\nAntananarivo Avaradrano, Madagascar",
   },
-  { icon: Phone, label: "Téléphone", href: "tel:+261340503129", linkText: "+261 34 05 031 29" },
   {
     icon: Mail,
     label: "Email",

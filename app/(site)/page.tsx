@@ -54,7 +54,7 @@ const jsonLd = {
   contactPoint: [
     {
       "@type": "ContactPoint",
-      telephone: "+261-34-05-031-29",
+      email: "contact@labeltechnology.mg",
       contactType: "customer service",
       availableLanguage: ["French", "English"],
       areaServed: ["MG", "FR", "BE", "CH"],
