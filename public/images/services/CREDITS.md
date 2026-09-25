@@ -48,3 +48,27 @@ quasi-doublons détectés par empreinte perceptive figurent aussi ici.
 | `services/index/row.jpg` | `photo-1556761175-5973dc0f32e7` |
 | `services/marketing/row.jpg` | `photo-1590650153855-d9e808231d41` |
 | `services/marketing/row2.jpg` | `photo-1557838923-2985c318be48` |
+
+## Visuels retravaillés par Label Technology
+
+Douze photographies ont été remplacées par des versions produites par Label
+Technology, montrant des personnes malgaches et des décors d'Antananarivo.
+Elles ne proviennent donc plus d'Unsplash : la ligne correspondante des
+tableaux ci-dessus ne s'applique plus à ces fichiers.
+
+| Fichier |
+|---|
+| `blog/strategie.jpg` |
+| `covers/developpement/2.jpg` |
+| `covers/developpement/7.jpg` |
+| `covers/developpement/10.jpg` |
+| `covers/digitalisation/1.jpg` |
+| `covers/donnees/3.jpg` |
+| `covers/strategie/2.jpg` |
+| `pages/about-band.jpg` |
+| `pages/recru-hero.jpg` |
+| `pages/testimonials.jpg` |
+| `pages/valeur-1.jpg` |
+| `pages/valeur-4.jpg` |
+
+Les originaux fournis sont conservés en `.jpeg` dans `photos-personnes/`.
