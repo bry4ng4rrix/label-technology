@@ -51,7 +51,7 @@ quasi-doublons détectés par empreinte perceptive figurent aussi ici.
 
 ## Visuels retravaillés par Label Technology
 
-Douze photographies ont été remplacées par des versions produites par Label
+Dix-neuf photographies ont été remplacées par des versions produites par Label
 Technology, montrant des personnes malgaches et des décors d'Antananarivo.
 Elles ne proviennent donc plus d'Unsplash : la ligne correspondante des
 tableaux ci-dessus ne s'applique plus à ces fichiers.
@@ -70,5 +70,12 @@ tableaux ci-dessus ne s'applique plus à ces fichiers.
 | `pages/testimonials.jpg` |
 | `pages/valeur-1.jpg` |
 | `pages/valeur-4.jpg` |
+| `services/index/band.jpg` |
+| `services/index/mosaic-a.jpg` |
+| `services/index/mosaic-b.jpg` |
+| `services/index/row.jpg` |
+| `services/index/row2.jpg` |
+| `services/materiel/band.jpg` |
+| `services/materiel/step-4.jpg` |
 
 Les originaux fournis sont conservés en `.jpeg` dans `photos-personnes/`.
