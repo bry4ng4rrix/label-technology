@@ -38,8 +38,9 @@ export default function Footer() {
               <Image
                 src="/images/logo_dark.png"
                 alt=""
-                width={200}
-                height={133}
+                width={120}
+                height={80}
+                sizes="60px"
                 className="h-10 w-auto rounded-md mix-blend-screen"
               />
               <span className="font-display text-lg font-semibold tracking-tight">

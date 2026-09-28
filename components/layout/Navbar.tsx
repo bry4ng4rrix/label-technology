@@ -146,11 +146,11 @@ const Navbar = () => {
           <Image
             src="/images/logo_dark.png"
             alt=""
-            width={200}
-            height={133}
+            width={108}
+            height={72}
+            sizes="54px"
             className="h-9 w-auto rounded-md mix-blend-screen transition-transform duration-300 group-hover:scale-105"
             loading="eager"
-            priority
           />
           <span className="font-display text-[1.05rem] font-semibold tracking-tight text-white">
             Label <span className="text-brand-glow">Technology</span>
