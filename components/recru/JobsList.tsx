@@ -138,7 +138,6 @@ export default function JobsList({ offres }: { offres: Offre[] }) {
                       ratio="16/9"
                       tone="light"
                       tint="soft"
-                      quality={60}
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       className="rounded-2xl"
                     />

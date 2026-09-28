@@ -26,7 +26,6 @@ export default function ProjectTypesGrid() {
                   ratio="4/3"
                   tone="light"
                   tint="soft"
-                  quality={60}
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   className="rounded-2xl"
                 />

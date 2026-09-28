@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
+import { IMAGE_QUALITY } from "@/lib/images";
 import { cn } from "@/lib/utils";
 
 /**
@@ -20,7 +21,6 @@ export default function PhotoPanel({
   className,
   tint = "normal",
   tone = "dark",
-  quality = 70,
 }: {
   src: string;
   alt: string;
@@ -32,8 +32,6 @@ export default function PhotoPanel({
   tint?: "soft" | "normal" | "strong";
   /** `light` : la photo est posée sur une surface papier — on assombrit peu. */
   tone?: "light" | "dark";
-  /** 70 par défaut ; 60 pour les vignettes, 80 pour les visuels pleine largeur. */
-  quality?: number;
 }) {
   const ratios = {
     "4/3": "aspect-[4/3]",
@@ -59,7 +57,7 @@ export default function PhotoPanel({
         fill
         sizes={sizes}
         priority={priority}
-        quality={quality}
+        quality={IMAGE_QUALITY}
         className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]"
       />
 

@@ -45,7 +45,6 @@ export default function ServiceSteps({ steps }: { steps: Step[] }) {
                     alt={s.image.alt}
                     ratio="16/9"
                     tint="soft"
-                    quality={60}
                     sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 25vw"
                     className="rounded-none shadow-none ring-0"
                   />

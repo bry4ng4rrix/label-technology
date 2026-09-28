@@ -44,7 +44,6 @@ export default async function Testimonials() {
             ratio="16/9"
             tone="light"
             tint="soft"
-            quality={60}
             sizes="(max-width: 1280px) 100vw, 1280px"
             className="rounded-[2rem] sm:aspect-[21/9]"
             overlay={

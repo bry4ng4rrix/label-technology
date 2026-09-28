@@ -65,7 +65,6 @@ export default function Process() {
                   ratio="4/3"
                   tone="light"
                   tint="soft"
-                  quality={60}
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   className="mb-7 rounded-2xl"
                 />

@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { ArrowLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Reveal from "@/components/shared/Reveal";
+import { IMAGE_QUALITY } from "@/lib/images";
 
 type PageHeroProps = {
   eyebrow?: ReactNode;
@@ -73,6 +74,7 @@ export default function PageHero({
             alt=""
             fill
             priority={image.priority}
+            quality={IMAGE_QUALITY}
             sizes="100vw"
             className="object-cover opacity-50 lg:opacity-70"
           />

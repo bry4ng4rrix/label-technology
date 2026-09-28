@@ -334,7 +334,6 @@ export default function ServicesPage() {
                   ratio="16/9"
                   tone="light"
                   tint="soft"
-                  quality={65}
                   sizes="(max-width: 768px) 100vw, 45vw"
                   className="mb-7 rounded-2xl"
                 />

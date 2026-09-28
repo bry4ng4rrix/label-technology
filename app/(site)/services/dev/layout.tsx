@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { OG_IMAGE } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Développement Web & Mobile — Next.js, React Native, Node.js",
@@ -16,7 +15,9 @@ export const metadata: Metadata = {
     title: "Développement Web & Mobile — Next.js, React Native | Label Technology",
     description:
       "Développement web et mobile sur mesure depuis Antananarivo. Sites, applications web, mobiles, APIs. Standards ESN européenne, délais startup.",
-    images: [OG_IMAGE],
+    /* Pas de clé `images` : `opengraph-image.tsx` de ce segment fournit
+       l'aperçu dédié au pôle dev. La déclarer ici écraserait ce fichier et
+       remettrait l'image générique de l'accueil. */
   },
   twitter: {
     card: "summary_large_image",

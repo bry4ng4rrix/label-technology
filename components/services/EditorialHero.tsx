@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { ArrowRight } from "lucide-react";
 import Reveal from "@/components/shared/Reveal";
 import { Button } from "@/components/ui/button";
+import { IMAGE_QUALITY } from "@/lib/images";
 import type { ServiceSlug } from "@/lib/service-themes";
 import { getTheme } from "@/lib/service-themes";
 
@@ -45,7 +46,7 @@ export default function EditorialHero({
           alt=""
           fill
           priority
-          quality={80}
+          quality={IMAGE_QUALITY}
           sizes="100vw"
           className="object-cover object-center"
         />

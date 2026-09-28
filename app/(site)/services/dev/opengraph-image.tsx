@@ -1,0 +1,126 @@
+import { ImageResponse } from "next/og";
+
+export const runtime = "edge";
+export const alt = "Développement Web & Mobile — Label Technology";
+export const size = { width: 1200, height: 630 };
+export const contentType = "image/png";
+
+/**
+ * Aperçu de partage propre au pôle développement.
+ *
+ * La page réutilisait l'image générique de l'accueil : un lien vers
+ * /services/dev partagé sur LinkedIn ou WhatsApp affichait « Votre partenaire
+ * technologique premium » sans rien dire du service. On reprend la même grammaire
+ * visuelle (fond encre, grille, halo, bloc logo) avec le contenu du métier.
+ */
+export default function OgImage() {
+  return new ImageResponse(
+    (
+      <div
+        style={{
+          background: "#0A0F1E",
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          padding: "60px 80px",
+          fontFamily: "sans-serif",
+          position: "relative",
+        }}
+      >
+        {/* Grid overlay */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            backgroundImage:
+              "linear-gradient(rgba(30,63,171,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(30,63,171,0.06) 1px, transparent 1px)",
+            backgroundSize: "60px 60px",
+          }}
+        />
+        {/* Blue glow */}
+        <div
+          style={{
+            position: "absolute",
+            top: "40%",
+            left: "60%",
+            width: 500,
+            height: 500,
+            borderRadius: "50%",
+            background: "radial-gradient(circle, rgba(30,63,171,0.3) 0%, transparent 70%)",
+          }}
+        />
+
+        {/* Logo top-left */}
+        <div style={{ display: "flex", alignItems: "center", gap: 16, position: "relative" }}>
+          <div
+            style={{
+              width: 52,
+              height: 52,
+              background: "#1E3FAB",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontWeight: 800,
+              fontSize: 20,
+              color: "white",
+            }}
+          >
+            LT
+          </div>
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <span style={{ color: "white", fontWeight: 700, fontSize: 20, letterSpacing: 2 }}>LABEL</span>
+            <span style={{ color: "rgba(255,255,255,0.5)", fontSize: 13, letterSpacing: 3 }}>TECHNOLOGY</span>
+          </div>
+        </div>
+
+        {/* Main content */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 16, position: "relative" }}>
+          <div style={{ color: "#2E55D4", fontSize: 14, fontWeight: 600, letterSpacing: 4, textTransform: "uppercase" }}>
+            Développement web &amp; mobile
+          </div>
+          {/* Satori impose `display: flex` sur tout div à plusieurs enfants
+              et ne gère pas <br /> : on empile deux lignes explicites. */}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              color: "white",
+              fontWeight: 800,
+              fontSize: 56,
+              lineHeight: 1.1,
+              letterSpacing: -1,
+            }}
+          >
+            <span>On ne livre pas du code.</span>
+            <div style={{ display: "flex" }}>
+              <span>On livre de la&nbsp;</span>
+              <span style={{ color: "#2E55D4" }}>croissance</span>
+              <span>.</span>
+            </div>
+          </div>
+          <div style={{ color: "rgba(255,255,255,0.5)", fontSize: 20, fontWeight: 300, marginTop: 8 }}>
+            Next.js · React Native · Node.js · PostgreSQL
+          </div>
+        </div>
+
+        {/* Bottom metrics */}
+        <div style={{ display: "flex", gap: 40, position: "relative" }}>
+          {[
+            { v: "800€", l: "projet à partir de" },
+            { v: "3–6 sem.", l: "site vitrine" },
+            { v: "99%", l: "satisfaction" },
+            { v: "72h", l: "devis gratuit" },
+          ].map((m, i) => (
+            <div key={i} style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+              <span style={{ color: "#2E55D4", fontWeight: 800, fontSize: 28 }}>{m.v}</span>
+              <span style={{ color: "rgba(255,255,255,0.4)", fontSize: 13, letterSpacing: 2, textTransform: "uppercase" }}>{m.l}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    ),
+    { ...size }
+  );
+}

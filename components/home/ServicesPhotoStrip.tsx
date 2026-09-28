@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import Reveal from "@/components/shared/Reveal";
+import { IMAGE_QUALITY } from "@/lib/images";
 
 const PHOTOS = [
   {
@@ -95,6 +96,7 @@ export default function ServicesPhotoStrip() {
                 src={p.src}
                 alt={p.alt}
                 fill
+                quality={IMAGE_QUALITY}
                 sizes="(max-width: 768px) 45vw, 15vw"
                 className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
               />

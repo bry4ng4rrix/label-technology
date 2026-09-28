@@ -11,7 +11,12 @@ import { OG_IMAGE } from "@/lib/seo";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Label Technology — Votre Partenaire Technologique Premium",
+  /* `absolute` court-circuite le `template: "%s | Label Technology"` du layout
+     racine. Sans lui, la marque est concaténée à un titre qui la contient déjà
+     et l'onglet affiche « … Premium | Label Technology ». */
+  title: {
+    absolute: "Label Technology — Votre Partenaire Technologique Premium",
+  },
   description:
     "Développement web & mobile, marketing digital, ERP, traitement de données. Depuis Antananarivo, pour la France et l'Afrique.",
   alternates: {

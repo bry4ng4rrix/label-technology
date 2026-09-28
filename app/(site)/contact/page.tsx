@@ -111,7 +111,6 @@ export default function ContactPage() {
                   ratio="16/9"
                   tone="light"
                   tint="soft"
-                  quality={60}
                   sizes="(max-width: 1024px) 0px, 40vw"
                   className="rounded-2xl"
                   overlay={

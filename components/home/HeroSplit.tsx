@@ -8,6 +8,20 @@ import { ArrowRight } from "lucide-react";
 import { Typewriter } from "react-simple-typewriter";
 import DotField from "@/components/DotField";
 import { Button } from "@/components/ui/button";
+import { IMAGE_QUALITY } from "@/lib/images";
+
+/* Mots animés du H1. `react-simple-typewriter` part d'une chaîne vide et ne se
+   remplit que dans un effet : rendu côté serveur, le H1 s'arrêtait net sur
+   « …transforme le potentiel en ». Le premier mot sert donc de repli statique,
+   présent dans le HTML livré aux crawlers, et l'animation ne démarre qu'une
+   fois le composant monté. */
+const TYPED_WORDS = [
+  " performance.",
+  " réalité.",
+  " succès.",
+  " excellence.",
+  " innovation.",
+];
 
 const STATS = [
   { value: "16+", label: "collaborateurs" },
@@ -56,6 +70,12 @@ const PHOTOS = [
 export default function HeroSplit() {
   const stageRef = useRef<HTMLDivElement>(null);
   const [parallax, setParallax] = useState(false);
+  /* Faux au premier rendu client comme au rendu serveur : l'hydratation
+     retrouve le mot de repli, puis l'effet laisse la machine à écrire prendre
+     la main. */
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
 
   useEffect(() => {
     const fine = window.matchMedia("(hover: hover) and (pointer: fine)");
@@ -129,13 +149,17 @@ export default function HeroSplit() {
             Votre vision, notre expertise&nbsp;: l&apos;alliance qui transforme le{" "}
             <span className="gradient-text-light">
               potentiel en
-              <Typewriter
-                words={[" performance.", " réalité.", " succès.", " excellence.", " innovation."]}
-                loop={1}
-                typeSpeed={50}
-                cursorStyle="|"
-                cursorColor="#7EE7C9"
-              />
+              {mounted ? (
+                <Typewriter
+                  words={TYPED_WORDS}
+                  loop={1}
+                  typeSpeed={50}
+                  cursorStyle="|"
+                  cursorColor="#7EE7C9"
+                />
+              ) : (
+                TYPED_WORDS[0]
+              )}
             </span>
           </h1>
 
@@ -202,6 +226,7 @@ export default function HeroSplit() {
                   src={p.src}
                   alt={p.alt}
                   fill
+                  quality={IMAGE_QUALITY}
                   sizes={p.sizes}
                   priority={p.priority}
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"

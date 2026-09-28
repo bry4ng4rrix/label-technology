@@ -177,9 +177,30 @@ const FAQ = [
   },
 ];
 
+/* Les questions ne sont rendues que dans un accordéon client : sans ce bloc,
+   Google ne voit aucune FAQ sur la page et l'enrichissement des résultats de
+   recherche est impossible. Dérivé de `FAQ` pour qu'un ajout de question ne
+   puisse pas désynchroniser le balisage du contenu affiché. */
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQ.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.a,
+    },
+  })),
+};
+
 export default function DevPage() {
   return (
     <ServiceScope slug="dev" as="main">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <EditorialHero
         slug="dev"
         eyebrow="Développement web & mobile"

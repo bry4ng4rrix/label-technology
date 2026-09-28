@@ -7,6 +7,7 @@ import TiltCard from "@/components/shared/TiltCard";
 import { Button } from "@/components/ui/button";
 import { supabase, type Service } from "@/lib/supabase";
 import { getIcon } from "@/lib/icons";
+import { IMAGE_QUALITY } from "@/lib/images";
 import { cn } from "@/lib/utils";
 
 export default async function ServicesGrid() {
@@ -100,6 +101,7 @@ function ServiceCard({ service: s, size }: { service: Service; size: "lg" | "sm"
         src={s.image_url}
         alt=""
         fill
+        quality={IMAGE_QUALITY}
         sizes={
           large
             ? "(max-width: 1024px) 100vw, 50vw"

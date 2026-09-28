@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Briefcase, Mail, MapPin } from "lucide-react";
+import { IMAGE_QUALITY } from "@/lib/images";
 
 const LINKS = {
   Services: [
@@ -40,6 +41,7 @@ export default function Footer() {
                 alt=""
                 width={120}
                 height={80}
+                quality={IMAGE_QUALITY}
                 sizes="60px"
                 className="h-10 w-auto rounded-md mix-blend-screen"
               />

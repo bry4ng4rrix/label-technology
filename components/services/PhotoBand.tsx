@@ -33,7 +33,6 @@ export default function PhotoBand({
             ratio="16/9"
             sizes="(max-width: 1280px) 100vw, 1280px"
             tint={tint}
-            quality={80}
             className="rounded-[2.5rem]"
             overlay={
               <div className="flex h-full items-end p-6 sm:p-10 lg:p-14">

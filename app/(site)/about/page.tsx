@@ -17,6 +17,7 @@ import SectionHeader from "@/components/shared/SectionHeader";
 
 import GrowthChart from "@/components/apropos/GrowthChartWrapper";
 import { supabase, type Testimonial } from "@/lib/supabase";
+import { IMAGE_QUALITY } from "@/lib/images";
 import { OG_IMAGE } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -129,6 +130,7 @@ export default async function AProposPage() {
                 src="/images/services/digit.jpg"
                 alt="L'équipe Label Technology au travail dans ses locaux d'Antananarivo"
                 fill
+                quality={IMAGE_QUALITY}
                 sizes="(max-width: 1024px) 0px, 420px"
                 className="object-cover"
               />
@@ -316,7 +318,6 @@ export default async function AProposPage() {
                       ratio="16/9"
                       tone="light"
                       tint="soft"
-                      quality={60}
                       sizes="(max-width: 768px) 100vw, 50vw"
                       className="rounded-2xl"
                     />
@@ -366,7 +367,6 @@ export default async function AProposPage() {
               alt="Chantier de construction"
               ratio="4/3"
               tone="light"
-              quality={60}
               sizes="(max-width: 1024px) 100vw, 40vw"
               className="rounded-2xl"
             />

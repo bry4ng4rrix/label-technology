@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowRight, ArrowUpRight, Menu, X } from "lucide-react";
+import { IMAGE_QUALITY } from "@/lib/images";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -148,6 +149,7 @@ const Navbar = () => {
             alt=""
             width={108}
             height={72}
+            quality={IMAGE_QUALITY}
             sizes="54px"
             className="h-9 w-auto rounded-md mix-blend-screen transition-transform duration-300 group-hover:scale-105"
           />
