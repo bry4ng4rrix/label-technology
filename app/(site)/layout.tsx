@@ -1,5 +1,6 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { LauraWidget } from "@/components/laura/LauraWidget";
 import { ThemeProvider } from "next-themes";
 
 export default function SiteLayout({
@@ -19,6 +20,7 @@ export default function SiteLayout({
       </header>
       <main>{children}</main>
       <Footer />
+      <LauraWidget />
     </ThemeProvider>
   );
 }
