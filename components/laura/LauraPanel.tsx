@@ -26,10 +26,10 @@ import { CODES_TERMINAUX } from "./types";
 
 /** Amorces tirées des fiches : les 4 logiciels prêts à l'emploi et l'offre France. */
 const SUGGESTIONS = [
-  "Gérer une flotte de véhicules et d'engins",
-  "Des développeurs dédiés depuis Madagascar",
-  "Digitaliser ma gestion (ERP, Odoo)",
-  "Créer un site ou une application",
+  "Gérer ma flotte d'engins",
+  "Développeurs dédiés",
+  "ERP et digitalisation",
+  "Site ou application",
 ];
 
 const EMAIL_EQUIPE = "contact@labeltechnology.mg";
@@ -49,6 +49,8 @@ export function LauraPanel({ laura, onFermer }: Props) {
     modeDegrade,
     reclamee,
     demarree,
+    attenteReponse,
+    interrompu,
     envoyer,
     terminer,
     reclamer,
@@ -62,13 +64,12 @@ export function LauraPanel({ laura, onFermer }: Props) {
 
   const termine = statut === "termine";
   const connecte = statut === "en-ligne";
-  const enAttente = messages[messages.length - 1]?.role === "visiteur";
 
   // Défilement en bas à chaque nouveau fragment.
   useLayoutEffect(() => {
     const el = zone.current;
     if (el) el.scrollTop = el.scrollHeight;
-  }, [messages, erreur, compteRendu, genereCompteRendu, reclamee]);
+  }, [messages, erreur, compteRendu, genereCompteRendu, reclamee, attenteReponse]);
 
   useEffect(() => {
     const t = setTimeout(() => champ.current?.focus(), 260);
@@ -189,7 +190,7 @@ export function LauraPanel({ laura, onFermer }: Props) {
         ref={zone}
         aria-live="polite"
         aria-atomic="false"
-        className="relative flex-1 space-y-3 overflow-y-auto overscroll-contain px-4 py-4"
+        className="scroll-fin relative flex-1 space-y-3 overflow-y-auto overscroll-contain px-4 py-4"
       >
         {messages.map((m) => (
           <div
@@ -216,7 +217,7 @@ export function LauraPanel({ laura, onFermer }: Props) {
         ))}
 
         {/* Attente avant le premier fragment */}
-        {enAttente && (
+        {attenteReponse && (
           <div className="flex justify-start">
             <div className="flex items-center gap-1.5 rounded-2xl rounded-bl-md bg-white/70 px-4 py-3.5 ring-1 ring-[var(--glass-border)] dark:bg-white/[0.07]">
               {[0, 1, 2].map((i) => (
@@ -228,6 +229,13 @@ export function LauraPanel({ laura, onFermer }: Props) {
               ))}
             </div>
           </div>
+        )}
+
+        {interrompu && !attenteReponse && (
+          <p className="rounded-xl bg-gold/10 px-3.5 py-2.5 text-[12.5px] leading-snug ring-1 ring-gold/25">
+            La connexion a été interrompue avant ma réponse. Renvoyez votre
+            message, je reprends où nous en étions.
+          </p>
         )}
 
         {erreur && (

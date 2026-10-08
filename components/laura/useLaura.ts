@@ -76,6 +76,10 @@ export interface EtatLaura {
   reclamee: boolean;
   /** Vrai dès qu'un message visiteur a été envoyé : masque les suggestions. */
   demarree: boolean;
+  /** Une réponse est attendue : pilote l'indicateur de frappe. */
+  attenteReponse: boolean;
+  /** La connexion a été coupée pendant une génération : inviter à renvoyer. */
+  interrompu: boolean;
   envoyer: (texte: string) => void;
   terminer: () => void;
   reclamer: (nom: string, email: string, consentement: boolean) => void;
@@ -91,6 +95,8 @@ export function useLaura(actif: boolean): EtatLaura {
   const [modeDegrade, setModeDegrade] = useState(false);
   const [reclamee, setReclamee] = useState(false);
   const [demarree, setDemarree] = useState(false);
+  const [attenteReponse, setAttenteReponse] = useState(false);
+  const [interrompu, setInterrompu] = useState(false);
 
   const socket = useRef<WebSocket | null>(null);
   const ping = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -123,12 +129,26 @@ export function useLaura(actif: boolean): EtatLaura {
           })),
         );
         setDemarree(trame.historique.some((m) => m.role === "visiteur"));
-        setErreur(null);
         tentatives.current = 0;
+        // L'erreur n'est PAS effacée ici. Quand le serveur ferme le socket
+        // juste après avoir signalé un échec, la reconnexion automatique
+        // arrive en quelques centaines de millisecondes : effacer l'erreur
+        // sur `pret` la ferait disparaître avant que le visiteur l'ait lue.
+        // Elle est levée quand il agit — envoi d'un message ou nouvel essai.
+
+        // Une génération en cours ne survit pas à une coupure : le serveur a
+        // enregistré la question mais la réponse est perdue. Sans ce
+        // nettoyage, l'indicateur de frappe tournerait indéfiniment.
+        setAttenteReponse(false);
+        setInterrompu(
+          trame.historique[trame.historique.length - 1]?.role === "visiteur",
+        );
         break;
       }
 
       case "fragment":
+        setAttenteReponse(false);
+        setInterrompu(false);
         setMessages((prev) => {
           const dernier = prev[prev.length - 1];
           if (dernier?.enCours) {
@@ -150,6 +170,7 @@ export function useLaura(actif: boolean): EtatLaura {
         break;
 
       case "fin_message":
+        setAttenteReponse(false);
         setMessages((prev) => {
           const dernier = prev[prev.length - 1];
           if (!dernier?.enCours) return prev;
@@ -173,8 +194,6 @@ export function useLaura(actif: boolean): EtatLaura {
         setCompteRendu({
           objet: trame.objet,
           resume: trame.resume,
-          temperature: trame.temperature,
-          score: trame.score,
           prochaine_action: trame.prochaine_action,
         });
         setStatut("termine");
@@ -186,6 +205,7 @@ export function useLaura(actif: boolean): EtatLaura {
 
       case "erreur":
         setGenereCompteRendu(false);
+        setAttenteReponse(false);
         setErreur({ code: trame.code, message: trame.message });
         // Le fragment en cours est abandonné : sinon une bulle vide reste.
         setMessages((prev) =>
@@ -279,6 +299,8 @@ export function useLaura(actif: boolean): EtatLaura {
       if (!contenu) return;
       setErreur(null);
       setDemarree(true);
+      setAttenteReponse(true);
+      setInterrompu(false);
       // Affichage optimiste : la bulle du visiteur apparaît sans attendre
       // l'aller-retour, le serveur ne la renvoie pas.
       setMessages((prev) => [
@@ -286,6 +308,7 @@ export function useLaura(actif: boolean): EtatLaura {
         { id: idLocal(), role: "visiteur", contenu },
       ]);
       if (!emettre({ type: "message", contenu })) {
+        setAttenteReponse(false);
         setErreur({
           code: "hors_ligne",
           message: "Connexion perdue. Réessayez dans un instant.",
@@ -297,13 +320,25 @@ export function useLaura(actif: boolean): EtatLaura {
 
   const terminer = useCallback(() => {
     setErreur(null);
-    emettre({ type: "terminer" });
+    if (!emettre({ type: "terminer" })) {
+      // Sans ce garde-fou, le clic ne produisait rien du tout : ni résumé,
+      // ni message. Le visiteur restait devant un bouton inerte.
+      setErreur({
+        code: "hors_ligne",
+        message: "Connexion perdue. Réessayez dans un instant.",
+      });
+    }
   }, [emettre]);
 
   const reclamer = useCallback(
     (nom: string, email: string, consentement: boolean) => {
       setErreur(null);
-      emettre({ type: "reclamer", nom, email, consentement });
+      if (!emettre({ type: "reclamer", nom, email, consentement })) {
+        setErreur({
+          code: "hors_ligne",
+          message: "Connexion perdue. Réessayez dans un instant.",
+        });
+      }
     },
     [emettre],
   );
@@ -319,6 +354,8 @@ export function useLaura(actif: boolean): EtatLaura {
     setCompteRendu(null);
     setReclamee(false);
     setDemarree(false);
+    setAttenteReponse(false);
+    setInterrompu(false);
     setStatut("hors-ligne");
     // Laisse le socket se fermer avant de rouvrir.
     setTimeout(connecter, 120);
@@ -333,6 +370,8 @@ export function useLaura(actif: boolean): EtatLaura {
     modeDegrade,
     reclamee,
     demarree,
+    attenteReponse,
+    interrompu,
     envoyer,
     terminer,
     reclamer,

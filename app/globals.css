@@ -910,3 +910,26 @@ img, video { max-width: 100%; height: auto; }
   .tilt-card { transform: none !important; }
   .tilt-glare { display: none; }
 }
+
+/* =============================================================================
+   LAURA — barre de défilement fine du panneau de discussion
+   La barre native, large et opaque, casse l'effet de verre.
+   ============================================================================= */
+.scroll-fin {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(var(--shadow-color) / 0.22) transparent;
+}
+.scroll-fin::-webkit-scrollbar { width: 6px; }
+.scroll-fin::-webkit-scrollbar-track { background: transparent; }
+.scroll-fin::-webkit-scrollbar-thumb {
+  background: rgb(var(--shadow-color) / 0.18);
+  border-radius: 999px;
+}
+.scroll-fin::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--shadow-color) / 0.30);
+}
+.dark .scroll-fin {
+  scrollbar-color: rgb(255 255 255 / 0.18) transparent;
+}
+.dark .scroll-fin::-webkit-scrollbar-thumb { background: rgb(255 255 255 / 0.14); }
+.dark .scroll-fin::-webkit-scrollbar-thumb:hover { background: rgb(255 255 255 / 0.24); }

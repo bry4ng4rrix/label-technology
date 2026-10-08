@@ -24,11 +24,17 @@ export interface Message {
   enCours?: boolean;
 }
 
+/**
+ * Ce que le visiteur reçoit en fin d'échange.
+ *
+ * Volontairement amputé : la température et le score sur 100 sont de la
+ * donnée commerciale interne. L'API ne les envoie que sur le canal `equipe`,
+ * protégé par le jeton d'administration — un prospect ne doit pas lire
+ * « score 35/100, froid » dans l'onglet réseau de son navigateur.
+ */
 export interface CompteRendu {
   objet: string;
   resume: string;
-  temperature: Temperature;
-  score: number;
   prochaine_action: string;
 }
 
