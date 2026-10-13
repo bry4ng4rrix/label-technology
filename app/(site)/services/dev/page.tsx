@@ -78,6 +78,8 @@ const TECH_STACK = [
   "Fastapi",
   "Django",
   "Rest Framework",
+  "Laravel",
+  "Java EE",
   "Supabase",
   "PostgreSQL",
   "MongoDB",
@@ -165,7 +167,7 @@ const FAQ = [
   },
   {
     q: "Travaillez-vous avec des technologies spécifiques ou vous adaptez-vous ?",
-    a: "Maîtrise Next.js, React, Node.js, PostgreSQL, React Native. Adaptation possible à votre stack existante si nécessaire.",
+    a: "Maîtrise Next.js, React, Node.js, Python/FastAPI, Laravel, Java EE, PostgreSQL, React Native. Adaptation possible à votre stack existante si nécessaire.",
   },
   {
     q: "Comment se déroule la collaboration à distance ?",
