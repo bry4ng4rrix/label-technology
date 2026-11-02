@@ -10,7 +10,7 @@ const jakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
   display: "swap",
 });
-
+  
 // Police d'accent pour les titres (h1/h2/CTA) — crée un vrai contraste
 // hiérarchique avec le Plus Jakarta Sans utilisé pour le corps de texte.
 const sora = Sora({
