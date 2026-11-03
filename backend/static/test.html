@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Laura — banc d'essai</title>
+<style>
+  :root{--bg:#f5f7fb;--surface:#fff;--line:#d9e0ec;--fg:#0e1a33;--muted:#5a6782;
+        --accent:#0052ff;--wa:#1f8f5f;--hot:#c2410c}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);
+       font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;padding:24px}
+  .wrap{max-width:900px;margin:0 auto;display:grid;gap:16px}
+  h1{font-size:20px;margin:0}
+  .sub{color:var(--muted);margin:4px 0 0}
+  .bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  select,input,button{font:14px system-ui;border:1px solid var(--line);
+       border-radius:8px;padding:8px 10px;background:var(--surface);color:var(--fg)}
+  button{background:var(--accent);color:#fff;border:0;cursor:pointer;font-weight:600}
+  button.ghost{background:transparent;color:var(--fg);border:1px solid var(--line)}
+  .panel{background:var(--surface);border:1px solid var(--line);border-radius:12px}
+  .msgs{height:420px;overflow-y:auto;padding:16px;display:flex;
+        flex-direction:column;gap:10px}
+  .m{max-width:80%;padding:9px 12px;border-radius:14px;white-space:pre-wrap}
+  .m.laura{align-self:flex-start;background:#edf1f8}
+  .m.visiteur{align-self:flex-end;background:var(--accent);color:#fff}
+  .m.sys{align-self:center;background:#fdebdd;color:var(--hot);font-size:12px;
+         max-width:100%}
+  .composer{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line)}
+  .composer input{flex:1}
+  .etat{font:12px ui-monospace,monospace;color:var(--muted)}
+  .etat b{color:var(--fg)}
+  pre{margin:0;padding:12px;background:#edf1f8;border-radius:8px;
+      font:12px ui-monospace,monospace;overflow-x:auto;white-space:pre-wrap}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div>
+    <h1>Laura — banc d'essai WebSocket</h1>
+    <p class="sub">Teste les 3 canaux métier et le canal équipe. Ouvre la console du navigateur pour voir les trames brutes.</p>
+  </div>
+
+  <div class="bar">
+    <select id="canal">
+      <option value="site">Chat du site</option>
+      <option value="whatsapp">WhatsApp</option>
+      <option value="formulaire">Formulaire (email)</option>
+    </select>
+    <button id="connecter">Connecter</button>
+    <button id="terminer" class="ghost" disabled>Terminer et générer le compte rendu</button>
+    <button id="reset" class="ghost">Nouvelle conversation</button>
+  </div>
+
+  <div class="etat" id="etat">déconnecté</div>
+
+  <div class="panel">
+    <div class="msgs" id="msgs"></div>
+    <div class="composer">
+      <input id="saisie" placeholder="Écrire un message…" disabled>
+      <button id="envoyer" disabled>Envoyer</button>
+    </div>
+  </div>
+
+  <div class="panel" id="crPanel" hidden>
+    <pre id="cr"></pre>
+  </div>
+</div>
+
+<script>
+const $ = s => document.querySelector(s);
+const msgs = $("#msgs");
+let ws = null, enCours = null;
+
+const CLE = "laura.session";
+const lire = () => { try { return JSON.parse(localStorage.getItem(CLE)) } catch { return null } };
+const ecrire = v => localStorage.setItem(CLE, JSON.stringify(v));
+
+function bulle(role, texte) {
+  const d = document.createElement("div");
+  d.className = "m " + role;
+  d.textContent = texte;
+  msgs.appendChild(d);
+  msgs.scrollTop = msgs.scrollHeight;
+  return d;
+}
+
+function etat(txt, ok) {
+  $("#etat").innerHTML = ok ? `<b>${txt}</b>` : txt;
+}
+
+function connecter() {
+  const session = lire();
+  const canal = $("#canal").value;
+  const p = new URLSearchParams({
+    canal,
+    page_url: location.href,
+    referrer: document.referrer || "",
+  });
+  // Reprise d'une conversation existante (RG-A01 : id + jeton, pas de login)
+  if (session?.conversation_id) {
+    p.set("conversation_id", session.conversation_id);
+    p.set("token", session.resume_token);
+  }
+
+  const proto = location.protocol === "https:" ? "wss" : "ws";
+  ws = new WebSocket(`${proto}://${location.host}/ws/chat?${p}`);
+
+  ws.onopen = () => etat("connecté", true);
+
+  ws.onmessage = e => {
+    const m = JSON.parse(e.data);
+    console.log("←", m);
+
+    switch (m.type) {
+      case "pret":
+        ecrire({ conversation_id: m.conversation_id, resume_token: m.resume_token });
+        msgs.innerHTML = "";
+        (m.historique || []).forEach(h => bulle(h.role, h.contenu));
+        etat(`conv ${m.conversation_id.slice(0, 8)} · ${m.canal}` +
+             (m.mode_degrade ? " · MODE DÉGRADÉ (pas de clé API)" : ""), true);
+        $("#saisie").disabled = $("#envoyer").disabled = $("#terminer").disabled = false;
+        break;
+
+      case "fragment":
+        if (!enCours) enCours = bulle("laura", "");
+        enCours.textContent += m.texte;
+        msgs.scrollTop = msgs.scrollHeight;
+        break;
+
+      case "fin_message":
+        enCours = null;
+        break;
+
+      case "compte_rendu_en_cours":
+        bulle("sys", "génération du compte rendu…");
+        break;
+
+      case "compte_rendu":
+        $("#crPanel").hidden = false;
+        $("#cr").textContent =
+          `OBJET            ${m.objet}\n` +
+          `TEMPÉRATURE      ${m.temperature.toUpperCase()} — ${m.score}/100\n\n` +
+          `RÉSUMÉ\n${m.resume}\n\n` +
+          `PROCHAINE ACTION\n${m.prochaine_action}`;
+        bulle("sys", "compte rendu envoyé à l'équipe");
+        break;
+
+      case "erreur":
+        bulle("sys", `[${m.code}] ${m.message}`);
+        enCours = null;
+        break;
+    }
+  };
+
+  ws.onclose = () => {
+    etat("déconnecté");
+    $("#saisie").disabled = $("#envoyer").disabled = $("#terminer").disabled = true;
+  };
+}
+
+$("#connecter").onclick = connecter;
+
+$("#envoyer").onclick = () => {
+  const v = $("#saisie").value.trim();
+  if (!v || !ws) return;
+  bulle("visiteur", v);
+  ws.send(JSON.stringify({ type: "message", contenu: v }));
+  $("#saisie").value = "";
+};
+
+$("#saisie").onkeydown = e => { if (e.key === "Enter") $("#envoyer").click(); };
+
+$("#terminer").onclick = () => ws?.send(JSON.stringify({ type: "terminer" }));
+
+$("#reset").onclick = () => {
+  localStorage.removeItem(CLE);
+  ws?.close();
+  msgs.innerHTML = "";
+  $("#crPanel").hidden = true;
+};
+</script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+.git
+.github
+.venv
+.claude
+.env
+.env.*
+*.db
+*.db-*
+**/__pycache__
+*.pyc
+docs
+README.md
+docker-compose.yml
+deploy

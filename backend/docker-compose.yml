@@ -1,0 +1,68 @@
+# Laura en production. Sur le VPS, le workflow .github/workflows/deploy.yml copie ce
+# fichier dans ~/laura avec :
+#   laura.env  configuration de l'application (secret GitHub LAURA_ENV)
+#   .env       LAURA_IMAGE et LAURA_PORT, réécrit à chaque déploiement
+#
+# laura.env doit contenir POSTGRES_PASSWORD et un DATABASE_URL qui l'utilise :
+#   POSTGRES_PASSWORD=<openssl rand -hex 24>
+#   DATABASE_URL=postgresql+asyncpg://laura:<le même>@db:5432/laura
+#
+# En local : cp .env laura.env && docker compose up --build
+name: laura
+
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: laura
+      POSTGRES_DB: laura
+    # Seul POSTGRES_PASSWORD est lu par l'image dans ce fichier.
+    env_file: laura.env
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    # Aucun port publié : seul le conteneur laura atteint la base, par le
+    # réseau interne de compose. Accès manuel : docker compose exec db psql -U laura
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U laura -d laura"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  laura:
+    image: ${LAURA_IMAGE:-laura:local}
+    build: .
+    env_file: laura.env
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      # Écoute UNIQUEMENT en local : seul nginx de l'hôte atteint le conteneur.
+      # Exposé sur 0.0.0.0, le port contournait ufw (Docker écrit ses propres
+      # règles iptables) et n'importe qui pouvait appeler l'API en direct avec
+      # le X-Forwarded-For de son choix. quotas.ip_client lit la première
+      # adresse de cet en-tête : une IP différente par requête, donc plus aucun
+      # quota (RG-X04). nginx écrase l'en-tête, encore faut-il passer par lui.
+      # deploy.sh et nginx-laura.conf visent déjà 127.0.0.1 : rien d'autre à changer.
+      - "127.0.0.1:${LAURA_PORT:-8050}:8000"
+    volumes:
+      # Ancienne base SQLite : gardée pour app.migrer_sqlite, plus écrite
+      # dès que DATABASE_URL vise PostgreSQL.
+      - data:/data
+      - fiches:/app/app/knowledge
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  data:
+  fiches:
+  pgdata:

@@ -1,0 +1,176 @@
+# Construit l'image Docker de Laura, vérifie qu'elle démarre, la publie sur GHCR puis
+# la déploie sur le VPS (docs/deploiement.md).
+#
+# Secrets (Settings → Secrets and variables → Actions → Secrets) :
+#   VPS_HOST         adresse du VPS
+#   VPS_USER         utilisateur SSH, membre du groupe docker
+#   VPS_SSH_KEY      clé privée de déploiement (ed25519, sans phrase de passe)
+#   VPS_KNOWN_HOSTS  empreinte du VPS (sortie de ssh-keyscan)
+#   LAURA_ENV        contenu complet du laura.env de production (modèle : .env.example)
+# Variables facultatives (onglet Variables) :
+#   LAURA_PORT       port public du conteneur sur le VPS (défaut 8050)
+#   LAURA_DIR        dossier sur le VPS, relatif au dossier personnel (défaut laura)
+#
+# Le dépôt est public : ne jamais afficher un secret dans les logs.
+name: Build & déploiement
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  image:
+    name: Image Docker
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      packages: write
+    outputs:
+      image: ${{ steps.nom.outputs.image }}
+    steps:
+      - uses: actions/checkout@v5
+
+      # GHCR exige des minuscules (le dépôt s'appelle « IA »).
+      - id: nom
+        run: echo "image=ghcr.io/${GITHUB_REPOSITORY,,}" >> "$GITHUB_OUTPUT"
+
+      - uses: docker/setup-buildx-action@v3
+
+      - name: Construire
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          load: true
+          tags: laura:test
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      # Sans GEMINI_API_KEY, Laura démarre en mode dégradé : suffit pour tester l'image.
+      - name: Test de démarrage (/sante)
+        run: |
+          docker run -d --name laura-test -p 8000:8000 laura:test
+          for i in $(seq 1 30); do
+            curl -fsS http://127.0.0.1:8000/sante && exit 0
+            sleep 1
+          done
+          docker logs laura-test
+          exit 1
+
+      - uses: docker/login-action@v3
+        if: github.event_name != 'pull_request'
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ steps.nom.outputs.image }}
+          tags: |
+            type=raw,value=latest,enable={{is_default_branch}}
+            type=sha,format=long
+
+      - name: Publier
+        if: github.event_name != 'pull_request'
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+
+  deploy:
+    name: Déploiement VPS
+    needs: image
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: production
+    concurrency:
+      group: deploy-production
+      cancel-in-progress: false
+    permissions:
+      contents: read
+      packages: read
+    env:
+      LAURA_DIR: ${{ vars.LAURA_DIR || 'laura' }}
+      LAURA_PORT: ${{ vars.LAURA_PORT || '8050' }}
+      IMAGE: ${{ needs.image.outputs.image }}:sha-${{ github.sha }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Clé SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+          SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+          KNOWN_HOSTS: ${{ secrets.VPS_KNOWN_HOSTS }}
+          LAURA_ENV: ${{ secrets.LAURA_ENV }}
+        run: |
+          failed=0
+          require() { [ -n "$2" ] || { echo "::error::Secret $1 absent ou vide (Settings → Secrets and variables → Actions)"; failed=1; }; }
+          require VPS_HOST "$VPS_HOST"; require VPS_USER "$VPS_USER"; require VPS_SSH_KEY "$SSH_KEY"
+          require VPS_KNOWN_HOSTS "$KNOWN_HOSTS"; require LAURA_ENV "$LAURA_ENV"
+          [ "$failed" = 0 ] || exit 1
+
+          # tolère les espaces, les fins de ligne Windows et un « utilisateur@ » collé dans VPS_HOST
+          host=$(printf '%s' "$VPS_HOST" | tr -d '[:space:]'); host=${host#*@}
+          user=$(printf '%s' "$VPS_USER" | tr -d '[:space:]')
+          echo "::add-mask::$host"
+
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$SSH_KEY" | tr -d '\r' > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          if ! ssh-keygen -y -P '' -f ~/.ssh/deploy_key > /dev/null 2>&1; then
+            echo "::error::VPS_SSH_KEY n'est pas une clé privée utilisable : coller tout le fichier, de -----BEGIN OPENSSH PRIVATE KEY----- à -----END OPENSSH PRIVATE KEY-----"
+            exit 1
+          fi
+          printf '%s\n' "$KNOWN_HOSTS" | tr -d '\r' > ~/.ssh/known_hosts
+          ssh-keygen -F "$host" -f ~/.ssh/known_hosts > /dev/null || {
+            echo "::error::VPS_KNOWN_HOSTS ne contient aucune empreinte pour VPS_HOST (sortie de « ssh-keyscan <adresse> », même adresse que VPS_HOST)"
+            exit 1
+          }
+          cat > ~/.ssh/config <<EOF
+          Host vps
+            HostName $host
+            User $user
+            IdentityFile ~/.ssh/deploy_key
+            IdentitiesOnly yes
+            BatchMode yes
+            StrictHostKeyChecking yes
+            ConnectTimeout 20
+          EOF
+
+      - name: Copie de la configuration
+        env:
+          LAURA_ENV: ${{ secrets.LAURA_ENV }}
+        run: |
+          (umask 077 && printf '%s\n' "$LAURA_ENV" | tr -d '\r' > laura.env)
+          # Le shell de connexion du VPS peut ne pas être bash (fish) : commandes simples seulement.
+          ssh vps mkdir -p "$LAURA_DIR"
+          scp -q docker-compose.yml deploy/deploy.sh deploy/nginx-laura.conf \
+                 deploy/laura-proxy.conf laura.env "vps:$LAURA_DIR/"
+          rm -f laura.env
+
+      - name: Pull de l'image et redémarrage
+        env:
+          GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GHCR_USER: ${{ github.actor }}
+        # Le jeton passe par l'entrée standard et expire à la fin du job.
+        run: printf '%s' "$GHCR_TOKEN" | ssh vps bash "$LAURA_DIR/deploy.sh" "$IMAGE" "$LAURA_PORT" "$GHCR_USER"
+
+      - name: Nettoyage
+        if: always()
+        run: rm -f ~/.ssh/deploy_key laura.env

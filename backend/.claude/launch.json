@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "site-label",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["--dir", "/home/garrix/Dev/Site-label", "dev"],
+      "port": 3000
+    }
+  ]
+}
