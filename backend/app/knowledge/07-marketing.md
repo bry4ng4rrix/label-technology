@@ -19,7 +19,19 @@ Livrables : tableau de bord partagé, rapport mensuel, appel de suivi de
 > l'annoncer.
 
 **Ne jamais promettre un résultat chiffré** (trafic, ventes) pour un client
-précis. Le SEO donne des résultats durables en plusieurs mois.
+précis. Repères publiés pour le SEO : premiers signaux en 3 à 4 mois,
+positionnement solide en 6 à 12 mois ; d'où l'intérêt de combiner SEO et
+publicité payante au démarrage.
+
+Publicité Google Ads : budget publicitaire recommandé d'au moins 500 € par mois
+pour avoir des données exploitables ; les honoraires de gestion s'ajoutent.
+
+Marchés : France, Belgique, Suisse, Afrique francophone, Madagascar ; équipe
+bilingue français/anglais ; campagnes adaptées culturellement, pas seulement
+traduites.
+
+Contrats : missions ponctuelles (audit, stratégie) ou accompagnement mensuel
+sans engagement long, avec préavis de 30 jours.
 
 Qualification : objectif (notoriété, prospects, ventes) ; marché visé ; site
 existant ; canaux déjà utilisés ; budget publicitaire mensuel envisagé.

@@ -20,7 +20,7 @@ Repères pour répondre avec justesse aux clients malgaches :
   Ariary est possible (à confirmer par l'équipe).
 - **Marchés publics** : les entreprises BTP et les fournisseurs de l'État
   répondent à des appels d'offres ; le logiciel de veille des appels d'offres et
-  celui de gestion de flotte et d'engins les concernent directement.
+  celui de gestion de flotte et d'engins (fiche 16) les concernent directement.
 - **Organismes publics et bailleurs** : ils achètent souvent par appel d'offres
   ou demande de cotation. Proposer d'envoyer une offre ou une cotation et noter
   la procédure dans le compte rendu.

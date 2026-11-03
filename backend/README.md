@@ -40,7 +40,7 @@ app/
 │
 ├── prompts.py       ← les « scripts » de Laura (identité + règles + forme)
 ├── knowledge.py     ← chargement des fiches, rechargement à chaud
-├── knowledge/       ← 15 fiches .md, éditables par l'équipe
+├── knowledge/       ← fiches .md, éditables par l'équipe
 ├── llm.py           Gemini : streaming, JSON contraint, détection de trou
 ├── scoring.py       grille de score déterministe
 │
@@ -140,11 +140,11 @@ cible à chaud.
 Aucun réentraînement (RG-T01). Trois couches assemblées à chaque message :
 
 1. **identité et règles** — figées dans `prompts.py` ;
-2. **15 fiches** — `app/knowledge/*.md`, éditables par l'équipe, prises en
+2. **Les fiches** — `app/knowledge/*.md`, éditables par l'équipe, prises en
    compte à la réponse suivante sans redéploiement ;
 3. **historique** — 20 derniers tours, en base.
 
-Les 15 fiches font ~4 300 tokens : tout tient dans le prompt système, donc
+Les 18 fiches font ~7 700 tokens : tout tient dans le prompt système, donc
 **pas de RAG, pas de base vectorielle**.
 
 La boucle d'amélioration, c'est la table `trous` : chaque fois que Laura doit

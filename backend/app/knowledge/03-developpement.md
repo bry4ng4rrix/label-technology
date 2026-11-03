@@ -26,8 +26,16 @@ Technologies : Next.js, React, TypeScript, Tailwind CSS, React Native, Figma ;
 Python, FastAPI, Django, Node.js, PHP, Laravel, Java EE (Jakarta EE) ; Supabase, PostgreSQL, MongoDB, Docker, AWS,
 Vercel.
 
+Stack du client : adaptation possible à une stack existante si nécessaire.
+
+Collaboration à distance : démos régulières, point quotidien (« daily ») en
+option, canal Slack dédié ; Madagascar est en UTC+3.
+
+Maintenance après livraison : contrat mensuel ou tickets à la demande. Délais
+de réponse publiés : 24h pour un bug critique, 48h pour une demande standard.
+
 Délais indicatifs publiés : site vitrine 3 à 6 semaines ; application métier
-2 à 6 mois.
+2 à 6 mois. Le planning détaillé est fixé au cadrage.
 Prix publié : projets à partir de 800 €. Tout chiffrage précis passe par un devis.
 
 Qualification : type de projet (site, application web, mobile, e-commerce,

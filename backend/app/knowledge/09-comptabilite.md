@@ -13,6 +13,13 @@ clôture et reporting, transmission à la direction ou à l'expert-comptable.
 
 Engagement publié : reporting livré avant le 5 de chaque mois.
 
+Transmission des pièces : dépôt en ligne dans un espace sécurisé (dossier
+partagé ou plateforme dédiée), sans envoi papier.
+Logiciels : adaptation aux logiciels courants (Sage, QuickBooks, EBP, Odoo,
+Cegid) ; sans logiciel, l'équipe en recommande un selon le volume et le budget.
+Expert-comptable : le service ne le remplace pas, il le complète (saisie et
+reporting de gestion), ce qui allège son travail.
+
 NORMES — point critique :
 - Madagascar : **Plan comptable général malgache (PCG 2005)**.
 - France : plan comptable général français.

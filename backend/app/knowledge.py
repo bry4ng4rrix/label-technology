@@ -88,9 +88,9 @@ class DepotFiches:
         return self.obtenir(code)  # type: ignore[return-value]
 
     def bloc_prompt(self) -> str:
-        """Les 15 fiches concaténées pour le prompt système.
+        """Les fiches concaténées pour le prompt système.
 
-        ~3 000 tokens au total : tout tient dans le contexte, donc pas de RAG
+        ~7 700 tokens au total (18 fiches) : tout tient dans le contexte, donc pas de RAG
         (cf. docs/regles-de-gestion.md, RG-F01).
         """
         parties = []

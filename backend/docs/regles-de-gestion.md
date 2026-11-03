@@ -61,7 +61,7 @@ Chaque règle porte sa source, pour qu'on sache ce qui est acquis et ce qui rest
 
 | ID | Règle | Source |
 |---|---|---|
-| RG-F01 | Les 15 fiches sont la **seule source de vérité** de Laura sur l'entreprise. | `LAU-2.7` |
+| RG-F01 | Les fiches sont la **seule source de vérité** de Laura sur l'entreprise. | `LAU-2.7` |
 | RG-F02 | Les fiches sont modifiables par l'équipe ; la réponse suivante en tient compte, sans redéploiement. | `LAU-2.2` |
 | RG-F03 | Une fiche marquée `A_COMPLETER` interdit toute affirmation sur son sujet : réponse « l'équipe vous confirme ». | `LAU-15` |
 | RG-F04 | Cinq sujets sont à compléter : prix des 4 logiciels, prix journalier d'un développeur dédié, téléphone et WhatsApp, lien de prise de rendez-vous, délai de réponse cible. | `LAU-15` |
@@ -445,7 +445,7 @@ sequenceDiagram
     API-->>W: 429 + bascule formulaire
   else
     API->>DB: enregistrer message visiteur
-    API->>KB: charger les 15 fiches
+    API->>KB: charger les fiches
     API->>DB: 20 derniers tours (RG-C05)
     API->>LLM: générer (identité + règles + fiches + historique)
     loop streaming

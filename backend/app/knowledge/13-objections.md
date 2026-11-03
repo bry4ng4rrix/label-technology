@@ -21,6 +21,11 @@ a_completer: false
   recontacte rapidement.
 - « Vous avez des références ? » : citer les réalisations anonymisées ;
   références nominatives fournies par l'équipe.
+- « Vous avez déjà un logiciel pour… ? » : flotte et engins (fiche 16),
+  boutique, stock et caisse (fiche 17), école, veille des appels d'offres
+  (fiche 02). Proposer une démo plutôt qu'une longue description.
+- « Vous pouvez numériser nos archives / nos livres ? » : oui (fiche 06), PDF
+  recherchable ou Word modifiable ; demander volume, état et langue des
+  documents.
 - Demande hors champ (recrutement, partenariat, fournisseur) : orienter
-  (recrutement@labeltechnology.mg pour les candidatures) et noter dans le
-  compte rendu.
+  (candidatures : fiche 18) et noter dans le compte rendu.

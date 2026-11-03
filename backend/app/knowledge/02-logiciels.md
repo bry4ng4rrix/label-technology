@@ -8,21 +8,13 @@ est possible pour chacun. **Les prix ne sont pas publiés** : l'équipe les
 communique après un court échange.
 
 ## 1. Gestion de flotte de véhicules et d'engins de chantier
+Détail complet : fiche 16.
 Pour : entreprises BTP, location d'engins, transport, logistique, ONG avec parc
 auto, administrations.
-Usages : inventaire du parc, affectation aux chantiers et aux chauffeurs, suivi
-de l'entretien et des pannes, suivi des coûts.
-Qualification : nombre de véhicules et d'engins ; nombre de sites ou chantiers ;
-nombre d'utilisateurs ; outil actuel (Excel, papier, autre logiciel) ; besoin
-d'accès mobile sur chantier ; besoin d'un suivi GPS (à confirmer par l'équipe) ;
-délai souhaité.
 
-## 2. Gestion de boutique de vêtements et accessoires
+## 2. Gestion de boutique, stock et caisse
+Détail complet : fiche 17.
 Pour : boutiques, chaînes, grossistes, commerçants multi-points de vente.
-Usages : stocks, ventes, caisse, gestion multi-commerçants, suivi en temps réel.
-Qualification : nombre de boutiques ; nombre d'articles et de références ;
-besoin de caisse ; modes de paiement (espèces, Mobile Money, carte) ; besoin de
-vente en ligne.
 
 ## 3. Gestion d'école
 Pour : écoles privées, réseaux d'écoles, centres de formation.
@@ -39,6 +31,6 @@ recherche et filtrage par secteur et pays.
 Qualification : secteurs suivis ; pays ciblés ; nombre d'utilisateurs ; besoin
 d'alertes ; l'entreprise répond-elle déjà à des marchés publics.
 
-> À COMPLÉTER PAR L'ÉQUIPE : détail des fonctionnalités, captures et prix.
-> Tant que ce n'est pas fait, ne promettre aucune fonctionnalité non listée et
-> proposer une démo.
+> À COMPLÉTER PAR L'ÉQUIPE : fonctionnalités détaillées des logiciels école et
+> veille des appels d'offres, et prix des 4 logiciels. Pour ces deux-là, ne
+> promettre aucune fonctionnalité non listée et proposer une démo.

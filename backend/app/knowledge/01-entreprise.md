@@ -12,6 +12,7 @@ Positionnement : qualité d'une ESN européenne, réactivité d'une startup, co�
 maîtrisé grâce à une équipe basée à Madagascar.
 
 Contact : contact@labeltechnology.mg
+Recrutement : recrutement@labeltechnology.mg
 Horaires : lundi à vendredi, 8h-18h heure de Madagascar (UTC+3).
 
 Engagements publiés :

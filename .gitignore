@@ -38,3 +38,4 @@ next-env.d.ts
 # screenshots de vérification locale
 ss-*.png
 screenshot-*.png
+.env*
