@@ -63,6 +63,7 @@ class TypeEvenement(StrEnum):
     COMPTE_RENDU = "compte_rendu"
     INCIDENT_TECHNIQUE = "incident_technique"
     BILAN_HEBDO = "bilan_hebdo"
+    RAPPORT_QUOTIDIEN = "rapport_quotidien"
 
 
 class CanalNotification(StrEnum):

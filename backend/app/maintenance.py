@@ -13,6 +13,7 @@ from datetime import UTC, datetime, timedelta
 
 from sqlalchemy import select, update
 
+from app import rapport
 from app.config import params
 from app.db import Session
 from app.enums import StatutConversation
@@ -94,4 +95,8 @@ async def boucle_entretien() -> None:
                 log.info("%d conversation(s) passée(s) en abandonnée", nb)
         except Exception:
             log.exception("Balayage en échec")
+        try:
+            await rapport.envoyer_si_du()
+        except Exception:
+            log.exception("Rapport quotidien en échec")
         await asyncio.sleep(INTERVALLE_BALAYAGE)
