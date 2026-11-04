@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { supabase, type Project } from "@/lib/supabase";
+import { adminGet, type Project } from "@/lib/api";
 import { Button } from "@/components/ui/button";
 import AdminPageHeader from "../AdminPageHeader";
 import { Badge } from "@/components/ui/badge";
@@ -15,11 +15,7 @@ import { Plus, Pencil } from "lucide-react";
 import DeleteProjectButton from "./DeleteProjectButton";
 
 export default async function ProjectsAdminPage() {
-  const { data } = await supabase
-    .from("projects")
-    .select("*")
-    .order("order", { ascending: true })
-    .returns<Project[]>();
+  const data = await adminGet<Project[]>("/projects");
   const projects = data ?? [];
 
   return (

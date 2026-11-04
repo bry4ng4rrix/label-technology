@@ -2,16 +2,10 @@ import { Quote } from "lucide-react";
 import PhotoPanel from "@/components/services/PhotoPanel";
 import Reveal from "@/components/shared/Reveal";
 import SectionHeader from "@/components/shared/SectionHeader";
-import { supabase, type Testimonial } from "@/lib/supabase";
+import { apiGet, type Testimonial } from "@/lib/api";
 
 export default async function Testimonials() {
-  const { data } = await supabase
-    .from("testimonials")
-    .select("*")
-    .eq("context", "home")
-    .eq("published", true)
-    .order("order", { ascending: true })
-    .returns<Testimonial[]>();
+  const data = await apiGet<Testimonial[]>("/api/site/testimonials?context=home");
 
   const TESTIMONIALS = (data ?? []).map((t) => ({
     quote: t.quote,

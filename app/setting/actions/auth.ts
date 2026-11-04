@@ -1,7 +1,7 @@
 "use server";
 
-import { timingSafeEqual } from "crypto";
 import { redirect } from "next/navigation";
+import { apiRequest } from "@/lib/api";
 import { setSessionCookie, clearSessionCookie } from "@/lib/auth";
 
 export type LoginState = {
@@ -9,29 +9,19 @@ export type LoginState = {
   message?: string;
 };
 
-function safeCompare(a: string, b: string): boolean {
-  const bufA = Buffer.from(a);
-  const bufB = Buffer.from(b);
-  if (bufA.length !== bufB.length) return false;
-  return timingSafeEqual(bufA, bufB);
-}
-
 export async function login(
   prevState: LoginState,
   formData: FormData
 ): Promise<LoginState> {
-  const password = formData.get("password");
-  const adminPassword = process.env.ADMIN_PASSWORD;
+  const { data, error } = await apiRequest<{ token: string }>("/api/site/session", "POST", {
+    password: formData.get("password"),
+  });
 
-  if (!adminPassword) {
-    return { status: "error", message: "ADMIN_PASSWORD n'est pas configuré." };
+  if (!data) {
+    return { status: "error", message: error ?? "Une erreur est survenue." };
   }
 
-  if (typeof password !== "string" || !safeCompare(password, adminPassword)) {
-    return { status: "error", message: "Mot de passe incorrect." };
-  }
-
-  await setSessionCookie();
+  await setSessionCookie(data.token);
   redirect("/setting");
 }
 

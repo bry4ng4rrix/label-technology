@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { requireAdmin } from "@/lib/auth";
-import { supabase } from "@/lib/supabase";
+import { adminSend } from "@/lib/api";
 
 export type ProjectFormState = {
   status: "idle" | "error";
@@ -51,7 +51,7 @@ export async function createProject(
   const result = readProjectFormData(formData);
   if ("error" in result) return { status: "error", message: result.error };
 
-  const { error } = await supabase.from("projects").insert(result.data);
+  const error = await adminSend("/projects", "POST", result.data);
   if (error) {
     return { status: "error", message: "Une erreur est survenue lors de la création." };
   }
@@ -70,7 +70,7 @@ export async function updateProject(
   const result = readProjectFormData(formData);
   if ("error" in result) return { status: "error", message: result.error };
 
-  const { error } = await supabase.from("projects").update(result.data).eq("id", id);
+  const error = await adminSend(`/projects/${id}`, "PUT", result.data);
   if (error) {
     return { status: "error", message: "Une erreur est survenue lors de la mise à jour." };
   }
@@ -81,7 +81,8 @@ export async function updateProject(
 
 export async function deleteProject(id: string): Promise<void> {
   await requireAdmin();
-  await supabase.from("projects").delete().eq("id", id);
+  const error = await adminSend(`/projects/${id}`, "DELETE");
+  if (error) throw new Error(error);
   revalidatePublicPages();
   revalidatePath("/setting/projects");
 }

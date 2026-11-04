@@ -4,17 +4,10 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, MapPin, Clock, Briefcase } from "lucide-react";
 import ApplyForm from "@/components/recru/ApplyForm";
 import Reveal from "@/components/shared/Reveal";
-import { supabase, type JobOffer } from "@/lib/supabase";
+import { apiGet, type JobOffer } from "@/lib/api";
 
 async function getOffer(id: string) {
-  const { data } = await supabase
-    .from("job_offers")
-    .select("*")
-    .eq("id", id)
-    .eq("published", true)
-    .returns<JobOffer[]>()
-    .maybeSingle();
-  return data;
+  return apiGet<JobOffer>(`/api/site/job-offers/${encodeURIComponent(id)}`);
 }
 
 export async function generateMetadata({

@@ -4,18 +4,11 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, Calendar, Clock } from "lucide-react";
 import EditorialHero from "@/components/services/EditorialHero";
 import Reveal from "@/components/shared/Reveal";
-import { supabase, type BlogPost } from "@/lib/supabase";
+import { apiGet, type BlogPost } from "@/lib/api";
 import { accentFor, coverFor } from "@/lib/tag-covers";
 
 async function getPost(slug: string) {
-  const { data } = await supabase
-    .from("blog_posts")
-    .select("*")
-    .eq("slug", slug)
-    .eq("published", true)
-    .returns<BlogPost[]>()
-    .maybeSingle();
-  return data;
+  return apiGet<BlogPost>(`/api/site/blog-posts/${encodeURIComponent(slug)}`);
 }
 
 export async function generateMetadata({

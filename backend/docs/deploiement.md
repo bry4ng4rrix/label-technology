@@ -97,6 +97,10 @@ Changer la configuration : modifier le secret `LAURA_ENV`, puis
    `NEXT_PUBLIC_*` est injecté **à la compilation** : après l'avoir ajouté, il
    faut redéployer le site, un simple redémarrage ne suffit pas.
 
+   Le site n'a aucun autre secret. Dans `LAURA_ENV`, renseigner aussi
+   `ADMIN_PASSWORD` (connexion à `/setting`) et le bloc SMTP (formulaire de
+   contact, modèle : [.env.example](../.env.example)).
+
 5. **Vérifier** depuis une machine extérieure :
    ```bash
    curl -s https://laura.labeltechnology.mg/sante

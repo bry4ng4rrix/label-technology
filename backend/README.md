@@ -59,11 +59,11 @@ app/
 
 Le CMS de labeltechnology.mg (dépôt `label-technology`) lisait et écrivait
 dans Supabase. Les mêmes 8 tables vivent maintenant dans la base de Laura,
-avec **les mêmes noms de colonnes** : les types de `lib/supabase.ts` restent
-valables, seul l'appel change (`supabase.from(...)` → `fetch(...)`).
+avec **les mêmes noms de colonnes**. Le site n'accède plus qu'à cette API,
+par `lib/api.ts`, côté serveur uniquement.
 
 ```
-app/site_models.py        les 8 tables de supabase/schema.sql
+app/site_models.py        les 8 tables du CMS
 app/site_schemas.py       validation = celle des server actions du site
 app/routes/site.py        /api/site/*    public, contenu publié uniquement
 app/routes/site_admin.py  /admin/site/*  X-Admin-Token
@@ -81,6 +81,7 @@ app/site_import.py        import ponctuel des données depuis Supabase
 | accueil, /about | `testimonials` publiés par `context` | `GET /api/site/testimonials?context=home\|about` |
 | formulaire Postuler | insert `job_applications` + email | `POST /api/site/job-applications` |
 | formulaire Contact | email (Resend) | `POST /api/site/contact` (SMTP de Laura) |
+| /setting/login | `ADMIN_PASSWORD` + cookie signé par le site | `POST /api/site/session` |
 | /setting (tableau de bord) | 7 `count` + 5 dernières candidatures | `GET /admin/site/statistiques` |
 | /setting/{services,projects,jobs,blog,testimonials} | select / insert / update / delete | `GET POST /admin/site/<table>`, `GET PUT DELETE /admin/site/<table>/{id}` |
 | /setting/jobs/candidatures | liste, statut, suppression | `GET /admin/site/job-applications?status=`, `PATCH` / `DELETE …/{id}` |
@@ -88,9 +89,16 @@ app/site_import.py        import ponctuel des données depuis Supabase
 `<table>` : `services`, `projects`, `job-offers`, `blog-posts`, `testimonials`.
 Slug déjà pris → `409` avec le message affiché aujourd'hui par l'admin.
 
-La connexion à `/setting` (ADMIN_PASSWORD + cookie signé) reste dans le site :
-ses server actions appellent `/admin/site/*` côté serveur avec
-`X-Admin-Token`, qui ne doit jamais partir vers le navigateur.
+Le site n'a aucun secret. `POST /api/site/session` vérifie `ADMIN_PASSWORD` et
+renvoie une session signée (`app/session.py`) que le site garde dans un cookie
+httpOnly et renvoie en `Authorization: Bearer`. `/admin/site/*` accepte cette
+session, ou `X-Admin-Token` pour l'exploitation. Dix mots de passe faux en une
+minute bloquent la connexion pendant une minute.
+
+Les emails partent de l'API, par SMTP. Le formulaire Contact ne stocke rien :
+sans `SMTP_HOST`, `/api/site/contact` répond 503 pour que le visiteur le sache.
+
+Tests : `.venv/bin/python -m unittest discover -s tests`
 
 Récupération des données depuis Supabase : voir
 [docs/deploiement.md § Passage à PostgreSQL](docs/deploiement.md#passage-à-postgresql).

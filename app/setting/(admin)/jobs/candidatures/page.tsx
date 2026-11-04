@@ -1,16 +1,12 @@
 import Link from "next/link";
-import { supabase, type JobApplication } from "@/lib/supabase";
+import { adminGet, type JobApplication } from "@/lib/api";
 import { Button } from "@/components/ui/button";
 import { Briefcase, CheckCircle2, Inbox, Sparkles, Users } from "lucide-react";
 import ApplicationsTable from "./ApplicationsTable";
 import AdminPageHeader from "../../AdminPageHeader";
 
 export default async function CandidaturesAdminPage() {
-  const { data } = await supabase
-    .from("job_applications")
-    .select("*")
-    .order("created_at", { ascending: false })
-    .returns<JobApplication[]>();
+  const data = await adminGet<JobApplication[]>("/job-applications");
   const applications = data ?? [];
 
   const count = (status: string) => applications.filter((a) => a.status === status).length;

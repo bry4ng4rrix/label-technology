@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { supabase, type Service } from "@/lib/supabase";
+import { adminGet, type Service } from "@/lib/api";
 import ServiceForm from "../../ServiceForm";
 import AdminPageHeader from "../../../AdminPageHeader";
 import { updateService } from "../../actions";
@@ -10,12 +10,7 @@ export default async function EditServicePage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const { data: service } = await supabase
-    .from("services")
-    .select("*")
-    .eq("id", id)
-    .returns<Service[]>()
-    .maybeSingle();
+  const service = await adminGet<Service>(`/services/${id}`);
   if (!service) notFound();
 
   const boundUpdate = updateService.bind(null, service.id);

@@ -21,7 +21,7 @@ export type ServiceSlug =
 export type ServicePattern = "grid" | "dots" | "lines" | "rings" | "waves" | "ledger";
 
 export type ServiceTheme = {
-  /** Accent principal — reprend la couleur du service en base Supabase. */
+  /** Accent principal — reprend la couleur du service en base. */
   accent: string;
   /** Accent secondaire, pour les dégradés et le second halo. */
   accent2: string;

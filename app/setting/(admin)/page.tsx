@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { supabase, countRows, type JobApplication } from "@/lib/supabase";
+import { notFound } from "next/navigation";
+import { adminGet, type SiteStats } from "@/lib/api";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -47,35 +48,18 @@ function timeAgo(iso: string): string {
 }
 
 export default async function AdminDashboard() {
-  const [
-    servicesCount,
-    projectsCount,
-    jobsCount,
-    postsCount,
-    testimonialsCount,
-    applicationsCount,
-    newApplicationsCount,
-    recentApplications,
-  ] = await Promise.all([
-    countRows("services"),
-    countRows("projects"),
-    countRows("job_offers"),
-    countRows("blog_posts"),
-    countRows("testimonials"),
-    countRows("job_applications"),
-    supabase
-      .from("job_applications")
-      .select("*", { count: "exact", head: true })
-      .eq("status", "nouveau")
-      .then((r) => r.count ?? 0),
-    supabase
-      .from("job_applications")
-      .select("*")
-      .order("created_at", { ascending: false })
-      .limit(5)
-      .returns<JobApplication[]>()
-      .then((r) => r.data ?? []),
-  ]);
+  const stats = await adminGet<SiteStats>("/statistiques");
+  if (!stats) notFound();
+  const {
+    services: servicesCount,
+    projects: projectsCount,
+    job_offers: jobsCount,
+    blog_posts: postsCount,
+    testimonials: testimonialsCount,
+    job_applications: applicationsCount,
+    candidatures_nouvelles: newApplicationsCount,
+    dernieres_candidatures: recentApplications,
+  } = stats;
 
   const sections = [
     {

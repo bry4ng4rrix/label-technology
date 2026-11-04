@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { requireAdmin } from "@/lib/auth";
-import { supabase } from "@/lib/supabase";
+import { adminSend } from "@/lib/api";
 
 export type TestimonialFormState = {
   status: "idle" | "error";
@@ -56,7 +56,7 @@ export async function createTestimonial(
   const result = readTestimonialFormData(formData);
   if ("error" in result) return { status: "error", message: result.error };
 
-  const { error } = await supabase.from("testimonials").insert(result.data);
+  const error = await adminSend("/testimonials", "POST", result.data);
   if (error) {
     return { status: "error", message: "Une erreur est survenue lors de la création." };
   }
@@ -75,7 +75,7 @@ export async function updateTestimonial(
   const result = readTestimonialFormData(formData);
   if ("error" in result) return { status: "error", message: result.error };
 
-  const { error } = await supabase.from("testimonials").update(result.data).eq("id", id);
+  const error = await adminSend(`/testimonials/${id}`, "PUT", result.data);
   if (error) {
     return { status: "error", message: "Une erreur est survenue lors de la mise à jour." };
   }
@@ -86,7 +86,8 @@ export async function updateTestimonial(
 
 export async function deleteTestimonial(id: string): Promise<void> {
   await requireAdmin();
-  await supabase.from("testimonials").delete().eq("id", id);
+  const error = await adminSend(`/testimonials/${id}`, "DELETE");
+  if (error) throw new Error(error);
   revalidatePublicPages();
   revalidatePath("/setting/testimonials");
 }

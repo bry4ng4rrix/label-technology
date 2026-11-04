@@ -1,5 +1,5 @@
 import { MetadataRoute } from "next";
-import { supabase, type BlogPost } from "@/lib/supabase";
+import { apiGet, type BlogPost } from "@/lib/api";
 
 const BASE_URL = "https://labeltechnology.mg";
 
@@ -11,12 +11,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
 
   // Articles de blog publiés — absents du sitemap jusqu'ici
-  const { data: posts } = await supabase
-    .from("blog_posts")
-    .select("slug,published_at,updated_at")
-    .eq("published", true)
-    .order("published_at", { ascending: false })
-    .returns<Pick<BlogPost, "slug" | "published_at" | "updated_at">[]>();
+  const posts = await apiGet<BlogPost[]>("/api/site/blog-posts");
 
   const articles: MetadataRoute.Sitemap = (posts ?? []).map((p) => ({
     url: `${BASE_URL}/blog/${p.slug}`,

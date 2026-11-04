@@ -26,6 +26,8 @@ class Parametres(BaseSettings):
     # Sécurité
     ALLOWED_ORIGINS: str = "http://localhost:8000"
     ADMIN_TOKEN: str = "change-moi"
+    #: Mot de passe de /setting. Vide : aucune connexion possible.
+    ADMIN_PASSWORD: str = ""
     IP_SALT: str = "change-moi-aussi"
 
     # Quotas

@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { requireAdmin } from "@/lib/auth";
-import { supabase } from "@/lib/supabase";
+import { adminSend } from "@/lib/api";
 
 export type JobOfferFormState = {
   status: "idle" | "error";
@@ -59,7 +59,7 @@ export async function createJobOffer(
   const result = readJobOfferFormData(formData);
   if ("error" in result) return { status: "error", message: result.error };
 
-  const { error } = await supabase.from("job_offers").insert(result.data);
+  const error = await adminSend("/job-offers", "POST", result.data);
   if (error) {
     return { status: "error", message: "Une erreur est survenue lors de la création." };
   }
@@ -78,7 +78,7 @@ export async function updateJobOffer(
   const result = readJobOfferFormData(formData);
   if ("error" in result) return { status: "error", message: result.error };
 
-  const { error } = await supabase.from("job_offers").update(result.data).eq("id", id);
+  const error = await adminSend(`/job-offers/${id}`, "PUT", result.data);
   if (error) {
     return { status: "error", message: "Une erreur est survenue lors de la mise à jour." };
   }
@@ -89,7 +89,8 @@ export async function updateJobOffer(
 
 export async function deleteJobOffer(id: string): Promise<void> {
   await requireAdmin();
-  await supabase.from("job_offers").delete().eq("id", id);
+  const error = await adminSend(`/job-offers/${id}`, "DELETE");
+  if (error) throw new Error(error);
   revalidatePublicPages();
   revalidatePath("/setting/jobs");
 }

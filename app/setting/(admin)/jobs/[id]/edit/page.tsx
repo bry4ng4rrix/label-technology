@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { supabase, type JobOffer } from "@/lib/supabase";
+import { adminGet, type JobOffer, type Service } from "@/lib/api";
 import JobOfferForm from "../../JobOfferForm";
 import AdminPageHeader from "../../../AdminPageHeader";
 import { updateJobOffer } from "../../actions";
@@ -10,12 +10,12 @@ export default async function EditJobOfferPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const [{ data: offer }, { data: servicesData }] = await Promise.all([
-    supabase.from("job_offers").select("*").eq("id", id).returns<JobOffer[]>().maybeSingle(),
-    supabase.from("services").select("tag").order("order", { ascending: true }),
+  const [offer, servicesData] = await Promise.all([
+    adminGet<JobOffer>(`/job-offers/${id}`),
+    adminGet<Service[]>("/services"),
   ]);
   if (!offer) notFound();
-  const serviceTags = Array.from(new Set((servicesData ?? []).map((s) => s.tag as string)));
+  const serviceTags = Array.from(new Set((servicesData ?? []).map((s) => s.tag)));
 
   const boundUpdate = updateJobOffer.bind(null, offer.id);
 

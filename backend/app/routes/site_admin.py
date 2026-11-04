@@ -1,8 +1,8 @@
 """REST d'administration du site — remplace les écritures Supabase de /setting.
 
-Protégé par le même `X-Admin-Token` que /admin. Le site garde sa propre
-connexion (ADMIN_PASSWORD + cookie) : ce sont ses server actions qui appellent
-ces routes, côté serveur, avec le jeton.
+Protégé par la session ouverte sur POST /api/site/session, que le site renvoie
+en `Authorization: Bearer`, ou par le `X-Admin-Token` de /admin pour
+l'exploitation.
 
 Les cinq contenus éditables (services, projets, offres, articles,
 témoignages) ont exactement le même cycle de vie, d'où `_crud`.
@@ -15,7 +15,7 @@ from collections.abc import Awaitable, Callable
 from datetime import UTC, datetime
 from typing import Any
 
-from fastapi import APIRouter, Depends, HTTPException, Query, Response, status
+from fastapi import APIRouter, Depends, Header, HTTPException, Query, Response, status
 from pydantic import BaseModel
 from sqlalchemy import func, select, update
 from sqlalchemy.exc import IntegrityError
@@ -23,6 +23,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.db import Base, get_session
 from app.routes.admin import verifier_admin
+from app.session import session_valide
 from app.site_models import (
     BlogPost,
     JobApplication,
@@ -48,9 +49,24 @@ from app.site_schemas import (
     TestimonialOut,
 )
 
+
+
+async def verifier_site(
+    authorization: str = Header(default=""), x_admin_token: str = Header(default="")
+) -> None:
+    if not session_valide(authorization.removeprefix("Bearer ")):
+        await verifier_admin(x_admin_token)
+
+
 router = APIRouter(
-    prefix="/admin/site", tags=["admin site"], dependencies=[Depends(verifier_admin)]
+    prefix="/admin/site", tags=["admin site"], dependencies=[Depends(verifier_site)]
 )
+
+
+@router.get("/session", status_code=204)
+async def controler_session() -> Response:
+    """Le site vérifie ainsi son cookie : les dépendances du routeur ont tout fait."""
+    return Response(status_code=status.HTTP_204_NO_CONTENT)
 
 
 def _donnees(corps: BaseModel) -> dict[str, Any]:

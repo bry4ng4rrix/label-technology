@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { supabase, type Testimonial } from "@/lib/supabase";
+import { adminGet, type Testimonial } from "@/lib/api";
 import TestimonialForm from "../../TestimonialForm";
 import AdminPageHeader from "../../../AdminPageHeader";
 import { updateTestimonial } from "../../actions";
@@ -10,12 +10,7 @@ export default async function EditTestimonialPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const { data: testimonial } = await supabase
-    .from("testimonials")
-    .select("*")
-    .eq("id", id)
-    .returns<Testimonial[]>()
-    .maybeSingle();
+  const testimonial = await adminGet<Testimonial>(`/testimonials/${id}`);
   if (!testimonial) notFound();
 
   const boundUpdate = updateTestimonial.bind(null, testimonial.id);

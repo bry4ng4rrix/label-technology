@@ -31,7 +31,7 @@ import {
   Search,
   X,
 } from "lucide-react";
-import type { JobApplication } from "@/lib/supabase";
+import type { JobApplication } from "@/lib/api";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";

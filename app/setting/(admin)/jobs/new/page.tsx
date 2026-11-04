@@ -1,11 +1,11 @@
-import { supabase } from "@/lib/supabase";
+import { adminGet, type Service } from "@/lib/api";
 import JobOfferForm from "../JobOfferForm";
 import AdminPageHeader from "../../AdminPageHeader";
 import { createJobOffer } from "../actions";
 
 export default async function NewJobOfferPage() {
-  const { data } = await supabase.from("services").select("tag").order("order", { ascending: true });
-  const serviceTags = Array.from(new Set((data ?? []).map((s) => s.tag as string)));
+  const data = await adminGet<Service[]>("/services");
+  const serviceTags = Array.from(new Set((data ?? []).map((s) => s.tag)));
 
   return (
     <div>

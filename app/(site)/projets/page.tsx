@@ -3,7 +3,7 @@ import CtaSection from "@/components/home/CtaSection";
 import ProjetsList from "@/components/projets/ProjetsList";
 import EditorialHero from "@/components/services/EditorialHero";
 import ServiceScope from "@/components/services/ServiceScope";
-import { supabase, type Project } from "@/lib/supabase";
+import { apiGet, type Project } from "@/lib/api";
 import { OG_IMAGE } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -32,12 +32,7 @@ export const metadata: Metadata = {
 };
 
 export default async function ProjetsPage() {
-  const { data } = await supabase
-    .from("projects")
-    .select("*")
-    .eq("published", true)
-    .order("order", { ascending: true })
-    .returns<Project[]>();
+  const data = await apiGet<Project[]>("/api/site/projects");
   const projets = data ?? [];
 
   return (

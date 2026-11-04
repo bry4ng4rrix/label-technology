@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { supabase, type JobOffer } from "@/lib/supabase";
+import { adminGet, type JobOffer, type SiteStats } from "@/lib/api";
 import { Button } from "@/components/ui/button";
 import AdminPageHeader from "../AdminPageHeader";
 import { Badge } from "@/components/ui/badge";
@@ -15,14 +15,12 @@ import { Plus, Pencil, Inbox } from "lucide-react";
 import DeleteJobOfferButton from "./DeleteJobOfferButton";
 
 export default async function JobsAdminPage() {
-  const [{ data }, { count: newApplications }] = await Promise.all([
-    supabase.from("job_offers").select("*").order("order", { ascending: true }).returns<JobOffer[]>(),
-    supabase
-      .from("job_applications")
-      .select("*", { count: "exact", head: true })
-      .eq("status", "nouveau"),
+  const [data, stats] = await Promise.all([
+    adminGet<JobOffer[]>("/job-offers"),
+    adminGet<SiteStats>("/statistiques"),
   ]);
   const offers = data ?? [];
+  const newApplications = stats?.candidatures_nouvelles;
 
   return (
     <div>

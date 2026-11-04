@@ -1,7 +1,7 @@
-"""Tables du CMS du site labeltechnology.mg — reprise de supabase/schema.sql.
+"""Tables du CMS du site labeltechnology.mg — reprise du schéma Supabase.
 
 Les noms de tables et de colonnes sont ceux de Supabase, à l'identique : les
-types TypeScript de `lib/supabase.ts` côté site restent valables tels quels.
+types TypeScript de `lib/api.ts` côté site restent valables tels quels.
 
 Sous PostgreSQL, les types sont compatibles colonne à colonne avec Supabase
 (`text`, `text[]`, `timestamptz`) : un `pg_dump --data-only` de Supabase se

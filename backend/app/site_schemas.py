@@ -251,6 +251,17 @@ class MajStatutCandidature(BaseModel):
     status: StatutCandidature
 
 
+# --- Connexion à /setting --------------------------------------------------
+
+
+class ConnexionIn(BaseModel):
+    password: str = Field(max_length=200)
+
+
+class SessionOut(BaseModel):
+    token: str
+
+
 # --- Contact ---------------------------------------------------------------
 
 

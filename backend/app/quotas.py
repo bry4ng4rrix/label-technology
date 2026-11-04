@@ -32,6 +32,23 @@ def _purger(file: deque[float], fenetre: float, maintenant: float) -> None:
         file.popleft()
 
 
+_echecs_connexion: deque[float] = deque()
+MAX_ECHECS_CONNEXION = 10
+FENETRE_CONNEXION = 60.0  # secondes
+
+
+# shortcut: limite globale et non par IP, car derrière le site l'IP vue est celle
+# de Vercel. Un attaquant peut bloquer la connexion admin tant qu'il insiste ;
+# transmettre l'IP réelle par un en-tête signé si cela arrive.
+def connexion_bloquee() -> bool:
+    _purger(_echecs_connexion, FENETRE_CONNEXION, time.monotonic())
+    return len(_echecs_connexion) >= MAX_ECHECS_CONNEXION
+
+
+def noter_echec_connexion() -> None:
+    _echecs_connexion.append(time.monotonic())
+
+
 def verifier_message(ip_hash: str, contenu: str, nb_messages: int) -> Refus | None:
     """Appelé avant chaque message entrant."""
     if not contenu.strip():

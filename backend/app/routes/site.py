@@ -1,35 +1,62 @@
 """REST public du site labeltechnology.mg — remplace les lectures Supabase.
 
 Uniquement le contenu publié (`published = true`), avec les mêmes tris que
-les pages du site. Plus les deux formulaires publics : contact et
-candidature.
+les pages du site. Plus les deux formulaires publics (contact, candidature)
+et la connexion à /setting.
 """
 
 from __future__ import annotations
 
+import hmac
 import logging
 
 from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Query, status
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app import quotas
+from app.config import params
 from app.db import get_session
 from app.notifications import _email
+from app.session import creer_session
 from app.site_models import BlogPost, JobApplication, JobOffer, Project, Service, Testimonial
 from app.site_schemas import (
     BlogPostOut,
     Confirmation,
+    ConnexionIn,
     ContactIn,
     JobApplicationIn,
     JobOfferOut,
     ProjectOut,
     ServiceOut,
+    SessionOut,
     TestimonialOut,
 )
 
 log = logging.getLogger("laura.site")
 
 router = APIRouter(prefix="/api/site", tags=["site"])
+
+
+# --- Connexion à /setting --------------------------------------------------
+
+
+@router.post("/session", response_model=SessionOut)
+async def ouvrir_session(corps: ConnexionIn) -> SessionOut:
+    """/setting/login — le site ne connaît ni le mot de passe ni le secret."""
+    if not params.ADMIN_PASSWORD:
+        raise HTTPException(
+            status.HTTP_503_SERVICE_UNAVAILABLE, "ADMIN_PASSWORD n'est pas configuré."
+        )
+    if quotas.connexion_bloquee():
+        raise HTTPException(
+            status.HTTP_429_TOO_MANY_REQUESTS,
+            "Trop de tentatives, réessayez dans une minute.",
+        )
+    if not hmac.compare_digest(corps.password.encode(), params.ADMIN_PASSWORD.encode()):
+        quotas.noter_echec_connexion()
+        raise HTTPException(status.HTTP_401_UNAUTHORIZED, "Mot de passe incorrect.")
+    return SessionOut(token=creer_session())
 
 
 # --- Contenu publié --------------------------------------------------------
@@ -162,6 +189,13 @@ async def postuler(
 @router.post("/contact", response_model=Confirmation)
 async def contacter(corps: ContactIn) -> Confirmation:
     """/contact — remplace sendContact. Rien n'est stocké : un email à l'équipe."""
+    if not params.SMTP_HOST:
+        # _email se contenterait de journaliser : le message serait perdu sans erreur.
+        log.error("Message de contact refusé : SMTP_HOST non configuré")
+        raise HTTPException(
+            status.HTTP_503_SERVICE_UNAVAILABLE,
+            "Erreur lors de l'envoi. Veuillez réessayer ou nous appeler directement.",
+        )
     try:
         await _email(
             f"Nouveau message de {corps.name} — {corps.service or 'Non précisé'}",

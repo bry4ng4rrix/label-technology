@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { requireAdmin } from "@/lib/auth";
-import { supabase } from "@/lib/supabase";
+import { adminSend } from "@/lib/api";
 
 export type ServiceFormState = {
   status: "idle" | "error";
@@ -63,9 +63,9 @@ export async function createService(
   const result = readServiceFormData(formData);
   if ("error" in result) return { status: "error", message: result.error };
 
-  const { error } = await supabase.from("services").insert(result.data);
+  const error = await adminSend("/services", "POST", result.data);
   if (error) {
-    return { status: "error", message: "Ce slug est déjà utilisé par un autre service." };
+    return { status: "error", message: error };
   }
 
   revalidatePublicPages();
@@ -82,9 +82,9 @@ export async function updateService(
   const result = readServiceFormData(formData);
   if ("error" in result) return { status: "error", message: result.error };
 
-  const { error } = await supabase.from("services").update(result.data).eq("id", id);
+  const error = await adminSend(`/services/${id}`, "PUT", result.data);
   if (error) {
-    return { status: "error", message: "Ce slug est déjà utilisé par un autre service." };
+    return { status: "error", message: error };
   }
 
   revalidatePublicPages();
@@ -93,7 +93,8 @@ export async function updateService(
 
 export async function deleteService(id: string): Promise<void> {
   await requireAdmin();
-  await supabase.from("services").delete().eq("id", id);
+  const error = await adminSend(`/services/${id}`, "DELETE");
+  if (error) throw new Error(error);
   revalidatePublicPages();
   revalidatePath("/setting/services");
 }

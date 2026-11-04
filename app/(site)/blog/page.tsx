@@ -5,7 +5,7 @@ import EditorialHero from "@/components/services/EditorialHero";
 import PhotoPanel from "@/components/services/PhotoPanel";
 import ServiceScope from "@/components/services/ServiceScope";
 import Reveal from "@/components/shared/Reveal";
-import { supabase, type BlogPost } from "@/lib/supabase";
+import { apiGet, type BlogPost } from "@/lib/api";
 import { accentFor, coverFor } from "@/lib/tag-covers";
 import { OG_IMAGE } from "@/lib/seo";
 
@@ -35,12 +35,7 @@ export const metadata: Metadata = {
 };
 
 export default async function BlogPage() {
-  const { data } = await supabase
-    .from("blog_posts")
-    .select("*")
-    .eq("published", true)
-    .order("published_at", { ascending: false })
-    .returns<BlogPost[]>();
+  const data = await apiGet<BlogPost[]>("/api/site/blog-posts");
 
   const ARTICLES = (data ?? []).map((p) => ({
     slug: p.slug,

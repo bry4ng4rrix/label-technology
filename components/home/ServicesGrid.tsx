@@ -5,18 +5,13 @@ import Reveal from "@/components/shared/Reveal";
 import SectionHeader from "@/components/shared/SectionHeader";
 import TiltCard from "@/components/shared/TiltCard";
 import { Button } from "@/components/ui/button";
-import { supabase, type Service } from "@/lib/supabase";
+import { apiGet, type Service } from "@/lib/api";
 import { getIcon } from "@/lib/icons";
 import { IMAGE_QUALITY } from "@/lib/images";
 import { cn } from "@/lib/utils";
 
 export default async function ServicesGrid() {
-  const { data } = await supabase
-    .from("services")
-    .select("*")
-    .eq("published", true)
-    .order("order", { ascending: true })
-    .returns<Service[]>();
+  const data = await apiGet<Service[]>("/api/site/services");
 
   const services = data ?? [];
   /* Le champ « Mis en avant » de l'admin pilote la hiérarchie :

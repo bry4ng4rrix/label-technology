@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { supabase, type Service } from "@/lib/supabase";
+import { adminGet, type Service } from "@/lib/api";
 import { Button } from "@/components/ui/button";
 import AdminPageHeader from "../AdminPageHeader";
 import { Badge } from "@/components/ui/badge";
@@ -15,11 +15,7 @@ import { Plus, Pencil } from "lucide-react";
 import DeleteServiceButton from "./DeleteServiceButton";
 
 export default async function ServicesAdminPage() {
-  const { data } = await supabase
-    .from("services")
-    .select("*")
-    .order("order", { ascending: true })
-    .returns<Service[]>();
+  const data = await adminGet<Service[]>("/services");
   const services = data ?? [];
 
   return (

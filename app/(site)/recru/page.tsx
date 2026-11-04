@@ -5,7 +5,7 @@ import JobsList from "@/components/recru/JobsList";
 import EditorialHero from "@/components/services/EditorialHero";
 import ServiceScope from "@/components/services/ServiceScope";
 import { Button } from "@/components/ui/button";
-import { supabase, type JobOffer } from "@/lib/supabase";
+import { apiGet, type JobOffer } from "@/lib/api";
 import { OG_IMAGE } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -34,12 +34,7 @@ export const metadata: Metadata = {
 };
 
 export default async function RecruPage() {
-  const { data } = await supabase
-    .from("job_offers")
-    .select("*")
-    .eq("published", true)
-    .order("order", { ascending: true })
-    .returns<JobOffer[]>();
+  const data = await apiGet<JobOffer[]>("/api/site/job-offers");
   const offres = data ?? [];
 
   return (

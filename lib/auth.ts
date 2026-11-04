@@ -1,56 +1,14 @@
-import { createHmac, timingSafeEqual } from "crypto";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { adminHeaders, apiRequest, SESSION_COOKIE } from "@/lib/api";
 
-export const SESSION_COOKIE = "admin_session";
-const SESSION_MAX_AGE_SECONDS = 60 * 60 * 24 * 7; // 7 days
-
-type SessionPayload = { exp: number };
-
-function getSessionSecret(): string {
-  const secret = process.env.SESSION_SECRET;
-  if (!secret) {
-    throw new Error("SESSION_SECRET environment variable is not set.");
-  }
-  return secret;
-}
-
-function base64url(input: Buffer): string {
-  return input.toString("base64url");
-}
-
-function sign(payloadB64: string): string {
-  return base64url(createHmac("sha256", getSessionSecret()).update(payloadB64).digest());
-}
-
-export function createSessionToken(): string {
-  const payload: SessionPayload = { exp: Date.now() + SESSION_MAX_AGE_SECONDS * 1000 };
-  const payloadB64 = base64url(Buffer.from(JSON.stringify(payload)));
-  const sigB64 = sign(payloadB64);
-  return `${payloadB64}.${sigB64}`;
-}
-
-export function verifySessionToken(token: string | undefined): boolean {
-  if (!token) return false;
-  const [payloadB64, sigB64] = token.split(".");
-  if (!payloadB64 || !sigB64) return false;
-
-  const expectedSig = sign(payloadB64);
-  const a = Buffer.from(sigB64);
-  const b = Buffer.from(expectedSig);
-  if (a.length !== b.length || !timingSafeEqual(a, b)) return false;
-
-  try {
-    const payload = JSON.parse(Buffer.from(payloadB64, "base64url").toString()) as SessionPayload;
-    return typeof payload.exp === "number" && payload.exp > Date.now();
-  } catch {
-    return false;
-  }
-}
+const SESSION_MAX_AGE_SECONDS = 60 * 60 * 24 * 7; // comme DUREE_SECONDES de backend/app/session.py
 
 export async function getSession(): Promise<boolean> {
   const store = await cookies();
-  return verifySessionToken(store.get(SESSION_COOKIE)?.value);
+  if (!store.has(SESSION_COOKIE)) return false;
+  const { error } = await apiRequest("/admin/site/session", "GET", undefined, await adminHeaders());
+  return !error;
 }
 
 export async function requireAdmin(): Promise<void> {
@@ -59,9 +17,9 @@ export async function requireAdmin(): Promise<void> {
   }
 }
 
-export async function setSessionCookie(): Promise<void> {
+export async function setSessionCookie(token: string): Promise<void> {
   const store = await cookies();
-  store.set(SESSION_COOKIE, createSessionToken(), {
+  store.set(SESSION_COOKIE, token, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax",

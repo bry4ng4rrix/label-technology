@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { supabase, type Project } from "@/lib/supabase";
+import { adminGet, type Project } from "@/lib/api";
 import ProjectForm from "../../ProjectForm";
 import AdminPageHeader from "../../../AdminPageHeader";
 import { updateProject } from "../../actions";
@@ -10,12 +10,7 @@ export default async function EditProjectPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const { data: project } = await supabase
-    .from("projects")
-    .select("*")
-    .eq("id", id)
-    .returns<Project[]>()
-    .maybeSingle();
+  const project = await adminGet<Project>(`/projects/${id}`);
   if (!project) notFound();
 
   const boundUpdate = updateProject.bind(null, project.id);

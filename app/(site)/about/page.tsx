@@ -16,7 +16,7 @@ import Reveal from "@/components/shared/Reveal";
 import SectionHeader from "@/components/shared/SectionHeader";
 
 import GrowthChart from "@/components/apropos/GrowthChartWrapper";
-import { supabase, type Testimonial } from "@/lib/supabase";
+import { apiGet, type Testimonial } from "@/lib/api";
 import { IMAGE_QUALITY } from "@/lib/images";
 import { OG_IMAGE } from "@/lib/seo";
 
@@ -98,13 +98,7 @@ const jsonLd = {
 };
 
 export default async function AProposPage() {
-  const { data: testimonials } = await supabase
-    .from("testimonials")
-    .select("*")
-    .eq("context", "about")
-    .eq("published", true)
-    .order("order", { ascending: true })
-    .returns<Testimonial[]>();
+  const testimonials = await apiGet<Testimonial[]>("/api/site/testimonials?context=about");
   return (
     <ServiceScope slug="index" as="main">
       <script

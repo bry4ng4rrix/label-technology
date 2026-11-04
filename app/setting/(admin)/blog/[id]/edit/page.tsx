@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { supabase, type BlogPost } from "@/lib/supabase";
+import { adminGet, type BlogPost } from "@/lib/api";
 import BlogForm from "../../BlogForm";
 import AdminPageHeader from "../../../AdminPageHeader";
 import { updateBlogPost } from "../../actions";
@@ -10,12 +10,7 @@ export default async function EditBlogPostPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const { data: post } = await supabase
-    .from("blog_posts")
-    .select("*")
-    .eq("id", id)
-    .returns<BlogPost[]>()
-    .maybeSingle();
+  const post = await adminGet<BlogPost>(`/blog-posts/${id}`);
   if (!post) notFound();
 
   const boundUpdate = updateBlogPost.bind(null, post.id);

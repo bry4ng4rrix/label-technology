@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { supabase, type Testimonial } from "@/lib/supabase";
+import { adminGet, type Testimonial } from "@/lib/api";
 import { Button } from "@/components/ui/button";
 import AdminPageHeader from "../AdminPageHeader";
 import { Badge } from "@/components/ui/badge";
@@ -15,12 +15,7 @@ import { Plus, Pencil } from "lucide-react";
 import DeleteTestimonialButton from "./DeleteTestimonialButton";
 
 export default async function TestimonialsAdminPage() {
-  const { data } = await supabase
-    .from("testimonials")
-    .select("*")
-    .order("context", { ascending: true })
-    .order("order", { ascending: true })
-    .returns<Testimonial[]>();
+  const data = await adminGet<Testimonial[]>("/testimonials");
   const testimonials = data ?? [];
 
   return (

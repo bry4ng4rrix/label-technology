@@ -1,5 +1,7 @@
 "use server";
 
+import { apiSend } from "@/lib/api";
+
 export type ContactState = {
   status: "idle" | "success" | "error";
   message?: string;
@@ -24,19 +26,15 @@ export async function sendContact(
     return { status: "error", message: "Adresse email invalide." };
   }
 
-  if (process.env.RESEND_API_KEY) {
-    try {
-      const { Resend } = await import("resend");
-      const resend = new Resend(process.env.RESEND_API_KEY);
-      await resend.emails.send({
-        from: "site@labeltechnology.mg",
-        to: "contact@labeltechnology.mg",
-        subject: `Nouveau message de ${name} — ${service || "Non précisé"}`,
-        text: `Nom: ${name}\nEntreprise: ${company}\nEmail: ${email}\nService: ${service}\n\n${message}`,
-      });
-    } catch {
-      return { status: "error", message: "Erreur lors de l'envoi. Veuillez réessayer ou nous appeler directement." };
-    }
+  const error = await apiSend("/api/site/contact", "POST", {
+    name,
+    email,
+    message,
+    company: company ?? "",
+    service: service ?? "",
+  });
+  if (error) {
+    return { status: "error", message: error };
   }
 
   return {

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { supabase, type BlogPost } from "@/lib/supabase";
+import { adminGet, type BlogPost } from "@/lib/api";
 import { Button } from "@/components/ui/button";
 import AdminPageHeader from "../AdminPageHeader";
 import { Badge } from "@/components/ui/badge";
@@ -15,11 +15,7 @@ import { Plus, Pencil } from "lucide-react";
 import DeleteBlogButton from "./DeleteBlogButton";
 
 export default async function BlogAdminPage() {
-  const { data } = await supabase
-    .from("blog_posts")
-    .select("*")
-    .order("published_at", { ascending: false })
-    .returns<BlogPost[]>();
+  const data = await adminGet<BlogPost[]>("/blog-posts");
   const posts = data ?? [];
 
   return (
